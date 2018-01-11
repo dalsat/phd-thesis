@@ -1,0 +1,71 @@
+%!TEX root = ../tommaso-thesis.tex
+%!TEX spellcheck = en_US
+
+\chapter{Introduction}\label{ch:introduction}
+
+Everybody uses software.
+Maybe it is the control system for a production environment of a large factory.
+Maybe it is the interface to access a professional knowledge base, or a social network.
+Maybe it is an application on a smartphone, or a website to book a flight.
+
+Regardless of its use, software plays a central role in modern society.
+Software is used in almost any human activity, allowing users to automate the most trivial tasks: Its usage became massively pervasive, to the point where virtually any structured activity and process relies on software to regulate its workflow, minimize errors, and reduce costs.
+With the recent popularity of mobile computing, this momentum pushed even further this flourishing scenario, and pushed the influence of software deeper into every aspect of our lives.
+
+To keep pace with such a vibrant landscape, developer teams have to write code fast and push new features in a short period of time.
+All these changes in the codebase cause systems to constantly change and evolve their behavior, sometimes more than once a day.
+Often changes are performed by different developers, or even by different teams working on different parts of the system: Therefore, it quickly becomes impossible for a single person to grasp comprehension of the whole system.
+It is easy to understand how a software system can gradually start to resemble an unknown black box, rather than a deterministic process.
+
+To complicate things even further, a deep knowledge of the whole set of components that form a system is often not sufficient to predict its final behavior.
+Given the large number of requirements that modern software systems have to satisfy, it is usually necessary to rely on external libraries to provide the desired features.
+Using external code is a good practice, as it allows for reuse and reduces the probability of a bug being present in a library used by more people.
+However, these benefits come at the cost of yielding control of the system to external code, leading the consequence that, if an error arises from a library, it becomes virtually impossible to track down its origin unless by debugging the library itself.
+
+The main focus during a development cycle is writing new code to develop new features: However, in such a complex and ever-changing scenario, a huge part of the resources put in a project are spent in maintenance and debugging~\cite{Corb1989,Fjel1983,Zelk1979,Mine2015b}.
+We can break down the constituent components of maintenance in: finding and collecting problems, understanding them, locating the source of the infection, and fixing the issue.
+Each one of these phases comes with its own set of problems and complexities.
+
+In such a scenario, one would imagine that the effort for providing means to aid developers would focus on refined tools to navigate, understand, and inspect the code.
+While this is partly true, many of the modern editors and IDEs put the biggest accent on how developers write code, leaving program comprehension as a secondary task, despite it being intrinsically more complicated.
+
+
+\section{The Problem of Dealing With Code}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\mypar{The Curse of Text}
+It is easy to see why understanding software is hard: Reading code requires reading text that contains structured information in a language that does not follow the same logic of natural language. To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the (intended) behavior of the software. The same process happens when printing log messages to expose the state of the system: Log messages embody fragments of information that the developer has to fit into her mental model, and use it to reverse engineer the source of an error by trial and error.
+
+To ease this process, both researchers and industry built a plethora of tools like debuggers and code inspectors, that allow developers to run a program in a controlled environment, and to check the internal status of its variables.
+Other tools, like code browsers, support fast linking between the entities in the code, while loggers allow to print and store useful runtime information.
+Finally, test suites allow to define a set of expected behaviors, and to constantly check if any of these rules is satisfied.
+
+All these tools however do not change the fundamental way we interact with the code: Eventually, the developer needs to read the code, and therefore undergo the process of building its mental model.
+This is because all these tools rely on the same, strong, underlying assumption: Source code is text, therefore the tools we are using to interact with it are shaped around text editing tools.
+This assumption reflects the way we use to store our programs, \ie plain-text files containing the declaration of our models.
+
+%We propose a novel approach for runtime data collection: We advocate the use of objects to store information about an exception, in order to preserve the multidimensional nature of the information, and leverage the implicit properties that can be obtained by the data structure. By describing errors as first-class citizens of a system, and using a storage format that does not flatten the information, we can reify logs and leverage their expressive power to support a number of development activities. A structured data source allows to build a set of specialized tools to browse the data in an incremental fashion, to discover its implicit structure, or to enable the use of automated analysis, mitigating the need of a data cleaning phase. It can also be stored and sent for debugging purposes, thus creating bug reports with a much higher level of detail and reliability than simple plain text.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Thesis Statement}\label{sec:thesis}
+
+Our thesis is...
+
+\begin{framed}
+The information produced during the failure of a program contains valuable insights about the whole system, that is conveyed both by its contents and by its structure.
+This information cannot be effectively expressed using plain text.
+%The format we use to store this information must express both.
+\end{framed}
+
+
+\section{Contributions}
+
+What we did.
+
+
+\section{Outline}
+
+In \chpref{chp:stacktraces}

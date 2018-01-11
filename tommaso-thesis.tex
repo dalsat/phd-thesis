@@ -1,0 +1,123 @@
+%!TEX spellcheck = en_US
+\documentclass[]{tommaso-thesis}
+
+\usepackage{graphicx}\graphicspath{{Images/}}
+\usepackage{tabularx, paralist}
+\usepackage[table]{xcolor}
+\usepackage[draft]{fixme}
+%\usepackage{tikz}
+%\usetikzlibrary{automata}
+%\usepackage{setspace}
+%\setstretch{1.05}
+
+%\usepackage{amssymb}
+\usepackage{listings, xspace, url, colortbl, wrapfig,  ifthen, multirow, rotating}
+%float,
+\usepackage{cancel}
+
+%change 'sl' to 'bf' for bold, or 'normalfont' for no special
+%formatting
+\captionsetup{labelfont={sl,sf}}
+
+\lstdefinelanguage{algebra}
+{morekeywords={import,sort,constructors,observers,transformers,axioms,if,
+else,end},
+sensitive=false,
+morecomment=[l]{//s},
+}
+
+
+%\title{A Bug With A Suit---\\Deep Models For Tracking Issue}
+\title{Augmenting Software Development \\with Reified Execution Data}
+%\subtitle{Subtitle: Reinventing the World} %optional
+\author{Tommaso Dal Sasso}
+\advisor{Prof. Dr. Michele Lanza}
+
+\Day{Yesterday} %compulsory
+\Month{September} %compulsory
+\Year{2017} %compulsory, put only the year
+\place{Lugano} %compulsory
+
+\programDirector{The PhD program Director \emph{pro tempore}} %compulsory
+%\programDirectorA{Prof. Walter Binder} %compulsory
+%\programDirectorB{Prof. Michael Bronstein} %compulsory
+
+
+\committee{%
+  \committeeMember{Mehdi Jazayeri}{Universit\`a della Svizzera Italiana, Switzerland}
+  \committeeMember{Cesare Pautasso}{Universit\`a della Svizzera Italiana, Switzerland}
+
+  \committeeMember{Martin Pinzger}{Alpen-Adria-Universit\"at, Austria}
+  \committeeMember{Rocco Oliveto}{University of Molise, Italy}
+  \committeeMember{Andy Zaidman}{Delft University of Technology, The Netherlands}
+}
+
+\dedication{To my beloved} %optional
+\openepigraph{%Someone said \dots}{Someone} %optional
+Alice: But I don't want to go among mad people!
+
+Cheshire Cat: Oh, you can't help that. Most everyone's mad here.
+You may have noticed that I'm not all there myself.}
+{Alice in Wonderland}
+
+
+\makeindex %optional, also comment out \theindex at the end
+
+\input{macros.tex}
+
+\begin{document}
+
+\maketitle %generates the titlepage, this is FIXED
+
+\frontmatter %generates the frontmatter, this is FIXED
+
+
+\input{Chapters/abstract}
+
+\input{acknowledgements}
+
+
+
+\tableofcontents
+\listoffigures %optional
+\listoftables %optional
+
+\mainmatter
+
+\part{Introduction}
+  \input{Chapters/introduction}
+  \input{Chapters/related}
+
+\part{Runtime Collection and Analysis}
+  \input{Chapters/stacktraces}
+  \input{Chapters/reified}
+%  \input{Chapters/visualize}
+  \input{Chapters/blend}
+
+\part{Modeling}
+  \input{Chapters/model}
+  \input{Chapters/gamification}
+
+\part{Conclusion}
+  \input{Chapters/conclusion}
+
+
+
+
+%\appendix %optional, use only if you have an appendix
+
+
+\backmatter
+
+\chapter{Glossary} %optional
+
+%\bibliographystyle{alpha}
+\bibliographystyle{dcu}
+%\bibliographystyle{plainnat}
+\bibliography{biblio}
+
+\cleardoublepage
+\theindex %optional, use only if you have an index, must use
+	  %\makeindex in the preamble
+
+\end{document}

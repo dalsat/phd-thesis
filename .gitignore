@@ -1,0 +1,11 @@
+.DS_Store
+*.lo[fgt]
+*.out
+*.aux
+*.pdf
+*.toc
+*.idx
+*.synctex.gz
+
+*.bbl
+*.blg
