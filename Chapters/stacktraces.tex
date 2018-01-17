@@ -85,7 +85,7 @@ To be able to deal with a potentially large volume of information, we need an ef
 The most immediate advantage of using clustered stack traces is to leverage them for bug fixing. We developed an approach to analyze the contents of a stack trace and use the mined information to retrieve bug reports from the Pharo bug tracker that discuss the classes and methods in the trace. For example, by retrieving the reports related to the trace in \figref{fig:stacktrace}, which involves key events, we can find the bug report $\#12973$, that discusses an issue related to keyboard shortcuts. By further reading the report, we can learn about the nature of the issue, and by checking the last events we can learn about the current status of the defect. In this case, we can see that the issue has already been resolved, a patch has been committed and is waiting to be integrated. Thus, we can ignore the problem, knowing that it will be solved soon. Moreover, by checking future stack traces, we are able to determine if the problem has been completely solved or if it may appear again in some particular, missed corner cases.
 
 Overall, having quick access to bug reports related to encountered exceptions can help to obtain an overview of the problem  and improve and boost the debugging process. We next discuss how we match bug reports and stack traces.
-%!TEX root = saner2015.tex
+
 
 \section{CrowdStacking Traces}\label{sec:dataset}
 

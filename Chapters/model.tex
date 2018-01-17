@@ -159,7 +159,7 @@ The contributions of this work are:
 \end{itemize}
 
 
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Issue Tracking Systems}\label{sec:bugtrackers}
@@ -193,7 +193,7 @@ To obtain an overview of the salient features of issue trackers, we briefly pres
 \subsubsection{FogBugz} In this system, the model of a bug report is similar to \bzilla, but more polished and user-friendly, due to its clean user interface and filtering capabilities. Differently from \gth, \fbz\seeurl{https://www.fogcreek.com/fogbugz/} does not simplify the report model, but it lets users add custom filters and views.
 
 {\bf Reflection.} To understand the essential traits of bug reports, we analyze how the data included in bug reports influences their lifetime. We next analyze the features of a set of bug reporting systems, to distill a model of common/specific fields for their bug reports. This model serves as a basis for further empirical analysis, to determine how these commonalities and customizations influence the life of the reports.
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Research Method} \label{sec:method}
@@ -344,7 +344,7 @@ The large volume of data we collected allows us to explore the usage of issue tr
 
 To investigate our research questions, we adopt the following approach. To answer RQ3, we build a transition diagram of all the state changes for each issue tracker, to highlight the common patterns in the growth of a report, and we weight the diagram with the values from the dataset. To answer RQ4, we build a machine-learning-based prediction model to verify how completeness of fields of a bug report relates to its lifetime.
 
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%
 \section{Results} \label{sec:approach}
@@ -630,7 +630,7 @@ Last, we examine which fields impact the prediction the most: They are the numbe
 
 The fields that connect the issue with other reports are also relevant, for example the dependent issues, as well as the fact that a bug report is already assigned at the time of submission.
 
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%%%%
 \section{Discussion} \label{sec:discussion}
@@ -647,7 +647,7 @@ There is the concern that the lifetime of a bug report, that we used as a measur
 GitHub adopts the opposite approach, by providing a minimal structure of a bug report that is mostly a note attached to a commit or a piece of code. This interesting approach, however, lacks the descriptive power of the other two platforms. The need for a simpler model is hinted by the choices of the development team of \bzilla that on version 5.0, released in July 2015, proposes a simplified interface that asks the user for a summary and a description of the problem, polished of all the additional information. 
 
 We believe that the future of issue tracking systems lies in flexible structures that can dynamically adapt to different aspects of the development activity.
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work} \label{sec:related}
@@ -663,7 +663,7 @@ Dealing with bug reports is a non-trivial task: Not only do users have to report
 
 \textbf{Bug Report Databases Visualization.} Researchers proposed a number of visualizations to analyze feature of the bug reporting systems. For example, D'Ambros \etal performed an analysis of the \bzilla bug repository: They summarized the diagram of the state transitions of a report and proposed a set of visualizations to support the analysis of a bug database at different levels of granularity. Their approach allows the user to navigate the history of a single issue tracker and inspect selected part of the system with customized filters~\cite{DAmb2007b}.
 
-%!TEX root = qrs2016.tex
+
 
 %%%%%%%%%%%%%%%%%%%%
 \section{Conclusion} \label{sec:conclusions}
