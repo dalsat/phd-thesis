@@ -1,5 +1,5 @@
 %!TEX spellcheck = en_US
-\documentclass[]{tommaso-thesis}
+\documentclass[hyper]{tommaso-thesis}
 
 \usepackage{graphicx}\graphicspath{{Images/}}
 \usepackage{tabularx, paralist}
@@ -64,6 +64,7 @@ Cheshire Cat: Oh, you can't help that. Most everyone's mad here.
 You may have noticed that I'm not all there myself.}
 {Alice in Wonderland}
 
+% {It should be noted that no ethically-trained software engineer would ever consent to write a DestroyBaghdad procedure. Basic professional ethics would instead require him to write a DestroyCity procedure, to which Baghdad could be given as a parameter.}{Nathaniel Borenstein}
 
 \makeindex %optional, also comment out \theindex at the end
 
@@ -92,19 +93,19 @@ You may have noticed that I'm not all there myself.}
   \input{Chapters/introduction}
   \input{Chapters/related}
 
-\part{Runtime Collection and Analysis}
+
+\part{Collection and Analysis of Runtime Errors}
+  \input{Chapters/visualize}
   \input{Chapters/stacktraces}
   \input{Chapters/reified}
-  \input{Chapters/visualize}
   \input{Chapters/blend}
 
 \part{Modeling}
-  \input{Chapters/model}
-  \input{Chapters/gamification}
+  % \input{Chapters/model}
+  % \input{Chapters/gamification}
 
 \part{Conclusion}
-  \input{Chapters/conclusion}
-
+  % \input{Chapters/conclusion}
 
 
 
@@ -115,8 +116,8 @@ You may have noticed that I'm not all there myself.}
 
 % \chapter{Glossary} %optional
 
-%\bibliographystyle{alpha}
-\bibliographystyle{dcu}
+\bibliographystyle{alpha}
+% \bibliographystyle{dcu}
 %\bibliographystyle{plainnat}
 \bibliography{biblio}
 

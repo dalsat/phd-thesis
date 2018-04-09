@@ -13,7 +13,7 @@
 \newcommand{\etc}{\textit{etc.}\xspace}
 \newcommand{\etal}{\textit{et al.}\xspace}
 \newcommand{\shr}{ShoreLine Reporter\xspace}
-\newcommand{\chpref}[1]{Chapter~\ref{#1}\xspace}
+\newcommand{\chref}[1]{Chapter~\ref{#1}\xspace}
 \newcommand{\secref}[1]{Section~\ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
 \newcommand{\tabref}[1]{Table~\ref{#1}\xspace}

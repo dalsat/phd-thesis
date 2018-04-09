@@ -10,7 +10,7 @@
 *.idx
 *.ilg
 *.ind
-*.synctex.gz
+*.synctex*
 *.toc
 
 *.pdf

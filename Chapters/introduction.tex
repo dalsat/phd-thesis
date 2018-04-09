@@ -4,15 +4,15 @@
 \chapter{Introduction}\label{ch:introduction}
 
 Everybody uses software.
-Maybe it is a control system for the production environment of a large factory.
-Maybe it is the interface to access a professional knowledge base, or a social network.
-Maybe it is an application on a smartphone, or a website to book a flight.
+It can be the control system for a production environment of a large factory.
+It can be the interface to access a professional knowledge base, or a social network.
+Or maybe it is an application on a smartphone, or a website to book a flight.
 
-Regardless of its use, software plays a central role in modern society: It is used in almost any human activity, allowing users to automate the most trivial tasks.
+Regardless of its use, software plays a central role in modern society: It is used in almost any human activity, allowing users to automate the most trivial tasks and to avoid errors in complex processes.
 Its usage became massively pervasive, to the point where virtually any structured activity and process relies on software to regulate its workflow, minimize errors, and reduce costs.
-Moreover, the surge of popularity of mobile computing pushed even further the momentum of this flourishing scenario, and pushed the influence of software deeper into every aspect of our lives.
+Moreover, the surge of popularity of mobile computing pushed even further the momentum of this flourishing scenario, and brought the influence of software deeper into every aspect of our lives.
 
-To keep pace with such a vibrant landscape, development teams have to write code fast and push new features in a short period of time.
+To keep pace with such a vibrant landscape, development teams are required to write code and push new features in a short period of time.
 All these changes in the codebase cause systems to constantly change and evolve their behavior, sometimes more than once a day.
 Often changes are performed by different developers, or even by different teams working on different parts of the system: Therefore, it quickly becomes impossible for a single person to grasp comprehension of the whole system.
 It is easy to understand how a software system can gradually start to resemble an unknown black box, rather than a deterministic process.
@@ -30,13 +30,15 @@ In such a scenario, one would imagine that the effort for providing means to aid
 While this is partly true, many of the modern editors and IDEs put the biggest accent on how developers write code, leaving program comprehension as a secondary task, despite it being intrinsically more complicated.
 
 
-\section{The Problem of Dealing With Code}
+\section{Dealing With Software}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\mypar{The Curse of Text}
-It is easy to see why understanding software is hard: Reading code requires reading text that contains structured information in a language that does not follow the same logic of natural language. To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the (intended) behavior of the software. The same process happens when printing log messages to expose the state of the system: Log messages embody fragments of information that the developer has to fit into her mental model, and use it to reverse engineer the source of an error by trial and error.
+It is easy to sense why understanding software is hard: Reading code means reading text containing structured information, in a language that does not follow the same logic of natural language.
+To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the (intended) behavior of the software.
+The same process happens when printing log messages to expose the state of the system: Log messages embody fragments of information that the developer has to fit into her mental model, and use it to reverse engineer the source of an error by trial and error.
 
-To ease this process, both researchers and industry built a plethora of tools like debuggers and code inspectors, that allow developers to run a program in a controlled environment, and to check the internal status of its variables.
+To ease this process, both researchers and industry practitioners built a plethora of tools, like debuggers and code inspectors, to allow developers run a program in a controlled environment while checking the internal status of its variables.
 Other tools, like code browsers, support fast linking between the entities in the code, while loggers allow to print and store useful runtime information.
 Finally, test suites allow to define a set of expected behaviors, and to constantly check if any of these rules is satisfied.
 
@@ -46,12 +48,22 @@ This assumption reflects the way we use to store our programs, \ie plain-text fi
 
 %We propose a novel approach for runtime data collection: We advocate the use of objects to store information about an exception, in order to preserve the multidimensional nature of the information, and leverage the implicit properties that can be obtained by the data structure. By describing errors as first-class citizens of a system, and using a storage format that does not flatten the information, we can reify logs and leverage their expressive power to support a number of development activities. A structured data source allows to build a set of specialized tools to browse the data in an incremental fashion, to discover its implicit structure, or to enable the use of automated analysis, mitigating the need of a data cleaning phase. It can also be stored and sent for debugging purposes, thus creating bug reports with a much higher level of detail and reliability than simple plain text.
 
+In this thesis we propose a different approach for thinking about runtime errors and software defects.
+The data generated from runtime errors contains large amounts of information that is usually ignored, or stored in a textual format, that loses its original relations with the entities of the system.
+We propose to promote this kind of data ---such as bug reports and log files--- to full fledged entities and store them using objects, so that we are able to maintain the original relations with the existing system.
+By using objects, we can promote entities such as bug reports or log files to first-class citizens during the development cycle, and integrate them more tightly with the tools used in the evolution of the system.
+
+considered a disposable byproduct of the development cycle and therefore discarded.
+When it is not discarded, this information is collected in a textual format
+We believe that by discarding this data, consider it as a disposable byproduct of the development effort, wastes the enormous potential of the knowledge that this data contains.
+We want to leverage the usefulness of this data and turn it into actionable information that can effectively impact the development process and reduce maintenance costs.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Thesis Statement}\label{sec:thesis}
 
--Our thesis is...
+We formulate our thesis as follows:
 
 \begin{framed}
 The information produced during the failure of a program contains valuable insights about the whole system, that is conveyed both by its contents and by its structure.
@@ -62,9 +74,87 @@ This information cannot be effectively expressed using plain text.
 
 \section{Contributions}
 
-What we did.
+We can classify the contributions presented in this dissertation under three categories:
+
+\subsection{Analysis}
+
+\begin{itemize}
+  \item We analyzed the content of existing bug repositories, for hidden properties and recurring patterns~\cite{DalS2013a,DalS2016a};
+
+\end{itemize}
 
 
-\section{Outline}
+\subsection{Tools}
 
-In \chpref{chp:stacktraces}
+\begin{itemize}
+    % \setcounter{enumi}{2}
+
+    \item We built in*Bug, a tool for visually inspecting the content of existing issue trackers~\cite{DalS2013a,DalS2014a};
+
+    \item We built Blend, a tool that merges different data sources to visualize and navigate the evolution of a software system~\cite{DalS2015b};
+
+    \item We developed and deployed ShoreLine, a platform for the collection of runtime errors, and the reporting of system errors~\cite{DalS2015a};
+
+    \item We extended ShoreLine to allow the reified collection of runtime data and allow a better representation of the status of a system during a failure~\cite{DalS2017b}
+
+\end{itemize}
+
+    % Sympathy for the Devil: Reified Collection of Runtime Errors
+    %
+    % How to Gamify Software Engineering
+    %
+    % What Makes a Satisficing Bug Report
+    %
+    % Blended, Not Stirred: Multiconcern visualization of large software systems
+    %
+    % Misery Loves Company: CrowdStacking Traces to Aid Problem Detection.
+    %
+    % Managing Software Defects
+    %
+    % in*Bug: Visual analytics of bug repositories
+    %
+    % A closer look at bugs (d.s.)
+    %
+    % Content Classification of Development Emails
+
+
+\subsection{Modeling}
+
+\begin{itemize}
+    % \setcounter{enumi}{6}
+    \item We proposed a model to represent and store a bug report and the related data without losing context information~\cite{DalS2016a};
+
+    \item We distilled a meta-model for a minimal bug report, establishing a basic layer of core features~\cite{DalS2016a};
+
+    \item We performed a survey to investigate what users deem easy to provide in a bug report~\cite{DalS2016a};
+\end{itemize}
+
+
+\section{Roadmap}
+
+Our work is presented in the following order.
+
+\begin{description}
+% part 1
+ \item[\chref{ch:related}] concludes the introduction to this thesis, by presenting the history and evolution of tracking bugs, the current trends and best practices.
+
+% maybe Ch 2 Pharo? e.g. \chref{ch:pharo}
+
+% part 2
+\item[\chref{ch:visualize}] proposes a visual approach to explore the content of existing issue trackers, showing how a simple textual representation sometimes hides useful information in a bug database.
+
+\item[\chref{ch:stacktraces}] presents our approach for runtime errors retrieval, where we collect stack traces generated during the development process to learn about the life of a system.
+
+\item[\chref{ch:reified}] extends our stack traces collection approach, to log entities in a reified fashion and to capture the information implicitly stored in the relation among the objects.
+
+\item[\chref{ch:blend}] shows Blend: a tool to combine heterogeneous data sources to browse the evolution of a system from different perspectives.
+
+% part 3
+\item[\chref{ch:model}] discusses the model usually employed by issue trackers, what we can expect from users to provide, and how we can improve it to lay the foundations for the next generation of issue trackers.
+
+\item[\chref{ch:gamification}] discusses how we can improve the experience of using an issue tracking system by employing \emph{gamification}.
+
+% part 4
+\item[\chref{ch:conclusion}] concludes our work by summarizing the proposed approaches and how these can show the direction for the development of smarter and deeper bug reports and issue tracking systems.
+
+\end{description}
