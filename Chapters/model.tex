@@ -1,31 +1,10 @@
 %!TEX root = ../tommaso-thesis.tex
 %!TEX spellcheck = en_US
 
-%\documentclass[conference]{IEEEtran}
 
-%
-%\usepackage{amssymb}
-%\setcounter{tocdepth}{3}
-%\usepackage{graphicx}
-%
-%\usepackage[utf8]{inputenc}
-
-%\usepackage{xspace,graphicx,url,paralist,xcolor, colortbl, wrapfig,  ifthen, amssymb, multirow, listings, rotating, wrapfig}
-%%float,
-%\usepackage{cancel}
-%
-%
-%\usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
 
-
-\definecolor{gray50}{gray}{.5}
-\definecolor{gray40}{gray}{.6}
-\definecolor{gray30}{gray}{.7}
-\definecolor{gray20}{gray}{.8}
-\definecolor{gray10}{gray}{.9}
-\definecolor{gray05}{gray}{.95}
 
 \newlength\Linewidth
 \def\findlength{\setlength\Linewidth\linewidth
@@ -53,7 +32,7 @@
 \newcounter{RQCounter}
 \newcounter{RQACounter}
 
- %Pass in label for rq, then rq
+%Pass in label for rq, then rq
 %
 
 \newcommand{\RQ}[2]{%
@@ -66,50 +45,7 @@
 }
 
 
-
-%\begin{document}
-%
 \chapter{What Makes a Satisficing Bug Report?}\label{ch:model}
-
-
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-%\author{\IEEEauthorblockN{Tommaso Dal Sasso, Andrea Mocci,\\ Michele Lanza}
-%\IEEEauthorblockA{REVEAL\\
-%\emph{Universit\`a della Svizzera italiana (USI)}\\
-%Switzerland}
-%\and
-%\IEEEauthorblockN{Marco Vit, Alberto Bacchelli}
-%\IEEEauthorblockA{SORCERERS\\
-%\emph{Delft University of Technology}\\
-%The Netherlands}}
-
-%\author{\IEEEauthorblockN{Tommaso Dal Sasso, Andrea Mocci, Michele Lanza}
-%\IEEEauthorblockA{{\em{\small REVEAL @ Faculty of Informatics -- University of Lugano, Switzerland}}
-%%\\{\em $^2${\small Delft University of Technology, The Netherlands}}
-%}
-%}
-
-%\maketitle
-
-
-%\newcommand{\ie}{\textit{i.e.,}\xspace}
-%\newcommand{\eg}{\textit{e.g.,}\xspace}
-%\newcommand{\etc}{\textit{etc.}\xspace}
-%\newcommand{\etal}{\textit{et al.}\xspace}
-%\newcommand{\sln}{ShoreLine\xspace}
-%\newcommand{\secref}[1]{Section~\ref{#1}\xspace}
-%\newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
-%\newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
-
-%\newcommand{\seeurl}[1]{\footnote{See #1}}
-
-%\newcommand{\bzilla}{\textsc{Bugzilla}\xspace}
-%\newcommand{\jira}{\textsc{JIRA}\xspace}
-%\newcommand{\gth}{\textsc{GitHub}\xspace}
-%\newcommand{\fbz}{\textsc{FogBugz}\xspace}
-
 
 To ensure quality of software systems, developers use bug reports to track defects.
 It is in the interest of users and developers that bug reports provide the necessary information to ease the fixing process.
@@ -121,10 +57,13 @@ We distilled a meta-model for a \emph{minimal} bug report, establishing a basic 
 We found that few fields influence the resolution time and that customized fields have little impact on it.
 We performed a survey to investigate what users deem easy to provide in a bug report.
 
+\structure
+In
+\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{Good Bug Reports vs. Real Bug Reports}
 %%%%%%%%%%%%%%%%%%%%%%
 
 When users file a bug report for a software project, their main hope is that developers will fix it quickly, to minimize its impact.
@@ -151,9 +90,7 @@ We conduct our investigation in three steps: \begin{inparaenum}[(1)]
 \item we study which fields developers use to describe defects, by means of a further quantitative analysis on the lifetime of reports in relation to the evolution of report's state and its \emph{completeness} in its core and customized fields.
 \end{inparaenum}
 
-Our results show that
-%\AB{Maybe it could be expanded a bit? I have the impression that there are more results that are interesting to report here}
- providing more fields in a report relates to the fixing time: In particular, the bug reports with longer descriptions tend to be solved quicker.
+Our results show that providing more fields in a report relates to the fixing time: In particular, the bug reports with longer descriptions tend to be solved quicker.
 While this might be intuitive, issue trackers still do not emphasize this aspect during the submission of a new bug report, putting the accent on the customization capabilities of the platform.
 At the same time, the project-specific bug report fields have little impact to the fixing time.
 This paper provides insights on the current issue tracking practices and defines guidelines in building the foundations for a new model of an issue tracking system.
@@ -162,57 +99,57 @@ The contributions of this work are:
 
 \begin{itemize}[$\circ$]
 
-\item A survey that identifies the components of a bug report considered difficult to provide by users (\secref{sec:survey}).
+\item A survey that identifies the components of a bug report considered difficult to provide by users (\secref{sec:model-survey}).
 
-\item A dataset of 650,000 bug reports, collected from the issue trackers of \bzilla and \jira (\secref{sec:collection}).
+\item A dataset of 650,000 bug reports, collected from the issue trackers of \bzilla and \jira (\secref{sec:model-collection}).
 
-\item The model for a minimal bug report, that puts the emphasis on the shared components of a bug report (\secref{sec:model})
+\item The model for a minimal bug report, that puts the emphasis on the shared components of a bug report (\secref{sec:model-model})
 
-\item An analysis of the usage of the fields in an issue tracker, from active open source projects (\secref{sec:fields}).
+\item An analysis of the usage of the fields in an issue tracker, from active open source projects (\secref{sec:model-fields}).
 
 \end{itemize}
 
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Issue Tracking Systems}\label{sec:bugtrackers}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-To obtain an overview of the salient features of issue trackers, we briefly present four platforms, selected by importance and overall adoption in open-source systems: \bzilla, \jira, the \gth issue tracker and \fbz.
-
-\subsubsection{Bugzilla} One of the oldest and most popular issue tracking systems that influenced many other issue trackers.
-Developed by the Mozilla Foundation, it is used both by open source projects\seeurl{https://www.bugzilla.org/installation-list/} (\eg Linux) and by industrial and government customers (\eg NASA).
-The Mozilla Foundation itself uses \bzilla to manage the issues of its projects, like Firefox.
-\bzilla includes several fields, allowing for a great level of detail in specifying an issue.
-However, such a freedom of choice also produces a complex interface where many of the values are often left empty, or set to their default value.
-\figref{fig:bugzilla-interface} shows a typical submission form with both fields for fixed-option choices and text boxes for narrative (\eg to describe how to reproduce the bug).
-
-\begin{figure}[ht]
-\centering
-  \includegraphics[width=.9\linewidth]{model/bugzilla}
-  \caption{Bugzilla Submission Form}
-  \label{fig:bugzilla-interface}
-\end{figure}
-
-\subsubsection{JIRA} A successful commercial bug reporting systems used by several customers like Twitter, Linkedin, and Ebay.\seeurl{https://www.atlassian.com/company/customers} \jira supports the same model as \bzilla, augmenting its capabilities with a polished user interface and a tight integration with other development tools, especially with the version control system.
-
-
-\subsubsection{GitHub} A popular web-based \textsc{Git} repository hosting service, used for the development of several popular open source projects.
-Together with the \textsc{Git} hosting service, \gth offers a simple issue tracker to manage the defects during development.
-\figref{fig:github-interface} shows the interface of the \gth bug submission form.
-
-\begin{figure}[ht]
-\centering
-  \includegraphics[width=\linewidth]{model/github}
-  \caption{GitHub Bug Submission Form}
-  \label{fig:github-interface}
-\end{figure}%
-
-\gth adopts a simplified model of a bug report and a strong integration with the source code (thus giving the possibility to link issues with specific commits).
-
-\subsubsection{FogBugz} In this system, the model of a bug report is similar to \bzilla, but more polished and user-friendly, due to its clean user interface and filtering capabilities.
-Differently from \gth, \fbz\seeurl{https://www.fogcreek.com/fogbugz/} does not simplify the report model, but it lets users add custom filters and views.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Issue Tracking Systems}\label{sec:model-bugtrackers}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% To obtain an overview of the salient features of issue trackers, we briefly present four platforms, selected by importance and overall adoption in open-source systems: \bzilla, \jira, the \gth issue tracker and \fbz.
+%
+% \subsubsection{Bugzilla} One of the oldest and most popular issue tracking systems that influenced many other issue trackers.
+% Developed by the Mozilla Foundation, it is used both by open source projects\seeurl{https://www.bugzilla.org/installation-list/} (\eg Linux) and by industrial and government customers (\eg NASA).
+% The Mozilla Foundation itself uses \bzilla to manage the issues of its projects, like Firefox.
+% \bzilla includes several fields, allowing for a great level of detail in specifying an issue.
+% However, such a freedom of choice also produces a complex interface where many of the values are often left empty, or set to their default value.
+% \figref{fig:bugzilla-interface} shows a typical submission form with both fields for fixed-option choices and text boxes for narrative (\eg to describe how to reproduce the bug).
+%
+% \begin{figure}[ht]
+% \centering
+%   \includegraphics[width=.9\linewidth]{model/bugzilla}
+%   \caption{Bugzilla Submission Form}
+%   \label{fig:bugzilla-interface}
+% \end{figure}
+%
+% \subsubsection{JIRA} A successful commercial bug reporting systems used by several customers like Twitter, Linkedin, and Ebay.\seeurl{https://www.atlassian.com/company/customers} \jira supports the same model as \bzilla, augmenting its capabilities with a polished user interface and a tight integration with other development tools, especially with the version control system.
+%
+%
+% \subsubsection{GitHub} A popular web-based \textsc{Git} repository hosting service, used for the development of several popular open source projects.
+% Together with the \textsc{Git} hosting service, \gth offers a simple issue tracker to manage the defects during development.
+% \figref{fig:github-interface} shows the interface of the \gth bug submission form.
+%
+% \begin{figure}[ht]
+% \centering
+%   \includegraphics[width=\linewidth]{model/github}
+%   \caption{GitHub Bug Submission Form}
+%   \label{fig:github-interface}
+% \end{figure}%
+%
+% \gth adopts a simplified model of a bug report and a strong integration with the source code (thus giving the possibility to link issues with specific commits).
+%
+% \subsubsection{FogBugz} In this system, the model of a bug report is similar to \bzilla, but more polished and user-friendly, due to its clean user interface and filtering capabilities.
+% Differently from \gth, \fbz\seeurl{https://www.fogcreek.com/fogbugz/} does not simplify the report model, but it lets users add custom filters and views.
 
 {\bf Reflection.} To understand the essential traits of bug reports, we analyze how the data included in bug reports influences their lifetime.
 We next analyze the features of a set of bug reporting systems, to distill a model of common/specific fields for their bug reports.
@@ -220,7 +157,7 @@ This model serves as a basis for further empirical analysis, to determine how th
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Research Method} \label{sec:method}
+\section{Research Method} \label{sec:model-method}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 To determine what makes a satisficing bug report, we first need a way to rate the quality of a bug report, then we can conduct quantitative analysis to determine which features relate with higher quality.
@@ -237,7 +174,7 @@ To understand what is reasonable for a user to provide in a report, we conducted
 We then focus on two of the main components that compose a bug report: (1) its state and (2) the core and optional attributes, to understand how the provided data is used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Research Questions} \label{sec:questions}
+\subsection{Research Questions} \label{sec:model-questions}
 
 When collecting information about software defects, it is important to know when the submitted data is reliable and accurate.
 Our goal is to investigate what  users can easily provide and what is harder to obtain; we structure our investigation into the following question:
@@ -264,10 +201,10 @@ We investigate the completeness of core and custom fields with respect to the li
 
 \RQ{rq4}{Does the completeness of standard and project-specific attributes in a bug report relate to its lifetime?}
 
-To answer our questions, we both run a survey (\secref{sec:survey}) and we collect, model, and analyze a large dataset of bug reports from open source projects (\secref{sec:collection}).
+To answer our questions, we both run a survey (\secref{sec:model-survey}) and we collect, model, and analyze a large dataset of bug reports from open source projects (\secref{sec:model-collection}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Online Questionnaire} \label{sec:survey}
+\subsection{Online Questionnaire} \label{sec:model-survey}
 
 Zimmerman \etal asked users and developers what they think are the useful elements in a bug report and how hard it is, in their opinion, to provide those elements~\cite{Zimm2010}.
 We proposed a similar questionnaire to the \emph{Pharo} open source community to further understand what it is reasonable to expect from users submitting a bug report.
@@ -337,7 +274,7 @@ Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
 \end{table*}
 
 
-\subsection{Data Collection} \label{sec:collection}
+\subsection{Data Collection} \label{sec:model-collection}
 
 To understand what users and developers collect and provide in bug reports, we mined the contents of the issue trackers of several software projects.
 To collect real development data for our study, we consider the Apache Foundation and the Mozilla Foundation: Both platforms contain a considerable number of popular and active open source projects, with years of development history.
@@ -405,7 +342,7 @@ To answer RQ4, we build a machine-learning-based prediction model to verify how 
 
 
 %%%%%%%%%%%%%%%%%
-\section{Results} \label{sec:approach}
+\section{Results} \label{sec:model-approach}
 %%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -424,7 +361,10 @@ This is due to the fact that the Pharo community is composed of experienced prog
 Interestingly, finding the assignee is not considered excessively difficult: Again, this can relate to the community experience, that has a strong core of well-known developers that work as hub when dealing with defects.
 The elements considered to be harder to provide are the entity (\eg class, file) that likely contains the defect, the steps to reproduce the failure, and a test case showing the defect.
 
-\textbf{Conclusion.} \figref{fig:survey} shows that some elements are perceived as more difficult to provide when submitting a bug report.
+
+\subsubsection{Conclusion}
+
+\figref{fig:survey} shows that some elements are perceived as more difficult to provide when submitting a bug report.
 There is a set of easier elements, like screenshots, descriptions of the failure, stack traces, and the details of the operating system and hardware.
 Those elements are useful in identifying the defect, but are less effective than other elements we identified to support its resolution.
 
@@ -437,13 +377,15 @@ Those elements are useful in identifying the defect, but are less effective than
 \label{fig:model}
 \end{figure*}
 
-\subsection*{RQ2: What is a comprehensive unified meta-model for describing data from different bug tracking systems?}\label{sec:model}
+\subsection*{RQ2: What is a comprehensive unified meta-model for describing data from different bug tracking systems?}\label{sec:model-model}
 
 To devise a unified meta-model for the data we collected from the different issue trackers, we extract the model for each separate platform by reverse engineering the data and by using the documentation for the various trackers.
 We identify the entities that compose a bug report, the fields  composing it, and the relation between the various entities.
 We intersect the list of each bug report and select the most common ones, to summarize the salient traits of a bug report.
 
-{\bfseries Anatomy of a Report.} Issue trackers are platform independent: They share a flexible common core structure to meet all the possible requirements of a software system's development process.
+
+\subsubsection{Anatomy of a Report}
+Issue trackers are platform independent: They share a flexible common core structure to meet all the possible requirements of a software system's development process.
 A bug report is then built around a text description of an issue, where the user can specify the steps to reproduce the issue or include snippets of code that exemplify the context where the issue may happen.
 
 The text description is complemented by additional metadata, used to improve the report and to track the evolution of the bug, and it can also contain attachments, like stack traces and patches.
@@ -451,30 +393,33 @@ While the description of the issue and the possibility to attach files is common
 We can classify these attributes in three layers:
 
 \begin{itemize}[$\circ$]
- \item {\it Common:} metadata in every report in each platform, \ie the core set of attributes that describes a bug report.
- \item {\it Platform specific:} metadata that are used throughout a single platform.
- \item {\it Project specific:} custom metadata set by the users, used in a single project.
+ \item \textit{Common:} metadata in every report in each platform, \ie the core set of attributes that describes a bug report.
+ \item \textit{Platform specific:} metadata that are used throughout a single platform.
+ \item \textit{Project specific:} custom metadata set by the users, used in a single project.
 \end{itemize}
 
-{\bfseries The Model.} From the list of entities in a tracker and their list of metadata, we built a model to access the data.
+
+\subsubsection{The Model}
+
+From the list of entities in a tracker and their list of metadata, we built a model to access the data.
 Given our focus, we present a view of the model from the submitter's point of view.
 \figref{fig:model} shows the conceptual diagram of the unified model for a typical bug tracking system with the frequencies of use for the common fields and trimmed of the post-report information.
 %The diagram is composed of the following entities:
 
 
 \begin{itemize}[$\circ$]
-\item {\it Issue:} The main entity representing a bug report, with the text description and the metadata provided by the user.
-\item {\it Comment:} User-provided additional information on a report.
-\item {\it Edit:} A change in the existing report.
+\item \textit{Issue:} The main entity representing a bug report, with the text description and the metadata provided by the user.
+\item \textit{Comment:} User-provided additional information on a report.
+\item \textit{Edit:} A change in the existing report.
 It can group several changes.
-\item {\it AttributeEdit:} A change to a single element: It contains the modified attribute, the added, and removed text.
-\item {\it Link:} The relation (if any) to another report.
+\item \textit{AttributeEdit:} A change to a single element: It contains the modified attribute, the added, and removed text.
+\item \textit{Link:} The relation (if any) to another report.
 A link maps the connection and defines the type of relation (\eg parent or duplicate).
-\item {\it Project:} The project the issue tracker refers to (\eg Firefox).
-\item {\it Product:} A single instance of an issue tracking platform (\eg Bugzilla or JIRA).
-\item {\it Component:} The area of the code affected by the defect.
-\item {\it Versions:} The software version(s) where the bug was observed.
-\item {\it Milestone:} The software version(s) targeted for a fix, for planning purposes.
+\item \textit{Project:} The project the issue tracker refers to (\eg Firefox).
+\item \textit{Product:} A single instance of an issue tracking platform (\eg Bugzilla or JIRA).
+\item \textit{Component:} The area of the code affected by the defect.
+\item \textit{Versions:} The software version(s) where the bug was observed.
+\item \textit{Milestone:} The software version(s) targeted for a fix, for planning purposes.
 \end{itemize}
 
 There are additional attributes that are not present in every platform.
@@ -491,7 +436,7 @@ Some fields may seem redundant: For example, the field \texttt{updated\_at} of \
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{RQ3: What are the recurrent states and transitions in reports?} \label{sec:approach-states}
+\subsection*{RQ3: What are the recurrent states and transitions in reports?} \label{sec:model-approach-states}
 
 We tracked the evolution of bug reports using the \texttt{state} attribute, which is an enumeration from a set of predefined states.
 \tabref{tab:dataset-statuses} shows the states used in the two bug trackers we consider.
@@ -515,11 +460,11 @@ Given \figref{fig:apache_transitions} and \figref{fig:mozilla_transitions} we ca
 
 \begin{itemize}[$\circ$]
 
-\item {\it Active states:} The first group contains the most active states (\ie touched by the majority of bug reports), that are often involved in loops between them.
+\item \textit{Active states:} The first group contains the most active states (\ie touched by the majority of bug reports), that are often involved in loops between them.
 
-\item {\it Intermediate states:} These states (\eg \textsc{testing}, \textsc{in progress}, \textsc{reopened}) indicate states where an action is taking place or expected (\eg a patch is waiting for review or the continuous integration server is running the tests).
+\item \textit{Intermediate states:} These states (\eg \textsc{testing}, \textsc{in progress}, \textsc{reopened}) indicate states where an action is taking place or expected (\eg a patch is waiting for review or the continuous integration server is running the tests).
 
-\item {\it Unused states:} Some states are rarely used: \textsc{awaiting feedback} and \textsc{ready to commit}.
+\item \textit{Unused states:} Some states are rarely used: \textsc{awaiting feedback} and \textsc{ready to commit}.
 They represent some corner cases that detail extremely specific aspects of the fixing activity.
 Their very low usage may hint at a little interest in tracking these aspects in this way.
 
@@ -527,7 +472,7 @@ Their very low usage may hint at a little interest in tracking these aspects in 
 
 The analysis highlights that some projects do adopt customized states to track the intermediate aspects of their projects' workflow, but they tend to be not used in practice.
 
-\textbf{Conclusion.} The analysis on the usage of the states in \secref{sec:approach-states} seems to suggest that:
+\textbf{Conclusion.} The analysis on the usage of the states in \secref{sec:model-approach-states} seems to suggest that:
 \begin{itemize}[$\circ$]
 \item A simple model with a few states, as the one described by D'Ambros \etal~\cite{DAmb2007b}, satisfies the need of tracking the state of an issue;
 \item Adding customized values to  describe additional specific and intermediate steps in the fixing process is not working to track a better evolution of the state of a report.
@@ -542,8 +487,7 @@ The latter aspect is strengthened by the fact that \jira offers less states than
 %\caption{Number of custom fields per project}
 %\begin{tabular}{|l|lrrr|}
 %\hline
-% & \textbf{Project} & \textbf{\# fields} & \textbf{Avg.
-lifetime (d)} & \textbf{Max lifetime (d)} \\
+% & \textbf{Project} & \textbf{\# fields} & \textbf{Avg. lifetime (d)} & \textbf{Max lifetime (d)} \\
 % \hline \hline
 %\bzilla & Air Mozilla & 5 & 154 & 1,004 \\
 % & Bugzilla & 5 & 343 & 5,650 \\
@@ -569,14 +513,14 @@ lifetime (d)} & \textbf{Max lifetime (d)} \\
 %\end{table*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{RQ4: Does the completeness of standard and project-specific attributes in a bug report relate to its lifetime?}\label{sec:fields}
+\subsection*{RQ4: Does the completeness of standard and project-specific attributes in a bug report relate to its lifetime?}\label{sec:model-fields}
 
-%\AB{It seems strange to me that this section ends here.
-Is the following the actual results on 'custom fields having a measurable impact on the resolution'? It should be in my opinion, so I would recommend having one single section.
-But after reading the next section it is much more than that.
-I think this part and the next subsection should be restructured.
-For example, start from the large lifetime of a report and then investigating the effect of the customized fields.
-This means moving the subsection above near the end of the next one, but not as a separate subsection.}
+% \AB{It seems strange to me that this section ends here.
+% Is the following the actual results on 'custom fields having a measurable impact on the resolution'? It should be in my opinion, so I would recommend having one single section.
+% But after reading the next section it is much more than that.
+% I think this part and the next subsection should be restructured.
+% For example, start from the large lifetime of a report and then investigating the effect of the customized fields.
+% This means moving the subsection above near the end of the next one, but not as a separate subsection.}
 
 To investigate the impact that the fields have on solving a defect, we considered the \emph{lifetime} (defined as the time to the final fix) of the closed reports.
 
@@ -634,9 +578,7 @@ Zookeeper & 12 & 158 & 2,108 \\
 We now explore the relationship between the various attributes adopted by the different platforms and projects we considered and the effectiveness of a bug report, measured as its lifetime.
 
 
-
-
-{\bfseries Preparing the data.} To interact with the dataset, we created a \emph{vector space model} to allow us to test statistical and machine learning approaches.
+\subsubsection{Preparing the data.} To interact with the dataset, we created a \emph{vector space model} to allow us to test statistical and machine learning approaches.
 Predicting the exact lifetime of a report would be unpractical and unnecessary: a timeframe for the resolution would provide a useful, human-understandable measure, while allowing more accurate predictions.
 To introduce such a degree of tolerance, we divide the reports into \emph{buckets} according to their lifetime.
 
@@ -647,8 +589,8 @@ After bucketing the issues, we model each report as a vector of booleans (each f
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsubsection{Principal Component Analysis} \label{sec:pca}
-{\bfseries Principal Component Analysis.} To understand the relation between the completeness of a bug report and the fixing time of a defect, we want to inspect how much each field contributes to  the lifetime of a bug report.
+%\subsubsection{Principal Component Analysis} \label{sec:model-pca}
+\subsubsection{Principal Component Analysis.} To understand the relation between the completeness of a bug report and the fixing time of a defect, we want to inspect how much each field contributes to  the lifetime of a bug report.
 
 For this purpose, we use \emph{Principal Component Analysis} (PCA)~\cite{abdi2010} to extract the variance between the different fields.
 PCA is a statistical procedure that aims to extract only the salient features from a data table.
@@ -685,7 +627,7 @@ It follows that users and developers should take these elements into account whe
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsubsection{Predicting the Lifetime of a Defect}
-{\bfseries Predicting the Lifetime of a Defect.} We studied the core fields that are the most relevant in impacting the lifetime.
+\subsubsection{Predicting the Lifetime of a Defect.} We studied the core fields that are the most relevant in impacting the lifetime.
 Now we investigate how the lifetime gets influenced by the different fields defined by each project.
 For such an analysis PCA is not suited, as the data is too sparse and the features would be discarded in the process.
 We therefore adopt a \emph{machine learning} approach to estimate an approximate lifetime of a bug report given its ``completeness,'' \ie the number of completed fields when submitted.
@@ -772,10 +714,12 @@ The fields that connect the issue with other reports are also relevant, for exam
 
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Discussion} \label{sec:discussion}
+\section{Discussion} \label{sec:model-discussion}
 %%%%%%%%%%%%%%%%%%%%
 
-{\bfseries Threats to Validity.} Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
+\subsubsection{Threats to Validity}
+
+Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
 We spent a considerable amount of time dealing with the representation of the data, extracting its features and cleaning the unneeded parts.
 
 In particular, we carefully excluded from our prediction model all the fields that could yield a-posteriori information on the lifetime of a report.
@@ -784,7 +728,10 @@ In a large dataset it is hard, however, to guarantee the complete soundness of t
 There is the concern that the lifetime of a bug report, that we used as a measure of quality of a bug report, is not relevant for our task.
 However, this metric proved to be an interesting open problem in the field and it represents an interesting heuristic in determining the effectiveness of a report.
 
-{\bfseries Future Work.} Developers tend to prefer simpler models to depict software defects.
+
+\subsubsection{Future Work}
+
+Developers tend to prefer simpler models to depict software defects.
 Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
 Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
 
@@ -796,7 +743,7 @@ We believe that the future of issue tracking systems lies in flexible structures
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Related Work} \label{sec:related}
+\section{Related Work} \label{sec:model-related}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Dealing with bug reports is a non-trivial task: Not only do users have to report meaningful information and developers have to understand and reproduce a problem, but they also have to deal with the large, noisy, and sometimes duplicated  information stored in issue tracking systems.
@@ -828,7 +775,7 @@ Their approach allows the user to navigate the history of a single issue tracker
 
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Conclusion} \label{sec:conclusions}
+\section{Summary} \label{sec:model-summary}
 %%%%%%%%%%%%%%%%%%%%
 
 We conducted an investigation to identify the features that are relevant to obtain a \emph{satisficing} bug report.

@@ -1,77 +1,7 @@
 %!TEX root = ../tommaso-thesis.tex
 %!TEX spellcheck = en_US
 
-%\documentclass[conference]{IEEEtran}
-
-%\usepackage{xspace,graphicx,url,paralist,xcolor, colortbl, wrapfig, float, ifthen, amssymb, multirow, listings, rotating,flushend}
-%
-%
-%\newcommand{\ie}{\textit{i.e.,}\xspace}
-%\newcommand{\eg}{\textit{e.g.,}\xspace}
-%\newcommand{\etc}{\textit{etc.}\xspace}
-%\newcommand{\etal}{\textit{et al.}\xspace}
-%\newcommand{\sln}{ShoreLine\xspace}
-%\newcommand{\secref}[1]{Section~\ref{#1}\xspace}
-%\newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
-%\newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
-
-%\newboolean{showcomments}
-%\setboolean{showcomments}{true}
-%\ifthenelse{\boolean{showcomments}}
-%  {\newcommand{\nb}[2]{\fbox{\bfseries\sffamily\scriptsize#1}{\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}}}
-%  {\newcommand{\nb}[2]{}}
-%\newcommand\TLN[1]{\nb{Michele}{#1}}
-%\newcommand\AM[1]{\nb{Andrea}{#1}}
-%\newcommand\TDS[1]{\nb{Tommaso}{#1}}
-
-\newcommand{\buildingblock}[2]{
-    \begin{wrapfigure}{l}{0.10\linewidth}
-    	\vspace{-15pt}
-    	\begin{center}
-    	\includegraphics[width=\linewidth]{gamification/#2}
-    	\end{center}
-    	\vspace{-15pt}
-    \end{wrapfigure}
-
-    \noindent\textbf{#1:}
-}
-
-\newcommand{\badge}[1]{
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-  \vspace{-18pt}
-  \begin{center}
-    \includegraphics[width=0.06\textwidth]{gamification/#1.pdf}
-  \end{center}
-  \vspace{-20pt}
-\end{wrapfigure}
-}
-
-\definecolor{oceanboatblue}{rgb}{0.0, 0.47, 0.75}
-\definecolor{red-brown}{rgb}{0.65, 0.16, 0.16}
-\definecolor{citrine}{RGB}{249, 214, 157}
-\definecolor{tanzanite}{RGB}{203, 205, 222}
-\definecolor{quartz}{RGB}{231, 206, 218}
-\definecolor{jade}{RGB}{178, 223, 178}
-\definecolor{topaz}{RGB}{173, 214, 244}
-\definecolor{amethyst}{RGB}{230, 169, 252}
-\definecolor{ruby}{RGB}{250, 142, 169}
-\definecolor{emerald}{RGB}{157, 216, 191}
-\definecolor{aquamarine}{RGB}{176, 215, 228}
-\definecolor{sapphire}{RGB}{35, 23, 197}
-\definecolor{gold}{rgb}{1.0, 0.84, 0.0}
-
-
 \chapter{How to Gamify Software Engineering}\label{ch:gamification}
-
-
-% Perspectives track: A paper in which the main contribution is a novel perspective on the field as a whole, or part thereof.
-This includes assessments of the current state of the art and achievements, systematic literature reviews, framing of an important problem, forward-looking thought pieces, connections to other disciplines, and historical perspectives.
-Such a contribution must, in a highly convincing manner, clearly articulate the vision, novelty, and potential impact.
-
-% 12 pages: 10 pages for the main text, including figures, tables, appendices, etc, and up to 2 pages for references.
-
-%\begin{abstract}
 
 Software development, like any prolonged and intellectually demanding activity, can negatively affect the motivation of developers.
 This is especially true in specific areas of software engineering, such as requirements engineering, test-driven development, bug reporting and fixing, where the creative aspects of programming fall short.
@@ -84,20 +14,35 @@ The question we investigate is how the seemingly frivolous context of games and 
 Our investigation starts with a review of the state of the art of gamification, supported by a motivating scenario to expose how gamification elements can be integrated in software engineering.
 We provide a set of basic building blocks to apply gamification techniques, present a conceptual framework to do so, illustrated in two usage contexts, and critically discuss our findings.
 
-%\end{abstract}
+\structure
 
+% With this paper we make the following contributions:
+%
+% \begin{itemize}
+%
+% \item An in-depth discussion of the principles, promises, and perils of gamification (\secref{sec:gamification-principles}).
+%
+% \item A conceptual framework with which one can gamify software engineering activities (\secref{sec:gamification-framework}).
+%
+% \item A set of reusable building blocks that serve as a foundation for our gamification framework (\secref{sec:gamification-building-blocks}).
+%
+% \item A illustration, through several concrete examples and scenarios, of how our gamification framework can be used for the gamification of diverse software engineering activities (\secref{sec:gamification-example-bugs} and \secref{sec:gamification-example-gems}).
+%
+% \item A critical discussion about our findings and a roadmap for future work in this area (\secref{sec:gamification-summary}).
+
+% \end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\section{The Rise of Gamification}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Games have been a fundamental part of human civilization for thousands of years.
 In 440 BC Herodotus wrote about the Kingdom of Lydia in Asia Minor, where 3 millennia before his time the Lydians invented several games, such as the dice and the ball, to overcome an 18 year long famine.
 They would engage in games one day so entirely as not to feel any craving for food, and the next day to eat and abstain from games~\cite{Hero440a}.
- While it is unclear whether the story is true, its moral truths reveal the essence of games, which is not escapism, but rather a purposeful and helpful activity to cope with the sometimes adverse or boring reality, which McGonigal goes even as far as to call it a ``broken reality''~\cite{McGo2011a}.
+While it is unclear whether the story is true, its moral truths reveal the essence of games, which is not escapism, but rather a purposeful and helpful activity to cope with the sometimes adverse or boring reality, which McGonigal goes even as far as to call it a ``broken reality''~\cite{McGo2011a}.
 
- Gamification is defined by Werbach and Hunter as ``The use of game elements and game-design techniques in non-game contexts''~\cite{Werb2012a}.
+Gamification is defined by Werbach and Hunter as ``The use of game elements and game-design techniques in non-game contexts''~\cite{Werb2012a}.
 The concept, not to be mistaken with Game Theory, was pioneered in the 1980s by Richard Bartle, the inventor of the first MUD (Multi-User Dungeon) game, who defined gamification as ``turning something not a game into a game''~\cite{Bart2003a}.
 
 But, what is a game? According to McGonigal~\cite{McGo2011a} all games share four defining traits: a \emph{goal}, \emph{rules}, a \emph{feedback system}, and \emph{voluntary participation}.
@@ -146,32 +91,33 @@ We will discuss these aspects in the coming sections.
 
 Summing it up, gamification is not about rewarding people with trinkets and tokens, it is about enriching their activities with ``gameful'' aspects.
 As this represents a fairly novel field, we have performed an in-depth investigation of the topic~\cite{Mast2014a}, which we distill here into a systematic approach for the gamification of software engineering.
+
 With this paper we make the following contributions:
 
 \begin{itemize}
 
-\item An in-depth discussion of the principles, promises, and perils of gamification (\secref{sec:principles}).
+\item An in-depth discussion of the principles, promises, and perils of gamification (\secref{sec:gamification-principles}).
 
-\item A conceptual framework with which one can gamify software engineering activities (\secref{sec:framework}).
+\item A conceptual framework with which one can gamify software engineering activities (\secref{sec:gamification-framework}).
 
-\item A set of reusable building blocks that serve as a foundation for our gamification framework (\secref{sec:building-blocks}).
+\item A set of reusable building blocks that serve as a foundation for our gamification framework (\secref{sec:gamification-building-blocks}).
 
-\item A illustration, through several concrete examples and scenarios, of how our gamification framework can be used for the gamification of diverse software engineering activities (\secref{sec:example-bugs} and \secref{sec:example-gems}).
+\item A illustration, through several concrete examples and scenarios, of how our gamification framework can be used for the gamification of diverse software engineering activities (\secref{sec:gamification-example-bugs} and \secref{sec:gamification-example-gems}).
 
-\item A critical discussion about our findings and a roadmap for future work in this area (\secref{sec:conclusion}).
+\item A critical discussion about our findings and a roadmap for future work in this area (\secref{sec:gamification-summary}).
 
 \end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Games and Gamification} \label{sec:principles}
+\section{Games and Gamification} \label{sec:gamification-principles}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-First, we discuss the principles of game design (\secref{sec:principles:games}) and gamification (\secref{sec:principles:gamification}).
+First, we discuss the principles of game design (\secref{sec:gamification-principles:games}) and gamification (\secref{sec:gamification-principles:gamification}).
 This will help us to understand how the obtained background can be leveraged to apply gamification in software engineering.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Why Do We Play Games} \label{sec:principles:games}
+\subsection{Why Do We Play Games} \label{sec:gamification-principles:games}
 
 The  idea that games can be adapted to positively influence tasks and activities in other domains is older than the term \emph{gamification}, which only gained popularity in the recent years.
 
@@ -235,7 +181,7 @@ Everyone contributes something different, and together they create a solution''~
 In essence, games enrich gamers and provoke positive emotion, which, if leveraged, help to structure experience and provide a powerful tool for inspiring participation and motiving hard work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gamification: Principles, Promises \& Perils} \label{sec:principles:gamification}
+\subsection{Gamification: Principles, Promises \& Perils} \label{sec:gamification-principles:gamification}
 
 Werbach and Hunter summarized the positive effects of a well designed gamification system as \cite{Werb2012a}:
 \begin{inparaenum}[i)]
@@ -335,7 +281,7 @@ Due to space constraints we discuss and present only the salient underlying theo
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Software Engineering Gamification Framework}\label{sec:framework}
+\section{Software Engineering Gamification Framework}\label{sec:gamification-framework}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Our framework is an extension of Taje's layered approach to game design\footnote{\url{http://www.gamecareerguide.com/features/355/gameplay_deconstruction_elements_.php}}.
@@ -376,7 +322,7 @@ This description of the framework is given from a conceptual point of view, obta
 Before we can provide concrete examples of how the framework is to be used, we need one last missing and fundamental piece: Each activity hinges on one or more {\bf building blocks}, which also denote the particular categories of gamification it belongs to.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gamification Building Blocks}\label{sec:building-blocks}
+\subsection{Gamification Building Blocks}\label{sec:gamification-building-blocks}
 
 The ten building blocks we present here have been identified during the construction of several software engineering gamification environments we have constructed, and which we briefly present in a latter section.
 We do not claim the list of building blocks is exhaustive, but after constructing the aforementioned gamification environments we did not see other building blocks emerge from our efforts.
@@ -455,7 +401,7 @@ If users collected vast amount of rewards and participated in the community, the
 {\bf Putting everything together.} In the following we provide two concrete examples of gamification environments we have been developing.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Example I: The Myth and De-Bug}\label{sec:example-bugs}
+\subsection{Example I: The Myth and De-Bug}\label{sec:gamification-example-bugs}
 
 The objective is to develop a gamification system for a bug tracking system.
 Fixing a bug is like struggling against a monster that threatens a village.
@@ -546,7 +492,7 @@ We just described a possible instantiation of this gamification system.
 We could take exactly the same framework, substitute the name of the badges and imprint the game toward modern heroes (Spider Man, Batman, Superman, etc).
 They are just fancy names, and we can use the fantasy we like to shape the same gamification dynamics.
 
-\subsection{Example II: The Empire of Gemstones}\label{sec:example-gems}
+\subsection{Example II: The Empire of Gemstones}\label{sec:gamification-example-gems}
 
 The first example was developed in the context of a novel bug tracker we are implementing \cite{DalS2014a}.
 We also devised a number of other software engineering gamification environments, which led to the distillation of the building blocks discussed previously.
@@ -655,27 +601,44 @@ The first three focus on technical aspects to consider the business objectives, 
 Due to their subjective nature, we cannot get a precise measure of emotional response of the users and compare the obtained values in a consistent way.
 The relative metrics have then to consider the imprecise nature of the data they deal with.
 
-\textbf{Success Metrics}: The first approach is to define a set of goals at design time, and verify them after the system has been in production for a while.
+
+\subsubsection{Success Metrics}
+
+The first approach is to define a set of goals at design time, and verify them after the system has been in production for a while.
 We recommend to make a list of the goals of the gamification system, define success metrics (number of new users in the last month, average activity increase per user, \etc) tailored to specific activities and verifiable with usage data.
 A long enough timeframe must be used to perceive a noticeable change: People's habits take a while to deal with novelties.
 A significative amount of data must be collected before and after the introduction of the gamification layer to enable before/after testing.
 
-\textbf{Analytics}: A useful metric is represented by the measure of users interacting with the enviroment: \emph{Daily Active Users (DAU)} is the number of unique users that interact with the software tool during a day, while \emph{Monthly Active Users (MAU)} is the average number of unique users that interacted with the software tool in the previous 30 days.
+
+\subsubsection{Analytics}
+
+A useful metric is represented by the measure of users interacting with the enviroment: \emph{Daily Active Users (DAU)} is the number of unique users that interact with the software tool during a day, while \emph{Monthly Active Users (MAU)} is the average number of unique users that interacted with the software tool in the previous 30 days.
 By computing the ratio $\frac{\textit{DAU}}{\textit{MAU}}$ we have the trend of usage of the software tool in a given moment.
 The result of such a ratio goes from 0 to 1: It is close to 1 when the tool is engaging, and it is close to 0 when its popularity is decreasing.
 $\frac{\textit{DAU}}{\textit{MAU}}$ is a relevant parameter to keep under observation because, if it increases the number of active users is growing; if it decreases they are decreasing.
 
-\textbf{Conflicts}: Some gamification elements can create conflicts with existing elements on the system.
+
+\subsubsection{Conflicts}
+
+Some gamification elements can create conflicts with existing elements on the system.
 Listing and prioritizing the conflicts, also by listening to the users through forums and mailing list, is helpful.
 If a conflict persists, the involved gamification elements should be pulled out of the environment, as user dissatisfaction can be harmful to the whole community.
 
-\textbf{Jen Ratio}: Establish two sets of interactions in the user community: \emph{positive interactions} (\eg virtual gifts, acknowledgements), and \emph{negative interactions} (\eg misbehaviours, rude comments).
+
+\subsubsection{Jen Ratio}
+
+Establish two sets of interactions in the user community: \emph{positive interactions} (\eg virtual gifts, acknowledgements), and \emph{negative interactions} (\eg misbehaviours, rude comments).
 Compute the \emph{Jen Ratio}: total positive interactions among users over the total negative interactions, in a given period of time and context.
 The outcome is between 0 and 1.
 The jen ratio assesses how positive the attitude of the users is: the closer to 1, the better the social well-being of the community.
 
-\textbf{Survey}: Selected users, of all expertise levels, should be periodically surveyed, where key questions should not only regard technical aspects, but also emotional aspects.
 
+\subsubsection{Survey}
+
+Selected users, of all expertise levels, should be periodically surveyed, where key questions should not only regard technical aspects, but also emotional aspects.
+
+
+\subsubsection{}
 
 Beyond the use of these metrics, it is important to perform an evaluation on the effective gain of the system, to quantify how the use of gamification impacted the activity of the users and if it brought actual benefits.
 For example, in a bug tracking system we can measure the number of bug reports opened and closed every day, the average duration of a bug report and the number of bug reports that a user examines.
@@ -683,7 +646,7 @@ However, it is clear that such metrics are domain specific, and have to be calib
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}\label{sec:conclusion}
+\section{Summary}\label{sec:gamification-summary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 We presented a critical overview on the relevant literature on gamification, and proposed a framework to support the design of a gamification layer to support software engineering tasks.
@@ -693,7 +656,7 @@ Last, we outlined a proposal on how gamification systems can be evaluated.
 
 \subsection{Reflections}
 
-The examples in \secref{sec:framework} hint at a fact that should not be disregarded about gamification: To create such environments is a far from trivial endeavour.
+The examples in \secref{sec:gamificationframework} hint at a fact that should not be disregarded about gamification: To create such environments is a far from trivial endeavour.
 The reasoning that goes into creating thematic environments, the way that leveling is handled, how and when awards and badges should be assigned, is a strongly iterative process.
 One might be tempted to bypass such a labor-intensive work by using the simplest solution, which is to award points and to base the leveling on such points.
 However, apart from the danger of pointsification, there is another risk, which we define as ``stalling'': If the gamification layer is not constantly revisited, maintained, and evolved, it risks to quickly become obsolete, and therefore will not only be ignored by the users, but it might even cause decreased participation.

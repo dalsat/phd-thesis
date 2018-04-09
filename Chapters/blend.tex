@@ -2,21 +2,8 @@
 %!TEX spellcheck = en_US
 
 
-% Tools in small case
-\newcommand{\dfl}{\textsc{DFlow}\xspace}
-\newcommand{\sli}{\textsc{ShoreLine Reporter}\xspace}
-\newcommand{\pha}{\textsc{Pharo}\xspace}
+\chapter{Blended, Not Stirred: \\Multi-concern Visualization of \\Large Software Systems}\label{ch:blend}
 
-
-%\begin{document}
-
-\chapter{Blended, Not Stirred: Multi-concern Visualization of Large Software Systems}\label{ch:blend}
-
-
-%\author{\IEEEauthorblockN{Tommaso Dal Sasso, Roberto Minelli, Andrea Mocci, Michele Lanza}
-%\IEEEauthorblockA{\em REVEAL @ Faculty of Informatics --- Universit\`a della Svizzera italiana  (USI), Switzerland }}
-
-%\maketitle
 
 While constructing and evolving software systems, developers generate directly and indirectly a large amount of data of diverse nature, such as source code changes, bug tracking information, IDE interactions, stack traces, etc.
 Often these diverse data sources are processed and visualized in isolation, leading to a partial view of systems.
@@ -24,15 +11,22 @@ Often these diverse data sources are processed and visualized in isolation, lead
 We present a blended approach to visualize several data ``ingredients'' at once, to give as complete an answer as possible to the question {``What happened to the system in the last few days?''}.
 The goal is to enable a quick and comprehensive assessment of what happened to a software system in any given time frame.
 
+\structure
+
+% \secref{sec:blend-related} presents the related work.
+In \secref{sec:blend-ingredients} we describe the ingredients of our blended visualization, which is presented in \secref{sec:blend-visualization}.
+In \secref{sec:blend-stories} we use the visualization to tell interesting evolutionary stories.
+Finally, \secref{sec:blend-summary} summarizes and concludes our work.
+
+\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction} \label{sec:intro}
+\section{Exploring a System} \label{sec:blend-intro}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Software development involves a variety of activities carried out with a number of tools, components and environments, that relate to many different aspects of a system.
 The increasing size of software projects, the increasing popularity of distributed development platforms like \texttt{GitHub}\seeurl{https://github.com}, and the amount of tools and frameworks available for every language, turned a significant part of modern software development into an integration process, where the developer can define a behavior by orchestrating and specializing library components and third-party entities.
-
 This has turned the engineering of any software system into an information-heavy process, which is ultimately distilled into (hopefully functional) source code.
 The vast majority of the corollary information (such as discussions, design decisions, email communication between developers, bug reports, etc.) is either discarded or ignored.
 This is in part due to its often only semi-structured nature, where structured fragments are interleaved with natural language.
@@ -59,7 +53,7 @@ We propose an interactive map that summarizes the relevant events that involved 
 We allow to explore the evolution of the system by navigating the information during time, and refining the search of interesting events to specific moments.
 We then present some stories obtained through our visualization that illustrate interesting properties of an existing software project and its community.
 
-The contributions we make with this article are:
+The contributions we present in this chapter are:
 
 \begin{itemize}
 
@@ -71,14 +65,8 @@ The contributions we make with this article are:
 
 \end{itemize}
 
-\textbf{Structure of the Paper.}~\secref{sec:related} presents the related work.
-In \secref{sec:ingredients} we describe the ingredients of our blended visualization, which is presented in \secref{sec:visualization}.
-In \secref{sec:stories} we use the visualization to tell interesting evolutionary stories.
-Finally, \secref{sec:conclusions} summarizes and concludes our work.
 
-
-
-\section{Related Work}\label{sec:related}
+\section{Related Work}\label{sec:blend-related}
 
 Many researchers showed how using data generated during the programming activity can provide valuable information about the evolution of a project.
 
@@ -107,7 +95,7 @@ We think that an approach that considers more than one kind of data and presents
 
 
 
-\section{The Ingredients}\label{sec:ingredients}
+\section{The Ingredients}\label{sec:blend-ingredients}
 
 %As per the title of our paper, \emph{``Blended, Not Stirred''} our visualization presents a blend of different ingredients to enable analysis from different, maybe orthogonal, perspectives.
 In this section we briefly describe the three main ingredients together with the tools that enable the data collection process.
@@ -118,9 +106,9 @@ In this section we present the context of our analysis, then we briefly describe
 
 Our visualization presents a composition of different information, obtained by blending together different data sources and enabling visual analytics from heterogeneous and multidimensional perspectives.
 To get a tractable subset of data, we focus on a timespan ranging from January 1st 2015 to May 1th 2015.
-In the rest of this section we present the context of our analysis (\secref{sec:ingredients:pharo}), and then we briefly describe the three main ingredients together with the tools that enable the data collection process.
+In the rest of this section we present the context of our analysis (\secref{sec:blend-ingredients:pharo}), and then we briefly describe the three main ingredients together with the tools that enable the data collection process.
 
-\subsection{The Pharo Ecosystem} \label{sec:ingredients:pharo}
+\subsection{The Pharo Ecosystem} \label{sec:blend-ingredients:pharo}
 
 \pha is a Smalltalk inspired programming environment, composed of the \pha programming language, an integrated development editor and a set of libraries covering the common needs for the daily programming tasks.
 
@@ -137,15 +125,24 @@ The \pha system is released once a year, and during this period it goes through 
 The test and release process is managed by a continuous integration server,\seeurl{https://ci.inria.fr/pharo/} that stores the previous builds of the system.
 In our analyses we modeled and extracted all the source code changes between subsequent releases of the \pha system.
 
-{\bfseries Retrieving the different version:} We focused on the release of \pha 4, which just finished its release cycle.
+
+\subsubsection{Retrieving the different version}
+
+We focused on the release of \pha 4, which just finished its release cycle.
 We downloaded all the development versions from the file server,\seeurl{http://files.pharo.org/image/40} that we also used to retrieve the exact release date of each version.
 The full cycle of development images ranges from version $40,000$ to the image $40,613$, from May 26th 2014 to May, 5th 2015.
 The last release in date May 1th 2015 was version $40,611$.
 
-{\bfseries Extracting a system model:} We extracted from each image a model representation of the system.
+
+\subsubsection{Extracting a system model}
+
+We extracted from each image a model representation of the system.
 Such a model is composed of the names of all packages, classes, instance and class methods, and instance and class attributes.
 
-{\bfseries Generating an incremental change model:} We leveraged each system model to obtain an incremental diff model that describes each change.
+
+\subsubsection{Generating an incremental change model}
+
+We leveraged each system model to obtain an incremental diff model that describes each change.
 We considered as change a variation in the names of the collected entities.
 Since we had no way to precisely determine when an entity was renamed, we considered every event in terms of creation and deletion.
 \tabref{tab:pharo} summarizes the available source code changes data.
@@ -181,14 +178,14 @@ Min number of changes per version & 0 \\
 
 
 
-\subsection{\sli and Stack Traces}\label{sub:stacktraces}
+\subsection{\slr and Stack Traces}\label{sub:stacktraces}
 
 A consistent part of the time spent by developers consists in finding and solving defects.
 The debugging activity involves tests to reproduce a problem or verify that a defect has been solved.
 This process generates many stack traces, that contain valuable information about the failures in a system.
 Such information is normally used by a developer to identify a faulty status in her program.
 Moreover, if collected and stacked together, stack traces can also give a hint of what parts of the system are the most active, or which ones are causing more troubles.
-To exploit this source of information, we developed \sli~\cite{DalS2015a}, a platform to collect and store stack traces generated by the whole \pha community.
+To exploit this source of information, we developed \slr~\cite{DalS2015a}, a platform to collect and store stack traces generated by the whole \pha community.
 The data we collect contains the signature of every method invocation, to keep track of each entity involved in the failure, though excluding the method parameters, to avoid privacy issues for the single developer.
 
 In enabling the reporter, each developer can decide to inspect each stack trace and choose the ones to submit, or enable the automatic reporting feature and submit all the traces produced by its activity.
@@ -263,7 +260,7 @@ The approach is not geared towards the specific types of sources, and also not l
 
 
 
-\section{Visualization Principles}\label{sec:visualization}
+\section{Visualization Principles}\label{sec:blend-visualization}
 
 \begin{figure*}[ht]
 \centering
@@ -272,7 +269,7 @@ The approach is not geared towards the specific types of sources, and also not l
 \label{fig:visualization-principles}
 \end{figure*}
 
-\secref{sec:ingredients} introduced the three ``ingredients'' of the visualization: source code changes, stack traces, and IDE interaction data.
+\secref{sec:blend-ingredients} introduced the three ``ingredients'' of the visualization: source code changes, stack traces, and IDE interaction data.
 Until now these diverse data sources are processed and visualized in isolation, leading to an incomplete view of the system.
 Our goal is to visualize all these ingredient to enable a quick and comprehensive assessment of what happened to a software system in a given time frame.
 To do so, we propose the \emph{``Blended City''}, a visualization that uses the \emph{City Metaphor} to depict all the ingredients of a software system.
@@ -336,8 +333,10 @@ We use a triadic color scheme made of primary colors to present this information
 This offers strong visual contrast while retaining balance, and color richness.
 Using colors equally spaced around the color wheel facilitate the addition of extra sources of information, \ie when we need to display \texttt{n} sources of information, we can create a new color harmony composed of \texttt{n} colors evenly spaced around the color wheel.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bfseries Color Blends.} The three primary colors can only depict entities which are affected by a single of the three information sources.
+
+\subsubsection{Color Blends}
+
+The three primary colors can only depict entities which are affected by a single of the three information sources.
 However, in a given timespan a class might be affected by both IDE interactions and stack traces, for example when a developer is adding new functionalities to a class and testing them.
 To depict this information, we use linear color blends between the different sources of information.
 A class with both IDE interactions and stack traces is depicted in purple, the linear blend between the color of IDE interactions (\ie blue) and stack traces (\ie red).
@@ -353,8 +352,9 @@ It is part of our future work the investigation of different techniques to combi
 \end{figure}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bfseries Aging Mechanism.} When the user selects a timespan to visualize, the tool pre-loads and displays also the data happening in the immediately preceding interval (of the same length).
+\subsubsection{Aging Mechanism}
+
+When the user selects a timespan to visualize, the tool pre-loads and displays also the data happening in the immediately preceding interval (of the same length).
 This enables the user to draw conclusions from the visualization having also in mind what happened immediately before.
 To show this data, the tool uses an \emph{aging mechanism} that linearly reduces the color saturation as the age of the datapoint grows, \ie the older the more intense fading towards the default color of nodes (\ie gray).
 \figref{fig:color-aging-timeline} shows how colors fade with such mechanism in a timeline.
@@ -386,6 +386,8 @@ At the end of this interval, the nodes have the default color, \ie light gray.
 \label{fig:full-view}
 \end{figure*}
 
+
+
 \subsection{Under the Hood}
 
 The tool deals with a large volume of entries coming from heterogeneous data sources.
@@ -405,12 +407,11 @@ The user can then use the toolbar to refine the visualization (Fig.~\ref{fig:arc
 
 
 
-\section{Telling Evolutionary Stories}\label{sec:stories}
+\section{Telling Evolutionary Stories}\label{sec:blend-stories}
 
 This section presents four stories, supported by our blended view, that narrate the evolution of the \pha system.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Abandoned Neighborhoods}
+
 \subsection{Those Awkward Neighbors}
 
 By selecting the full available timespan of the data we obtain a visualization that displays all the activities that involved the \pha system over a period of five months.
@@ -533,7 +534,7 @@ Note that the same information, blended with the addition of code changes and ap
 
 
 
-\section{Conclusions}\label{sec:conclusions}
+\section{Summary}\label{sec:blend-summary}
 
 Software visualization and analysis usually focus on giving a detailed representation of a single aspect of the examined entities.
 We presented an approach where we visualize data from three different data sources and contexts, blending them to produce multi-dimensional information about a system, its code and how developers interact with it.

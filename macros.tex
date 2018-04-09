@@ -9,7 +9,9 @@
 \newcommand{\ib}{\textsc{In*Bug}\xspace}
 \newcommand{\sln}{\textsc{ShoreLine}\xspace}
 \newcommand{\slr}{\textsc{ShoreLine Reporter}\xspace}
-\newcommand{\bea}{\textit{Beacon}\xspace}
+\newcommand{\bea}{\textsc{Beacon}\xspace}
+\newcommand{\dfl}{\textsc{DFlow}\xspace}
+\newcommand{\pha}{\textsc{Pharo}\xspace}
 
 \newcommand{\mypar}[1]{\paragraph{\textbf{#1.}}}
 \newcommand{\structure}{\subsubsection*{Structure of the Chapter}}
@@ -26,3 +28,52 @@
 %\newcommand\TLN[1]{\nb{Michele}{#1}}
 %\newcommand\AM[1]{\nb{Andrea}{#1}}
 %\newcommand\TDS[1]{\nb{Tommaso}{#1}}
+
+
+%%% Colors %%%
+% model
+\definecolor{gray50}{gray}{.5}
+\definecolor{gray40}{gray}{.6}
+\definecolor{gray30}{gray}{.7}
+\definecolor{gray20}{gray}{.8}
+\definecolor{gray10}{gray}{.9}
+\definecolor{gray05}{gray}{.95}
+
+%%% Gamification %%%
+\definecolor{oceanboatblue}{rgb}{0.0, 0.47, 0.75}
+\definecolor{red-brown}{rgb}{0.65, 0.16, 0.16}
+\definecolor{citrine}{RGB}{249, 214, 157}
+\definecolor{tanzanite}{RGB}{203, 205, 222}
+\definecolor{quartz}{RGB}{231, 206, 218}
+\definecolor{jade}{RGB}{178, 223, 178}
+\definecolor{topaz}{RGB}{173, 214, 244}
+\definecolor{amethyst}{RGB}{230, 169, 252}
+\definecolor{ruby}{RGB}{250, 142, 169}
+\definecolor{emerald}{RGB}{157, 216, 191}
+\definecolor{aquamarine}{RGB}{176, 215, 228}
+\definecolor{sapphire}{RGB}{35, 23, 197}
+\definecolor{gold}{rgb}{1.0, 0.84, 0.0}
+
+
+\newcommand{\buildingblock}[2]{
+    \begin{wrapfigure}{l}{0.10\linewidth}
+    	\vspace{-15pt}
+    	\begin{center}
+    	\includegraphics[width=\linewidth]{gamification/#2}
+    	\end{center}
+    	\vspace{-15pt}
+    \end{wrapfigure}
+
+    \noindent\textbf{#1:}
+}
+
+\newcommand{\badge}[1]{
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+  \vspace{-18pt}
+  \begin{center}
+    \includegraphics[width=0.06\textwidth]{gamification/#1.pdf}
+  \end{center}
+  \vspace{-20pt}
+\end{wrapfigure}
+}
