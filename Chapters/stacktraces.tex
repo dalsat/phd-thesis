@@ -29,7 +29,7 @@ We illustrate how thousands of stack traces stemming from the IDEs of several de
 \secref{sec:stacktraces-dataset} introduces \shr and the methodology we used to collect stack traces, as well as the process to link them to relevant bug reports.
 \secref{sec:stacktraces-evaluation} evaluates our approach.
 \secref{sec:stacktraces-discussion} discusses our results.
-\secref{sec:related} analyzes related work on debugging data.
+% \secref{sec:stacktraces-related} analyzes related work on debugging data.
 \secref{sec:stacktraces-summary} concludes the paper and presents the possible extensions to our approach.
 
 
@@ -595,29 +595,29 @@ In an open source project, this set of conditions could bolster the interactions
 
 
 
-\section{Related Work}\label{sec:related}
-
-Bug fixing is well known to be a tedious activity, and identifying the source of a problem---even with a bug report---represents a non trivial task.
-Zimmermann \etal showed that the bug reports containing stack traces improve the general quality of the report, and result in a faster resolution of the report~\cite{Zimm2010a}.
-Schr\"oter \etal provided empirical evidence analyzing the Eclipse project that the use of stack traces in defect resolution provides value in the debugging activity, and suggested that software projects should provide means to include them in defect reporting~\cite{Schr2010a}.
-
-The idea of collecting runtime exceptions to analyze software errors has been adopted by different authors in different contexts.
-Glerum \etal used an automated approach to collect errors generated and submitted by WER, the \emph{Windows Error Reporting} tool.
-They analyzed data collected from users of Microsoft's operating systems worldwide: In their approach approach they grouped the reports into buckets by looking for specific properties of the trace, and used this information to prioritize debugging and build a knowledge base where system administrators could check common problems of the system~\cite{Glerum2009}.
-Inspired by this work, Han Shi~\etal applied the same principle to performance debugging~\cite{Han2012}: They proposed an approach called StackMine, designed to detect and report highly impacting performance bugs and address defects that cause long delays in the user experience.
-We believe that a similar approach to the one that they applied to an operating system, can be a valuable support for developers in building a programming environment.
-Mozilla adopts a similar approach to collect stack traces and runtime execution for debugging purposes~\cite{McLa2004}.
-
-The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
-These works provided evidence that stack traces are a useful tool and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}: they provide precise information that are generally more reliable and useful than the descriptions produced by the submitter of the reports~\cite{Ko2006}.
-
-Brodie \etal proposed an automated approach to group similar bug reports using stack trace~\cite{Brod2005}
-
-Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces contained in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
-Again, this was done in a localized post mortem way.
-
-Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c}.
-In this context, we propose an approach to efficiently associate new stack traces to existing bug reports, in an efficient and scalable way, to provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
+% \section{Related Work}\label{sec:stacktraces-related}
+%
+% Bug fixing is well known to be a tedious activity, and identifying the source of a problem---even with a bug report---represents a non trivial task.
+% Zimmermann \etal showed that the bug reports containing stack traces improve the general quality of the report, and result in a faster resolution of the report~\cite{Zimm2010a}.
+% Schr\"oter \etal provided empirical evidence analyzing the Eclipse project that the use of stack traces in defect resolution provides value in the debugging activity, and suggested that software projects should provide means to include them in defect reporting~\cite{Schr2010a}.
+%
+% The idea of collecting runtime exceptions to analyze software errors has been adopted by different authors in different contexts.
+% Glerum \etal used an automated approach to collect errors generated and submitted by WER, the \emph{Windows Error Reporting} tool.
+% They analyzed data collected from users of Microsoft's operating systems worldwide: In their approach approach they grouped the reports into buckets by looking for specific properties of the trace, and used this information to prioritize debugging and build a knowledge base where system administrators could check common problems of the system~\cite{Glerum2009}.
+% Inspired by this work, Han Shi~\etal applied the same principle to performance debugging~\cite{Han2012}: They proposed an approach called StackMine, designed to detect and report highly impacting performance bugs and address defects that cause long delays in the user experience.
+% We believe that a similar approach to the one that they applied to an operating system, can be a valuable support for developers in building a programming environment.
+% Mozilla adopts a similar approach to collect stack traces and runtime execution for debugging purposes~\cite{McLa2004}.
+%
+% The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
+% These works provided evidence that stack traces are a useful tool and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}: they provide precise information that are generally more reliable and useful than the descriptions produced by the submitter of the reports~\cite{Ko2006}.
+%
+% Brodie \etal proposed an automated approach to group similar bug reports using stack trace~\cite{Brod2005}
+%
+% Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces contained in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
+% Again, this was done in a localized post mortem way.
+%
+% Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c}.
+% In this context, we propose an approach to efficiently associate new stack traces to existing bug reports, in an efficient and scalable way, to provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
 
 
 
