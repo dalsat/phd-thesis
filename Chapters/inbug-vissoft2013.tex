@@ -62,7 +62,7 @@ We present an approach to display bug reports through a web-based visual analyti
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Modern non-trivial software projects use bug tracking systems (also known as bug trackers), such as Jira and BugZilla, to manage the bugs that are reported. The repositories created by such bug trackers are a valuable source of information, and they have been used in the past to perform several types of analyses, such as predicting future defects \cite{DAmb2012a}, performing traceability linking \cite{Biss2013a}, locating features \cite{Dit2013a}, ameliorating bug triaging decisions \cite{Anvi2006a}, etc.
+Modern non-trivial software projects use bug tracking systems (also known as bug trackers), such as Jira and BugZilla, to manage the bugs that are reported. The repositories created by such bug trackers are a valuable source of information, and they have been used in the past to perform several types of analyses, such as predicting future defects~\cite{DAmb2012a}, performing traceability linking~\cite{Biss2013a}, locating features~\cite{Dit2013a}, ameliorating bug triaging decisions~\cite{Anvi2006a}, etc.
 
 Bug reports contain both structured and unstructured data. Examples of the former are the author who reported the bug, an id, a timestamp, etc. Examples of the latter are all natural language comments that come with such reports, such as the description of how and when the bug was encountered, and also comments posted by others to discuss the bug report. \figref{fig-fogbugz-massive} depicts an example bug report\footnote{Taken from the bug tracker \textit{FogBugz}, which is used by the \textit{Pharo open source community (\url{http://pharo-project.org}}).}, in terms of how it is presented to a user who wants inspect such a bug report: It is essentially a web page, which can also become very long. In the example report we cut out 13 more events that happened during its life time: Essentially, the report is a wall of text that spans over multiple screens, increasing the effort needed to get a complete picture of the history of the bug.
 
@@ -73,7 +73,7 @@ Bug reports contain both structured and unstructured data. Examples of the forme
 \label{fig-fogbugz-massive}
 \end{figure}
 
-Indeed, bug reports are complex constructs: D'Ambros et al. have shown that they possess complicated life cycles, which makes them non-trivial to comprehend \cite{DAmb2007a}.
+Indeed, bug reports are complex constructs: D'Ambros et al. have shown that they possess complicated life cycles, which makes them non-trivial to comprehend~\cite{DAmb2007a}.
 
 We present a novel approach to visualize bug reports, through \ib, a web-based software visual analytics platform. in*Bug allows users to navigate and inspect the vast information space created by bug tracking systems, with the goal of easing the understanding of bug reports in detail and also obtain an understanding ``in the large'' of how bugs are reported with respect to one system or to an entire software ecosystem.
 
@@ -248,7 +248,7 @@ With a simple click he is now redirected to the bug's page in the bug tracker.
 
 Surprisingly, there is only little related work dedicated to the visualization of bug repositories.
 
-D'Ambros \etal \cite{DAmb2007b} proposed a visualization for bugs as independent entities. Knab \etal \cite{Knab2009a}\cite{Knab2010a} proposed a set of visualization to ease the process of understanding the data in an issue tracker and find hidden patterns. They also tested their tool in an industrial context. Hora \etal \cite{Hora2012a} proposed a visual exploration of the bug repository, considering bugs as first class entities, and linking them to other software artifacts.
+D'Ambros \etal~\cite{DAmb2007b} proposed a visualization for bugs as independent entities. Knab \etal~\cite{Knab2009a,Knab2010a} proposed a set of visualization to ease the process of understanding the data in an issue tracker and find hidden patterns. They also tested their tool in an industrial context. Hora \etal~\cite{Hora2012a} proposed a visual exploration of the bug repository, considering bugs as first class entities, and linking them to other software artifacts.
 
 All these approaches focus on retrospective analyses. We believe that while conceptually interesting, there is little practical utility in such a thing, since after all the goal is not to look at bugs, but to actually fix them. This implies that even the most elaborated techniques are of limited actionability, since the bug fixing process takes place in a different space, namely the integrated development environment (IDE). In our case the goal is not to stop at the mere visualization, but then establish a first-class link to the development environment. We envision an environment where going from a specific bug report in \ib to the context where the reported bug can be fixed is a mere mouse click away. Our future efforts will be focused on this goal.
 

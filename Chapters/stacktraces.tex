@@ -575,7 +575,7 @@ The final advantage of building clusters is that it eases further analysis on th
 Clustering provides an immediate measure of the popularity of the cluster, it can help in profiling the types of errors on the system during time and ease further investigation on specific groups of stack traces, allowing deeper inspection of other unexpected behaviors on the system, such as the distribution of Message Not Understood or  the distribution of the invoked classes and methods.
 To develop this approach, we used a very simple, yet effective clustering method based on the connected components of the graph formed by the nearest neighbor.
 Despite its simplicity, this method already provided useful results in identifying the main groups of stack traces in the dataset, as shown in \figref{fig:eva-clusters}.
-The approach can be further refined with more specific algorithms, such as k-means\cite{MacQ1967} or k-medoids\cite{Kauf1987,Park2009}, which could provide more precise results.
+The approach can be further refined with more specific algorithms, such as k-means~\cite{MacQ1967} or k-medoids~\cite{Kauf1987,Park2009}, which could provide more precise results.
 However, the cost for such improvement could be represented by a drop of performance, since these algorithms are computationally expensive.
 Therefore, the nearest-neighbor clustering  represents a good tradeoff between results and efficiency.
 Also, the problem of a clustering algorithm such as k-means, is that it requires to determine \emph{a priori} the number of clusters to separate our dataset, but in the context of stack traces this information is indeed impossible from the beginning, and it can invalidate the notion of similarity, degrading the approach.

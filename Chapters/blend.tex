@@ -216,10 +216,10 @@ The presence of many different stack traces for a specific component might also 
 
 \subsection{\dfl and IDE Interaction Data}\label{sub:interaction}
 
-During the process of software construction and evolution, supported by integrated development environments (IDEs), developers generate a large amount of data known as \emph{``IDE Interaction data''} \cite{Kers2005, Murp2006}.
+During the process of software construction and evolution, supported by integrated development environments (IDEs), developers generate a large amount of data known as \emph{``IDE Interaction data''}~\cite{Kers2005, Murp2006}.
 Examples of such data include \begin{inparaenum}[i)] \item \emph{IDE meta events}, like adding a method to a class, saving some edited code, or inspecting a variable in the debugger, \item \emph{UI events}, like moving a window or a tab in the IDE, or resizing them, and \emph{low-level events}, like keystrokes, mouse clicks, drags and simple movements\end{inparaenum}.
 
-Since current IDEs do not record these data, in our previous work we developed \dfl, a silent interaction profiler for the \pha IDE \cite{Mine2015b}.
+Since current IDEs do not record these data, in our previous work we developed \dfl, a silent interaction profiler for the \pha IDE~\cite{Mine2015b}.
 \dfl records 32 different types of events at different levels of abstraction.
 For this work we only focused on a subset of meta events that involve code entities.
 Some meta events have an associated program entity: A browse event, for example, where the user opens a new code browser, can be performed on a method or on a class.
@@ -230,7 +230,7 @@ In total we have ca.
 
 The IDE interactions impact 2,988 different classes, of which 965 are part of the standard \pha distribution.
 The remaining 2,023 classes are user defined classes that are outside the scope of our study.
-Out of the 32 types of meta events recorded with \dfl \cite{Mine2015b}, only 13 types of events appear in the dataset.
+Out of the 32 types of meta events recorded with \dfl~\cite{Mine2015b}, only 13 types of events appear in the dataset.
 This is because some of the recorded meta events do not carry any information related to program entities.
 For example, the meta event that represents the opening of a \texttt{Finder}, a user interface used in \pha to search for pieces of code, has no associated program entity.
 
@@ -273,7 +273,7 @@ The approach is not geared towards the specific types of sources, and also not l
 Until now these diverse data sources are processed and visualized in isolation, leading to an incomplete view of the system.
 Our goal is to visualize all these ingredient to enable a quick and comprehensive assessment of what happened to a software system in a given time frame.
 To do so, we propose the \emph{``Blended City''}, a visualization that uses the \emph{City Metaphor} to depict all the ingredients of a software system.
-Wettel and Lanza initially used this metaphor in \texttt{CodeCity}, a tool that depicts software systems as cities \cite{Wett2007}.
+Wettel and Lanza initially used this metaphor in \texttt{CodeCity}, a tool that depicts software systems as cities~\cite{Wett2007}.
 In addition to the structural source code information presented by \texttt{CodeCity}, our Blended City uses a mixture of colors to depict different aspects of the software system itself.
 \figref{fig:visualization-principles} shows an example of our visualization.
 
@@ -307,8 +307,8 @@ Selected entities are colored with a bright green.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The City Metaphor: Layout and Metrics}
 
-In the city metaphor every  district of the city is a package and the buildings, contained inside the districts, represent the classes \cite{Wett2007}.
-The view uses a rectangle-packing algorithm to create the layout and it is \emph{polymetric}, \ie each dimension of the visual entity is proportional to a particular metric of the program entity being represented \cite{Lanz2004}.
+In the city metaphor every  district of the city is a package and the buildings, contained inside the districts, represent the classes~\cite{Wett2007}.
+The view uses a rectangle-packing algorithm to create the layout and it is \emph{polymetric}, \ie each dimension of the visual entity is proportional to a particular metric of the program entity being represented~\cite{Lanz2004}.
 Since the visualization is 3D, classes are cuboids and have 3 dimensions that correspond to three metrics.
 Our visualization, similar to the original \texttt{CodeCity}, uses the same metric for both width and depth and a different measure for the height.
 In particular, we use number of attributes (\ie NOA) for both width and depth of a class and number of methods (\ie NOM) for the height of the cuboid representing a class.

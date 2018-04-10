@@ -48,7 +48,7 @@ The example bug report depicted in \figref{fogbugz-example} is from a specific b
 \label{fogbugz-example}
 \end{figure}
 
-Various researchers have mined and used the information stored by bug trackers to perform several types of analyses, such as identifying duplicate bug reports~\cite{Wang2008a}, measuring the quality of a report~\cite{Zimm2010a}, predicting future defects~\cite{DAmb2012a}, performing traceability linking~\cite{Biss2013a}, locating features~\cite{Dit2013a}, ameliorating bug triaging decisions \cite{Anvi2006a}, etc. The actual goal however is to ease the life of developers in the handling of bug reports, as part of the development process.
+Various researchers have mined and used the information stored by bug trackers to perform several types of analyses, such as identifying duplicate bug reports~\cite{Wang2008a}, measuring the quality of a report~\cite{Zimm2010a}, predicting future defects~\cite{DAmb2012a}, performing traceability linking~\cite{Biss2013a}, locating features~\cite{Dit2013a}, ameliorating bug triaging decisions~\cite{Anvi2006a}, etc. The actual goal however is to ease the life of developers in the handling of bug reports, as part of the development process.
 
 One problem is that bug reports are disconnected from the software system they pertain to, and it is up to the developers to restore the link between a bug report and the interested components of a system. Another problem is that bug reports, such as the one depicted in~\figref{fogbugz-example}, are displayed on individual web pages that list their properties, making them cumbersome to handle and making it also difficult to obtain a ``big picture'' of the existing open bug reports and how they overall affect the system they pertain to. Moreover, this information is stored and presented as text, which makes it hard to understand the properties of a bug report.
 
@@ -95,16 +95,19 @@ In \figref{inbug} one specific bug (marked as A) is under focus.
 The vertical line to the right indicates the current date, making it also clear whether a bug report is still active or not (if it is, it will touch that line).
 This view also helps the developer to evaluate the complexity of a bug report by summarizing the events occurred during its lifetime.
 
-{\bf Project selection panel (2).} In this panel the user can pick the projects whose bugs she is interested in.
+\subsubsection{Project selection panel (2)}
+In this panel the user can pick the projects whose bugs she is interested in.
 All projects are shown as a tag cloud, where the tag size indicates the number of bugs reported for the project, also indicated with numbers between parentheses close to the name of the projects.
 
-{\bf Details panel (3).} This panel provides all the information reported about the bug report under focus in the bug lifetime panel.
+\subsubsection{Details panel (3)}
+This panel provides all the information reported about the bug report under focus in the bug lifetime panel.
 This panel present both the metadata and the list of events that happened during the lifetime of a bug, including description and date of each event.
 The metadata is presented as extracted from the bug repository, \eg the opening date, the status, the last modification date, etc.
 
-{\bf Filter and options panel (4).} This panel allows the user to sort and filter bugs.
+\subsubsection{Filter and options panel (4)}
+This panel allows the user to sort and filter bugs.
 The three default sorting criteria order the issues by project, opening date, or date in which the bug has been resolved.
-The \textit{filter} field offers the possibility to enter either regular expressions or pieces of {\em Smalltalk} code as queries, allowing the users to submit custom made queries to filter bugs.
+The \textit{filter} field offers the possibility to enter either regular expressions or pieces of \emph{Smalltalk} code as queries, allowing the users to submit custom made queries to filter bugs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Details of a bug}
@@ -120,18 +123,23 @@ The \textit{filter} field offers the possibility to enter either regular express
 This view (see \figref{fig-inbug-home}) presents a detailed representation of a specific bug report.
 Each section provides a description of the element that compose the description of a defect.
 
-\textbf{Bug Report Metadata (1).} The first panel summarizes the important metadata of the bug report: the id, the last modification, the current status, the opening date and possible closing date, the project and the target milestone for the issue resolution.
 
-\textbf{Users List (2).} This panel gives an overview of the people involved in the evolution of the bug.
+\subsubsection{Bug Report Metadata (1)}
+The first panel summarizes the important metadata of the bug report: the id, the last modification, the current status, the opening date and possible closing date, the project and the target milestone for the issue resolution.
+
+\subsubsection{Users List (2)}
+This panel gives an overview of the people involved in the evolution of the bug.
 In particular, the list displays the information of each user that performed an action on the issue, that was stored as an event.
 The details include the picture of the user, the user name and the user's email address\footnote{We obfuscated the email addresses in the figure for privacy reasons.}, to contact the people working on an issue.
 
-\textbf{Bug Report Life Visualization (3).} This panel shows a visualization of the life of a bug report during time.
+\subsubsection{Bug Report Life Visualization (3)}
+This panel shows a visualization of the life of a bug report during time.
 The left border represents the date the issue was opened, the right border represents the moment the bug was closed, or the current date if the bug report is still active.
 The section (A) proposes the same visualization of the list view in the main view (\ref{main-view}), emphasizing the status changes during time.
 The section (B) shows a line diagram where the height represents the criticality of the status (\ie fixed is the lowest and active is the hightest) and highlighting each event with a circle.
 
-\textbf{Event Interactive View (4).} This is a list of all the events that compose a bug report.
+\subsubsection{Event Interactive View (4)}
+This is a list of all the events that compose a bug report.
 It shows the metadata of the event and whether it is an automatic event or an event generated by a user.
 It also detects and highlights the patches of code submitted to the tracker for the issue resolution, and provides a link to download and inspect the patch.
 The user can click on an event to highlight it both in the events list and in the bug report lifetime visualization.
@@ -145,13 +153,13 @@ The upper left icon offers a link to the repository page of the patch; (C) indic
 \label{fig-event-list}
 \end{center}
 \end{figure}
-\indent{}Inspired by more semantically rich and elaborated views, such as Ogawa et al's storylines \cite{Ogaw2010a} or Kuhn and Stocker's storytelling timelines \cite{Kuhn2012a}, the left border of each event is colored according to the status of the event, to help the user to keep track of the evolution of the bug while inspecting the list of events.
+\indent{}Inspired by more semantically rich and elaborated views, such as Ogawa et al's storylines~\cite{Ogaw2010a} or Kuhn and Stocker's storytelling timelines~\cite{Kuhn2012a}, the left border of each event is colored according to the status of the event, to help the user to keep track of the evolution of the bug while inspecting the list of events.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Implementation \& Current Dataset}
 
-\ib is a web application built on top of the \textit{Pharo Smalltalk}\footnote{\url{http://www.pharo-project.org}} environment.
-It uses the \textit{Seaside}\footnote{\url{http://seaside.st}} web framework to provide the data stored in a \textit{MongoDB} database and implements a \textit{RESTful API} to communicate with the client.
+\ib is a web application built on top of the \pha environment.
+It uses the \sea\footnote{\url{http://seaside.st}} web framework to provide the data stored in a \textit{MongoDB} database and implements a \textit{RESTful API} to communicate with the client.
 The client interface is implemented in \textit{JavaScript} using the data manipulation and visualisation library \textit{D3.js}\footnote{\url{http://d3js.org/}}.
 
 \ib is currently targeted at a specific FogBugz repository revolving around the Pharo ecosystem.
@@ -190,7 +198,7 @@ The details of a single report are presented in the details view, where the user
 \section{Summary}
 %%%%%%%%%%%%%%%%%%%%
 
-We presented \ib, a web-based visual analytics platform to explore the content of a bug repository.
+In this chapter we presented \ib, a web-based visual analytics platform to explore the content of a bug repository.
 \ib allows to get a complete overview of a whole repository, as well as detailed and meaningful information on a single bug report, either through visualizations that allow to interact with the data, or with the query engine embedded in \ib that allows the user to submit queries and dialog directly with the bug reports.
 
 % We intend to provide further visualizations that describe the resume data of a single bug repository, to ease and improve the comprehension of the evolution of a software project during time.

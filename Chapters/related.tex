@@ -85,7 +85,7 @@ The reliability and completeness of bug reports is crucial to quickly solve a de
 
 Managing a large bug repository is often a burden that adds a new layer of complexity on top of the bug fixing problem. To alleviate this burden, researchers proposed to use automated approaches~\cite{Weim2006}. For example, Anvik \etal observed that large open source projects are often overwhelmed by the rate of new bug reports and proposed a machine learning based approach to to aid bug \emph{triaging} decisions~\cite{Anvi2006a}, the process of selecting the a the right person to take care of an issue.
 
-%Guo \etal conducted a study to predict what impacts the resolution time of \textit{MS Windows} bug reports~\cite{Guo2010}, finding that a high number of reassignment of a report usually increases the issue lifetime, and that the reputation of the submitter also impacts the fixing time. Given the expensive nature of the bug fixing activity, a number of approaches exist to estimate the cost of a bug fix in person-hours~\cite{Weis2007}, predict bug fixing time~\cite{Gige2010}, locate features from bug reports \cite{Dit2013a}, and perform traceability linking \cite{Biss2013a}.
+%Guo \etal conducted a study to predict what impacts the resolution time of \textit{MS Windows} bug reports~\cite{Guo2010}, finding that a high number of reassignment of a report usually increases the issue lifetime, and that the reputation of the submitter also impacts the fixing time. Given the expensive nature of the bug fixing activity, a number of approaches exist to estimate the cost of a bug fix in person-hours~\cite{Weis2007}, predict bug fixing time~\cite{Gige2010}, locate features from bug reports~\cite{Dit2013a}, and perform traceability linking~\cite{Biss2013a}.
 
 
 \subsection{Relevance of Bug Reports}
@@ -231,12 +231,18 @@ We think that an approach that considers more than one kind of data and presents
 Dealing with bug reports is a non-trivial task: Not only do users have to report meaningful information and developers have to understand and reproduce a problem, but they also have to deal with the large, noisy, and sometimes duplicated  information stored in issue tracking systems.
 To minimize the impact that dealing with reports has on the bug fixing activity, researchers proposed different approaches to support developers and to automate important steps.
 
-\textbf{Reliability of a Bug Report.} The first important aspect involving bug reports is the reliability and completeness of the information contained in a report.
+
+\subsubsection{Reliability of a Bug Report}
+
+The first important aspect involving bug reports is the reliability and completeness of the information contained in a report.
 Through questionnaires, researchers collected information on how developers perceive the quality of a bug report and consider the most influential elements that help understanding a problem~\cite{Zimm2010a,Bett2007,Schr2010a}.
 Researchers also proposed techniques to detect and avoid bug reports that do not contain useful information~\cite{Sun2011}, thus alleviating the developers from information overload.
 Bissyand\'e \etal investigated the impact of the issue tracker on the development of a project~\cite{Biss2013}, finding that most bug reporters are not developers of the project.
 
-\textbf{Automating Management of Bug Reports.} Researchers proposed different approaches to automate bug report processing~\cite{Weim2006}.
+
+\subsubsection{Automating Management of Bug Reports}
+
+Researchers proposed different approaches to automate bug report processing~\cite{Weim2006}.
 For example, a crucial aspect of managing bug reports is finding the ideal person to take care of an issue, known as {\em triaging}; Anvik \etal proposed a machine learning based approach to automate this step~\cite{Anvi2006a}.
 Guo \etal conducted a study to predict the aspects that impact the resolution time of \textit{MS Windows} bug reports~\cite{Guo2010}.
 They found that a high number of reassignment of a report decreases the likelihood of the report of being closed quickly.
@@ -246,11 +252,17 @@ Giger \etal studied the issue tracker of different open source project to predic
 Also, post-release information like the assignee is useful in increasing the accuracy.
 Bhattacharya and Neamtiu showed the low correlation of current prediction techniques and underlined the need to find additional attributes to increase the confidence of the time estimates~\cite{Bhat2011}.
 
-\textbf{Bug Reports and Social Interactions.} An issue tracker represents also a social aspect of the community: users can interact with developers and provide feedback in fixing a defect.
+
+\subsubsection{Bug Reports and Social Interactions}
+
+An issue tracker represents also a social aspect of the community: users can interact with developers and provide feedback in fixing a defect.
 Breu \etal performed an analysis on a sample of 600 bug reports, finding that interacting with developers provides help in fixing the defect~\cite{Breu2010}.
 Zhou and Mockus showed that users involved in the development activity, like bug reporting and participating in the community, are more likely to become stable, long time contributors~\cite{Zhou2015}.
 
-\textbf{Bug Report Databases Visualization.} Researchers proposed a number of visualizations to analyze feature of the bug reporting systems.
+
+\subsubsection{Bug Report Databases Visualization}
+
+Researchers proposed a number of visualizations to analyze feature of the bug reporting systems.
 For example, D'Ambros \etal performed an analysis of the \bzilla bug repository: They summarized the diagram of the state transitions of a report and proposed a set of visualizations to support the analysis of a bug database at different levels of granularity.
 Their approach allows the user to navigate the history of a single issue tracker and inspect selected part of the system with customized filters~\cite{DAmb2007b}.
 
