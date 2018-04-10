@@ -609,14 +609,14 @@ We believe that a similar approach to the one that they applied to an operating 
 Mozilla adopts a similar approach to collect stack traces and runtime execution for debugging purposes~\cite{McLa2004}.
 
 The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
-These works provided evidence that stack traces are a useful tool and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weiss2007a}: they provide precise information that are generally more reliable and useful than the descriptions produced by the submitter of the reports~\cite{Ko2006}.
+These works provided evidence that stack traces are a useful tool and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}: they provide precise information that are generally more reliable and useful than the descriptions produced by the submitter of the reports~\cite{Ko2006}.
 
 Brodie \etal proposed an automated approach to group similar bug reports using stack trace~\cite{Brod2005}
 
 Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces contained in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
 Again, this was done in a localized post mortem way.
 
-Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvik2006a,Sliw2005,DAmb2010c}.
+Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c}.
 In this context, we propose an approach to efficiently associate new stack traces to existing bug reports, in an efficient and scalable way, to provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
 
 
@@ -651,7 +651,7 @@ The approach that we presented in this paper is only one of the many possible wa
 \begin{itemize}%[$\circ$]
 \item\textit{Context aware debugging:} as we suggested during the paper, we want to extend \shr to propose the possible bug reports to the developer whenever he triggers an exception, to provide a quicker access to the information needed to deal with the problem.
 
-\item\textit{Bug triaging:} Having access to stack trace information can help identifying the types of defects that caused an exception, thus easing the process of triaging the bug~\cite{Anvik2006a}.
+\item\textit{Bug triaging:} Having access to stack trace information can help identifying the types of defects that caused an exception, thus easing the process of triaging the bug~\cite{Anvi2006a}.
 Also, we can use the data submitted by each user to create and update profiles of the developers and determine their area of expertise in a quick and reliable way.
 
 \end{itemize}

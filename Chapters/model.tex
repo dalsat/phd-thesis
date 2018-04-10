@@ -67,7 +67,7 @@ In
 %%%%%%%%%%%%%%%%%%%%%%
 
 When users file a bug report for a software project, their main hope is that developers will fix it quickly, to minimize its impact.
-But what information should they provide to make this happen? There is a stark mismatch between what developers perceive as \emph{optimally} useful in this respect (\ie steps to reproduce, stack traces, and test cases) and what users are effectively able, or sometimes just willing to provide, when filing a bug report~\cite{Zimm2010}.
+But what information should they provide to make this happen? There is a stark mismatch between what developers perceive as \emph{optimally} useful in this respect (\ie steps to reproduce, stack traces, and test cases) and what users are effectively able, or sometimes just willing to provide, when filing a bug report~\cite{Zimm2010a}.
 
 Bug tracking systems and software projects should define a reasonable common ground for information to be provided in bug reports, so that it is not too demanding for users, yet provides enough information to developers.
 Nevertheless, considering what popular issue trackers and projects (\eg \emph{Bugzilla},\footnote{\url{https://www.bugzilla.org/}} \emph{JIRA},\footnote{\url{https://jira.atlassian.com/}} \emph{FogBugz},\footnote{\url{https://www.fogcreek.com/fogbugz/}} and the issue tracker provided with \emph{GitHub}\footnote{\url{https://github.com/}}) demand from users, we see that it is quite diverse and specialized.
@@ -169,7 +169,7 @@ Nevertheless, the information shared in the bug report has to be satisficing eno
 For this reason, we find lifetime of a bug report a useful approximation in aggregate statistical analyses to provide a high-level view over bug repositories.
 
 We investigate how users and developers use issue tracking systems and the impact that the provided information has on the lifetime of a bug report.
-According to Zimmermann \etal the information provided by submitter can be partial or incorrect~\cite{Zimm2010}.
+According to Zimmermann \etal the information provided by submitter can be partial or incorrect~\cite{Zimm2010a}.
 To understand what is reasonable for a user to provide in a report, we conducted a survey asking developers what they think are the difficult elements to provide.
 We then focus on two of the main components that compose a bug report: (1) its state and (2) the core and optional attributes, to understand how the provided data is used.
 
@@ -206,7 +206,7 @@ To answer our questions, we both run a survey (\secref{sec:model-survey}) and we
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Online Questionnaire} \label{sec:model-survey}
 
-Zimmerman \etal asked users and developers what they think are the useful elements in a bug report and how hard it is, in their opinion, to provide those elements~\cite{Zimm2010}.
+Zimmerman \etal asked users and developers what they think are the useful elements in a bug report and how hard it is, in their opinion, to provide those elements~\cite{Zimm2010a}.
 We proposed a similar questionnaire to the \emph{Pharo} open source community to further understand what it is reasonable to expect from users submitting a bug report.
 The questionnaire is composed of two parts: \begin{inparaenum}[(1)]
 \item We collect demographic information inquiring about expertise with programming and with submitting, handling, and fixing bug reports; and
@@ -269,7 +269,6 @@ Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
  & SeaMonkey & Nov 10, 1995 & Jul 27, 2015 & 92,757 & 7,198 & 1h 51m \\
  & Thunderbird & Jan 2, 2000 & Jul 8, 2015 & 42,247 & 5,666 & 3h13m\\\hline
 \end{tabular}
-\label{tab:dataset-projects}
 \end{center}
 \end{table*}
 
@@ -350,12 +349,14 @@ To answer RQ4, we build a machine-learning-based prediction model to verify how 
 
 We asked respondents how easy it is to provide 13 different elements in a report, using a 5-level Likert scale from $-2$ (``strongly disagree'') to $2$ (``strongly agree'').
 \figref{fig:survey} shows a summary of their answers, sorted by increasing difficulty as reported by the respondents.
-\begin{figure}[h!]
+%
+\begin{figure}[ht]
 \centering
 \includegraphics[width=1.04\linewidth]{model/survey_plot}
-\label{fig:survey}
 \caption{Survey results: The higher the values, the easier it is to provide the corresponding information, according to the respondents' perception.}
+\label{fig:survey}
 \end{figure}
+%
 The majority of the users does not find excessively hard to provide most of the elements.
 This is due to the fact that the Pharo community is composed of experienced programmers.
 Interestingly, finding the assignee is not considered excessively difficult: Again, this can relate to the community experience, that has a strong core of well-known developers that work as hub when dealing with defects.
@@ -578,7 +579,7 @@ Zookeeper & 12 & 158 & 2,108 \\
 We now explore the relationship between the various attributes adopted by the different platforms and projects we considered and the effectiveness of a bug report, measured as its lifetime.
 
 
-\subsubsection{Preparing the data.} To interact with the dataset, we created a \emph{vector space model} to allow us to test statistical and machine learning approaches.
+\subsubsection{Preparing the data} To interact with the dataset, we created a \emph{vector space model} to allow us to test statistical and machine learning approaches.
 Predicting the exact lifetime of a report would be unpractical and unnecessary: a timeframe for the resolution would provide a useful, human-understandable measure, while allowing more accurate predictions.
 To introduce such a degree of tolerance, we divide the reports into \emph{buckets} according to their lifetime.
 
@@ -589,10 +590,11 @@ After bucketing the issues, we model each report as a vector of booleans (each f
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsubsection{Principal Component Analysis} \label{sec:model-pca}
-\subsubsection{Principal Component Analysis.} To understand the relation between the completeness of a bug report and the fixing time of a defect, we want to inspect how much each field contributes to  the lifetime of a bug report.
+\subsubsection{Principal Component Analysis}\label{sec:model-pca}
 
-For this purpose, we use \emph{Principal Component Analysis} (PCA)~\cite{abdi2010} to extract the variance between the different fields.
+To understand the relation between the completeness of a bug report and the fixing time of a defect, we want to inspect how much each field contributes to  the lifetime of a bug report.
+
+For this purpose, we use \emph{Principal Component Analysis} (PCA)~\cite{Abdi2010a} to extract the variance between the different fields.
 PCA is a statistical procedure that aims to extract only the salient features from a data table.
 PCA transforms the existing data into variables called \emph{principal components}, which are described as a linear combination of the existing features.
 The other features are then projected on the principal components.
@@ -626,8 +628,7 @@ Although they do not represent the whole amount of information that is needed to
 It follows that users and developers should take these elements into account when submitting a bug report and the issue tracker should ensure that these fields are exploited accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsubsection{Predicting the Lifetime of a Defect}
-\subsubsection{Predicting the Lifetime of a Defect.} We studied the core fields that are the most relevant in impacting the lifetime.
+\subsubsection{Predicting the Lifetime of a Defect} We studied the core fields that are the most relevant in impacting the lifetime.
 Now we investigate how the lifetime gets influenced by the different fields defined by each project.
 For such an analysis PCA is not suited, as the data is too sparse and the features would be discarded in the process.
 We therefore adopt a \emph{machine learning} approach to estimate an approximate lifetime of a bug report given its ``completeness,'' \ie the number of completed fields when submitted.
@@ -750,7 +751,7 @@ Dealing with bug reports is a non-trivial task: Not only do users have to report
 To minimize the impact that dealing with reports has on the bug fixing activity, researchers proposed different approaches to support developers and to automate important steps.
 
 \textbf{Reliability of a Bug Report.} The first important aspect involving bug reports is the reliability and completeness of the information contained in a report.
-Through questionnaires, researchers collected information on how developers perceive the quality of a bug report and consider the most influential elements that help understanding a problem~\cite{Zimm2010,Bett2007,Schr2010}.
+Through questionnaires, researchers collected information on how developers perceive the quality of a bug report and consider the most influential elements that help understanding a problem~\cite{Zimm2010a,Bett2007,Schr2010a}.
 Researchers also proposed techniques to detect and avoid bug reports that do not contain useful information~\cite{Sun2011}, thus alleviating the developers from information overload.
 Bissyand\'e \etal investigated the impact of the issue tracker on the development of a project~\cite{Biss2013}, finding that most bug reporters are not developers of the project.
 
@@ -759,7 +760,7 @@ For example, a crucial aspect of managing bug reports is finding the ideal perso
 Guo \etal conducted a study to predict the aspects that impact the resolution time of \textit{MS Windows} bug reports~\cite{Guo2010}.
 They found that a high number of reassignment of a report decreases the likelihood of the report of being closed quickly.
 They also found that the reputation of the submitter is an important factor to shorten the fixing time.
-Given the expensive nature of the bug fixing activity, Weiss \etal devised an approach to estimate the cost of a bug fix in person-hours~\cite{Weis2007}.
+Given the expensive nature of the bug fixing activity, Weiss \etal devised an approach to estimate the cost of a bug fix in person-hours~\cite{Weis2007a}.
 Giger \etal studied the issue tracker of different open source project to predict bug fixing time, finding that the assignee and the reporting month are strong predictors~\cite{Gige2010}.
 Also, post-release information like the assignee is useful in increasing the accuracy.
 Bhattacharya and Neamtiu showed the low correlation of current prediction techniques and underlined the need to find additional attributes to increase the confidence of the time estimates~\cite{Bhat2011}.
