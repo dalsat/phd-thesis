@@ -74,13 +74,14 @@ Exceptions are a common mechanism in modern programming languages to represent e
 When they are left unmanaged, and thus they remain uncaught, exceptions ultimately result in the interruption of the executed program.
 Normally, an error message gets printed together with a stack trace, which represents the status of the dynamic call stack when the uncaught exception was thrown.
 Essentially, it represents a summary of the path that the program followed through the code, showing the entities that were involved before the failure.
-We collected large volumes of data from development sessions of users of \textit{Pharo}~\cite{black2009}, an object-oriented programming language  and companion IDE inspired by \textit{Smalltalk}.
-In \secref{sec:stacktraces-dataset} we detail the Pharo system and the approach we used to collect the stack trace data.
+We collected large volumes of data from development sessions of users of \pha.
+%~\cite{black2009}, an object-oriented programming language  and companion IDE inspired by \textit{Smalltalk}.
+In \secref{sec:stacktraces-dataset} we detail the approach we used to collect the stack trace data in the \pha system.
 
 
 \subsubsection{Anatomy of a Stack Trace}
 
-In Pharo, a stack trace is a list of pairs \textit{Class{>}{>}selector}, where \textit{Class} is the name of the class containing the method, and \textit{selector} is the name of the method invoked.
+In \pha, a stack trace is a list of pairs \textit{Class{>}{>}selector}, where \textit{Class} is the name of the class containing the method, and \textit{selector} is the name of the method invoked.
 \figref{fig:stacktrace} shows a concrete example of a stack trace that we collected with our tool.
 
 \begin{figure}[ht]
@@ -103,17 +104,17 @@ This notation maintains the link between the class involved in the exception and
 
 \subsubsection{Stack traces and dynamic typing}
 
-An interesting property of Pharo comes from its dynamic nature: the whole system is polymorphic, and polymorphism is obtained through the so-called \emph{duck typing}~\cite{Chugh2012}: every object can be used in place of other objects, as long as it is able to respond to the same messages.
+An interesting property of \pha comes from its dynamic nature: the whole system is polymorphic, and polymorphism is obtained through the so-called \emph{duck typing}~\cite{Chugh2012}: every object can be used in place of other objects, as long as it is able to respond to the same messages.
 This entails that---as in other dynamic programming languages---there is no static type system and, as such, no static type checking: every type error happens at runtime, resulting in a \emph{Message Not Understood} kind of exception.
-This peculiarity is important when considering the nature of exceptions in Pharo, because the vast majority of the exceptions is caused in this context: In our dataset an exception is thrown as a result of a message not understood in more than 72\% of the cases.
+This peculiarity is important when considering the nature of exceptions in \pha, because the vast majority of the exceptions is caused in this context: In our dataset an exception is thrown as a result of a message not understood in more than 72\% of the cases.
 Among those cases, 68\% are generated from a message sent to \emph{UndefinedObject}.
 These are the equivalent of a \emph{NullPointerException} in Java.
 
 \begin{figure*}[ht]
 \begin{center}
   \includegraphics[width=0.8\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_classes}
-  \caption{Distribution of the stack traces on the Pharo system using a city like visualization, where each building is a class.
-Pharo is composed of 14,045 classes distributed among 557 packages.
+  \caption{Distribution of the stack traces on the \pha system using a city like visualization, where each building is a class.
+\pha is composed of 14,045 classes distributed among 557 packages.
 We highlight the system with data from 7,532 stack traces that we collected.
 The height and the color of each building is determined by the number of traces the class appears in, while classes that are not involved in an exception are collapsed and depicted in gray.
 The gray squares enclosing the buildings represent the package containing the classes.}
@@ -138,7 +139,7 @@ However, an interesting property that we should also consider is represented by 
 Since the order of the elements inside the trace is determined by the call sequence, the depth of a class can give us a hint of the role of the class in the computation: classes near the top of the trace provide an overview of the context where the exception originated, and can therefore be used to provide immediate feedback on the nature of the error and help debugging.
 Instead, classes towards the mid part and the bottom of the trace are more related to the mechanics of the system and could be usefully aggregated to identify anomalies in the core parts of the system.
 
-\figref{fig:stackcity-classes} shows the impact that runtime exceptions have on the Pharo system, adopting a city visualization~\cite{Wett2011a}.
+\figref{fig:stackcity-classes} shows the impact that runtime exceptions have on the \pha system, adopting a city visualization~\cite{Wett2011a}.
 We aggregated the stack traces in one set of stack calls and counted the number of times a class would appear in a stack trace.
 Each class is depicted as a building, where the height and the color represent how often the class is involved in an exception: the more the class appears in a stack trace, the more the color tends to red and the higher the building.
 Classes that are not touched by any stack trace are depicted in gray and collapsed.
@@ -150,7 +151,7 @@ To be able to deal with a potentially large volume of information, we need an ef
 In \secref{sec:stacktraces-dataset} we present an approach based on clustering stack traces by similarity, and then stratifying horizontally the clusters using the number of members in each cluster to represent the frequency of the similar exceptions.
 
 The most immediate advantage of using clustered stack traces is to leverage them for bug fixing.
-We developed an approach to analyze the contents of a stack trace and use the mined information to retrieve bug reports from the Pharo bug tracker that discuss the classes and methods in the trace.
+We developed an approach to analyze the contents of a stack trace and use the mined information to retrieve bug reports from the \pha bug tracker that discuss the classes and methods in the trace.
 For example, by retrieving the reports related to the trace in \figref{fig:stacktrace}, which involves key events, we can find the bug report $\#12973$, that discusses an issue related to keyboard shortcuts.
 By further reading the report, we can learn about the nature of the issue, and by checking the last events we can learn about the current status of the defect.
 In this case, we can see that the issue has already been resolved, a patch has been committed and is waiting to be integrated.
@@ -170,7 +171,7 @@ To benefit from this data we built \shr, a tool to intercept exceptions, the cor
 
 \subsection{Data Collection}\label{sec:stacktraces-tool}
 
-\shr is a plugin designed and built to integrate seamlessly into the Pharo development environment.
+\shr is a plugin designed and built to integrate seamlessly into the \pha development environment.
 We wanted to collect unbiased and uniform data, so we posed particular attention in building a tool that could be unobtrusive and that required minimal interaction with the user.
 For this purpose, \shr is highly configurable through a dedicated settings menu, and can work in two different main modes: an \emph{interactive mode}, and a \emph{shadow mode}.
 
@@ -187,7 +188,7 @@ It is designed to allow the developer to keep full control of her data and decid
 \end{figure}
 
 \shr activates when the user runs code that triggers an exception \textcircled{\scriptsize A}.
-The Pharo IDE generally pops up a \emph{pre-debug window} \textcircled{\scriptsize B}, that illustrates a preview of the exception and the options that she can undertake.
+The \pha IDE generally pops up a \emph{pre-debug window} \textcircled{\scriptsize B}, that illustrates a preview of the exception and the options that she can undertake.
 Here \shr shows up, proposing a \emph{Report} button that allows the user to send the trace to the ShoreLine server.
 If she chooses to do so, she is presented with a window \textcircled{\scriptsize C} that allows her to review the data that is being submitted to verify that it does not leak undesired information.
 Once the user presses the \emph{Send} button, the reporter serializes the stack trace and submits it.
@@ -200,17 +201,17 @@ This is particularly important to avoid continuous prompts to the user asking fo
 
 \subsection{Data Representation}
 
-In Pharo, everything is modeled as an object.
+In \pha, everything is modeled as an object.
 As such, a stack trace is a complex object containing a reference to the debugger, the full context of the exception and the sequence of method calls that constitutes the trace.
 However, to value privacy and to avoid our tool from being intrusive, we decided to serialize the whole stack trace as a list of strings, each one containing just the signature of methods, formatted as \textit{ClassName{>}{>}methodSelector}.
 Thus, we discard all the elements that contain private data, such as the contents of instance variables.
-Encoding a stack trace using strings also guarantees compatibility and portability of the collected data, even when imported from different versions of Pharo.
+Encoding a stack trace using strings also guarantees compatibility and portability of the collected data, even when imported from different versions of \pha.
 
 Besides collecting the stack traces, we also added to the report additional metadata to allow a better categorization of the error.
-We collect the name of the author, which is the tag she uses to sign her commits, the date of the exception and the version of Pharo build for which the exception happened.
+We collect the name of the author, which is the tag she uses to sign her commits, the date of the exception and the version of \pha build for which the exception happened.
 The version of the build can be useful to analyze the evolution of the system while it is developed.
-The Pharo development cycle is structured in two main branches: a stable version and a development version.
-In the Pharo community, the development version is actively developed and constantly improved by a large number of users and developers, and exception data from developed software can provide insights about the evolution of the system over time, as well as help spotting defects as soon as they arise, ultimately reducing the time required to fix a new defect after it is introduced.
+The \pha development cycle is structured in two main branches: a stable version and a development version.
+In the \pha community, the development version is actively developed and constantly improved by a large number of users and developers, and exception data from developed software can provide insights about the evolution of the system over time, as well as help spotting defects as soon as they arise, ultimately reducing the time required to fix a new defect after it is introduced.
 
 \subsection{Analysis on the Collected Data}
 
@@ -232,7 +233,7 @@ size of the longest stack trace & 314 \\
 \label{tab:data-summary}
 \end{table}
 
-We visualized the data to highlight the parts of the Pharo system that were involved in the collected exceptions: \figref{fig:stackcity-methods} shows a city visualization of the stack trace data mapped on the whole Pharo system.
+We visualized the data to highlight the parts of the \pha system that were involved in the collected exceptions: \figref{fig:stackcity-methods} shows a city visualization of the stack trace data mapped on the whole \pha system.
 Using the same convention used in \figref{fig:stackcity-classes}, each building represents a package and each square enclosing a building is a package.
 Each building is composed of blocks, each one representing a method.
 The color of each method is determined by the number of times a method appears in a stack trace: it tends to red when the number is higher and to blue when the number is lower.
@@ -241,7 +242,7 @@ Methods, classes and packages that do not appear in a stack trace are collapsed 
 \begin{figure}[h]
 \begin{center}
   \includegraphics[width=\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_methods}
-  \caption{Distribution of the stack traces on the methods of Pharo using a city like visualization, where each building is a class composed by blocks representing methods.
+  \caption{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
 All the classes contain 112,558 methods, the color of each building is determined by the number of traces the class appears in, while the packages, classes and methods that are not involved in an exception are collapsed and depicted in gray.}
   \label{fig:stackcity-methods}
 \end{center}
@@ -411,7 +412,7 @@ We still believe that this information can provide deep knowledge over the statu
 Therefore, at this stage we removed the most popular groups, and focused our inspection on the traces positioned in the central part of the ranking.
 We used these samples to determine a possible correlation with existing defects.
 
-We mined the Pharo bug tracker to collect the bug reports produced during the development of the platform.
+We mined the \pha bug tracker to collect the bug reports produced during the development of the platform.
 To focus our research on actual and relevant problems, but without risking of losing valid examples, we considered the reports opened between January and November 2014.
 
 We extracted 1,910 bug reports, with 17,747 different events, including comments, patches and changes of status.
@@ -492,7 +493,7 @@ As the report shows, there is a known error caused by a defect in the system, an
 In particular, since the stack trace that we considered was generated in date 7/7/2014, the user encountered the problem before its resolution and, at the time, the report was stuck in a low priority status.
 This information could have been exploited by a developer to report more precise information or to ask for an increase of the priority for a quicker defect resolution, while a user encountering the exception could know that there is work in progress, or if there is an estimated time to have an updated and fixed version.
 
-By continuing to read the report, we can see that the problem has been further investigated, and that a \emph{slice} (a piece of submitted code, that in Pharo works in a similar way of a patch) has been proposed and is being tested by the continuous integration server of the project.
+By continuing to read the report, we can see that the problem has been further investigated, and that a \emph{slice} (a piece of submitted code, that in \pha works in a similar way of a patch) has been proposed and is being tested by the continuous integration server of the project.
 Finally we can see that the report was closed, the fix was accepted and it is waiting to be integrated in a later version.
 
 Other than simply useful, this information can improve awareness in the community.
@@ -631,7 +632,7 @@ The debugging process requires to deeply understand the system, and to gather in
 As a result, the debugging process has the side effect of producing a lot of information describing the context of the error.
 This information is however usually discarded after solving the problem.
 
-We presented \shr, a tool that seamlessly integrates into the Pharo system to collect stack traces produced during the arise of runtime executions in the system.
+We presented \shr, a tool that seamlessly integrates into the \pha system to collect stack traces produced during the arise of runtime executions in the system.
 The goal of \shr is to collect and store information, and reuse it to extract deeper knowledge of the underlying code, assist and boost the whole debugging process.
 
 Given the volume of the data produced by the collection approach, it is crucial to have a way to browse the stored information in an efficient and useful way, that allows fast access to the obtained knowledge.
@@ -639,7 +640,7 @@ We presented a study on the data we collected, proposing an approach to group th
 We generated the clusters by stack traces similarity, and selected the medoid of each group to represent the archetype of the collection: Each archetype represents a different type of error that happens in the system.
 We calculated the popularity of each group, that is determined by the number of stack traces that it contains, and used this metric to rank the clusters.
 
-We showed a possible application to exploit the data contained in stack traces by mining the Pharo bug tracker to retrieve the bug reports associated with each archetype of stack trace.
+We showed a possible application to exploit the data contained in stack traces by mining the \pha bug tracker to retrieve the bug reports associated with each archetype of stack trace.
 We found a connection with bug reports related to the exception and we showed that the information can be used to aid the debugging activity.
 In the cases where the clusters do not have a clear connection with existing bug reports, the system should highlight the anomaly and propose to open a bug report displaying the information gathered until then.
 

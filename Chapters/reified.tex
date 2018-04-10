@@ -52,7 +52,7 @@ We detail our framework in the context of a bug reporting platform, and illustra
 
 \structure
 
-\secref{sec:reified-related} illustrates  the state of the art about collecting information on defective software states.
+%\secref{sec:reified-related} illustrates  the state of the art about collecting information on defective software states.
 \secref{sec:reified-framework} describes the approach from a conceptual point of view together with its requirements, while \secref{sec:reified-implementation} illustrates the architecture and implementation of the proposed approach.
 In \secref{sec:reified-stories} we assess the technique through three stories that illustrate how our approach can support development and debugging.
 Finally, \secref{sec:reified-summary} concludes the paper and outlines directions for future work.
@@ -273,20 +273,17 @@ We now present the implementation details of the framework for the Smalltalk pro
 
 In implementing our framework, we need to consider a number of aspects pertaining to the control of the system, first of all the ability to directly catch errors and manipulate its context to extract the relevant data in a usable state.
 Accomplishing such a task is strongly dependent on the programming language of choice with the result that the amount of technical details that can be considered is humongous, and out of the scope of this work.
-We chose to implement and test the effective feasibility of our approach using \emph{Pharo}\footnote{https://pharo.org}, an Object Oriented programming language inspired by Smalltalk.
-Pharo inherits a number of powerful properties from its Smalltalk origins, that can support our task of implementing the data collection framework.
-In particular, it is a \emph{live} programming environment, with full reflectivity capabilities, and a control over the whole system that allows to access and manipulate programmatically the complete state of the program.
-Using Pharo in our context provides several abstractions over the entities of the system, that result in a technical advantage that alleviates us from fighting with several minor side effects.
+We implemented and test the effective feasibility of our approach using \pha.
 The fact that the whole system is described using objects allows us to easily inspect faulty states of the system by interacting through the \texttt{Context} object, and simplifies the reification process of the interesting entities.
 
-While the use of Pharo enables full flexibility and control over the execution of a program, one may wonder whether this hinders the applicability of the approach to more general examples.
+While the use of \pha enables full flexibility and control over the execution of a program, one may wonder whether this hinders the applicability of the approach to more general examples.
 We believe that this does not affect the possibility to implement an analogous framework for a different programming language.
 \secref{sec:reified-summary} contains a deeper discussion about the generalizability of our approach.
 
 \subsection{Implementation Details}
 
-The abstractions in the Pharo environment concern the whole runtime of the system, allowing to inspect and manipulate it by querying objects.
-The main benefit of Pharo is that we can freeze the execution of a program, and easily access the whole system status at the moment of the interruption.
+The abstractions in the \pha environment concern the whole runtime of the system, allowing to inspect and manipulate it by querying objects.
+The main benefit of \pha is that we can freeze the execution of a program, and easily access the whole system status at the moment of the interruption.
 
 The principal element we are interested in is the \entity{thisContext} variable.
 This special variable stores an instance of \entity{Context}, an object that mimics the behavior of an \textit{activation record} that contains all the information about the current execution of the program, such as the list of the variables in the scope, the method that is currently executing, the class that owns the method, the program counter of the line of code we are executing, and other information useful in describing the running session.
@@ -296,7 +293,7 @@ This special variable stores an instance of \entity{Context}, an object that mim
 
 We designed our framework around the idea of \emph{collectors}.
 In \secref{sec:reified-design} we defined a collector as an entity that knows how and when to collect data, and that provides a description for this data.
-By following the object-oriented nature of Pharo we can implement a collector as a class.
+By following the object-oriented nature of \pha we can implement a collector as a class.
 While having a class for each collector might seem overkill, that might eventually bloat the system rather than supporting maintenance, it has the advantage of providing full control to the user of our framework, granting the flexibility to select the data she wants to observe.
 The whole strategy can be encapsulated in a single class, thus decoupling the collector from the source code it is observing and providing a behavior that can be plugged and un-plugged seamlessly.
 
@@ -332,7 +329,7 @@ The former is invoked automatically whenever an unhandled exception occurs, whil
 \figref{fig:architecture} shows a diagram of the flow of the data from the collection to its usage.
 
 The collectors evaluate whether they should activate, and potentially perform the data collection.
-Once the collection is complete, the framework composes a \entity{Report} object and announces its creation using \bea,\seeurl{www.smalltalkhub.com/\#!/$\sim$Pharo/Beacon} an announcement-based (\ie publish/subscribe) logging framework for Pharo.
+Once the collection is complete, the framework composes a \entity{Report} object and announces its creation using \bea,\seeurl{www.smalltalkhub.com/\#!/$\sim$Pharo/Beacon} an announcement-based (\ie publish/subscribe) logging framework for \pha.
 \bea broadcasts messages to the system to inform the interested tools of the presence of a report.
 
 By collecting complex entities in form of objects, rather that text, our approach allows to initiate a conversation with the system and a systematic and progressive exploration of the errors, rather than just providing a partial report of the exception.
@@ -345,7 +342,7 @@ This behavior is intended to further improve the customizability of the framewor
 
 The two applications proposed by default by our approach consist in a local data browser, and a customized reporter.
 If a user is interested in browsing the data locally, for example during the development phase of a project, she can inspect the contents of the report objects.
-Moreover, she can exploit the tools provided by the Pharo ecosystem, like the \emph{Glamour Toolkit}~\cite{Girb2013a} to create custom visualizations of the data to support the browsing session.
+Moreover, she can exploit the tools provided by the \pha ecosystem, like the \emph{Glamour Toolkit}~\cite{Girb2013a} to create custom visualizations of the data to support the browsing session.
 
 On the other hand, if the user of the system is not the developer of the original code, the system can serialize the report and send it to the issue tracker with a comment of the user explaining how she encountered the error.
 \figref{fig:reporter} shows the interface for submitting a report: to protect the privacy of the users, as described by guideline (5), a user can read the description of the collected data and decide whether she wants to send it or to exclude it from the report.
@@ -375,13 +372,13 @@ To tame this problem, developers design software systems using a modular archite
 In such a scenario, dispatching messages is fundamental to exchange information among the components and orchestrate the behavior of the modular system.
 While the gained modularity is invaluable in developing, testing, and maintaining a system, it comes at a cost: Integrating different modules can show errors generated by the interaction between components and, depending on how the communication is performed, might present non-deterministic behavior.
 Since the flow of the execution is distributed into different locations, tracking the source of a defect can become a complicated and time consuming task.
-To enable communication among system components, Pharo offers the \emph{Announcer} framework: a tool that implements an improved version of the Observer pattern and reduces coupling.
+To enable communication among system components, \pha offers the \emph{Announcer} framework: a tool that implements an improved version of the Observer pattern and reduces coupling.
 When an entity in the system wants to communicate a message to other entities, it instantiates an \emph{announcer}.
 The entities interested in receiving a notifications can then register to the relevant announcer, specifying the type of events they want to observe.
 To broadcast a message, a component can create a new \emph{announcement} and send it to the announcer, that dispatches it to the subscribed entities.
 
 The strength of the Announcer framework is that announcements are treated as first class entities: once it occurs, an event is represented by an object that can contain arbitrary data and the subscribers that registered for that event can interact with it using its public interface.
-The use of announcements to manage the communications between different applications has numerous advantages, like loosing the coupling between the publisher of an event and its subscribers, and is a recommended best practice in developing an application in Pharo.
+The use of announcements to manage the communications between different applications has numerous advantages, like loosing the coupling between the publisher of an event and its subscribers, and is a recommended best practice in developing an application in \pha.
 
 However, as discussed earlier, fragmenting the control flow of the program into a set of disjoint components carries the drawbacks of event-based programming with the consequence that finding the right fragment of code that is responsible for an error becomes a convoluted process of navigating through the callbacks to find the correct location in the system.
 This complicates the debugging process, as understanding how an announcement propagates through the system and affects its status, requires accessing information that is not usually accessible by simply inspecting the stack trace generated by an exception.
@@ -393,7 +390,7 @@ While this might still be sufficient to support debugging of simple problems, it
 
 \subsubsection{Usage of Announcements}
 
-\figref{fig:announcer-report} shows a bug report submitted to the Pharo issue tracker, describing a problem with a tool where selection an item from a menu would trigger the opening of two duplicate windows, instead of one.
+\figref{fig:announcer-report} shows a bug report submitted to the \pha issue tracker, describing a problem with a tool where selection an item from a menu would trigger the opening of two duplicate windows, instead of one.
 
 \begin{figure}[h]
   \centering
@@ -431,7 +428,7 @@ average \# of traces per day & $\sim$41\\
 
 
 The collecting tool can be set to submit every exception automatically, or to ask the developer whether she wants to explicitly submit it.
-The stack traces collected come from exceptions generated by users of the Pharo platform from their daily development activities.
+The stack traces collected come from exceptions generated by users of the \pha platform from their daily development activities.
 We collected 41,129 stack traces from 257 different developers, on a time period of almost three years.
 We queried the collected data looking for references to \textit{AnnouncementSubscription}, the class responsible to dispatch the announcement to the registered entities, and we found that 4,840 stack trace contain at least one reference to this class.
 
@@ -557,17 +554,17 @@ Finally, dealing with data that is not flattened allows to perform a progressive
 
 \subsubsection{Generalizability of the approach}
 
-We developed our approach using Pharo, an object-oriented, live programming environment inspired by Smalltalk.
+We developed our approach using \pha, an object-oriented, live programming environment inspired by Smalltalk.
 The strong reflection and inspection capabilities of the platform allowed us to inspect the whole status of the system, retrieving valuable information about the whole execution context of the software.
 
-Given these premises, one might wonder (1) why should this approach be relevant in the Pharo ecosystem, and (2) if it is still relevant outside Pharo, when trying to apply it to other programming languages.
+Given these premises, one might wonder (1) why should this approach be relevant in the \pha ecosystem, and (2) if it is still relevant outside \pha, when trying to apply it to other programming languages.
 
-To answer question (1), this framework comes after a long collaboration with the Pharo community, to understand the types of errors that users get during the use and the development of the platform.
+To answer question (1), this framework comes after a long collaboration with the \pha community, to understand the types of errors that users get during the use and the development of the platform.
 As we discussed through the paper, the data collection mechanism can be integrated with the issue tracking system of a project, allowing the developers of a project to integrate \sln in their workflow, supporting debugging and maintenance tasks.
 About question (2), we believe that it is possible to implement such an approach also in other programming languages.
-The Pharo system makes the perfect candidate to test such a framework, easing the implementation process by providing the APIs to talk with the system and the tools to navigate the collected data, but the use cases we have shown in \secref{sec:reified-stories} can be implemented with any language with reflective capabilities.
+The \pha system makes the perfect candidate to test such a framework, easing the implementation process by providing the APIs to talk with the system and the tools to navigate the collected data, but the use cases we have shown in \secref{sec:reified-stories} can be implemented with any language with reflective capabilities.
 
-There is also an interesting aspect to consider pertaining to how we used a collector in section \secref{sec:reified-story-testing} to save and submit the whole Pharo image.
+There is also an interesting aspect to consider pertaining to how we used a collector in section \secref{sec:reified-story-testing} to save and submit the whole \pha image.
 Given the current interest in DevOps technologies like Docker\footnote{\url{https://www.docker.com/}}, it is possible to execute an application in a Docker container, stop it and save its status during an exception, and submit the image of the application to a remote server.
 Analyzing the stored data would not be simple, as there is a lack of tools to access the state of applications in these circumstances, but our approach could be an interesting match for these similar scenarios.
 
@@ -576,7 +573,7 @@ Analyzing the stored data would not be simple, as there is a lack of tools to ac
 
 Building collectors to observe specific parts of the system can improve the workflow of debuggers, and reduce maintenance costs.
 The regular collection of domain specific data can provide statistics on the frequency of errors in selected parts of the system, and hint how the users use a software, hence helping developers not only to debug a system, but also to optimize the existing code and improve the API.
-We plan to propose \sln for the integration with the next standard Pharo distribution, proposing some generic collectors to support standard difficult debugging tasks, like the one that we proposed in \secref{sec:reified-story-announcer} about the Announcer framework.
+We plan to propose \sln for the integration with the next standard \pha distribution, proposing some generic collectors to support standard difficult debugging tasks, like the one that we proposed in \secref{sec:reified-story-announcer} about the Announcer framework.
 By reaching a larger user base we can collect more specific data about the usage of the tool, refine further the collectors implementation and evaluate the impact of such an approach in daily development activities.
 
 We envision a future where development activities are supported by the system using the language of the system, not resolving to flat and bloated chunks of plain text that represent the side effects of the code, but rather first-class entities that narrate the exact status of a program.
