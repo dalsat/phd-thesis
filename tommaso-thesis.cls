@@ -1,3 +1,4 @@
+\PassOptionsToPackage{square,sort,comma,numbers}{natbib}
 \LoadClass{usiinfthesis}
 %\LoadClass{revealthesis}
 \NeedsTeXFormat{LaTeX2e}
