@@ -14,11 +14,11 @@
 \RequirePackage{microtype}
 \RequirePackage[table]{xcolor}
 
+
 \newcommand{\ie}{\textit{i.e.,}\xspace}
 \newcommand{\eg}{\textit{e.g.,}\xspace}
 \newcommand{\etc}{\textit{etc.}\xspace}
 \newcommand{\etal}{\textit{et al.}\xspace}
-\newcommand{\shr}{ShoreLine Reporter\xspace}
 \newcommand{\chref}[1]{Chapter~\ref{#1}\xspace}
 \newcommand{\secref}[1]{Section~\ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
@@ -71,17 +71,19 @@
 
 
 %%% Macros %%%
-\newcommand{\bzilla}{\textsc{Bugzilla}\xspace}
-\newcommand{\jira}{\textsc{JIRA}\xspace}
-\newcommand{\gth}{\textsc{GitHub}\xspace}
-\newcommand{\fbz}{\textsc{FogBugz}\xspace}
-\newcommand{\ib}{\textsc{In*Bug}\xspace}
-\newcommand{\sln}{\textsc{ShoreLine}\xspace}
-\newcommand{\slr}{\textsc{ShoreLine Reporter}\xspace}
-\newcommand{\bea}{\textsc{Beacon}\xspace}
-\newcommand{\dfl}{\textsc{DFlow}\xspace}
-\newcommand{\pha}{\textsc{Pharo}\xspace}
-\newcommand{\sea}{\textsc{Seaside}\xspace}
+\newcommand{\tool}[1]{\textsc{#1}\xspace}
+
+\newcommand{\bzilla}{\tool{Bugzilla}}
+\newcommand{\jira}{\tool{JIRA}}
+\newcommand{\gth}{\tool{GitHub}}
+\newcommand{\fbz}{\tool{FogBugz}}
+\newcommand{\ib}{\tool{In*Bug}}
+\newcommand{\sln}{\tool{ShoreLine}}
+\newcommand{\slr}{\tool{ShoreLine Reporter}}
+\newcommand{\bea}{\tool{Beacon}}
+\newcommand{\dfl}{\tool{DFlow}}
+\newcommand{\pha}{\tool{Pharo}}
+\newcommand{\sea}{\tool{Seaside}}
 
 \newcommand{\entity}[1]{\textsc{#1}\xspace}
 \newcommand{\method}[1]{\textit{#1}\xspace}
