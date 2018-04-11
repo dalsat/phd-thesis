@@ -5,24 +5,22 @@
 
 % \section{History of the Issue Tracking Systems}
 
-% In the beginning it was text.
-% Then became the bug.
-
-The correctness of a computer program is obviously an essential requisite for it to work.
+The correctness is clearly an essential property a computer program to work.
 However, it is nearly impossible to determine that a non-trivial program is really correct: the huge amount of different variables and environments to which a program gets usually exposed makes predicting all the potentially harmful situations a hard task.
 Moreover, the fact that a program appears as correct at a given time does not guarantee that it will continue behaving correctly also in the future: several factors such as a change in the underlying technology, like the operating system, or different usage conditions like a change in the input format, can cause the arise of problems that were not predicted nor observed before.
-For this reason, since we cannot get rid of bugs, dealing efficiently with defects is a crucial component in the success of a software system.
+For this reason, since we cannot get rid of bugs, dealing efficiently with defects is a crucial aspect in the success of a software system.
 
 Since the beginning of the history of computer programming, developers needed a procedure to track and describe the appearance, impact, and resolution of the errors encountered during the evolution of a system.
-\figref{fig:first-bug-report} shows what the folklore considers to be the first bug report, written by Grace Hopper.
-Since that handwritten sheet of paper, issue trackers evolved and adapted to reflect the different development practices introduced during the years.
-This led to a well established de facto model of a bug report.
+\figref{fig:first-bug-report} shows what the folklore considers to be the first bug report, written by Grace Hopper.\seeurl{http://ei.cs.vt.edu/~history/Hopper.Danis.html}
+From that handwritten paper note to present days, issue trackers evolved and adapted to reflect the different development practices introduced during the years.
+This led to a well established \emph{de facto} model of a bug report.
+
 In this chapter we illustrate the state of the art in issue tracking, providing an overview on the current tools and practices and the approaches they propose, to identify the useful elements in issue tracking.
 
 \begin{figure}[t]
 \centering
   \includegraphics[width=.7\linewidth]{related/bug}
-  \caption[The first "bug" report.]{This piece of paper is considered to be the first "bug" report. It was written by Grace Hopper when she was working on the Mark II computer, to document the find of a moth that caused a malfunction in the system.\footnote{\url{http://ei.cs.vt.edu/~history/Hopper.Danis.html}}}
+  \caption[The first "bug" report.]{This piece of paper is considered to be the first "bug" report. It was written by Grace Hopper when she was working on the Mark II computer, to document the find of a moth that caused a malfunction in the system.}
   \label{fig:first-bug-report}
 \end{figure}
 
@@ -34,7 +32,7 @@ In this chapter we illustrate the state of the art in issue tracking, providing 
 \begin{figure}[t]
 %\begin{wrapfigure}[14]{r}{0.45\textwidth}
 \centering
-  \vspace{-12pt}
+  % \vspace{-12pt}
   \includegraphics[width=.7\linewidth]{related/bugzilla}
   \caption{An old Bugzilla submission form}
   \label{fig:bugzilla-interface}
@@ -46,13 +44,11 @@ During the years different alternative tools emerged, providing their own set of
 In this section we present four platforms, selected by importance and overall adoption, showing their salient features: Bugzilla, Jira, the GitHub issue tracker and FogBugz.
 
 
-\subsection{Bugzilla}
+\subsubsection{Bugzilla}
+Bugzilla\seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. Bugzilla allows its users to obtain a great level of detail in specifying an issue, thus producing, however, a complex interface, as shown in \figref{fig:bugzilla-interface}.
 
-Bugzilla \seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. Bugzilla allows its users to obtain a great level of detail in specifying an issue, thus producing, however, a complex interface, as shown in \figref{fig:bugzilla-interface}.
 
-
-\subsection{JIRA}
-
+\subsubsection{JIRA}
 Jira by Atlassian\seeurl{https://www.atlassian.com/software/jira} is one of the most famous commercial issue trackers, used by Twitter, Linkedin, and Ebay. It provides a polished interface and strong integration with the tools developed by the company. It uses a model similar to Bugzilla.
 
 % \begin{wrapfigure}[9]{r}{0.45\textwidth}
@@ -64,9 +60,12 @@ Jira by Atlassian\seeurl{https://www.atlassian.com/software/jira} is one of the 
 % \end{wrapfigure}
 \end{figure}
 
-\subsection{GitHub} GitHub is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker. GitHub adopts a simplified model of a bug report, but offers a strong integration with the versioned source code, by linking issues with specific commits.
+\subsubsection{GitHub}
+GitHub is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker. GitHub adopts a simplified model of a bug report, but offers a strong integration with the versioned source code, by linking issues with specific commits.
 
-%\paragraph{\bf FogBugz.} \fbz\seeurl{https://www.fogcreek.com/fogbugz} is an issue tracker developed by FogCreek. I uses a bug model similar to Bugzilla, slightly polished and user-friendly, due to its clean user interface and advanced filtering capabilities. It poses a strong accent on customization, by letting users define custom filters and views.
+
+\subsubsection{FogBugz}
+\fbz\seeurl{https://www.fogcreek.com/fogbugz} is an issue tracker developed by FogCreek. I uses a bug model similar to Bugzilla, slightly polished and user-friendly, due to its clean user interface and advanced filtering capabilities. It poses a strong accent on customization, by letting users define custom filters and views.
 
 \paragraph{}
 %\bf Other platforms}

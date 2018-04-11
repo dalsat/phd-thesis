@@ -6,7 +6,12 @@
 %\renewcommand*\sfdefault{classico}
 %\usepackage[sfdefault]{classico}
 
-\usepackage{xspace,ifthen}
+% \usepackage{xspace,ifthen}
+\RequirePackage{xspace}
+\RequirePackage{url}
+\RequirePackage{ifthen}
+\RequirePackage{microtype}
+\RequirePackage[table]{xcolor}
 
 \newcommand{\ie}{\textit{i.e.,}\xspace}
 \newcommand{\eg}{\textit{e.g.,}\xspace}
@@ -17,7 +22,11 @@
 \newcommand{\secref}[1]{Section~\ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
 \newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
-\newcommand{\seeurl}[1]{\footnote{See \url{#1}}}
+
+\newcommand{\mypar}[1]{\paragraph{\textbf{#1.}}}
+\newcommand{\structure}{\subsubsection*{Structure of the Chapter}}
+
+\newcommand{\seeurl}[1]{\footnote{\url{#1}}}
 
 
 \newenvironment{framed}{\it}{}
@@ -33,3 +42,94 @@
 \newcommand\TLN[1]{\nb{Michele}{#1}}
 \newcommand\AM[1]{\nb{Andrea}{#1}}
 \newcommand\TDS[1]{\nb{Tommaso}{#1}}
+
+
+%%% Colors %%%
+%% model
+\definecolor{gray50}{gray}{.5}
+\definecolor{gray40}{gray}{.6}
+\definecolor{gray30}{gray}{.7}
+\definecolor{gray20}{gray}{.8}
+\definecolor{gray10}{gray}{.9}
+\definecolor{gray05}{gray}{.95}
+
+%% gamification
+\definecolor{oceanboatblue}{rgb}{0.0, 0.47, 0.75}
+\definecolor{red-brown}{rgb}{0.65, 0.16, 0.16}
+\definecolor{citrine}{RGB}{249, 214, 157}
+\definecolor{tanzanite}{RGB}{203, 205, 222}
+\definecolor{quartz}{RGB}{231, 206, 218}
+\definecolor{jade}{RGB}{178, 223, 178}
+\definecolor{topaz}{RGB}{173, 214, 244}
+\definecolor{amethyst}{RGB}{230, 169, 252}
+\definecolor{ruby}{RGB}{250, 142, 169}
+\definecolor{emerald}{RGB}{157, 216, 191}
+\definecolor{aquamarine}{RGB}{176, 215, 228}
+\definecolor{sapphire}{RGB}{35, 23, 197}
+\definecolor{gold}{rgb}{1.0, 0.84, 0.0}
+
+
+%%% Macros %%%
+\newcommand{\bzilla}{\textsc{Bugzilla}\xspace}
+\newcommand{\jira}{\textsc{JIRA}\xspace}
+\newcommand{\gth}{\textsc{GitHub}\xspace}
+\newcommand{\fbz}{\textsc{FogBugz}\xspace}
+\newcommand{\ib}{\textsc{In*Bug}\xspace}
+\newcommand{\sln}{\textsc{ShoreLine}\xspace}
+\newcommand{\slr}{\textsc{ShoreLine Reporter}\xspace}
+\newcommand{\bea}{\textsc{Beacon}\xspace}
+\newcommand{\dfl}{\textsc{DFlow}\xspace}
+\newcommand{\pha}{\textsc{Pharo}\xspace}
+\newcommand{\sea}{\textsc{Seaside}\xspace}
+
+\newcommand{\entity}[1]{\textsc{#1}\xspace}
+\newcommand{\method}[1]{\textit{#1}\xspace}
+
+\newcommand{\buildingblock}[2]{
+    \begin{wrapfigure}{l}{0.10\linewidth}
+    	\vspace{-15pt}
+    	\begin{center}
+    	\includegraphics[width=\linewidth]{gamification/#2}
+    	\end{center}
+    	\vspace{-15pt}
+    \end{wrapfigure}
+
+    \noindent\textbf{#1:}
+}
+
+\newcommand{\badge}[1]{
+\noindent
+\begin{wrapfigure}{l}{0.07\textwidth}
+  \vspace{-18pt}
+  \begin{center}
+    \includegraphics[width=0.06\textwidth]{gamification/#1.pdf}
+  \end{center}
+  \vspace{-20pt}
+\end{wrapfigure}
+}
+
+
+%%% Model %%%
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+
+\newlength\Linewidth
+\def\findlength{\setlength\Linewidth\linewidth
+\addtolength\Linewidth{-4\fboxrule}
+\addtolength\Linewidth{-3\fboxsep}
+}
+\newenvironment{examplebox}{\par\begingroup
+   \setlength{\fboxsep}{5pt}\findlength
+   \setbox0=\vbox\bgroup\noindent
+   \hsize=0.95\linewidth
+   \begin{minipage}{0.95\linewidth}\normalsize}
+    {\end{minipage}\egroup
+%    \vspace{6pt}
+    \textcolor{gray20}{\fboxsep1.5pt\fbox
+     {\fboxsep5pt\colorbox{gray05}{\normalcolor\box0}}}
+%    \endgroup\par\addvspace{6pt minus 3pt}\noindent
+    \endgroup\par\noindent
+    \normalcolor\ignorespacesafterend}
+\let\Examplebox\examplebox
+\let\endExamplebox\endexamplebox
