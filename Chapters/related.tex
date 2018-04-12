@@ -5,10 +5,11 @@
 
 % \section{History of the Issue Tracking Systems}
 
-The correctness is clearly an essential property a computer program to work.
-However, it is nearly impossible to determine that a non-trivial program is really correct: the huge amount of different variables and environments to which a program gets usually exposed makes predicting all the potentially harmful situations a hard task.
-Moreover, the fact that a program appears as correct at a given time does not guarantee that it will continue behaving correctly also in the future: several factors such as a change in the underlying technology, like the operating system, or different usage conditions like a change in the input format, can cause the arise of problems that were not predicted nor observed before.
-For this reason, since we cannot get rid of bugs, dealing efficiently with defects is a crucial aspect in the success of a software system.
+Correctness is clearly an essential property for a computer program to work.
+However, it is nearly impossible to determine whether a non-trivial program is really correct: the huge amount of different variables and environments that a program usually gets exposed to, makes predicting all the potentially harmful situations a task to hard to tackle.
+Even if we could determine the absolute correctness of a program in a given moment in time, this does not guarantee that it will keep behaving correctly in the future: There are a number of external factors that influence the execution of a program that can cause the arise of problems that could not be observed before.
+Such external factors could for example be changes in the underlying technology, like the operating system, or different usage conditions like a change of the input format.
+For this reason ---since we cannot get rid of bugs--- dealing efficiently with defects is a crucial aspect in the success of a software system.
 
 Since the beginning of the history of computer programming, developers needed a procedure to track and describe the appearance, impact, and resolution of the errors encountered during the evolution of a system.
 \figref{fig:first-bug-report} shows what the folklore considers to be the first bug report, written by Grace Hopper.\seeurl{http://ei.cs.vt.edu/~history/Hopper.Danis.html}
@@ -41,15 +42,16 @@ In this chapter we illustrate the state of the art in issue tracking, providing 
 
 In 1998, the Mozilla Foundation released the first version of \bzilla, which would soon become the reference issue tracking system.
 During the years different alternative tools emerged, providing their own set of customizations and personalizations.
-In this section we present four platforms, selected by importance and overall adoption, showing their salient features: \bzilla, \jira, the \gth issue tracker and FogBugz.
+In this section we present four platforms, selected by importance and overall adoption, showing their salient features: \bzilla, \jira, the \gth issue tracker and \fbz.
 
 
 \subsubsection{Bugzilla}
-\bzilla\seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. \bzilla allows its users to obtain a great level of detail in specifying an issue, thus producing, however, a complex interface, as shown in \figref{fig:bugzilla-interface}.
+\bzilla\seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. \bzilla allows its users to obtain a great level of detail in specifying an issue producing, however, a complex interface.
+\figref{fig:bugzilla-interface} shows the interface that \bzilla used to have in one of its previous versions.
 
 
 \subsubsection{Jira}
-\jira by Atlassian\seeurl{https://www.atlassian.com/software/jira} is one of the most famous commercial issue trackers, used by Twitter, Linkedin, and Ebay. It provides a polished interface and strong integration with the tools developed by the company. It uses a model similar to \bzilla.
+\jira\seeurl{https://www.atlassian.com/software/jira} by Atlassian is one of the most famous commercial issue trackers, used by Twitter, Linkedin, and Ebay. It provides a polished interface and strong integration with the tools developed by the company. It uses a model similar to \bzilla.
 
 % \begin{wrapfigure}[9]{r}{0.45\textwidth}
 \begin{figure}[t]
@@ -61,7 +63,7 @@ In this section we present four platforms, selected by importance and overall ad
 \end{figure}
 
 \subsubsection{GitHub}
-\gth is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker. \gth adopts a simplified model of a bug report, but offers a strong integration with the versioned source code, by linking issues with specific commits.
+\gth\seeurl{https://www.github.com} is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker. \gth adopts a simplified model of a bug report, but offers a strong integration with the versioned source code, by linking issues with specific commits.
 
 \subsubsection{FogBugz}
 \fbz\seeurl{https://www.fogcreek.com/fogbugz} is an issue tracker developed by FogCreek. It uses a bug model similar to the one of \bzilla, slightly more polished and user-friendly, due to its clean user interface and advanced filtering capabilities. It poses a strong accent on customization, by letting users define custom filters and views.
@@ -88,12 +90,11 @@ Another example has been given by Zimmermann \etal, who applied data mining tech
 
 \subsection{Visualizations of an Issue Tracker}
 
-Just having the raw data, however, is often not enough: to turn such an amount of data into actionable knowledge it is important to build tools to make use of this information.
+Just having the raw data, however, is often not enough: to turn it into actionable knowledge it is important to build tools to make use of this information.
 Reading a bug report is a difficult step in the debugging process: Browsing the large amount of information and decide whether how much to rely on the data reported by the users, consume a significative amount of developers' time.
 To alleviate this burden, researchers devised a number of approaches based on the visualization of the data inside issue trackers.
 For example, D'Ambros \etal performed an analysis of the \bzilla bug repository: They summarized the diagram of the state transitions of a report and proposed a set of visualizations to support the analysis of a bug database at different levels of granularity.
 Their approach allows the user to navigate the history of a single issue tracker and inspect selected part of the system with customized filters and synthesized a state transitions diagram of a report~\cite{DAmb2007b}.
-
 They built visualizations to support the analysis of a bug database at different levels of granularity, that depicts bug reports as independent entities.
 Their approach allows users to browse the history of an issue tracker and inspect parts of the system with custom filters.
 Knab \etal proposed visualizations to ease the understanding of the data in an issue tracker and find hidden patterns~\cite{Knab2009a,Knab2010a}.
@@ -290,7 +291,7 @@ While these approaches are focused on describing source code, they are still rel
 
 
 
-\section{Gamification}\label{sec:related-gamification}
+\section{Engaging Developers and Users}\label{sec:related-gamification}
 
 Despite all the tools that researchers and practitioners produced, fixing bugs remains a tedious activity.
 To support developers deal with issue, there have been a few efforts in introducing \emph{gamification} ---the use of game elements in a non gaming context--- into software engineering.
