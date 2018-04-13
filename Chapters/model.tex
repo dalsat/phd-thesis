@@ -34,19 +34,22 @@ We found that few fields influence the resolution time and that customized field
 We performed a survey to investigate what users deem easy to provide in a bug report.
 
 \structure
-In
+In \secref{sec:model-intro} we discuss what we should expect from a bug report.
+\label{sec:model-method} presents our research method and introduces our research questions, that we answer in \secref{sec:model-approach}.
+In \secref{sec:model-discussion} we discuss the meaning of our findings, while in \secref{sec:model-summary} we summarize and conclude the chapter.
+
 \newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Good Bug Reports vs. Real Bug Reports}
+\section{Good Bug Reports vs. Real Bug Reports}\label{sec:model-intro}
 %%%%%%%%%%%%%%%%%%%%%%
 
 When users file a bug report for a software project, their main hope is that developers will fix it quickly, to minimize its impact.
 But what information should they provide to make this happen? There is a stark mismatch between what developers perceive as \emph{optimally} useful in this respect (\ie steps to reproduce, stack traces, and test cases) and what users are effectively able, or sometimes just willing to provide, when filing a bug report~\cite{Zimm2010a}.
 
 Bug tracking systems and software projects should define a reasonable common ground for information to be provided in bug reports, so that it is not too demanding for users, yet provides enough information to developers.
-Nevertheless, considering what popular issue trackers and projects (\eg \emph{Bugzilla},\footnote{\url{https://www.bugzilla.org/}} \emph{JIRA},\footnote{\url{https://jira.atlassian.com/}} \emph{FogBugz},\footnote{\url{https://www.fogcreek.com/fogbugz/}} and the issue tracker provided with \emph{GitHub}\footnote{\url{https://github.com/}}) demand from users, we see that it is quite diverse and specialized.
+Nevertheless, considering what popular issue trackers and projects (\eg \emph{Bugzilla}, \emph{JIRA}, \emph{FogBugz}, and the issue tracker provided with \emph{GitHub}) demand from users, we see that it is quite diverse and specialized.
 In particular, each bug tracking system provides a core set of common fields, which are often complemented with additional fields.
 Such  fields may reflect requirements for specific domains, or represent additional data customizable by project owners.
 
@@ -127,13 +130,13 @@ The contributions of this work are:
 % \subsubsection{FogBugz} In this system, the model of a bug report is similar to \bzilla, but more polished and user-friendly, due to its clean user interface and filtering capabilities.
 % Differently from \gth, \fbz\seeurl{https://www.fogcreek.com/fogbugz/} does not simplify the report model, but it lets users add custom filters and views.
 
-{\bf Reflection.} To understand the essential traits of bug reports, we analyze how the data included in bug reports influences their lifetime.
+\subsubsection{Reflection} To understand the essential traits of bug reports, we analyze how the data included in bug reports influences their lifetime.
 We next analyze the features of a set of bug reporting systems, to distill a model of common/specific fields for their bug reports.
 This model serves as a basis for further empirical analysis, to determine how these commonalities and customizations influence the life of the reports.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Research Method} \label{sec:model-method}
+\section{Research Method}\label{sec:model-method}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 To determine what makes a satisficing bug report, we first need a way to rate the quality of a bug report, then we can conduct quantitative analysis to determine which features relate with higher quality.
@@ -150,7 +153,7 @@ To understand what is reasonable for a user to provide in a report, we conducted
 We then focus on two of the main components that compose a bug report: (1) its state and (2) the core and optional attributes, to understand how the provided data is used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Research Questions} \label{sec:model-questions}
+\subsection{Research Questions}\label{sec:model-questions}
 
 When collecting information about software defects, it is important to know when the submitted data is reliable and accurate.
 Our goal is to investigate what  users can easily provide and what is harder to obtain; we structure our investigation into the following question:
@@ -219,7 +222,8 @@ Often submit bug reports & $0.7$ \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table*}[h]
+% \begin{table*}[h]
+\begin{sidewaystable}[h!]
 \begin{center}
 \caption{Projects in the dataset}\label{tab:dataset-projects}
 \begin{tabular}{l|l|rrrrr}
@@ -246,7 +250,8 @@ Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
  & Thunderbird & Jan 2, 2000 & Jul 8, 2015 & 42,247 & 5,666 & 3h13m\\\hline
 \end{tabular}
 \end{center}
-\end{table*}
+\end{sidewaystable}
+% \end{table*}
 
 
 \subsection{Data Collection} \label{sec:model-collection}
@@ -317,7 +322,7 @@ To answer RQ4, we build a machine-learning-based prediction model to verify how 
 
 
 %%%%%%%%%%%%%%%%%
-\section{Results} \label{sec:model-approach}
+\section{Results}\label{sec:model-approach}
 %%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -694,7 +699,7 @@ The fields that connect the issue with other reports are also relevant, for exam
 \section{Discussion} \label{sec:model-discussion}
 %%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Threats to Validity}
+\subsection{Threats to Validity}
 
 Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
 We spent a considerable amount of time dealing with the representation of the data, extracting its features and cleaning the unneeded parts.
@@ -706,7 +711,7 @@ There is the concern that the lifetime of a bug report, that we used as a measur
 However, this metric proved to be an interesting open problem in the field and it represents an interesting heuristic in determining the effectiveness of a report.
 
 
-\subsubsection{Future Work}
+\subsection{Next Steps}
 
 Developers tend to prefer simpler models to depict software defects.
 Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.

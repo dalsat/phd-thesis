@@ -60,7 +60,7 @@ Finally, \secref{sec:reified-summary} concludes the paper and outlines direction
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction} \label{sec:reified-introduction}
+\section{The Tools We Use To Develop} \label{sec:reified-introduction}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Computer systems have become pervasive in many human activities, where the high penetration of machine-controlled devices led to a tremendous increase in the complexity of the involved software.
@@ -394,7 +394,7 @@ While this might still be sufficient to support debugging of simple problems, it
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=.7\linewidth]{reified/announcer-report-small}
+  \includegraphics[width=.85\linewidth]{reified/announcer-report-small}
   \caption{A bug report describing a duplicated behavior caused by an entity being registered twice to an announcer}
   \label{fig:announcer-report}
 \end{figure}
@@ -458,7 +458,7 @@ We therefore decide to observe four features:
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=.7\linewidth]{reified/announcer-collector}
+\includegraphics[width=.85\linewidth]{reified/announcer-collector}
 \caption{The Smalltalk code implementing the extraction strategies for the Announcer collector}
 \label{fig:announcer-code}
 \end{figure}
@@ -554,7 +554,7 @@ Finally, dealing with data that is not flattened allows to perform a progressive
 
 \subsubsection{Generalizability of the approach}
 
-We developed our approach using \pha, an object-oriented, live programming environment inspired by Smalltalk.
+As we explained in \chref{ch:pharo}, we developed our approach using \pha.
 The strong reflection and inspection capabilities of the platform allowed us to inspect the whole status of the system, retrieving valuable information about the whole execution context of the software.
 
 Given these premises, one might wonder (1) why should this approach be relevant in the \pha ecosystem, and (2) if it is still relevant outside \pha, when trying to apply it to other programming languages.
@@ -569,12 +569,12 @@ Given the current interest in DevOps technologies like Docker\footnote{\url{http
 Analyzing the stored data would not be simple, as there is a lack of tools to access the state of applications in these circumstances, but our approach could be an interesting match for these similar scenarios.
 
 
-\subsubsection{Current State and Future Work}
+\subsection{Next Steps}
 
 Building collectors to observe specific parts of the system can improve the workflow of debuggers, and reduce maintenance costs.
 The regular collection of domain specific data can provide statistics on the frequency of errors in selected parts of the system, and hint how the users use a software, hence helping developers not only to debug a system, but also to optimize the existing code and improve the API.
-We plan to propose \sln for the integration with the next standard \pha distribution, proposing some generic collectors to support standard difficult debugging tasks, like the one that we proposed in \secref{sec:reified-story-announcer} about the Announcer framework.
-By reaching a larger user base we can collect more specific data about the usage of the tool, refine further the collectors implementation and evaluate the impact of such an approach in daily development activities.
+%We plan to propose \sln for the integration with the next standard \pha distribution, proposing some generic collectors to support standard difficult debugging tasks, like the one that we proposed in \secref{sec:reified-story-announcer} about the Announcer framework.
+%By reaching a larger user base we can collect more specific data about the usage of the tool, refine further the collectors implementation and evaluate the impact of such an approach in daily development activities.
 
 We envision a future where development activities are supported by the system using the language of the system, not resolving to flat and bloated chunks of plain text that represent the side effects of the code, but rather first-class entities that narrate the exact status of a program.
 Starting a conversation with the entities we can develop a paradigm of programming that focuses on the models and their interactions, rather than manipulating strings, and achieve a programming environment that is really live and responsive.

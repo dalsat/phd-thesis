@@ -16,6 +16,10 @@ We provide a set of basic building blocks to apply gamification techniques, pres
 
 \structure
 
+In \secref{sec:gamification-intro} we provide an in-depth introduction to gamification, while in \secref{sec:gamification-principles} we present its principles.
+In \secref{sec:gamification-sweng} we introduce a framework for applying gamification to a software engineering context.
+In \secref{sec:gamification-evaluation} we propose some guidelines to evaluate the effectiveness of a gamified system.
+Finally, in \secref{sec:gamification-summary}, we summarize and conclude the chapter.
 % With this paper we make the following contributions:
 %
 % \begin{itemize}
@@ -34,7 +38,7 @@ We provide a set of basic building blocks to apply gamification techniques, pres
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section{The Rise of Gamification}
+\section{The Rise of Gamification}\label{sec:gamification-intro}
 %%%%%%%%%%%%%%%%%%%%%%
 
 Games have been a fundamental part of human civilization for thousands of years.
@@ -248,7 +252,7 @@ Overall, gamification is a double-edged sword, but it is a rising phenomenon, wh
 
 
 %%%%%%%%%%%%%%
-\section{Gamifying Software Engineering:\\(Not) An Easy Game?}
+\section{Gamifying Software Engineering:\\(Not) An Easy Game?}\label{sec:gamification-sweng}
 %%%%%%%%%%%%%%
 
 We use a concrete running example to explain why gamifying software engineering areas is far from trivial.
@@ -458,6 +462,7 @@ We designed badges that level up proportionally with the amount of work performe
 %\badge{heracles_badge}
 \noindent
 \begin{wrapfigure}{l}{0.07\textwidth}
+  % \vspace{-2.5em}
   \vspace{-18pt}
   \begin{center}
     \includegraphics[width=0.06\textwidth]{gamification/heracles_badge.pdf}
@@ -470,7 +475,7 @@ Among the many ventures attributed to him, he defeated the Hydra monster, a sea 
 Every time someone cut one away, it grew anew.
 This is a conceptual parallelism with what happens with closed bugs that are reopened.} is a badge of the same nature of Tomb Raider, but is awarded for closing re-opened bugs.
 
-\pagebreak
+% \pagebreak
 Our environment also deals with the issue of {\em balance}.
 If a gamification layer is too linear in terms of dispensing mere (and in a way meaningless) points, the danger of pointsification comes up: Users start to hunt for points by performing meaningless and contradictory actions, such as re-opening bugs that do not need to be reopened.
 The building block {\em Scrum} is crucial in this case, which means to rely on the community, for example by setting time limits for specific activities.
@@ -587,7 +592,7 @@ Given the context of code reviews, which by definition happen inside the same te
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Evaluating Gamified Systems}
+\section{Evaluating Gamified Systems}\label{sec:gamification-evaluation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Once a system is gamified, we need to be able to measure the impact of the gamification, and how much it contributed to reach the {\em business objectives}.
@@ -676,7 +681,7 @@ It is doubtful that this would happen if there is no substantial evidence that t
 %
 % We believe this paper provides a starting point to approach the gamification of software engineering in a systematic way and also provided recommendations on how to evaluate it.
 
-\subsection{Future Work}
+\subsection{Next Steps}
 
 We composed the gamification layers presented in this paper as part of the process to understand the basic concepts of gamification and practically see what is meaningful or what should be highlighted as dangerous.
 The main result of our work were the gamification framework and the ten essential building blocks to use as a reference in building the system, but the presented scenarios are actual software engineering problems currently investigated by researchers.
@@ -686,7 +691,7 @@ However, further insight can come from considering the different types of users 
 For example, Vasilescu \etal studied the difference between men and women in approaching---and leaving---a community~\cite{vasi2012}, while Koivisto \etal showed how the ease of use of gamification tends to decline with age~\cite{koiv2014}.
 
 
-The solutions developed to build \textit{The Myth and De-Bug} were designed with an actual use scenario in mind, and are being integrated into \textit{ShoreLine}, a comprehensive platform to manage bug reports developed for the \textit{Pharo}\footnote{https://pharo.org} community.
-\textit{Pharo} is a programming language inspired by \textit{Smalltalk}, with an active development and an energetic community.
-Our hope is that integrating gamification elements in \textit{ShoreLine} will allow us to build a tool where the potential of gamification is leveraged to foster collaboration and contributions by the community.
+%The solutions developed to build \textit{The Myth and De-Bug} were designed with an actual use scenario in mind, and are being integrated into \textit{ShoreLine}, a comprehensive platform to manage bug reports developed for the \textit{Pharo}\footnote{https://pharo.org} community.
+%\textit{Pharo} is a programming language inspired by \textit{Smalltalk}, with an active development and an energetic community.
+Our hope is that integrating gamification elements in software engineering will allow developers to build tools where the potential of gamification is leveraged to foster collaboration and contributions by the community.
 In that sense: The game has just started.

@@ -104,6 +104,7 @@
 \noindent
 \begin{wrapfigure}{l}{0.07\textwidth}
   \vspace{-18pt}
+  % \vspace{-2.5em}
   \begin{center}
     \includegraphics[width=0.06\textwidth]{gamification/#1.pdf}
   \end{center}

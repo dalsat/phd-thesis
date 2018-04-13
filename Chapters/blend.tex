@@ -8,7 +8,7 @@
 While constructing and evolving software systems, developers generate directly and indirectly a large amount of data of diverse nature, such as source code changes, bug tracking information, IDE interactions, stack traces, etc.
 Often these diverse data sources are processed and visualized in isolation, leading to a partial view of systems.
 
-We present a blended approach to visualize several data ``ingredients'' at once, to give as complete an answer as possible to the question {``What happened to the system in the last few days?''}.
+We present a \emph{blended} approach to visualize several data ``ingredients'' at once, to give as complete an answer as possible to the question {``What happened to the system in the last few days?''}.
 The goal is to enable a quick and comprehensive assessment of what happened to a software system in any given time frame.
 
 \structure
@@ -16,7 +16,7 @@ The goal is to enable a quick and comprehensive assessment of what happened to a
 % \secref{sec:blend-related} presents the related work.
 In \secref{sec:blend-ingredients} we describe the ingredients of our blended visualization, which is presented in \secref{sec:blend-visualization}.
 In \secref{sec:blend-stories} we use the visualization to tell interesting evolutionary stories.
-Finally, \secref{sec:blend-summary} summarizes and concludes our work.
+Finally, \secref{sec:blend-summary} summarizes and concludes the chapters.
 
 \newpage
 
@@ -549,14 +549,15 @@ We illustrated four stories where we extract and analyze some real-world issues 
 
 We believe that the knowledge highlighted by our approach can help in presenting and tackling existing problems and provide a deeper understanding of a system.
 
-\subsection*{Future Work}
+\subsection{Next Steps}
 
 Developing out approach we became aware of many details that are hard to grasp in terms of how the users interact with the code entities.
 We believe that an important next step for this analysis would be to improve the system by providing updated information on fresh data mined in real-time.
 
 Our visualization considers activity data, but maps this information on the static entities of the system.
 However, in Object Oriented Programming, the main focus lays on how these entities communicate among them, rather that how these objects are structured internally.
-We want to deepen this perspective, and produce more refined views that could represent the true dynamic nature of a software and present a system as a network of messages correlated with the user interactions.
+We think that this approach could be further improved by also considering the interactions caused by the messages sent as a result of the interactions.
+%We want to deepen this perspective, and produce more refined views that could represent the true dynamic nature of a software and present a system as a network of messages correlated with the user interactions.
 
 Finally, from the user stories we saw how to retrieve information about the evolution of the system by looking at the way users interact with it.
 We think that a similar approach of combining data can be effectively put into use when analyzing old code, to understand and maintain legacy systems and support software archaeology.
