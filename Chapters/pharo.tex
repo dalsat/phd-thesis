@@ -1,33 +1,34 @@
 %!TEX root = ../tommaso-thesis.tex
 
 \chapter{Pharo}\label{ch:pharo}
-why do we use pharo
+
+In this chapter we briefly present an overview of the technologies that we used to develop our tools and test our approaches.
 
 
+\section{Smalltalk in the 21st Century}
 
-We collected large volumes of data from development sessions of users of \textit{Pharo}~\cite{black2009}, an object-oriented programming language  and companion IDE inspired by \textit{Smalltalk}.
+The majority of the tools presented in this dissertation are developed using \pha~\cite{black2009}.
+\pha is am object-oriented, \textit{Smalltalk} inspired programming environment, composed of the \pha programming language, an integrated development environment and a set of libraries covering the common needs for the daily programming tasks.
+
+While such a choice might at first seem extreme and anachronistic, it instead brings a number of advantages and features especially useful when prototyping a solution or a tool.
+Pharo inherits a number of powerful properties from its Smalltalk origins, that can support our task of implementing the data collection framework.
+In particular, it is a \emph{live} programming environment, with full reflectivity capabilities, and a control over the whole system that allows to access and manipulate programmatically the complete state of the program.
+We were able to exploit the characteristics of the platform, which allowed us to analyze and access the the running programs to easily collect runtime data, without having to fight the system to obtain the data.
+
+In retrospective, we judge that using Pharo in our work and exploiting its abstractions over the entities of the system, resulted in a technical advantage that alleviated us from the burden of fully instrument a virtual machine to reproduce and study the defective environment.
 
 
-
-An interesting property of Pharo comes from its dynamic nature: the whole system is polymorphic, and polymorphism is obtained through the so-called \emph{duck typing}~\cite{Chugh2012}: every object can be used in place of other objects, as long as it is able to respond to the same messages.
+\subsection{Runtime Errors in Pharo}
+An interesting property of Pharo comes from its dynamic nature: the whole system is polymorphic.
+This polymorphism is obtained through the so-called \emph{duck typing}~\cite{Chugh2012}: every object can be used in place of other objects, as long as it is able to respond to the same messages.
 This entails that---as in other dynamic programming languages---there is no static type system and, as such, no static type checking: every type error happens at runtime, resulting in a \emph{Message Not Understood} kind of exception.
-This peculiarity is important when considering the nature of exceptions in Pharo, because the vast majority of the exceptions is caused in this context: In our dataset an exception is thrown as a result of a message not understood in more than 72\% of the cases.
+This peculiarity is important when considering the nature of runtime errors in Pharo, because the vast majority of the exceptions is caused in this context: In \chref{ch:stacktraces} we show how we collected a dataset of development problems, where in more than 72\% of the cases an exception is caused by a message not understood.
 Among those cases, 68\% are generated from a message sent to \emph{UndefinedObject}.
 These are the equivalent of a \emph{NullPointerException} in Java.
 
 
-
-We chose to implement and test the effective feasibility of our approach using \emph{Pharo}\footnote{https://pharo.org}, an Object Oriented programming language inspired by Smalltalk.
-Pharo inherits a number of powerful properties from its Smalltalk origins, that can support our task of implementing the data collection framework.
-In particular, it is a \emph{live} programming environment, with full reflectivity capabilities, and a control over the whole system that allows to access and manipulate programmatically the complete state of the program.
-Using Pharo in our context provides several abstractions over the entities of the system, that result in a technical advantage that alleviates us from fighting with several minor side effects.
-
-
-
-
-\subsection{The Pharo Ecosystem}%\label{sec:blend-ingredients:pharo}
-
-\pha is a Smalltalk inspired programming environment, composed of the \pha programming language, an integrated development editor and a set of libraries covering the common needs for the daily programming tasks.
-
+\section{The Pharo Community}
 Apart from a rich software collection, the \pha ecosystem is composed of a vibrant and active community\seeurl{http://pharo.org/community} that includes about 2,000 developers both from academia and industry.
 The community actively participates in the development of the system by building tools to improve the user experience, submitting bug reports and proposing patches to solve defects.
+
+Such a small and active community was invaluable when deploying our tools and collecting real data from daily development.

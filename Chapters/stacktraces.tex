@@ -476,11 +476,7 @@ We now present two example bug reports and show how they are relevant in underst
 
 \subsubsection{Example 1}
 
-In \secref{sec:stacktraces-nature} we already presented the stack trace shown in \figref{fig:stacktrace}.
-The example is particularly interesting because it shows a practical use case for a user or a developer that encounters the exception while she is writing code.
-\figref{fig:report} shows the bug reports retrieved for this stack trace.
-
-\begin{figure}[t]
+\begin{figure}[ht]
 \begin{center}
   \includegraphics[height=\textheight]{stacktraces/Report-12973.pdf}
   \caption{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
@@ -489,6 +485,9 @@ We can see the metadata (A), the initial description that opened the bug report 
 \end{center}
 \end{figure}
 
+In \secref{sec:stacktraces-nature} we already presented the stack trace shown in \figref{fig:stacktrace}.
+The example is particularly interesting because it shows a practical use case for a user or a developer that encounters the exception while she is writing code.
+\figref{fig:report} shows the bug reports retrieved for this stack trace.
 As the report shows, there is a known error caused by a defect in the system, and the community is already working to address it.
 In particular, since the stack trace that we considered was generated in date 7/7/2014, the user encountered the problem before its resolution and, at the time, the report was stuck in a low priority status.
 This information could have been exploited by a developer to report more precise information or to ask for an increase of the priority for a quicker defect resolution, while a user encountering the exception could know that there is work in progress, or if there is an estimated time to have an updated and fixed version.
@@ -625,12 +624,13 @@ In an open source project, this set of conditions could bolster the interactions
 \section{Summary}\label{sec:stacktraces-summary}
 % Wrapping up: http://www.terraceeatery.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/1/415_1.jpg
 
-\subsection{CrowdStacking Traces}
-
 Fixing defects is an expensive, tedious and time consuming activity: It costs money in industry and it consumes contributors' time---and energy---in open source communities.
 The debugging process requires to deeply understand the system, and to gather information to shed light on the nature of the defect.
 As a result, the debugging process has the side effect of producing a lot of information describing the context of the error.
 This information is however usually discarded after solving the problem.
+
+
+\subsection{CrowdStacking Traces}
 
 We presented \slr, a tool that seamlessly integrates into the \pha system to collect stack traces produced during the arise of runtime executions in the system.
 The goal of \slr is to collect and store information, and reuse it to extract deeper knowledge of the underlying code, assist and boost the whole debugging process.
@@ -644,9 +644,9 @@ We showed a possible application to exploit the data contained in stack traces b
 We found a connection with bug reports related to the exception and we showed that the information can be used to aid the debugging activity.
 In the cases where the clusters do not have a clear connection with existing bug reports, the system should highlight the anomaly and propose to open a bug report displaying the information gathered until then.
 
-\subsection{Future Work}
+\subsection{Expanding CrowdStacking}
 
-We see this paper as preliminary work towards a new way of dealing with information from error contexts.
+We see this work as first step towards a new way of dealing with information from error contexts.
 Current debugging workflows include a number of time consuming activities that could be automated, to reduce the time spent on fixing problems, speed up the development, and foster the improvement of the software project.
 The approach that we presented in this paper is only one of the many possible ways that we see possible to adopt in employing this data: leveraging this information can lead to a number of tools that can deeply impact the way communities and developers deal with debugging.
 \begin{itemize}%[$\circ$]
