@@ -1,44 +1,9 @@
 %!TEX root = ../tommaso-thesis.tex
 %!TEX spellcheck = en_US
 
-%\documentclass[conference,letterpaper]{IEEEtran}
 
-%\usepackage{graphicx,xspace,etoolbox,paralist,url}
-%\usepackage[utf8]{inputenc}
-%\usepackage{enumitem}
-
-%\hyphenation{op-tical net-works semi-conduc-tor}
-
-%\newcommand{\ie}{\textit{i.e.,}\xspace}
-%\newcommand{\eg}{\textit{e.g.,}\xspace}
-%\newcommand{\etc}{\textit{etc.}\xspace}
-%\newcommand{\etal}{\textit{et al.}\xspace}
-%\newcommand{\sln}{ShoreLine\xspace}
-%\newcommand{\secref}[1]{Section~\ref{#1}\xspace}
-%\newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
-%\newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
-
-%\newtoggle{blind}
-%\toggletrue{blind}
-%\togglefalse{blind}
-
-%\newcommand{\mypar}[1]{\textbf{#1.}~}
-%\newcommand{\seeurl}[1]{\footnote{See #1}}
-%\newcommand{\shl}{\iftoggle{blind}{\textit{[blinded tool name]}}{ShoreLine}\xspace}
-%\newcommand{\bea}{\textit{Beacon}\xspace}
-%\newcommand{\entity}[1]{\textsc{#1}\xspace}
-%\newcommand{\method}[1]{\textit{#1}\xspace}
-
-%\newboolean{showcomments}
-%\setboolean{showcomments}{true}
-%\ifthenelse{\boolean{showcomments}}
-%  {\newcommand{\nb}[2]{\fbox{\bfseries\sffamily\scriptsize#1}{\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}}}
-%  {\newcommand{\nb}[2]{}}
-%\newcommand\TLN[1]{\nb{Michele}{#1}}
-%\newcommand\AM[1]{\nb{Andrea}{#1}}
-%\newcommand\TDS[1]{\nb{Tommaso}{#1}}
-
-\chapter{Sympathy for the Devil:\\Reified Collection of Runtime Errors}\label{ch:reified}
+% \chapter{Sympathy for the Devil:\\Reified Collection of Runtime Errors}\label{ch:reified}
+\coolchapter{Sympathy for the Devil}{Reified Collection of Runtime Errors}{ch:reified}
 
 
 Software development involves iterations of writing, running, testing, and debugging code.
@@ -55,7 +20,7 @@ We detail our framework in the context of a bug reporting platform, and illustra
 %\secref{sec:reified-related} illustrates  the state of the art about collecting information on defective software states.
 \secref{sec:reified-framework} describes the approach from a conceptual point of view together with its requirements, while \secref{sec:reified-implementation} illustrates the architecture and implementation of the proposed approach.
 In \secref{sec:reified-stories} we assess the technique through three stories that illustrate how our approach can support development and debugging.
-Finally, \secref{sec:reified-summary} concludes the paper and outlines directions for future work.
+Finally, \secref{sec:reified-summary} concludes the chapter and outlines directions for future work.
 
 
 
@@ -560,7 +525,7 @@ The strong reflection and inspection capabilities of the platform allowed us to 
 Given these premises, one might wonder (1) why should this approach be relevant in the \pha ecosystem, and (2) if it is still relevant outside \pha, when trying to apply it to other programming languages.
 
 To answer question (1), this framework comes after a long collaboration with the \pha community, to understand the types of errors that users get during the use and the development of the platform.
-As we discussed through the paper, the data collection mechanism can be integrated with the issue tracking system of a project, allowing the developers of a project to integrate \sln in their workflow, supporting debugging and maintenance tasks.
+As we discussed through the chapter, the data collection mechanism can be integrated with the issue tracking system of a project, allowing the developers of a project to integrate \sln in their workflow, supporting debugging and maintenance tasks.
 About question (2), we believe that it is possible to implement such an approach also in other programming languages.
 The \pha system makes the perfect candidate to test such a framework, easing the implementation process by providing the APIs to talk with the system and the tools to navigate the collected data, but the use cases we have shown in \secref{sec:reified-stories} can be implemented with any language with reflective capabilities.
 

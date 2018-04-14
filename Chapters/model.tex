@@ -21,7 +21,9 @@
 }
 
 
-\chapter{What Makes a Satisficing Bug Report?}\label{ch:model}
+% \chapter{What Makes a Satisficing Bug Report?}\label{ch:model}
+\coolchapter{What Makes a Satisficing Bug Report?}{}{ch:model}
+
 
 To ensure quality of software systems, developers use bug reports to track defects.
 It is in the interest of users and developers that bug reports provide the necessary information to ease the fixing process.
@@ -35,7 +37,7 @@ We performed a survey to investigate what users deem easy to provide in a bug re
 
 \structure
 In \secref{sec:model-intro} we discuss what we should expect from a bug report.
-\label{sec:model-method} presents our research method and introduces our research questions, that we answer in \secref{sec:model-approach}.
+\secref{sec:model-method} presents our research method and introduces our research questions, that we answer in \secref{sec:model-approach}.
 In \secref{sec:model-discussion} we discuss the meaning of our findings, while in \secref{sec:model-summary} we summarize and conclude the chapter.
 
 \newpage
@@ -58,7 +60,7 @@ For example, the commercial issue tracker JIRA defines several fields that descr
 Overall, there is currently no consensus among software projects and creators of bug reporting systems on essential mandatory fields to be filled by users in each report, optional fields that give useful additional information, and free space for users willing to provide more detailed descriptions.
 
 Our vision is to define the minimum set of information needed to describe a software defect, to clarify what should be required by each bug reporting system.
-In this paper, we make a step in this direction: We investigate what makes a \emph{satisficing}\footnote{Satisficing is a neologism coined by Simon~\cite{Simo57,Simo01} combining the verbs {\em to satisfy} and {\em to suffice}, and it is used to describe a solution that is roughly satisfactory and meets some criteria of sufficiency and is better than an optimal solution that would be too complex or would imply too strong constraints.} bug report.
+In this chapter, we make a step in this direction: We investigate what makes a \emph{satisficing}\footnote{Satisficing is a neologism coined by Simon~\cite{Simo57,Simo01} combining the verbs {\em to satisfy} and {\em to suffice}, and it is used to describe a solution that is roughly satisfactory and meets some criteria of sufficiency and is better than an optimal solution that would be too complex or would imply too strong constraints.} bug report.
 We move from defining a good or more precisely an \emph{optimal} bug report and adopt a more pragmatic view on what users should provide.
 
 %This goal requires to consider the amount of required information, the reliability of the data, and the evolution of the report during its lifetime.
@@ -72,7 +74,7 @@ We conduct our investigation in three steps: \begin{inparaenum}[(1)]
 Our results show that providing more fields in a report relates to the fixing time: In particular, the bug reports with longer descriptions tend to be solved quicker.
 While this might be intuitive, issue trackers still do not emphasize this aspect during the submission of a new bug report, putting the accent on the customization capabilities of the platform.
 At the same time, the project-specific bug report fields have little impact to the fixing time.
-This paper provides insights on the current issue tracking practices and defines guidelines in building the foundations for a new model of an issue tracking system.
+This chapter provides insights on the current issue tracking practices and defines guidelines in building the foundations for a new model of an issue tracking system.
 
 The contributions of this work are:
 
@@ -142,7 +144,7 @@ This model serves as a basis for further empirical analysis, to determine how th
 To determine what makes a satisficing bug report, we first need a way to rate the quality of a bug report, then we can conduct quantitative analysis to determine which features relate with higher quality.
 Measuring the quality of bug reports is hard to do in an automated and unbiased way.
 For this reason, researchers proposed different metrics to measure it~\cite{Hooi2007}, all with their limitations, but reasonable enough to be realistic.
-In this paper, we decide to consider the \emph{lifetime} of a bug report (\ie the time between the opening and resolution of a defect) as a viable proxy for its quality rating, as the time spent dealing fixing software defects is crucial in reducing the time the system contains a problem.
+In this work, we decide to consider the \emph{lifetime} of a bug report (\ie the time between the opening and resolution of a defect) as a viable proxy for its quality rating, as the time spent dealing fixing software defects is crucial in reducing the time the system contains a problem.
 Limitations of this proxy metric include the fact that the trivial bugs, or the non-issues, are the ones that require less time to fix, and that the severity can also have a not negligible impact on how quickly developers decide to fix a problem.
 Nevertheless, the information shared in the bug report has to be satisficing enough to let developers understand whether it is a trivial fix, an urgent matter, or something that can wait longer.
 For this reason, we find lifetime of a bug report a useful approximation in aggregate statistical analyses to provide a high-level view over bug repositories.
@@ -222,15 +224,16 @@ Often submit bug reports & $0.7$ \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \begin{table*}[h]
-\begin{sidewaystable}[h!]
+\begin{table*}[h]
+% \begin{sidewaystable}[h!]
 \begin{center}
 \caption{Projects in the dataset}\label{tab:dataset-projects}
 \begin{tabular}{l|l|rrrrr}
  &               & \multicolumn{5}{c}{{\bf Issues}} \\
-Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
+%Ecosystem
+ & Project & First & Last & Count & Age (days) & Frequency \\
 \hline
-\multirow{9}{*}{Apache}
+\multirow{9}{*}{\rotatebox[origin=c]{90}{Apache}}
  & Cassandra & Mar 7, 2009 & Jul 8, 2015 & 9,723 & 2,314 & 5h 42m \\
  & Hadoop & Jul 24, 2005 & Jul 8, 2015 & 10,191 & 3,635 & 8h 33m \\
  & Lucene & Oct 9, 2001 & Jul 8, 2015 & 6,641 & 5,019 & 18h 8m \\
@@ -240,7 +243,7 @@ Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
  & Sorl & Jan 25, 2006 & Jul 8, 2015 & 7,728 & 3,451 & 10h 43m \\
  & Zookeeper & Jun 6, 2008 & Jul 3, 2015 & 2,207 & 2,582 & 28h 4m \\
 \hline
-\multirow{6}{*}{Mozilla}
+\multirow{6}{*}{\rotatebox[origin=c]{90}{Mozilla}}
  & Air Mozilla & Apr 14, 2009 & Jun 16, 2015 & 509 & 2,254 & 106h 16m \\
  & Bugzilla & Apr 15, 1998 & Jul 27, 2015 & 19,395 & 6,312 & 7h48m \\
  & Core & Mar 28, 1997 & Jul 17, 2015 & 292,358 & 6,684 & 33m \\
@@ -250,9 +253,8 @@ Ecosystem & Project & First & Last & Count & Age (days) & Frequency \\
  & Thunderbird & Jan 2, 2000 & Jul 8, 2015 & 42,247 & 5,666 & 3h13m\\\hline
 \end{tabular}
 \end{center}
-\end{sidewaystable}
-% \end{table*}
-
+% \end{sidewaystable}
+\end{table*}
 
 \subsection{Data Collection} \label{sec:model-collection}
 
@@ -331,9 +333,9 @@ To answer RQ4, we build a machine-learning-based prediction model to verify how 
 We asked respondents how easy it is to provide 13 different elements in a report, using a 5-level Likert scale from $-2$ (``strongly disagree'') to $2$ (``strongly agree'').
 \figref{fig:survey} shows a summary of their answers, sorted by increasing difficulty as reported by the respondents.
 %
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
-\includegraphics[width=1.04\linewidth]{model/survey_plot}
+\includegraphics[width=.6\linewidth]{model/survey_plot}
 \caption{Survey results: The higher the values, the easier it is to provide the corresponding information, according to the respondents' perception.}
 \label{fig:survey}
 \end{figure}

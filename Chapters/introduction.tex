@@ -1,7 +1,8 @@
 %!TEX root = ../tommaso-thesis.tex
 %!TEX spellcheck = en_US
 
-\chapter{Introduction}\label{ch:introduction}
+% \chapter{Introduction}\label{ch:introduction}
+\coolchapter{Introduction}{}{ch:introduction}
 
 Everybody uses software.
 Maybe it is the control system for a production environment of a large factory, a \emph{Customer Relationship Management} system, a social network, an application on a smartphone, or a website to book a flight.
@@ -74,32 +75,32 @@ This information cannot be effectively expressed using plain text.
 This information can be effectively expressed only treating such information as a first-class citizen of the development process.
 \end{framed}
 
-\section{Contributions}
+% \section{Contributions}
 
-We can classify the contributions presented in this dissertation under three categories:
+% We can classify the contributions presented in this dissertation under three categories:
 
-\subsection{Analysis}
+% \subsection{Analysis}
 
-\begin{itemize}
-  \item We analyzed the content of existing bug repositories, for hidden properties and recurring patterns~\cite{DalS2013a,DalS2016a};
+% \begin{itemize}
+  % \item We analyzed the content of existing bug repositories, for hidden properties and recurring patterns~\cite{DalS2013a,DalS2016a};
 
-\end{itemize}
+% \end{itemize}
 
 
-\subsection{Tools}
+% \subsection{Tools}
 
-\begin{itemize}
+% \begin{itemize}
     % \setcounter{enumi}{2}
 
-    \item We built in*Bug, a tool for visually inspecting the content of existing issue trackers~\cite{DalS2013a,DalS2014a};
+    % \item We built in*Bug, a tool for visually inspecting the content of existing issue trackers~\cite{DalS2013a,DalS2014a};
 
-    \item We built Blend, a tool that merges different data sources to visualize and navigate the evolution of a software system~\cite{DalS2015b};
+    % \item We built Blend, a tool that merges different data sources to visualize and navigate the evolution of a software system~\cite{DalS2015b};
 
-    \item We developed and deployed ShoreLine, a platform for the collection of runtime errors, and the reporting of system errors~\cite{DalS2015a};
+    % \item We developed and deployed ShoreLine, a platform for the collection of runtime errors, and the reporting of system errors~\cite{DalS2015a};
 
-    \item We extended ShoreLine to allow the reified collection of runtime data and allow a better representation of the status of a system during a failure~\cite{DalS2017b}
+    % \item We extended ShoreLine to allow the reified collection of runtime data and allow a better representation of the status of a system during a failure~\cite{DalS2017b}
 
-\end{itemize}
+% \end{itemize}
 
     % Sympathy for the Devil: Reified Collection of Runtime Errors
     %
@@ -120,44 +121,64 @@ We can classify the contributions presented in this dissertation under three cat
     % Content Classification of Development Emails
 
 
-\subsection{Modeling}
+% \subsection{Modeling}
+%
+% \begin{itemize}
+%     % \setcounter{enumi}{6}
+%     \item We performed a survey to investigate what users deem easy to provide in a bug report~\cite{DalS2016a};
+%
+%     \item We proposed a model to represent and store a bug report and the related data without losing information about its context~\cite{DalS2016a};
+%
+%     \item We distilled a meta-model for a minimal bug report, establishing a basic layer of core features~\cite{DalS2016a};
 
-\begin{itemize}
-    % \setcounter{enumi}{6}
-    \item We performed a survey to investigate what users deem easy to provide in a bug report~\cite{DalS2016a};
-
-    \item We proposed a model to represent and store a bug report and the related data without losing information about its context~\cite{DalS2016a};
-
-    \item We distilled a meta-model for a minimal bug report, establishing a basic layer of core features~\cite{DalS2016a};
-
-\end{itemize}
+% \end{itemize}
 
 \newpage
 \section{Roadmap}
 
-This dissertation is structured following the following order:
+This dissertation is structured in the following chapters and with the following contributions:
 
 \begin{description}
 % part 1
- \item[\chref{ch:related}] concludes the introduction to this thesis, by presenting the history and evolution of tracking bugs, the current trends and best practices.
+  \item[\chref{ch:related}] concludes the introduction to this thesis, by presenting the history and evolution of tracking bugs, the current trends and best practices.
 
- \item[\chref{ch:pharo}] presents a brief background on \pha, the main platform that we targeted to develop and test our approaches and tools.
+  \item[\chref{ch:pharo}] presents a brief background on \pha, the main platform that we targeted to develop and test our approaches and tools.
 
 % part 2
-\item[\chref{ch:visualize}] proposes a visual approach to explore the content of existing issue trackers, showing how a simple textual representation sometimes hides useful information in a bug database.
+  \item[\chref{ch:visualize}] proposes a visual approach to explore the content of existing issue trackers, showing how a simple textual representation sometimes hides useful information in a bug database.
 
-\item[\chref{ch:stacktraces}] presents our approach for runtime errors retrieval, where we collect stack traces generated by the community during the development process to learn about the life of a system.
+  We analyzed the content of existing bug repositories, for hidden properties and recurring patterns~\cite{DalS2013a,DalS2016a};
 
-\item[\chref{ch:reified}] extends our stack traces collection approach, to log entities in a reified fashion and to capture the information implicitly stored in the relation among the objects.
+  We built in*Bug, a tool for visually inspecting the content of existing issue trackers~\cite{DalS2013a,DalS2014a};
 
-\item[\chref{ch:blend}] shows how we can employ the data we collect to build tools that combine heterogeneous data sources for browsing the evolution of a system from different perspectives.
+
+  \item[\chref{ch:stacktraces}] presents our approach for runtime errors retrieval, where we collect stack traces generated by the community during the development process to learn about the life of a system.
+
+  We developed and deployed ShoreLine, a platform for the collection of runtime errors, and the reporting of system errors~\cite{DalS2015a};
+
+
+  \item[\chref{ch:reified}] extends our stack traces collection approach, to log entities in a reified fashion and to capture the information implicitly stored in the relation among the objects.
+
+  We extended ShoreLine to allow the reified collection of runtime data and allow a better representation of the status of a system during a failure~\cite{DalS2017b}
+
+
+  \item[\chref{ch:blend}] shows how we can employ the data we collect to build tools that combine heterogeneous data sources for browsing the evolution of a system from different perspectives.
+
+  We built Blend, a tool that merges different data sources to visualize and navigate the evolution of a software system~\cite{DalS2015b};
 
 % part 3
-\item[\chref{ch:model}] discusses the model normally employed by issue trackers, how they fall short in meeting our expectations in what we can expect the users to provide. We propose some improvements to this model, to lay the foundations for the next generation of issue trackers.
+  \item[\chref{ch:model}] discusses the model normally employed by issue trackers, how they fall short in meeting our expectations in what we can expect the users to provide. We propose some improvements to this model, to lay the foundations for the next generation of issue trackers.
 
-\item[\chref{ch:gamification}] considers the problem of the engagement of developers during a tedious activity such as reporting and fixing bugs. We discuss how we can improve the user experience inside an issue tracking system by employing \emph{gamification}.
+  We performed a survey to investigate what users deem easy to provide in a bug report~\cite{DalS2016a};
+
+  We proposed a model to represent and store a bug report and the related data without losing information about its context~\cite{DalS2016a};
+
+  We distilled a meta-model for a minimal bug report, establishing a basic layer of core features~\cite{DalS2016a};
+
+
+  \item[\chref{ch:gamification}] considers the problem of the engagement of developers during a tedious activity such as reporting and fixing bugs. We discuss how we can improve the user experience inside an issue tracking system by employing \emph{gamification}.
 
 % part 4
-\item[\chref{ch:conclusion}] concludes our work by summarizing the proposed approaches and how these can show the direction for the development of integrated issue tracking systems with smarter and deeper bug reports.
+  \item[\chref{ch:conclusion}] concludes our work by summarizing the proposed approaches and how these can show the direction for the development of integrated issue tracking systems with smarter and deeper bug reports.
 
 \end{description}

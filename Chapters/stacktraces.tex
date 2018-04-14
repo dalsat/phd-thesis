@@ -10,7 +10,8 @@
 \definecolor{unknown}{HTML}{D3D3D3}
 
 
-\chapter{Misery Loves Company: CrowdStacking Traces to Aid Problem Detection}\label{ch:stacktraces}
+%\chapter{Misery Loves Company:\\CrowdStacking Traces to Aid Problem Detection}\label{ch:stacktraces}
+\coolchapter{Misery Loves Company}{CrowdStacking Traces to Aid Problem Detection}{ch:stacktraces}
 
 
 During software development, exceptions are by no means exceptional: Programmers repeatedly try and test their code to ensure that it works as expected.
@@ -30,7 +31,7 @@ We illustrate how thousands of stack traces stemming from the IDEs of several de
 \secref{sec:stacktraces-evaluation} evaluates our approach.
 \secref{sec:stacktraces-discussion} discusses our results.
 % \secref{sec:stacktraces-related} analyzes related work on debugging data.
-\secref{sec:stacktraces-summary} concludes the paper and presents the possible extensions to our approach.
+\secref{sec:stacktraces-summary} concludes the chapter and presents the possible extensions to our approach.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -285,7 +286,7 @@ As expected, the most recurrent exceptions are related to some core elements of 
 %The former is equivalent to a \textit{NullPointerException} in Java.
 Despite being expected, the fact that the most common exceptions involve the dynamic nature of the language shows how the freedom provided by the absence of static type checking comes with the price of incurring in runtime exceptions even for experienced programmers.
 
-Once verified that the most recurring exceptions are caused by common usage patterns of the language, we can consider these elements as outliers for the specific purpose of this paper: The information they carry can still be useful in identifying other issues like API usage problems, but it is likely negligible to be connected to bug reports.
+Once verified that the most recurring exceptions are caused by common usage patterns of the language, we can consider these elements as outliers for the specific purpose of this work: The information they carry can still be useful in identifying other issues like API usage problems, but it is likely negligible to be connected to bug reports.
 Moreover, methods that appear in very few stack traces are also outliers, since there is an intrinsic lack of confidence that they can be significant to represent any pattern in the system.
 
 \subsection{Extracting Information}
@@ -648,9 +649,9 @@ In the cases where the clusters do not have a clear connection with existing bug
 
 We see this work as first step towards a new way of dealing with information from error contexts.
 Current debugging workflows include a number of time consuming activities that could be automated, to reduce the time spent on fixing problems, speed up the development, and foster the improvement of the software project.
-The approach that we presented in this paper is only one of the many possible ways that we see possible to adopt in employing this data: leveraging this information can lead to a number of tools that can deeply impact the way communities and developers deal with debugging.
+The approach that we presented in this chapter is only one of the many possible ways that we see possible to adopt in employing this data: leveraging this information can lead to a number of tools that can deeply impact the way communities and developers deal with debugging.
 \begin{itemize}%[$\circ$]
-\item\textit{Context aware debugging:} as we suggested during the paper, we want to extend \slr to propose the possible bug reports to the developer whenever he triggers an exception, to provide a quicker access to the information needed to deal with the problem.
+\item\textit{Context aware debugging:} as we suggested during the chapter, we want to extend \slr to propose the possible bug reports to the developer whenever he triggers an exception, to provide a quicker access to the information needed to deal with the problem.
 
 \item\textit{Bug triaging:} Having access to stack trace information can help identifying the types of defects that caused an exception, thus easing the process of triaging the bug~\cite{Anvi2006a}.
 Also, we can use the data submitted by each user to create and update profiles of the developers and determine their area of expertise in a quick and reliable way.

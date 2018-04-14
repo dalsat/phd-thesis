@@ -3,7 +3,7 @@
 % -----------------------------------------------------------------------------
 % LaTeX class for the doctoral dissertation at the Faculty of
 % Informatics of University of Lugano
-% 
+%
 % Domenico Bianculli <domenico.bianculli@lu.unisi.ch>
 % Jochen Wuttke <wuttkej@lu.unisi.ch>
 %
@@ -14,7 +14,7 @@
 % -----------------------------------------------------------------------------
 %%
 %% This file is 'USIINFthesis.cls'
-%% 
+%%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
 %% of this license or (at your option) any later version.
@@ -66,9 +66,9 @@ USI Informatics Doctoral Dissertation class]
 \DeclareOption{mscthesis}{\setboolean{@mscthesis}{true}}
 
 %%%
-\DeclareOption*{% 
-	\PassOptionsToClass{\CurrentOption}{book}% 
-} 
+\DeclareOption*{%
+	\PassOptionsToClass{\CurrentOption}{book}%
+}
 %%% execution of options
 \ExecuteOptions{hyper}
 \ProcessOptions \relax
@@ -87,7 +87,7 @@ to: }
 \RequirePackage[scaled]{beramono}
 \RequirePackage[utf8]{inputenc}
 
-\renewcommand{\familydefault}{cmr}
+% \renewcommand{\familydefault}{cmr}
 \renewcommand{\sfdefault}{phv}
 \renewcommand{\scshape}{%
 	\not@math@alphabet\scshape\relax
@@ -123,7 +123,7 @@ to: }
 %%% PART %%%%
 \RequirePackage{tikz}
 \usetikzlibrary{shapes.geometric,backgrounds,fit}
-    
+
 \titleformat
 {\part}	% command
 [display] % shape
@@ -210,25 +210,25 @@ to: }
 	\pagenumbering{Alph}%
 	\begin{titlepage}%
 		\pagestyle{empty}
-		    	
+
 		\tikz{
 			\begin{pgfinterruptboundingbox}
-				    			  
+
 				% Rectangle left
 				\fill[usiColor] (-4.1,-30) rectangle (3.5,14);
-				    			
-				% Rectangle title 
+
+				% Rectangle title
 				\fill[usiColor] (3.49,-6.5) rectangle (20,0.243);
-				    			 
+
 				\node[inner sep=0pt, anchor=north east] (usi) at (3.529,0.25)
 				{\includegraphics[height=6.743cm]{logo-usi-center}};
-				    			
+
 				\node[inner sep=0pt] (logo_bottom) at (0.1,-23.5)
 				{\includegraphics[width=165pt]{logo-white}};
-				    			    
+
 			\end{pgfinterruptboundingbox}
 		}
-		    	
+
 		% If subtitle is defined, create 2 different \mbox (and minipage), otherwise only one for the title
 		\ifthenelse{\boolean{@subtitle}}{
 			\hspace{4.35cm}
@@ -237,14 +237,14 @@ to: }
 					\setstretch{1.5}{\par\color{white}\huge\bf\sffamily\@title}
 				\end{minipage}
 			} %mbox
-			    			
+
 			\hspace{4.35cm}
 			\mbox{
 				\begin{minipage}[t][1.7cm]{12cm}
 					\setstretch{1}{\par\color{white}\Large\sffamily\@subtitle}
 				\end{minipage}
 			} %mbox
-			    		    
+
 			\hspace{4.35cm}
 			\mbox{
 				\begin{minipage}[c][1cm]{12cm}
@@ -258,14 +258,14 @@ to: }
 					\setstretch{1.5}{\par\color{white}\huge\bf\sffamily\@title}
 				\end{minipage}
 			} %mbox
-			    			
+
 			\hspace{4.35cm}
 			\mbox{
 				\begin{minipage}[t][1.7cm]{12cm}
 					% Write nothing inside here
 				\end{minipage}
 			} %mbox
-			    		    
+
 			\hspace{4.35cm}
 			\mbox{
 				\begin{minipage}[c][1cm]{12cm}
@@ -273,9 +273,9 @@ to: }
 				\end{minipage}
 			} %mbox
 		}%% END ELSE-IF
-		    	
+
 		\vfill
-		    	
+
 		\hspace{4.35cm}
 		\mbox{
 			\begin{minipage}[c][12.5cm]{12cm}
@@ -291,7 +291,7 @@ to: }
 						Master of Science in Informatics%
 						\ifthenelse{\boolean{@mscspec}}{\\[2mm] \@specialization\\[16mm]}{\\[32mm]}}
 					{Doctor of Philosophy \\[32mm]}
-					    				    
+
 					{Supervised by}\\
 					{\large {\sffamily\@advisor}}
 					\ifthenelse{\boolean{@coadvisor}}{
@@ -303,7 +303,7 @@ to: }
 	\end{titlepage}%
 \setcounter{footnote}{0}%
 } %%% end titlepage
-				
+
 \renewenvironment{titlepage}
 {%
 	\cleardoublepage
@@ -314,9 +314,9 @@ to: }
 %%% frontmatter may include an epigraph
 \RequirePackage{epigraph}
 \setlength{\epigraphrule}{0pt}
-				
+
 %% additional frontmatter content commands
-				
+
 \newcommand{\programDirectorA}[1]{\gdef\@progdirA{#1}}
 \newcommand{\programDirectorB}[1]{\gdef\@progdirB{#1}}
 \newcommand{\@progdirA}{\@latex@error{No \noexpand\programDirectorA given}\@ehc}
@@ -342,8 +342,8 @@ to: }
 	any other academic award; and the content of the thesis is the result
 	of work which has been carried out since the official commencement
 	date of the approved research program.\\[18mm]
-					
-	\hfill 
+
+	\hfill
 	\begin{minipage}{6cm}
 
 		\rule{6cm}{0.2mm}
@@ -351,22 +351,22 @@ to: }
 		\@author
 
 		\@place, \@dateaccepted\ \@month\ \@year
-										
+
 	\end{minipage}
-	
+
 	\clearpage
 }
-								
-								
+
+
 \renewcommand\frontmatter{%
 	\@mainmatterfalse
 	\pagenumbering{Roman}
 	\clearpage
-										    
+
 	\thispagestyle{empty}
-										    
+
 	\mbox{ }
-										
+
 	\ifthenelse{\boolean{@crn}}{\@crnotice}{}
 	\clearpage
 	\pagestyle{empty}
@@ -383,7 +383,7 @@ to: }
     		\vfill
     		\noindent {Dissertation accepted on \@dateaccepted\ \@month\ \@year}\\[18mm]
     		\vfill
-    														
+
     		\begin{tabular}{cc}
     			\if@coadvisor
     				\rule{0.45\textwidth}{0.2mm} & \rule{0.45\textwidth}{0.2mm} \\
@@ -402,14 +402,14 @@ to: }
     		\end{tabular}
     		\vfill
 		\end{center}
-												
+
 		\clearpage
 	}
 	\@authdecl
 	\ifthenelse{\boolean{@mscthesis}}{\thispagestyle{empty}\cleardoublepage}{}
-	
+
 	\pagestyle{footeronly}
-	
+
 	\ifthenelse{\boolean{@dedication}}{%
 		\vspace*{5cm}
 		\begin{flushright}
@@ -430,14 +430,14 @@ to: }
 		\pagestyle{fancy}
 		\renewcommand{\chaptermark}[1]{\markboth{\ ##1}{}}
 		\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
-						
+
 		\fancyhead{}
 		\fancyhead[LE, RO]{\color{headerColor}{\sf \thepage}}
 		\fancyhead[RE]{\color{headerColor}{\sf \leftmark}}
 		\fancyhead[LO]{\color{headerColor}{\sf \rightmark}}
-						
+
 		\fancyfoot{}
-						 
+
 		\newcounter{oldpage}
 		\setcounter{oldpage}{\value{page}}
 		\pagenumbering{roman}
@@ -453,11 +453,11 @@ to: }
 \newenvironment{acknowledgements}{%
 	\chapter*{Acknowledgements\markboth{Acknowledgements}{}}
 }{\cleardoublepage}
-		
+
 \renewcommand\listfigurename{Figures}
 \renewcommand\listtablename{Tables}
-		
-		
+
+
 %%% put ToC, LoF, LoT and Index entries in the ToC
 %%% use of \phantomsection is required for dealing with hyperref
 %%% package and depends on nohyper option
@@ -469,7 +469,7 @@ to: }
 	\@starttoc{toc}%
 	\cleardoublepage
 }
-		
+
 \renewcommand\listoffigures{%
 	\ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
 	\addcontentsline{toc}{chapter}{List of \listfigurename}%
@@ -479,7 +479,7 @@ to: }
 	\@starttoc{lof}%
 	\cleardoublepage
 }
-		
+
 \renewcommand\listoftables{%
 	\ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
 	\addcontentsline{toc}{chapter}{List of \listtablename}%
@@ -489,7 +489,7 @@ to: }
 	{\listtablename}%
 	\@starttoc{lot}%
 }
-		
+
 \renewenvironment{theindex}{
 	\twocolumn[\@makeschapterhead{\indexname}]%
 	\ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
@@ -502,8 +502,8 @@ to: }
 	\columnsep 35\p@
 	\let\item\@idxitem}
 {}
-		
-%%% other useful packages		
+
+%%% other useful packages
 \RequirePackage{booktabs}
 \RequirePackage{graphicx}
 \RequirePackage{textcomp}
@@ -518,7 +518,7 @@ to: }
 	\ifthenelse{\boolean{@hypermode}}{\phantomsection}{}
 	\addcontentsline{toc}{chapter}{\bibname}
 }
-		
+
 %%% switch on hyperref support
 \ifthenelse{\boolean{@hypermode}}{%
 	\RequirePackage[unicode,plainpages=false,pdfpagelabels,breaklinks]{hyperref}

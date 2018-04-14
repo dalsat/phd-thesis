@@ -25,13 +25,13 @@ morecomment=[l]{//s},
 
 
 %\title{A Bug With A Suit---\\Deep Models For Tracking Issue}
-\title{Augmenting Software Development \\with Reified Execution Data}
+\title{Augmenting Software Development \\With Reified Execution Data}
 %\subtitle{Subtitle: Reinventing the World} %optional
 \author{Tommaso Dal Sasso}
 \advisor{Prof. Dr. Michele Lanza}
 
 \Day{Yesterday} %compulsory
-\Month{Month} %compulsory
+\Month{June} %compulsory
 \Year{2018} %compulsory, put only the year
 \place{Lugano} %compulsory
 
@@ -63,7 +63,7 @@ You may have noticed that I'm not all there myself.}
 
 \begin{document}
 
-\maketitle %generates the titlepage, this is FIXED
+% \maketitle %generates the titlepage, this is FIXED
 
 \frontmatter %generates the frontmatter, this is FIXED
 
@@ -80,28 +80,28 @@ You may have noticed that I'm not all there myself.}
 
 \mainmatter
 
-\part{Introduction}
+% \part{Introduction}
   \input{Chapters/introduction}
   \input{Chapters/related}
-  \input{Chapters/pharo}
 
-\part{Collection and Analysis of Runtime Errors}
+% \part{Collection and Analysis of Runtime Errors}
   \input{Chapters/visualize}
   \input{Chapters/stacktraces}
   \input{Chapters/reified}
   \input{Chapters/blend}
 
-\part{Modeling}
+% \part{Modeling}
   \input{Chapters/model}
   \input{Chapters/gamification}
 
-\part{Conclusion}
+% \part{Conclusion}
   \input{Chapters/conclusion}
 
 
 
 %\appendix %optional, use only if you have an appendix
-
+\appendix
+\input{Chapters/pharo}
 
 \backmatter
 

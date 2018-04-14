@@ -1,4 +1,4 @@
-\PassOptionsToPackage{square,sort,comma,numbers}{natbib}
+% \PassOptionsToPackage{square,sort,comma,numbers}{natbib}
 % \LoadClass{usiinfthesis}
 \LoadClass{revealthesis}
 \NeedsTeXFormat{LaTeX2e}
@@ -14,6 +14,29 @@
 \RequirePackage{microtype}
 \RequirePackage[table]{xcolor}
 
+
+% \renewcommand{\familydefault}{uop}
+% \renewcommand{\familydefault}{cmr}
+% \renewcommand{\sfdefault}{phv}
+% \renewcommand{\scshape}{%
+% 	\not@math@alphabet\scshape\relax
+% 	\ifthenelse{\equal{\f@family}{cmr}}%
+% 	{\fontshape{sc}\selectfont}%
+% 	{\fontshape{fsc}\selectfont}%
+% }
+
+
+
+% \renewcommand{\familydefault}{cmr}
+% \renewcommand{\sfdefault}{uop}
+% \renewcommand{\scshape}{%
+% \not@math@alphabet\scshape\relax
+% \ifthenelse{\equal{\f@family}{uop}}%
+% {\fontshape{sc}\selectfont}%
+% {\fontshape{fsc}\selectfont}%
+% }
+% \usepackage{fontspec}
+% \setmainfont{Roboto Slab Light}
 
 \newcommand{\ie}{\textit{i.e.,}\xspace}
 \newcommand{\eg}{\textit{e.g.,}\xspace}
@@ -137,3 +160,24 @@
     \normalcolor\ignorespacesafterend}
 \let\Examplebox\examplebox
 \let\endExamplebox\endexamplebox
+
+
+
+
+\RequirePackage{contour}
+%%% Chapter
+
+\contourlength{3pt} %how thick each copy is
+\contournumber{20}  %number of copies
+
+\titleformat{\chapter}[display]
+{\fontsize{126}{63}\sffamily\bfseries\color{white}}%chapterNumberColor}}
+{\raggedleft\contour{chapterNumberColor}{\thechapter}}
+{0pt}
+{\color{chapterColor}%
+\titlerule[1.5pt]%[0.5pt]%
+\vspace{1pc}\raggedright\fontsize{22}{24}\sffamily}%\fontsize{20}{24}\sffamily}
+
+
+\newcommand{\coolchapter}[3]{\chapter[#1\ifx#2\empty\else: #2\fi]%
+{#1\ifx#2\empty\else\\{\Large#2}\fi}\label{#3}}
