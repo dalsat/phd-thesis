@@ -13,7 +13,8 @@
 \RequirePackage{ifthen}
 \RequirePackage{microtype}
 \RequirePackage[table]{xcolor}
-
+\RequirePackage{contour}
+\RequirePackage{float}
 
 % \renewcommand{\familydefault}{uop}
 % \renewcommand{\familydefault}{cmr}
@@ -53,7 +54,9 @@
 \newcommand{\seeurl}[1]{\footnote{\url{#1}}}
 
 
-\newenvironment{framed}{\it}{}
+\newenvironment{framed}
+{\begin{center}\begin{examplebox}}
+{\end{examplebox}\end{center}}
 
 %\renewcommand{\programDirector}{%
 %}
@@ -164,7 +167,6 @@
 
 
 
-\RequirePackage{contour}
 %%% Chapter
 
 \contourlength{3pt} %how thick each copy is

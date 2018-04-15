@@ -229,7 +229,7 @@ Being able to define the context of the error is crucial for the success of the 
 
 \begin{figure*}[ht]
   \centering
-  \includegraphics[width=.89\linewidth]{reified/process}
+  \includegraphics[width=.9\linewidth]{reified/process}
   \caption{The workflow to collect data using collectors, showing the architecture of \sln}
   \label{fig:architecture}
 \end{figure*}
@@ -314,7 +314,7 @@ On the other hand, if the user of the system is not the developer of the origina
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.75\linewidth]{reified/reporter}
+  \includegraphics[width=.55\linewidth]{reified/reporter}
   \caption{The reporting window for \sln, where the user can select the data that she wishes to report and add a description}
   \label{fig:reporter}
 \end{figure}
@@ -357,9 +357,9 @@ While this might still be sufficient to support debugging of simple problems, it
 
 \figref{fig:announcer-report} shows a bug report submitted to the \pha issue tracker, describing a problem with a tool where selection an item from a menu would trigger the opening of two duplicate windows, instead of one.
 
-\begin{figure}[h]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=.85\linewidth]{reified/announcer-report-small}
+  \includegraphics[width=.6\linewidth]{reified/announcer-report-small}
   \caption{A bug report describing a duplicated behavior caused by an entity being registered twice to an announcer}
   \label{fig:announcer-report}
 \end{figure}
@@ -369,7 +369,7 @@ The debugging process consists in hunting down the entity that contains the doub
 While this case is not directly a consequence of an exception, it shows how debugging the behavior of code using announcements can be tricky, and that further support from the development tools would probably be preferred.
 We therefore conducted a brief experiment to investigate how common are problems involving announcements in the exceptions that developers usually trigger while writing code.
 
-For this purpose, we inspected the data collected through \sln, a tool to intercept stack traces from development exceptions and report them to a central server to support debugging~\cite{DalS2015a}.
+For this purpose, we inspected the data collected through \sln, the tool we presented in \chref{ch:stacktraces} to intercept stack traces from development exceptions and report them to a central server to support debugging~\cite{DalS2015a}.
 We considered the stack traces collected from 10 June 2014 to 28 February 2017.
 \tabref{tab:stack-traces} shows a summary of the collected data.
 
@@ -421,9 +421,9 @@ We therefore decide to observe four features:
 %
 \figref{fig:announcer-code} shows the implementation of \textit{AnnouncerCollector} the class responsible for gathering data about an announcement.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
-\includegraphics[width=.85\linewidth]{reified/announcer-collector}
+\includegraphics[width=.6\linewidth]{reified/announcer-collector}
 \caption{The Smalltalk code implementing the extraction strategies for the Announcer collector}
 \label{fig:announcer-code}
 \end{figure}

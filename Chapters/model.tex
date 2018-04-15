@@ -13,11 +13,11 @@
 
 \newcommand{\RQ}[2]{%
 \refstepcounter{RQCounter} \label{#1}
- \begin{center}
-  \begin{examplebox}
+ \begin{framed}
+  % \begin{examplebox}
    \textbf{RQ\arabic{RQCounter}.}~#2
-  \end{examplebox}
- \end{center}
+  % \end{examplebox}
+\end{framed}
 }
 
 
@@ -196,14 +196,7 @@ The questionnaire is composed of two parts: \begin{inparaenum}[(1)]
 All the questions are formulated as statements (\eg ``It is easy to provide a description of the failure'') and the respondents have to declare their agreement using a 5-level Likert-type scale.
 We map the results into an integer scale from $-2$ (\ie ``strongly disagree'') to $2$ (\ie ``strongly agree'').
 
-We advertised the survey through the development mailing list of Pharo and we received a total of 22 complete responses.
-\tabref{tab:survey-expertise} summarizes the respondents' expertise.
-The respondents are experienced with object-oriented programming and with the Pharo IDE.
-While they have experience in submitting and handling bug reports, their experience is lower in participating in discussions about bug reports and much lower in having reports assigned to them.
-For this reason, we deem the respondents' sample to be in line with the aim of our survey.
-In fact, we are especially interested in knowing the point of view of submitters of bug reports, rather than the view of the developers that ``consume'' these reports.
-
-\begin{table}[h]
+\begin{table}[t]
 \begin{center}
 \caption{Expertise of the participants of the survey (average)}\label{tab:survey}
 \begin{tabular}{lr}
@@ -221,15 +214,22 @@ Often submit bug reports & $0.7$ \\
 \end{center}
 \end{table}
 
+We advertised the survey through the development mailing list of Pharo and we received a total of 22 complete responses.
+\tabref{tab:survey-expertise} summarizes the respondents' expertise.
+The respondents are experienced with object-oriented programming and with the Pharo IDE.
+While they have experience in submitting and handling bug reports, their experience is lower in participating in discussions about bug reports and much lower in having reports assigned to them.
+For this reason, we deem the respondents' sample to be in line with the aim of our survey.
+In fact, we are especially interested in knowing the point of view of submitters of bug reports, rather than the view of the developers that ``consume'' these reports.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table*}[h]
+\begin{table*}[t]
 % \begin{sidewaystable}[h!]
 \begin{center}
-\caption{Projects in the dataset}\label{tab:dataset-projects}
+\caption{Overview of the projects in the dataset}\label{tab:dataset-projects}
 \begin{tabular}{l|l|rrrrr}
- &               & \multicolumn{5}{c}{{\bf Issues}} \\
+ &               & \multicolumn{5}{c}{{\bfseries Issues}} \\
 %Ecosystem
  & Project & First & Last & Count & Age (days) & Frequency \\
 \hline
@@ -279,7 +279,7 @@ Each bug tracker has a different set of bug report states.
 %Projects & 8 & 7 & 15 \\
 Open issues & 7,545 & 91,336 & 98,881 \\
 Closed issues & 36,127 & 529,914 & 566,041 \\
-Total Issues & 43,672 & 621,250 & {\bf 664,922} \\ \hline
+Total Issues & 43,672 & 621,250 & {\bfseries 664,922} \\ \hline
 \end{tabular}
 \label{tab:dataset}
 \end{center}
@@ -291,7 +291,7 @@ Total Issues & 43,672 & 621,250 & {\bf 664,922} \\ \hline
 \centering
 \caption{Different states of bug reports in \bzilla and \jira, with the count of the reports currently in each state and the total sum of all the times a bug report reached a state.}
 \begin{tabular}{l|l|rr}
-{\bf Tracker} & {\bf State} & {\bf Current} & {\bf Total} \\ \hline
+{\bfseries Tracker} & {\bfseries State} & {\bfseries Current} & {\bfseries Total} \\ \hline
 JIRA & Closed & 21,847 & 22,460 \\
 & Resolved & 14,280 & 33,386  \\
 &  Open & 6,736 & 43,203 \\
@@ -322,10 +322,12 @@ To answer RQ3, we build a transition diagram of all the state changes for each i
 To answer RQ4, we build a machine-learning-based prediction model to verify how completeness of fields of a bug report relates to its lifetime.
 
 
-
 %%%%%%%%%%%%%%%%%
 \section{Results}\label{sec:model-approach}
 %%%%%%%%%%%%%%%%%
+
+The data we collected allowed us to reply to the research questions in \secref{sec:model-questions}.
+We review them in order.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{RQ1: What are the elements that are perceived as difficult to provide while reporting a defect?}
@@ -523,7 +525,7 @@ We also investigate whether these fields have a measurable impact on the lifetim
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.04\linewidth]{model/mozilla-transition-diagram}
+\includegraphics[width=.9\linewidth]{model/mozilla-transition-diagram}
 \caption{Transition diagram of all the states in \bzilla}
 \label{fig:mozilla_transitions}
 \end{figure}
@@ -698,10 +700,10 @@ The fields that connect the issue with other reports are also relevant, for exam
 
 
 %%%%%%%%%%%%%%%%%%%%
-\section{Discussion} \label{sec:model-discussion}
+\section{Threats to Validity} \label{sec:model-discussion}
 %%%%%%%%%%%%%%%%%%%%
 
-\subsection{Threats to Validity}
+% \subsection{Threats to Validity}
 
 Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
 We spent a considerable amount of time dealing with the representation of the data, extracting its features and cleaning the unneeded parts.
@@ -711,19 +713,6 @@ In a large dataset it is hard, however, to guarantee the complete soundness of t
 
 There is the concern that the lifetime of a bug report, that we used as a measure of quality of a bug report, is not relevant for our task.
 However, this metric proved to be an interesting open problem in the field and it represents an interesting heuristic in determining the effectiveness of a report.
-
-
-\subsection{Next Steps}
-
-Developers tend to prefer simpler models to depict software defects.
-Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
-Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
-
-GitHub adopts the opposite approach, by providing a minimal structure of a bug report that is mostly a note attached to a commit or a piece of code.
-This interesting approach, however, lacks the descriptive power of the other two platforms.
-The need for a simpler model is hinted by the choices of the development team of \bzilla that on version 5.0, released in July 2015, proposes a simplified interface that asks the user for a summary and a description of the problem, polished of all the additional information.
-
-We believe that the future of issue tracking systems lies in flexible structures that can dynamically adapt to different aspects of the development activity.
 
 
 % %%%%%%%%%%%%%%%%%%%%%%
@@ -778,3 +767,15 @@ In doing so, we provided the following contributions:
 \item Evidence that increasing the number of fields provided when submitting a bug report has little relation on shortening the lifetime of a bug.
 
 \end{enumerate}
+
+\subsection{Next Steps}
+
+Developers tend to prefer simpler models to depict software defects.
+Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
+Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
+
+GitHub adopts the opposite approach, by providing a minimal structure of a bug report that is mostly a note attached to a commit or a piece of code.
+This interesting approach, however, lacks the descriptive power of the other two platforms.
+The need for a simpler model is hinted by the choices of the development team of \bzilla that on version 5.0, released in July 2015, proposes a simplified interface that asks the user for a summary and a description of the problem, polished of all the additional information.
+
+We believe that the future of issue tracking systems lies in flexible structures that can dynamically adapt to different aspects of the development activity.

@@ -182,7 +182,7 @@ It is designed to allow the developer to keep full control of her data and decid
 
 \begin{figure}[ht]
 \begin{center}
-  \includegraphics[width=\linewidth]{stacktraces/ShoreLine-Reporter.pdf}
+  \includegraphics[width=.9\linewidth]{stacktraces/ShoreLine-Reporter.pdf}
   \caption{The interactive interface of ShoreLine Reporter}
   \label{fig:shoreline-reporter}
 \end{center}
@@ -299,28 +299,25 @@ A vector space model is a data structure to index documents and perform efficien
 In information retrieval it is built by splitting a document in a sequence of terms, and turning the document in a vector counting the number of occurrences of each word in the document.
 We build our vector space model by building a vector for each stack trace: we use the pair \textit{ClassName{>}{>}MethodName} to identify the features (the terms) of the vector.
 We collected all the features in a dictionary and used it to build each vector, where the components of the vector contain the number of times that a method invocation appears in the stack trace.
+
+\pagebreak[2]
+
 For example, consider the two stack traces containing the method calls:
-
-\begin{table}[h]
 {\footnotesize
-
-\begin{centering}
-\caption{Insert caption}
+\begin{center}
 \begin{tabular}{ll}
 \textbf{Trace 1} & \textbf{Trace 2} \\ \hline
 UndefinedObject{>}{>}DoIt & TabManager{>}{>}setTabContentFrom: \\
 BlockClosure{>}{>}valueAfterWaiting: & Tab{>}{>}retrieveMorph: \\
 BlockClosure{>}{>}newProcess & BlockClosure{>}{>}newProcess \\
 \end{tabular}
-\end{centering}}
-\end{table}
+\end{center}}
+
+\pagebreak[2]
 
 We collect all the terms and build a dictionary composed of the features:
-
-\begin{table}[h]
 {\footnotesize
-\begin{centering}
-\caption{Insert caption}
+\begin{center}
 \begin{tabular}{l}
 \textbf{Dictionary} \\
 BlockClosure{>}{>}newProcess \\
@@ -329,8 +326,20 @@ Tab{>}{>}retrieveMorph: \\
 TabManager{>}{>}setTabContentFrom: \\
 UndefinedObject{>}{>}DoIt
 \end{tabular}
-\end{centering}}
-\end{table}
+\end{center}}
+
+% \begin{stacktrace}
+% {\footnotesize
+% \begin{center}
+% \begin{tabular}{l}
+% \textbf{Dictionary} \\
+% BlockClosure{>}{>}newProcess \\
+% BlockClosure{>}{>}valueAfterWaiting: \\
+% Tab{>}{>}retrieveMorph: \\
+% TabManager{>}{>}setTabContentFrom: \\
+% UndefinedObject{>}{>}DoIt
+% \end{center}
+% \end{stacktrace}
 
 Using the dictionary we can then build the vectors for the two stack traces:
 
@@ -477,9 +486,10 @@ We now present two example bug reports and show how they are relevant in underst
 
 \subsubsection{Example 1}
 
-\begin{figure}[ht]
+% TODO: fix image position
+\begin{figure}[h!t]
 \begin{center}
-  \includegraphics[height=\textheight]{stacktraces/Report-12973.pdf}
+  \includegraphics[height=.9\textheight]{stacktraces/Report-12973.pdf}
   \caption{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
 We can see the metadata (A), the initial description that opened the bug report (B), the discussion that followed (C), the submission of a slice and its validation (D), and the bug resolution (E).}
   \label{fig:report}
@@ -502,27 +512,26 @@ For example, it may disseminate and reward the contributions targeted at improvi
 
 \subsubsection{Example 2} Another example is represented by the stack trace starting with:
 
-\begin{table}[h]
-\centering
-\caption{ }
 {\footnotesize
+\begin{center}
 \begin{tabular}{l}
-SmalllintManifestChecker>>runRules:onPackage:withoutTestCase: \\
-RBPackageEnvironment>>classesDo: \\
-Set>>do: \\
-RBPackageEnvironment>>classesDo: \\
-Set>>do: \\
-RBPackageEnvironment>>classesDo: \\
-SmalllintManifestChecker>>runRules:onPackage:withoutTestCase: \\
-CriticBrowser>>reapplyRule:
+SmalllintManifestChecker{>}{>}runRules:onPackage:withoutTestCase: \\
+RBPackageEnvironment{>}{>}classesDo: \\
+Set{>}{>}do: \\
+RBPackageEnvironment{>}{>}classesDo: \\
+Set{>}{>}do: \\
+RBPackageEnvironment{>}{>}classesDo: \\
+SmalllintManifestChecker{>}{>}runRules:onPackage:withoutTestCase: \\
+CriticBrowser{>}{>}reapplyRule:
 %Set>>do:
 %CriticBrowser>>reapplyRule:
 %CriticBrowser>>reapplyThisRule
 %Array>>do:
 %CriticBrowser>>reapplyThisRule
 %CriticBrowser>>menu:shifted:
-\end{tabular}}
-\end{table}
+\end{tabular}
+\end{center}}
+
 
 The lines containing \emph{CriticBrowser{>}{>}reapplyRule:} are related to the bug report 14230.
 At a closer inspection we can see that the bug report contains only three comments, but the last one points to the report 110473, where a long discussion (40 comments) is ongoing regarding the relation of the method in the stack trace and the application of rules for the CriticBrowser.
