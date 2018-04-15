@@ -47,6 +47,7 @@
 \newcommand{\secref}[1]{Section~\ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure~\ref{#1}\xspace}
 \newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
+\newcommand{\appref}[1]{Appendix~\ref{#1}\xspace}
 
 \newcommand{\mypar}[1]{\paragraph{\textbf{#1.}}}
 \newcommand{\structure}{\subsubsection*{Structure of the Chapter}}

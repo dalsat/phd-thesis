@@ -104,10 +104,10 @@ In this section we briefly describe the three main ingredients together with the
 %As per the title of our paper, \emph{``Blended, Not Stirred''}, our visualization presents a composition of different information, obtained by blending together different data sources to enable analysis from etherogeneous and multidimensional perspectives.
 To get a tractable subset of meaningful data, we decided to focus on a timespan ranging from January 1st 2015 to May 1th 2015.
 In this section we present the context of our analysis, then we briefly describe the three main ingredients together with the tools that enable the data collection process.
-
 Our visualization presents a composition of different information, obtained by blending together different data sources and enabling visual analytics from heterogeneous and multidimensional perspectives.
 To get a tractable subset of data, we focus on a timespan ranging from January 1st 2015 to May 1th 2015.
-In the rest of this section we present the context of our analysis (\secref{sec:blend-ingredients:pharo}), and then we briefly describe the three main ingredients together with the tools that enable the data collection process.
+In the rest of the section we describe the three main ingredients together with the tools that enable the data collection process.
+For further details about the \pha platform see \appref{ch:pharo}.
 
 % \subsection{The Pharo Ecosystem} \label{sec:blend-ingredients:pharo}
 %
@@ -155,26 +155,34 @@ In our analyses we modeled and extracted all the source code changes between sub
 \tabref{tab:pharo} summarizes the available source code changes data.
 
 \begin{table}[ht]
-\caption{Source Code Changes}
-\label{tab:pharo}
-\rowcolors{2}{gray!12}{white}
-%\def\arraystretch{1.1}
-\begin{tabularx}{\linewidth}{X|r}
+  \center
+  \caption{Source Code Changes}
+  \label{tab:pharo}
+  % \rowcolors{2}{gray!12}{white}
+  %\def\arraystretch{1.1}
+  \begin{tabular}{lr}
 
-%\rowcolor{gray!30} \textbf{Version} & \textbf{Added} & \textbf{Modified} & \textbf{Deleted} & \textbf{Tot.} \\ \hline
-%number of versions considered & 551 \\
+  % \rowcolor{gray!30} \textbf{Version} & \textbf{Added} & \textbf{Modified} & \textbf{Deleted} & \textbf{Tot.} \\ \hline
+  % number of versions considered & 551 \\
 
-\rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline
-Number of considered versions & 611 \\
-Number of changes & 4,928 \\
-Average changes per version & 8 \\
-Max number of changes per version & 527 \\
-Min number of changes per version & 0 \\
-%4.0a & 10 & 10 & 10 & 30 \\
-%4.0b & 10 & 10 & 10 & 30 \\
-%4.0c & 10 & 10 & 10 & 30 \\
-%4.0d & 10 & 10 & 10 & 30 \\
-\end{tabularx}
+  % \rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline
+  % Number of considered versions & 611 \\
+  % Number of changes & 4,928 \\
+  % Average changes per version & 8 \\
+  % Max number of changes per version & 527 \\
+  % Min number of changes per version & 0 \\
+  \textbf{Metric} & \textbf{Value} \\ \hline
+  Number of considered versions & 611 \\
+  Number of changes & 4,928 \\
+  Average changes per version & 8 \\
+  Max number of changes per version & 527 \\
+  Min number of changes per version & 0 \\
+
+  %4.0a & 10 & 10 & 10 & 30 \\
+  %4.0b & 10 & 10 & 10 & 30 \\
+  %4.0c & 10 & 10 & 10 & 30 \\
+  %4.0d & 10 & 10 & 10 & 30 \\
+  \end{tabular}
 \end{table}
 
 
@@ -360,7 +368,7 @@ This enables the user to draw conclusions from the visualization having also in 
 To show this data, the tool uses an \emph{aging mechanism} that linearly reduces the color saturation as the age of the datapoint grows, \ie the older the more intense fading towards the default color of nodes (\ie gray).
 \figref{fig:color-aging-timeline} shows how colors fade with such mechanism in a timeline.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.9\linewidth]{blend/color-aging-timeline}
 \caption{Aging Process: Example in the Timeline}
@@ -399,7 +407,7 @@ When the user selects a timespan to visualize (Fig.~\ref{fig:archi}.1), the tool
 Later it computes the city layout, applies the blended color scheme, and presents the view to the user (Fig.~\ref{fig:archi}.4).
 The user can then use the toolbar to refine the visualization (Fig.~\ref{fig:archi}.5).
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.75\linewidth]{blend/archi}
 \caption{The Architecture of the Blended City}

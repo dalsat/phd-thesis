@@ -113,7 +113,7 @@ These are the equivalent of a \emph{NullPointerException} in Java.
 
 \begin{figure*}[ht]
 \begin{center}
-  \includegraphics[width=0.8\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_classes}
+  \includegraphics[width=0.9\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_classes}
   \caption{Distribution of the stack traces on the \pha system using a city like visualization, where each building is a class.
 \pha is composed of 14,045 classes distributed among 557 packages.
 We highlight the system with data from 7,532 stack traces that we collected.
@@ -182,7 +182,7 @@ It is designed to allow the developer to keep full control of her data and decid
 
 \begin{figure}[ht]
 \begin{center}
-  \includegraphics[width=.9\linewidth]{stacktraces/ShoreLine-Reporter.pdf}
+  \includegraphics[width=.95\linewidth]{stacktraces/ShoreLine-Reporter.pdf}
   \caption{The interactive interface of ShoreLine Reporter}
   \label{fig:shoreline-reporter}
 \end{center}
@@ -219,7 +219,7 @@ In the \pha community, the development version is actively developed and constan
 We collected stack traces during a time period of five months, from June to November 2014.
 \tabref{tab:data-summary} shows a summary of the data we collected during that time span.
 
-\begin{table}[h]
+\begin{table}[ht]
 \caption{Stack traces collected from June to November 2014}
 \begin{center}
 \begin{tabular}{lr}
@@ -240,7 +240,7 @@ Each building is composed of blocks, each one representing a method.
 The color of each method is determined by the number of times a method appears in a stack trace: it tends to red when the number is higher and to blue when the number is lower.
 Methods, classes and packages that do not appear in a stack trace are collapsed and depicted in gray.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
   \includegraphics[width=\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_methods}
   \caption{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
@@ -300,17 +300,38 @@ In information retrieval it is built by splitting a document in a sequence of te
 We build our vector space model by building a vector for each stack trace: we use the pair \textit{ClassName{>}{>}MethodName} to identify the features (the terms) of the vector.
 We collected all the features in a dictionary and used it to build each vector, where the components of the vector contain the number of times that a method invocation appears in the stack trace.
 
-\pagebreak[2]
 
 For example, consider the two stack traces containing the method calls:
+% {\footnotesize
+% \begin{center}
+% \begin{tabular}{ll}
+% \textbf{Trace 1} & \textbf{Trace 2} \\ \hline
+% UndefinedObject{>}{>}DoIt & TabManager{>}{>}setTabContentFrom: \\
+% BlockClosure{>}{>}valueAfterWaiting: & Tab{>}{>}retrieveMorph: \\
+% BlockClosure{>}{>}newProcess & BlockClosure{>}{>}newProcess \\
+% \end{tabular}
+% \end{center}}
 {\footnotesize
 \begin{center}
-\begin{tabular}{ll}
-\textbf{Trace 1} & \textbf{Trace 2} \\ \hline
-UndefinedObject{>}{>}DoIt & TabManager{>}{>}setTabContentFrom: \\
-BlockClosure{>}{>}valueAfterWaiting: & Tab{>}{>}retrieveMorph: \\
-BlockClosure{>}{>}newProcess & BlockClosure{>}{>}newProcess \\
-\end{tabular}
+  \begin{tabular}{lll}
+
+    \begin{tabular}{l}
+      \textbf{Trace 1} \\ \hline
+      UndefinedObject{>}{>}DoIt \\
+      BlockClosure{>}{>}valueAfterWaiting: \\
+      BlockClosure{>}{>}newProcess \\
+    \end{tabular}
+
+    & &
+
+    \begin{tabular}{l}
+      \textbf{Trace 2} \\ \hline
+      TabManager{>}{>}setTabContentFrom: \\
+      Tab{>}{>}retrieveMorph: \\
+      BlockClosure{>}{>}newProcess \\
+    \end{tabular}
+
+  \end{tabular}
 \end{center}}
 
 \pagebreak[2]
@@ -383,10 +404,10 @@ Moreover, centroids tend to be much more sparse that medoids, thus being more su
 We considered the medoids as \emph{archetypes}, that represent the summary of each cluster.
 The number of incoming edges represents the measure of the popularity of the archetype and, as such, of the whole group.
 
-\begin{table}[h]
+\begin{table}[ht]
 \caption{Summary of the most popular stack traces, with the popularity metrics.}
 \begin{center}
-\begin{tabular}{l r}
+\begin{tabular}{lr}
 \textbf{Archetype (first line)} & \textbf{Popularity} \\ \hline
 UndefinedObject>>doesNotUnderstand: & 1,585 \\
 UndefinedObject>>doesNotUnderstand: & 647 \\
@@ -484,17 +505,17 @@ We found the information of the reports to be relevant to the debugging activity
 We now present two example bug reports and show how they are relevant in understanding an exception during development.
 
 
-\subsubsection{Example 1}
-
-% TODO: fix image position
-\begin{figure}[h!t]
+\clearpage
+\begin{figure}[!ht]
 \begin{center}
-  \includegraphics[height=.9\textheight]{stacktraces/Report-12973.pdf}
+  \includegraphics[height=.87\textheight]{stacktraces/Report-12973.pdf}
   \caption{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
 We can see the metadata (A), the initial description that opened the bug report (B), the discussion that followed (C), the submission of a slice and its validation (D), and the bug resolution (E).}
   \label{fig:report}
 \end{center}
 \end{figure}
+
+\subsubsection{Example 1}
 
 In \secref{sec:stacktraces-nature} we already presented the stack trace shown in \figref{fig:stacktrace}.
 The example is particularly interesting because it shows a practical use case for a user or a developer that encounters the exception while she is writing code.

@@ -44,7 +44,7 @@ The example bug report depicted in \figref{fogbugz-example} is from a specific b
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth,trim=0 300 0 0,clip=true]{Images/visualize/fogbugz-screen.png}
+\includegraphics[width=.95\linewidth,trim=0 300 0 0,clip=true]{Images/visualize/fogbugz-screen.png}
 \caption{Example bug report in the FogBugz bug tracking system.}
 \label{fogbugz-example}
 \end{figure}
@@ -62,7 +62,7 @@ In the near future, we plan to offer \ib as a complementary means to inspect and
 We present the current features of \ib, discuss its current implementation, and illustrate its usage.
 
 
-\begin{figure*}[ht]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{Images/visualize/inbug-list.pdf}
 \caption{Main user interface of \ib}
@@ -70,7 +70,7 @@ We present the current features of \ib, discuss its current implementation, and 
 \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\ib in Detail}\label{sec:visualize-details}
+\section{in*Bug in Detail}\label{sec:visualize-details}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -141,7 +141,7 @@ The section (B) shows a line diagram where the height represents the criticality
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=.8\linewidth]{Images/visualize/event-list.pdf}
+\includegraphics[width=.85\linewidth]{Images/visualize/event-list.pdf}
 \caption{List of events in a bug report}
 \label{fig-event-list}
 \end{center}
@@ -163,7 +163,7 @@ Inspired by more semantically rich and elaborated views, such as Ogawa et al's s
 It uses the \sea web framework~\cite{Duca2010a} to provide the data stored in a \textit{MongoDB} database and implements a \textit{RESTful API} to communicate with the client.
 The client interface is implemented in \textit{JavaScript} using the data manipulation and visualisation library \textit{D3.js}.\footnote{\url{http://d3js.org/}}
 
-\ib is currently targeted at a specific FogBugz repository revolving around the Pharo ecosystem.
+\ib is currently targeted at a specific \fbz repository revolving around the Pharo ecosystem.
 In \tabref{tab-tracker-summary} we provide a summary of the currently available data, which has already reached considerable complexity.
 
 \begin{table}[ht]
@@ -183,7 +183,8 @@ Average events per issue & 9 \\ \hline
 In \figref{fig-inbug-ecosystem} we can see how these three services interact.
 
 \begin{figure}[t]
-\includegraphics[width=\linewidth]{Images/visualize/inbug-ecosystem.pdf}
+\center
+\includegraphics[width=.95\linewidth]{Images/visualize/inbug-ecosystem.pdf}
 \caption{The interactions of \ib with the \emph{FogBugz} and \emph{SmalltalkHub} services}
 \label{fig-inbug-ecosystem}
 \end{figure}
