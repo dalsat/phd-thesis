@@ -26,7 +26,7 @@
 % 	{\fontshape{fsc}\selectfont}%
 % }
 
-
+\geometry{top=35mm, bottom=32mm, left=28mm, right=28mm}
 
 % \renewcommand{\familydefault}{cmr}
 % \renewcommand{\sfdefault}{uop}
@@ -110,6 +110,7 @@
 \newcommand{\dfl}{\tool{DFlow}}
 \newcommand{\pha}{\tool{Pharo}}
 \newcommand{\sea}{\tool{Seaside}}
+\newcommand{\blend}{\tool{Blend}}
 
 \newcommand{\entity}[1]{\textsc{#1}\xspace}
 \newcommand{\method}[1]{\textit{#1}\xspace}
