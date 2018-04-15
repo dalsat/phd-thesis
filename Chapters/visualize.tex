@@ -18,7 +18,8 @@
 
 Bug tracking systems are used to track and store the defects reported during the life of software projects.
 The underlying repositories represent a valuable source of information used for example for defect prediction and program comprehension.
-However, bug tracking systems present the actual bugs essentially in textual form, which is not only cumbersome to navigate, but also hinders the understanding of the intricate pieces of information that revolve around software bugs.
+However, as we mentioned in \chref{ch:introduction}, bug tracking systems store and present the actual bugs essentially in textual form, which is not only cumbersome to navigate, but also hinders the understanding of the intricate pieces of information that revolve around software bugs.
+We begin our journey towards an improved representation for a bug report by analyzing existing bug repositories, to investigate where the information that they contain can be actually leveraged to improve the knowledge that we have on the system.
 
 In this Chapter we present \ib, a web-based visual analytics platform to navigate and inspect bug repositories.
 \ib provides several interactive views to understand detailed information about the bugs and the people that report them.
@@ -211,6 +212,10 @@ However, the approach of \ib is general and therefore it can be applied to any b
 
 %Our main target is the \textit{Pharo} community, as we want to propose \ib as a tool for developing the \textit{Pharo} platform and refine the existing visualizations and improve \ib based on feedback we will get from Pharo users.
 
+\subsection{The Road So Far...}
+We saw that existing bug repositories contain information that can be highlighted using means other that plain text.
+The underlying information we display, however, is still in textual form, with the consequence that we have to rely on the expertise of the user to obtain useful information.
+In the next chapter we will tackle the problem of the reliability of the data by automatically collecting the relevant information during a software failure.
 
 
 %\begin{figure*}[ht]

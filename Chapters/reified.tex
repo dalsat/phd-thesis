@@ -11,7 +11,8 @@ When fixing a defect, developers construct a mental model of the system that exp
 However, filtering complete, coherent, and reliable information from a running system is not an easy task: Using a simple approach, like generic logging, is often ineffective because it deconstructs and flattens the state into textual data, thus requiring ad-hoc understanding and processing.
 On the other hand, collecting structured information in form of objects to observe and understand a precise property of the system requires specialized ad-hoc code, decoupled from the system's domain, and is usually not reusable.
 
-In this chapter we present a domain-specific data collection framework that enables the developers to extract selected information about a system.
+We concluded \chref{ch:stacktraces} by saying that collecting stack traces can teach us stories about the system that we hardly would have noted otherwise.
+In this chapter generalize the approach by presenting a domain-specific data collection framework that enables the developers to extract selected information about a system.
 The developer is able to take a snapshot of all the information deemed relevant about a piece of code by writing few lines of code, thus enabling structured and effective logging and reporting of errors.
 We detail our framework in the context of a bug reporting platform, and illustrate how such an approach can be used to create in-depth and reliable domain-specific bug reports.
 
@@ -94,7 +95,7 @@ It can also be stored and sent for debugging purposes, thus creating bug reports
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{A Domain Specific Reporting Engine} \label{sec:reified-framework}
+\section{A Domain-Specific Reporting Engine} \label{sec:reified-framework}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -209,13 +210,13 @@ The main purpose of the collector is to define the data of interest: It must des
 For example, going back to the logging example, the system will pass some context to the collector, that will copy the user entity and remove the sensible data, like the password, or mask the username, if the purpose of the collection is to be sent remotely and published in a bug report.
 
 Defining when to collect the data is the other crucial aspect of the framework.
-We are defining an approach that customizes the data need for certain types of data, therefore defining a domain specific data collection.
+We are defining an approach that customizes the data need for certain types of data, therefore defining a domain-specific data collection.
 Collecting data pertaining to a user is meaningless if we are dealing with an error generated for example from a string.
 That is why each collector has to know when to activate itself: the system passes the context of the error to the collector, which checks its internal activation rule to decide whether to trigger the collection or not.
 
 Finally, in a scenario where several collectors are involved and activated automatically depending on the entities involved with the error, we need a description to tag the collected data and present it to the user in an informative manner.
 
-By employing the mechanics of the collectors we can build a data collection framework that is fully customizable and that collects first-class, reified entities, to enable a domain specific system monitoring framework.
+By employing the mechanics of the collectors we can build a data collection framework that is fully customizable and that collects first-class, reified entities, to enable a domain-specific system monitoring framework.
 Such a framework can be employed to replace normal logging messages with a detailed snapshot of the state of a program, that can be then browsed with interactive tools, or that can be employed to collect failure data an pack it for remotely reporting an unexpected behavior.
 This remote reporting mechanism can be the first step towards a smarter bug reporting system, that allows a deep inspection of the state of a system, while preserving the privacy of its users.
 Being able to define the context of the error is crucial for the success of the whole approach, as we can only operate on the data we can manipulate.
@@ -325,7 +326,7 @@ In the next section we show how to implement a collector to solve common develop
 \section{The Framework at Work}\label{sec:reified-stories}
 
 In this section we show how to employ our framework to support debugging and program maintenance.
-We present three scenarios and show how to collect domain specific information from different environments.
+We present three scenarios and show how to collect domain-specific information from different environments.
 We show how accessing specific information can support developers in quickly understanding the cause of a defect and the behavior of a piece of code.
 
 In \secref{sec:reified-story-announcer} we present an in-depth case study together with a possible implementation showing how our approach can support debugging errors in applications using the Announcer framework, a messaging framework that reduces coupling but that might introduce non deterministic behavior; In \secref{sec:reified-story-testing} we outline how to collect data when running a test suite, and how its usage can integrate the current practices in continuous integration of deployed application and support automation; \secref{sec:reified-story-libraries} presents a brief discussion on how using \sln can benefit debugging third party libraries in the context of complex entities.
@@ -441,7 +442,7 @@ The data collected by the Announcer collector provides a detailed picture of the
 Moreover, the data collected are still first-class entities of the system, that can be further queried to extract data: this process allows to retain the maximum amount of information for the longest time needed, so that it can be inspected during an exception or flattened into a textual format for the submission to an issue tracking system.
 If the system allows it, the entities can also be serialized and sent to the issue tracker, so that the maintainers of a software can navigate the errors generated by the users with a much higher degree of flexibility and introspection on the data than just plain text log files.
 
-Stepping aside from the specific case of the announcer, this example shows how our framework can help developers to easily extend the behavior of the logging mechanism to collect domain specific data that pertains to the software they develop.
+Stepping aside from the specific case of the announcer, this example shows how our framework can help developers to easily extend the behavior of the logging mechanism to collect domain-specific data that pertains to the software they develop.
 By distributing a software together with some custom collectors, a developer can effortlessly select the exceptions that are caused by her software, collect relevant data ---with the consent of the user--- and browse it to debug the error.
 
 \subsection{The Testing Story}\label{sec:reified-story-testing}
@@ -496,7 +497,7 @@ Using a coarse-grained approach as the one we described in \secref{sec:reified-s
 The maintainers of Roassal can improve this situation by observing data specifically related the the model of the engine.
 By detecting either when an exception occurs involving an object that is a subclass of \textit{RTObject}, or by checking if it happens in the context of a builder ---a Roassal object responsible for generating a visualization from a collection of data---, a collector can determine if there is some information about Roassal available, that can be collected and reported.
 
-By collecting domain specific information, the maintainers can get a much more detailed picture of the error, and restrict the possible causes to the ones compatible with the collected data without the need to access the actual data of the user.
+By collecting domain-specific information, the maintainers can get a much more detailed picture of the error, and restrict the possible causes to the ones compatible with the collected data without the need to access the actual data of the user.
 For example, by knowing the number of nodes that a visualization is rendering, one could tell if the error is due to a memory problem, or if the visualization has scalability issues.
 Instead, knowing the settings that were used to configure a builder can tell if there is a bug in the builder's code, or if the public API is poorly designed and therefore often misused by the users.
 Finally, knowing the kind of data that a visualization received can help in finding if there is a bug in managing objects of different (specific) types.
@@ -537,9 +538,15 @@ Analyzing the stored data would not be simple, as there is a lack of tools to ac
 \subsection{Next Steps}
 
 Building collectors to observe specific parts of the system can improve the workflow of debuggers, and reduce maintenance costs.
-The regular collection of domain specific data can provide statistics on the frequency of errors in selected parts of the system, and hint how the users use a software, hence helping developers not only to debug a system, but also to optimize the existing code and improve the API.
+The regular collection of domain-specific data can provide statistics on the frequency of errors in selected parts of the system, and hint how the users use a software, hence helping developers not only to debug a system, but also to optimize the existing code and improve the API.
 %We plan to propose \sln for the integration with the next standard \pha distribution, proposing some generic collectors to support standard difficult debugging tasks, like the one that we proposed in \secref{sec:reified-story-announcer} about the Announcer framework.
 %By reaching a larger user base we can collect more specific data about the usage of the tool, refine further the collectors implementation and evaluate the impact of such an approach in daily development activities.
 
 We envision a future where development activities are supported by the system using the language of the system, not resolving to flat and bloated chunks of plain text that represent the side effects of the code, but rather first-class entities that narrate the exact status of a program.
 Starting a conversation with the entities we can develop a paradigm of programming that focuses on the models and their interactions, rather than manipulating strings, and achieve a programming environment that is really live and responsive.
+
+
+\subsubsection{The Road So Far...}
+
+In this chapter we put in place a platform to collect detailed domain-specific information about components of a system.
+In the next chapter we present an approach to employ the information collected about a system in a tool for browsing the history and the evolution of a software system.

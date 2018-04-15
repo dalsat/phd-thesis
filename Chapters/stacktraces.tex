@@ -18,9 +18,10 @@ During software development, exceptions are by no means exceptional: Programmers
 While doing so, runtime exceptions are raised, pointing out various issues, such as inappropriate usage of an API, convoluted code, as well as defects.
 Such failures result in \emph{stack traces}, lists composed of the sequence of method invocations that led to the interruption of the program.
 Stack traces are useful to debug source code, and if shared also enhance the quality of bug reports.
-However, they are handled manually and individually, while we argue that they can be leveraged automatically and collectively to enable what we call \emph{crowdstacking}, the automated collection of stack traces on the scale of a whole development community.
+However, they are handled manually and individually, stored in a bug report as a copy-and-paste chunk of text that complicates the automatic processing of the information and raises questions about their reliability.
 
-In this chapter we present our crowdstacking approach, supported by \slr, a tool which seamlessly collects stack traces during program development and execution and stores them on a central repository.
+In this chapter we argue that stack traces can be leveraged automatically and collectively to enable what we call \emph{crowdstacking}, the automated collection of stack traces on the scale of a whole development community.
+We present our crowdstacking approach, supported by \slr, a tool which seamlessly collects stack traces during program development and execution and stores them on a central repository.
 We illustrate how thousands of stack traces stemming from the IDEs of several developers can be leveraged to identify common \emph{hot spots} in the code that are involved in failures, using this knowledge to retrieve relevant and related bug reports and to provide an effective, instant context of the problem to the developer.
 
 \structure
@@ -33,6 +34,7 @@ We illustrate how thousands of stack traces stemming from the IDEs of several de
 % \secref{sec:stacktraces-related} analyzes related work on debugging data.
 \secref{sec:stacktraces-summary} concludes the chapter and presents the possible extensions to our approach.
 
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section{Collecting Runtime Errors} \label{sec:stacktraces-intro}
@@ -704,3 +706,8 @@ This information can be combined with code profiling techniques to determine whe
 \end{itemize}
 
 We envision a future where debugging, but also development activities are supported by means of context-aware tools that use automatically extracted information produced by a whole development community, to aid the tasks of developers and support debugging, with the support of the whole community.
+
+
+\subsubsection{The Road So Far...}
+We have seen how the automatic collection of stack trace generated during a failure can complement the information contained in a bug report with knowledge about the system, to support a number of different debugging and development tasks.
+In the next chapter we further push our approach, and generalize it to enable the collection of arbitrary, domain specific data.
