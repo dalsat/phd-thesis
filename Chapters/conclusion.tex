@@ -5,29 +5,130 @@
 \coolchapter{Conclusion}{}{ch:conclusion}
 
 
-Software development produces constantly large amount of raw data detailing the evolution of the system.
-The majority of this data is dismissed as a byproduct of the development process and lost.
-Even when pieces of this data are saved to be used, they are saved in textual format, complicating automated analyses and reducing the reliability of the data.
-We are convinced that such a large amount of data is an invaluable tool in supporting developers trying to understand a system and how users interact with it and can become the central pillar of the next generation of issue tracking systems.
+Software development produces large amount of raw data pertaining the evolution of a system.
+The majority of this data is dismissed as a byproduct of the development process and lost, and even when fragments of this data are saved and used, they are flattened in textual format, complicating automated analyses and reducing its reliability.
+We are convinced that such data is an invaluable tool in supporting developers, to understand both how a system works and how users interact with.
+We think that it and can become the central component in thinking the next generation of issue tracking systems.
 
-We introduced our work by showing an overview of the
+We introduced our work by showing an overview of the efforts by researchers and practitioners to improve the organization and fruition of bug reports.
+We presented a set of approaches and tools to propose an improved style for collecting bug reports.
+We implemented our core idea of automatic and reified data collection in \sln, a platform to record runtime exceptions and to gather domain-specific information about specific parts of the system.
+We developed our tools in \pha, a dynamic language with a tightly integrated IDE and a strong community.
+The use of \pha helped us prototype our tools and quickly test different ideas, allowing us to easily access all the details of the system.
+Interacting with the \pha community allowed us to get feedback on the tools we deployed, and to perform qualitative studies to get a preliminary evaluation on our approaches.
+
+The data we collected showed us that failure data can be exploited to support program comprehension, debugging, and optimization of existing systems.
+This in turn can help reduce the time spent on maintenance, thus containing development costs.
 
 
 \section{Visualization of Bug Data}
 
+During the preliminary phase of our work we performed a visual inspection of existing bug repositories, looking for patterns and hidden properties that could help accessing the stored information.
+Later on, we employed again visualizations to navigate the data we collected.
+We believe that, given the amount of data generated during development, visualizations are an effective means to summarize the activity on a project and provide a selective and layered point of view on specific aspects of the system.
+
+
+\subsection{Reading Between the Lines}
+
+In \chref{ch:visualize}, we presented \ib, a web platform to visually inspect the contents of existing issue tracking systems.
+We ascertained that bug reports contain information that is not properly conveyed with a mere textual representation.
+We exploited the structured parts of a bug report (\eg its metadata) to build a view of the life and evolution of a bug report, highlighting its lifetime and the events of which it is composed.
+We were able to spot interesting cases of bug reports, like stale bugs that are opened but did not receive any recent activity, or bug reports reopened multiple times.
+This result suggested us that there is room for improvement in accessing the information that we store about software defects.
+
+
+
+\subsection{Narrating the Evolution of a System}
+
+In \chref{ch:blend} we presented \tool{Blend}, a tool to display and merge multiple data sources about a system.
+We used the city metaphor~cite{Wett2011a} to depict the entities in the \pha system and their properties.
+We used the stack traces collected with \sln, our tool to collect information about runtime errors, we extracted the changes in the \pha system during the past year of development, and we integrated the user interaction data dataset provided by Minelli \etal~\cite{Mine2017a}.
+We then colored each entity combining different colors to represent the data collected about that entity.
+From the resulting graph we could navigate the evolution of the system from an historical perspective, and tell stories about development that can help development decisions or highlight the need for maintenance.
+
+
 \section{Collecting Failure Information}
 
+The second step in our work consisted in augmenting the reliability of bug reports by augmenting them with automatically collecting failure data.
+
+\subsection{Collecting Stack Traces}
+
+In \chref{ch:stacktraces} we presented our crowdstacking approach: the collection of stack traces from the community to spot recurring errors and understand the usage of a system.
+We showed \slr, our tool for implementing this approach in the \pha system, and analyzed the $7,532$ stack traces that we collected between June and November 2004.
+We used the data we collected to show the activity of the users on the system, thus showing the components that can be optimized or the ones that need improvement.
+We then searched the issue tracking system of \pha looking for references to the entities in the stack traces.
+We found that for some stack traces we were able to trace an existing bug report.
+We believe that the approach of automatically providing contextual feedback when an error occurs can greatly improve the experience of the user on a software system and save time.
+
+
+\subsection{Reifying Bug Reports}
+
+In \chref{ch:reified} we extended the approach presented in \chref{ch:stacktraces} by allowing developers to collect not only stack traces, but also domain specific information about a software component.
+By employing \emph{collectors}, a developer can specify when an error is interesting to collect and specify the rules to collect it.
+Collecting the information in its object form, rather that flattening it into a textual representation, allow us to start a conversation with the system that can unveil the hidden properties among the entities in the software.
+
+
+
 \section{Modeling an Issue Tracking System}
+
+In the final part of our dissertation we discussed how to improve the experience of users and developers in the issue tracking system.
+We observed the problem under two points of view: how to model a bug report to ease the life of reporting users, and how to engage users and developers in participating in the debugging activity.
+
+
+\subsection{The Model of a Bug Report}
+
+In \chref{ch:model} we explored the usage of existing issue tracking systems for projects from the \emph{Apache} and \emph{Mozilla} foundations.
+We conducted a survey to understand what users perceive as difficult to provide when submitting a bug report.
+We then show that an increasing number of fields in a bug report has little relation with the lifetime of a bug report.
+We believe that this study suggests us that a redesign of an issue tracking system should start from simplifying the existing one, rather than adding additional textual information.
+
+
+\subsection{Gamification}
+
+In \chref{ch:gamification} we explored the possibility of boosting user engagement when using an issue tracking system by means of \emph{gamification}, the use of game elements in non-gaming contexts.
+We presented an overview on the history of gamification and its evolution over time.
+We proposed a framework for systematically gamifying software engineering, posing particular care in highlighting the pitfalls that must be avoided when dealing with gamification.
+We think that gamification can become a valuable tool, if used to highlight and improve the interactions already existing on a community and not to enforce a specific behavior.
+It can support the management of software projects, help welcoming new users, and motivating the expert ones.
+
 
 
 \section{Limitations and Future Work}
 
+We believe that developing our research project we only scratched the surface of the possible improvements that we can apply to current development methodologies.
+We provide an overview of the directions that we would like to further investigate, while also discussing the limitation of the approaches we employed.
+
 \subsubsection{User Interface}
 
-\subsubsection{Integration With the System}
+We used the data we collected to generate knowledge on the system.
+We did not, however, consider the process from a user interface perspective.
+We are aware that presenting the information to the user in a meaningful and non-intrusive fashion is as crucial as providing correct information: We therefore think that investigating how to display such contextual information to the user is a crucial aspect that should be tackled.
+
 
 \subsubsection{Evaluation}
 
+Given the size of the task that we considered, we were able to evaluate our approaches in small contexts, mostly from a qualitative point of view.
+We believe that a full evaluation of a new issue tracking system, if possible, would require years to complete.
+Still, a deeper study of the interaction of the various improvement to the development process could shed light on further direction in rethinking issue tracking systems.
+
+
+\subsubsection{Privacy}
+
+During our research project we collected a large amount of stack traces from developers performing real development tasks.
+We were careful in allowing our users to avoid submitting sensible information, but we believe that further efforts in this direction could ease the adoption of such tools and allow the collection of more useful data without risking of violating the privacy and the intellectual property of developers.
+
+
+\subsubsection{Integration With the System}
+Data collection alone is not enough to provide a smoother development experience.
+By having access to structured data, we can integrate such information with development tools, for example by recreating the context where a bug occurred with a single click on a website.
+
+
 
 \section{Closing Words}
-So long and thank you for the fish.
+
+In this dissertation we showed that data generated during software failures brings useful information in understanding and improving a system.
+We argued that this information should not be discarded, but rather promoted to first-class citizen in the development process by treating it with customized representation, rather that using plain text.
+This would allow the creation of contextual tools such as visual browsers, recommender systems, or automated build systems.
+To support software development further, however, it is essential that development tools (\ie the IDE) integrates such data to create an \emph{holistic} experience.
+
+We see our thesis as a first step in rethinking the idea of bug report, to build smarter issue tracking systems that support development in a deeper and integrated fashion.
