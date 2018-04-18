@@ -222,15 +222,16 @@ We collected stack traces during a time period of five months, from June to Nove
 \tabref{tab:data-summary} shows a summary of the data we collected during that time span.
 
 \begin{table}[ht]
-\caption{Stack traces collected from June to November 2014}
+\caption{Summary of the stack traces collected from June to November 2014}
 \begin{center}
-\begin{tabular}{lr}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
+\begin{tabular}{lr} \hline
 \# of stack traces & 7,532 \\
 \# of lines in all stack traces & 252,668 \\
 \# of developers & 8 \\
 average lines of a stack trace & 34 \\
 size of the shortest stack trace & 1 \\
-size of the longest stack trace & 314 \\
+size of the longest stack trace & 314 \\ \hline
 \end{tabular}
 \end{center}
 \label{tab:data-summary}
@@ -258,6 +259,7 @@ By knowing these methods that work as entry points to the classes, a developer c
 \begin{table}[ht]
 \caption{The 10 most called methods in the collected stack traces.}
 \begin{center}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
 \textbf{Class{>}{>}Method} & \textbf{Occurrences} \\ \hline
 BlockClosure{>}{>}on:do: & 9,265 \\
@@ -280,6 +282,7 @@ BlockClosure>>cull: & 3,642 \\
 %MorphicUIManager>>spawnNewProcess & 2,861 \\
 %BlockClosure>>cull:cull:cull: & 2,428 \\
 %FormCanvas>>roundCornersOf:during: & 2,017
+\hline
 \end{tabular}
 \end{center}
 \label{tab:methods-count}
@@ -409,8 +412,9 @@ The number of incoming edges represents the measure of the popularity of the arc
 \begin{table}[ht]
 \caption{Summary of the most popular stack traces, with the popularity metrics.}
 \begin{center}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
-\textbf{Archetype (first line)} & \textbf{Popularity} \\ \hline
+\rowcolor{tableheader}\textbf{Archetype (first line)} & \textbf{Popularity} \\ \hline
 UndefinedObject>>doesNotUnderstand: & 1,585 \\
 UndefinedObject>>doesNotUnderstand: & 647 \\
 UndefinedObject>>DoIt & 619 \\
@@ -434,6 +438,7 @@ UndefinedObject>>DoIt & 28 \\
 %UndefinedObject>>DoIt & 23 \\
 %PluggableButtonMorph>>handleKeyDown: & 23 \\
 %SmallInteger>>/ & 18 \\
+\hline
 \end{tabular}
 %\caption{Summary of the most popular stack traces, with the popularity metrics.}
 \label{tab:popularity}

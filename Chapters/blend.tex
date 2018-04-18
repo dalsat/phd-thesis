@@ -158,8 +158,7 @@ In our analyses we modeled and extracted all the source code changes between sub
   \center
   \caption{Source Code Changes}
   \label{tab:pharo}
-  % \rowcolors{2}{gray!12}{white}
-  %\def\arraystretch{1.1}
+  \rowcolors{1}{tablefirstrow}{tablesecondrow}
   \begin{tabular}{lr}
 
   % \rowcolor{gray!30} \textbf{Version} & \textbf{Added} & \textbf{Modified} & \textbf{Deleted} & \textbf{Tot.} \\ \hline
@@ -171,12 +170,13 @@ In our analyses we modeled and extracted all the source code changes between sub
   % Average changes per version & 8 \\
   % Max number of changes per version & 527 \\
   % Min number of changes per version & 0 \\
-  \textbf{Metric} & \textbf{Value} \\ \hline
+  \rowcolor{tableheader} \textbf{Metric} & \textbf{Value} \\ \hline
   Number of considered versions & 611 \\
   Number of changes & 4,928 \\
   Average changes per version & 8 \\
   Max number of changes per version & 527 \\
   Min number of changes per version & 0 \\
+  \hline
 
   %4.0a & 10 & 10 & 10 & 30 \\
   %4.0b & 10 & 10 & 10 & 30 \\
@@ -205,21 +205,37 @@ The presence of many different stack traces for a specific component might also 
 \tabref{tab:stacktraces} summarizes the collected and available data for stack traces.
 
 \begin{table}[ht]
+\centering
 \caption{Stack Traces Data}
 \label{tab:stacktraces}
-\rowcolors{2}{gray!12}{white}
-%\def\arraystretch{1.1}
-\begin{tabularx}{\linewidth}{X|r}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
+\begin{tabular}{lr}
 
-\rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline Number of traces & 14884 \\
- Number of submitters & 43 \\
- Total number of stack trace lines & 714,420 \\
- Average stack trace size (in lines) & 48 \\
- Longest stack trace & 1,086 \\
- Shortest stack trace & 1 \\
-\end{tabularx}
+  \rowcolor{tableheader} \textbf{Metric} & \textbf{Value} \\ \hline Number of traces & 14884 \\
+  Number of submitters & 43 \\
+  Total number of stack trace lines & 714,420 \\
+  Average stack trace size (in lines) & 48 \\
+  Longest stack trace & 1,086 \\
+  Shortest stack trace & 1 \\
+  \hline
+\end{tabular}
 \end{table}
 
+% \begin{table}[ht]
+% \caption{Stack Traces Data}
+% \label{tab:stacktraces}
+% \rowcolors{1}{tablefirstrow}{tablesecondrow}
+% %\def\arraystretch{1.1}
+% \begin{tabularx}{\linewidth}{X|r}
+%
+% \rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline Number of traces & 14884 \\
+%  Number of submitters & 43 \\
+%  Total number of stack trace lines & 714,420 \\
+%  Average stack trace size (in lines) & 48 \\
+%  Longest stack trace & 1,086 \\
+%  Shortest stack trace & 1 \\
+% \end{tabularx}
+% \end{table}
 
 
 
@@ -245,21 +261,34 @@ For example, the meta event that represents the opening of a \texttt{Finder}, a 
 
 \tabref{tab:idata} summarizes the dataset and provides additional details.
 
+% \begin{table}[ht]
+% \caption{IDE Interaction Data}
+% \label{tab:idata}
+% \rowcolors{1}{tablefirstrow}{tablesecondrow}
+% %\def\arraystretch{1.1}
+% \begin{tabularx}{\linewidth}{X|r}
+% \rowcolor{tableheader} \textbf{Metric} & \textbf{Value} \\ \hline
+% Number of Interaction Events & 238,741 \\
+% Number of Developers & 18 \\
+% Number of Interested Classes (in the \pha distro) & 2,988 (965) \\
+% Number of Different Event Types (total) & 13 (32)
+% \end{tabularx}
+% \end{table}
+
 \begin{table}[ht]
+\centering
 \caption{IDE Interaction Data}
 \label{tab:idata}
-\rowcolors{2}{gray!12}{white}
-%\def\arraystretch{1.1}
-\begin{tabularx}{\linewidth}{X|r}
-
-\rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline
-Number of Interaction Events & 238,741 \\
-Number of Developers & 18 \\
-Number of Interested Classes (in the \pha distro) & 2,988 (965) \\
-Number of Different Event Types (total) & 13 (32)
-\end{tabularx}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
+\begin{tabular}{lr}
+  \rowcolor{tableheader} \textbf{Metric} & \textbf{Value} \\ \hline
+  Number of Interaction Events & 238,741 \\
+  Number of Developers & 18 \\
+  Number of Interested Classes (in the Paro distribution) & 2,988 (965) \\
+  Number of Different Event Types (total) & 13 (32) \\
+  \hline
+\end{tabular}
 \end{table}
-
 
 
 \subsection{Blended, Not Stirred}

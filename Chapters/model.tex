@@ -199,8 +199,9 @@ We map the results into an integer scale from $-2$ (\ie ``strongly disagree'') t
 \begin{table}[t]
 \begin{center}
 \caption{Expertise of the participants of the survey (average)}\label{tab:survey}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
-\textbf{Activity} & \textbf{Average} \\
+\rowcolor{tableheader} \textbf{Activity} & \textbf{Average} \\
 \hline
 Experience with Object Oriented programming languages & $1.5$ \\
 Knowledge of Pharo & $1.3$ \\ \hline
@@ -224,13 +225,15 @@ In fact, we are especially interested in knowing the point of view of submitters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table*}[t]
-% \begin{sidewaystable}[h!]
+\begin{table}[t]
 \begin{center}
 \caption{Overview of the projects in the dataset}\label{tab:dataset-projects}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|l|rrrrr}
+ \rowcolor{tableheader}
  &               & \multicolumn{5}{c}{{\bfseries Issues}} \\
 %Ecosystem
+ \rowcolor{tableheader}
  & Project & First & Last & Count & Age (days) & Frequency \\
 \hline
 \multirow{9}{*}{\rotatebox[origin=c]{90}{Apache}}
@@ -253,8 +256,7 @@ In fact, we are especially interested in knowing the point of view of submitters
  & Thunderbird & Jan 2, 2000 & Jul 8, 2015 & 42,247 & 5,666 & 3h13m\\\hline
 \end{tabular}
 \end{center}
-% \end{sidewaystable}
-\end{table*}
+\end{table}
 
 \subsection{Data Collection} \label{sec:model-collection}
 
@@ -273,7 +275,9 @@ Each bug tracker has a different set of bug report states.
 \begin{table}[h]
 \begin{center}
 \caption{Contents of the dataset}
-\begin{tabular}{l|r|r|r}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
+\begin{tabular}{l|rrr}
+ \rowcolor{tableheader}
  & Apache & Mozilla & Total \\
 \hline
 %Projects & 8 & 7 & 15 \\
@@ -290,8 +294,9 @@ Total Issues & 43,672 & 621,250 & {\bfseries 664,922} \\ \hline
 \begin{table}[ht]
 \centering
 \caption{Different states of bug reports in \bzilla and \jira, with the count of the reports currently in each state and the total sum of all the times a bug report reached a state.}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|l|rr}
-{\bfseries Tracker} & {\bfseries State} & {\bfseries Current} & {\bfseries Total} \\ \hline
+\rowcolor{tableheader}{\bfseries Tracker} & {\bfseries State} & {\bfseries Current} & {\bfseries Total} \\ \hline
 JIRA & Closed & 21,847 & 22,460 \\
 & Resolved & 14,280 & 33,386  \\
 &  Open & 6,736 & 43,203 \\
@@ -535,8 +540,9 @@ We also investigate whether these fields have a measurable impact on the lifetim
 \begin{table}[ht]
 \centering
 \caption{Number of custom fields per project}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|rrr}
-\textbf{Project} & \textbf{\# fields} & \textbf{Avg.
+\rowcolor{tableheader}\textbf{Project} & \textbf{\# of fields} & \textbf{Avg.
 lifetime (d)} & \textbf{Max lifetime (d)} \\
  \hline
 Air Mozilla & 5 & 154 & 1,004 \\
@@ -628,8 +634,9 @@ In this context, a random classifier would correctly classify 0.25 of the instan
 \begin{table}[ht]
 \centering
 \caption{Prediction results: Proportion of bug reports classified in the correct time bucket, with increment over  random classification (25\% correctly classified bug reports).}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|r|r|r|r}
- & \textbf{NB} & \textbf{DT} & \textbf{AdaBoost} & \textbf{RF} \\
+\rowcolor{tableheader} & \textbf{NB} & \textbf{DT} & \textbf{AdaBoost} & \textbf{RF} \\
  \hline
 Common & 0.27 (+0.02) & 0.27 (+0.02) & 0.27 (+0.02) & 0.27 (+0.02) \\
 + words & 0.28 (+0.03) & 0.28 (+0.03) & 0.29 (+0.04) & 0.28 (+0.03) \\
@@ -654,8 +661,9 @@ The new dataset is composed of 31,472 bug reports.
 \begin{table}[ht]
 \centering
 \caption{Prediction results for bug reports of last year.}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|r|r|r|r}
- & \textbf{NB} & \textbf{DT} & \textbf{AdaBoost} & \textbf{RF} \\
+\rowcolor{tableheader} & \textbf{NB} & \textbf{DT} & \textbf{AdaBoost} & \textbf{RF} \\
  \hline
 Common & 0.27 (+0.02) & 0.28 (+0.03) & 0.28 (+0.03) & 0.28 (+0.03) \\
 + words & 0.30 (+0.05) & 0.30 (+0.05) & 0.33 (+0.08) & 0.30 (+0.05) \\

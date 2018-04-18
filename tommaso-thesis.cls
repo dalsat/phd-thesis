@@ -97,6 +97,11 @@
 \definecolor{gold}{rgb}{1.0, 0.84, 0.0}
 
 
+%% table colors
+\definecolor{tableheader}{gray}{.85}
+\definecolor{tablefirstrow}{gray}{.95}
+\definecolor{tablesecondrow}{gray}{1}
+
 %%% Macros %%%
 \newcommand{\tool}[1]{\textsc{#1}\xspace}
 

@@ -374,9 +374,10 @@ For this purpose, we inspected the data collected through \sln, the tool we pres
 We considered the stack traces collected from 10 June 2014 to 28 February 2017.
 \tabref{tab:stack-traces} shows a summary of the collected data.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Summary of the collected stack trace data}
+\rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
 \hline
 Oldest stack trace & 10 June 2014 \\
@@ -391,6 +392,57 @@ average \# of traces per day & $\sim$41\\
 \end{tabular}
 \label{tab:stack-traces}
 \end{table}
+
+% \begin{table}[ht]
+% \centering
+% \caption{Summary of the collected stack trace data}
+% \rowcolors{2}{tablefirstrow}{tablesecondrow}
+% \begin{tabular}{l|r}
+% \hline
+% Oldest stack trace & 10 June 2014 \\
+% Newest stack trace & 28 February 2017 \\
+% \# of days & 994\\
+% \# of developers & 257\\
+% average \# of traces per day & $\sim$41\\
+% \# of stack traces & 41,129 \\
+% \# of traces involving announcements & 4,840 \\
+% \% of traces involving announcements & $\sim$12\% \\
+% \hline
+% \end{tabular}
+% \label{tab:stack-traces}
+% \end{table}
+
+
+% \begin{table}[ht]
+% \centering
+% \caption{Summary of the collected stack trace data}
+% \rowcolors{2}{tablefirstrow}{tablesecondrow}
+% \def\arraystretch{1.1}
+% \begin{tabularx}{\linewidth}{X|r}
+% \hline
+% Oldest stack trace & 10 June 2014 \\
+% Newest stack trace & 28 February 2017 \\
+% \# of days & 994\\
+% \# of developers & 257\\
+% average \# of traces per day & $\sim$41\\
+% \# of stack traces & 41,129 \\
+% \# of traces involving announcements & 4,840 \\
+% \% of traces involving announcements & $\sim$12\% \\
+% \hline
+% \end{tabularx}
+% \label{tab:stack-traces}
+% \end{table}
+
+% %\def\arraystretch{1.1}
+% \begin{tabularx}{\linewidth}{X|r}
+%
+% \rowcolor{gray!30} \textbf{Metric} & \textbf{Value} \\ \hline
+% Number of Interaction Events & 238,741 \\
+% Number of Developers & 18 \\
+% Number of Interested Classes (in the \pha distro) & 2,988 (965) \\
+% Number of Different Event Types (total) & 13 (32)
+% \end{tabularx}
+% \end{table}
 
 
 The collecting tool can be set to submit every exception automatically, or to ask the developer whether she wants to explicitly submit it.
