@@ -158,10 +158,10 @@ to: }
 %geometry
 \RequirePackage[a4paper]{geometry}
 
-\geometry{	top=35mm,%
-	bottom=32mm,%
-	left=25mm,%
-	right=25mm}
+% \geometry{	top=35mm,%
+% 	bottom=32mm,%
+% 	left=25mm,%
+% 	right=25mm}
 
 %%% fancy headers
 \RequirePackage{fancyhdr}

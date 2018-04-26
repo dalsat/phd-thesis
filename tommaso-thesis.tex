@@ -10,7 +10,8 @@
 %\usepackage{amssymb}
 \usepackage{listings, colortbl, wrapfig,  ifthen, multirow, rotating, pdfpages}
 % \usepackage{cancel}
-
+% \usepackage{kpfonts,baskervald}
+% \usepackage{baskervald}
 
 %change 'sl' to 'bf' for bold, or 'normalfont' for no special
 %formatting
@@ -24,11 +25,11 @@ morecomment=[l]{//s},
 }
 
 
-%\title{A Bug With A Suit---\\Deep Models For Tracking Issue}
+\title{Reified Bug Reports for Augmented Software Development}
 % \title{Augmenting Software Development \\With Reified Execution Data}
-\title{An Object Is Worth a Thousand Words}
-\subtitle{Augmenting Software Development with Reified Execution Data}
-%\subtitle{Subtitle: Reinventing the World} %optional
+% \title{An Object Is Worth a Thousand Words}
+% \subtitle{Augmenting Software Development with Reified Execution Data}
+
 \author{Tommaso Dal Sasso}
 \advisor{Prof. Dr. Michele Lanza}
 
@@ -101,13 +102,6 @@ You may have noticed that I'm not all there myself.}
   \input{Chapters/conclusion}
 
 
-
-%\appendix %optional, use only if you have an appendix
-\appendix
-\input{Chapters/pharo}
-
-\backmatter
-
 % \chapter{Glossary} %optional
 
 \bibliographystyle{alpha}
@@ -115,8 +109,14 @@ You may have noticed that I'm not all there myself.}
 % \bibliographystyle{plainnat}
 \bibliography{biblio}
 
-\cleardoublepage
+% \cleardoublepage
 % \theindex %optional, use only if you have an index, must use
 	  %\makeindex in the preamble
+
+%\appendix %optional, use only if you have an appendix
+\appendix
+\input{Chapters/pharo}
+
+\backmatter
 
 \end{document}
