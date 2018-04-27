@@ -172,6 +172,20 @@
 \let\endExamplebox\endexamplebox
 
 
+%%%%% Style %%%%%
+
+%%% Header
+
+\fancypagestyle{footeronly}{%
+	% \renewcommand{\headrulewidth}{0.25pt}
+    \renewcommand{\headrulewidth}{1.2pt}
+	\renewcommand{\footrulewidth}{0pt}
+	% \renewcommand{\headrule}{\color{footerColor}\hrule height \headrulewidth\hfill}
+    \renewcommand{\headrule}{\color{chapterColor}\hrule height \headrulewidth\hfill}
+	\fancyhf{}
+	\fancyhead{}
+	\fancyfoot[C]{\color{footerColor}{\sf \thepage}}
+}
 
 
 %%% Chapter
