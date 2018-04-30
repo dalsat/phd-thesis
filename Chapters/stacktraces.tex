@@ -13,13 +13,13 @@
 %\chapter{Misery Loves Company:\\CrowdStacking Traces to Aid Problem Detection}\label{ch:stacktraces}
 \coolchapter{Misery Loves Company}{CrowdStacking Traces to Aid Problem Detection}{ch:stacktraces}
 
-
 During software development, exceptions are by no means exceptional: Programmers repeatedly try and test their code to ensure that it works as expected.
 While doing so, runtime exceptions are raised, pointing out various issues, such as inappropriate usage of an API, convoluted code, as well as defects.
 Such failures result in \emph{stack traces}, lists composed of the sequence of method invocations that led to the interruption of the program.
 Stack traces are useful to debug source code, and if shared also enhance the quality of bug reports.
 However, they are handled manually and individually, stored in a bug report as a copy-and-paste chunk of text that complicates the automatic processing of the information and raises questions about their reliability.
 
+In the previous chapter we saw how treating bug reports as flat entities can hide properties that would be useful in the development process.
 In this chapter we argue that stack traces can be leveraged automatically and collectively to enable what we call \emph{crowdstacking}, the automated collection of stack traces on the scale of a whole development community.
 We present our crowdstacking approach, supported by \slr, a tool which seamlessly collects stack traces during program development and execution and stores them on a central repository.
 We illustrate how thousands of stack traces stemming from the IDEs of several developers can be leveraged to identify common \emph{hot spots} in the code that are involved in failures, using this knowledge to retrieve relevant and related bug reports and to provide an effective, instant context of the problem to the developer.
@@ -632,6 +632,35 @@ A normal user can be reassured by knowing that the core development team is alre
 In an open source project, this set of conditions could bolster the interactions among the community members, focus the attention to current problems and reinforce the whole community.
 
 
+\subsection{Next Steps}
+
+We see this work as first step towards a new way of dealing with information from error contexts.
+Current debugging workflows include a number of time consuming activities that could be automated, to reduce the time spent on fixing problems, speed up the development, and foster the improvement of the software project.
+The approach that we presented in this chapter is only one of the many possible ways that we see possible to adopt in employing this data: leveraging this information can lead to a number of tools that can deeply impact the way communities and developers deal with debugging.
+\begin{itemize}%[$\circ$]
+\item\textit{Context aware debugging:} as we suggested during the chapter, we want to extend \slr to propose the possible bug reports to the developer whenever he triggers an exception, to provide a quicker access to the information needed to deal with the problem.
+
+\item\textit{Bug triaging:} Having access to stack trace information can help identifying the types of defects that caused an exception, thus easing the process of triaging the bug~\cite{Anvi2006a}.
+Also, we can use the data submitted by each user to create and update profiles of the developers and determine their area of expertise in a quick and reliable way.
+
+\end{itemize}
+
+There still is a significant amount of data that we did not consider during our analysis.
+The information regarding the dynamic nature of the language can still be exploited to get insights on the internals of the system.
+
+\begin{itemize}%[$\circ$]
+
+\item\textit{System core exceptions:} We mainly focused on the top part of the trace, because it contains the part of information closer to the user.
+The bottom of the stack, which involves the deeper parts of the system, can be used to find bugs hidden in the core classes of the system.
+
+\item\textit{Stack trace patterns:} We saw from \figref{fig:stackcity-classes} and \figref{fig:stackcity-methods} that many stack traces actually touch only a small part of the system.
+This is an interesting behavior that we want to investigate further, by looking for patterns in the call stack and detect how to deal with ``hot areas'' of the system.
+
+\item\textit{Optimization:} Knowing the main areas of the system that are executed during an exception can also show the frequency of execution during the daily activity of the users.
+This information can be combined with code profiling techniques to determine where and how to perform optimizations on the existing code, and improve execution performances.
+\end{itemize}
+
+We envision a future where debugging, but also development activities are supported by means of context-aware tools that use automatically extracted information produced by a whole development community, to aid the tasks of developers and support debugging, with the support of the whole community.
 
 % \section{Related Work}\label{sec:stacktraces-related}
 %
@@ -668,11 +697,10 @@ As a result, the debugging process has the side effect of producing a lot of inf
 This information is however usually discarded after solving the problem.
 
 
-\subsection{CrowdStacking Traces}
+% \subsection{CrowdStacking Traces}
 
 We presented \slr, a tool that seamlessly integrates into the \pha system to collect stack traces produced during the arise of runtime executions in the system.
 The goal of \slr is to collect and store information, and reuse it to extract deeper knowledge of the underlying code, assist and boost the whole debugging process.
-
 Given the volume of the data produced by the collection approach, it is crucial to have a way to browse the stored information in an efficient and useful way, that allows fast access to the obtained knowledge.
 We presented a study on the data we collected, proposing an approach to group the stack traces into clusters and use those clusters to retrieve useful information for the developers.
 We generated the clusters by stack traces similarity, and selected the medoid of each group to represent the archetype of the collection: Each archetype represents a different type of error that happens in the system.
@@ -682,37 +710,9 @@ We showed a possible application to exploit the data contained in stack traces b
 We found a connection with bug reports related to the exception and we showed that the information can be used to aid the debugging activity.
 In the cases where the clusters do not have a clear connection with existing bug reports, the system should highlight the anomaly and propose to open a bug report displaying the information gathered until then.
 
-\subsection{Next Steps}
 
-We see this work as first step towards a new way of dealing with information from error contexts.
-Current debugging workflows include a number of time consuming activities that could be automated, to reduce the time spent on fixing problems, speed up the development, and foster the improvement of the software project.
-The approach that we presented in this chapter is only one of the many possible ways that we see possible to adopt in employing this data: leveraging this information can lead to a number of tools that can deeply impact the way communities and developers deal with debugging.
-\begin{itemize}%[$\circ$]
-\item\textit{Context aware debugging:} as we suggested during the chapter, we want to extend \slr to propose the possible bug reports to the developer whenever he triggers an exception, to provide a quicker access to the information needed to deal with the problem.
-
-\item\textit{Bug triaging:} Having access to stack trace information can help identifying the types of defects that caused an exception, thus easing the process of triaging the bug~\cite{Anvi2006a}.
-Also, we can use the data submitted by each user to create and update profiles of the developers and determine their area of expertise in a quick and reliable way.
-
-\end{itemize}
-
-There still is a significant amount of data that we did not consider during our analysis.
-The information regarding the dynamic nature of the language can still be exploited to get insights on the internals of the system.
-
-\begin{itemize}%[$\circ$]
-
-\item\textit{System core exceptions:} We mainly focused on the top part of the trace, because it contains the part of information closer to the user.
-The bottom of the stack, which involves the deeper parts of the system, can be used to find bugs hidden in the core classes of the system.
-
-\item\textit{Stack trace patterns:} We saw from \figref{fig:stackcity-classes} and \figref{fig:stackcity-methods} that many stack traces actually touch only a small part of the system.
-This is an interesting behavior that we want to investigate further, by looking for patterns in the call stack and detect how to deal with ``hot areas'' of the system.
-
-\item\textit{Optimization:} Knowing the main areas of the system that are executed during an exception can also show the frequency of execution during the daily activity of the users.
-This information can be combined with code profiling techniques to determine where and how to perform optimizations on the existing code, and improve execution performances.
-\end{itemize}
-
-We envision a future where debugging, but also development activities are supported by means of context-aware tools that use automatically extracted information produced by a whole development community, to aid the tasks of developers and support debugging, with the support of the whole community.
-
-
-\subsubsection{The Road So Far...}
 We have seen how the automatic collection of stack trace generated during a failure can complement the information contained in a bug report with knowledge about the system, to support a number of different debugging and development tasks.
+However, we are still collecting data that we flatten into a textual format.
+While the automation process helps increasing the reliability of the information that we provide to developers, we are still forced to turn to text mining techniques to extract the knowledge from the raw data.
 In the next chapter we further push our approach, and generalize it to enable the collection of arbitrary, domain specific data.
+By collecting data that has a shape, instead of plaintext, we can finally promote a bug report to an independent entity with its own structure and language.
