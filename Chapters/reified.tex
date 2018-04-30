@@ -11,16 +11,17 @@ When fixing a defect, developers construct a mental model of the system that exp
 However, filtering complete, coherent, and reliable information from a running system is not an easy task: Using a simple approach, like generic logging, is often ineffective because it deconstructs and flattens the state into textual data, thus requiring ad-hoc understanding and processing.
 On the other hand, collecting structured information in form of objects to observe and understand a precise property of the system requires specialized ad-hoc code, decoupled from the system's domain, and is usually not reusable.
 
-We concluded \chref{ch:stacktraces} by saying that collecting stack traces can teach us stories about the system that we hardly would have noted otherwise.
-In this chapter generalize the approach by presenting a domain-specific data collection framework that enables the developers to extract selected information about a system.
+In \chref{ch:stacktraces} we saw that by collecting stack traces can teach us stories about a system that we hardly would have noted otherwise.
+We were, however, still using a textual representation that limited the descriptive power of our model.
+In this chapter generalize the approach by presenting a domain-specific data collection framework that enables the developers to extract selected information about a system, and store them as entities.
 The developer is able to take a snapshot of all the information deemed relevant about a piece of code by writing few lines of code, thus enabling structured and effective logging and reporting of errors.
 We detail our framework in the context of a bug reporting platform, and illustrate how such an approach can be used to create in-depth and reliable domain-specific bug reports.
 
 \structure
 
-%\secref{sec:reified-related} illustrates  the state of the art about collecting information on defective software states.
 \secref{sec:reified-framework} describes the approach from a conceptual point of view together with its requirements, while \secref{sec:reified-implementation} illustrates the architecture and implementation of the proposed approach.
 In \secref{sec:reified-stories} we assess the technique through three stories that illustrate how our approach can support development and debugging.
+\secref{sec:reified-discussion} discusses the generalizability of our approach how it could be extended.
 Finally, \secref{sec:reified-summary} concludes the chapter and outlines directions for future work.
 
 \newpage
@@ -558,18 +559,10 @@ Finally, knowing the kind of data that a visualization received can help in find
 By shipping their own collectors for observing their code, developers can support debugging in the context of the project, therefore reducing the time required to understand an error and lowering the cost for maintenance.
 
 
-\section{Outline}\label{sec:reified-summary}
 
-We presented an approach to define ad-hoc collection of runtime data to support debugging.
-By extending our framework, a developer can define a custom strategy to gather domain-specific knowledge that follows the model of the application she wants to observe.
-By preserving the structured, object-oriented nature of the collected data, rather than serializing the information to text, we are able to query the state of a program  and observe it by filtering the data we are interested in, resulting in both more expressive and less bloated reports.
-Such capabilities of observing a system enable to create flexible inspection tools, that are able to get a deeper representation of the execution context of a piece of software.
+\section{Discussion}\label{sec:reified-discussion}
 
-By giving the possibility to report and collect specific information from the system, \sln offers data that is more reliable that a stack trace submitted by a user, and allows to deal with the collected data in an automated fashion, giving the possibility to programmatically perform tasks that would otherwise consume time of the developers and weight on the cost of maintenance.
-Moreover, providing a defined structure for execution data, our framework allows to perform a number of analyses without having to resort to information retrieval and text mining techniques to clean the data, but allows to talk directly with the collected entities that map the original data.
-
-Finally, dealing with data that is not flattened allows to perform a progressive inspection of a report, enabling the discoverability of complex data and structuring the debugging session as a browsing process to select the data needed by the developer fixing a bug.
-
+In this section we discuss how our approach can be generalized to work with other programming languages, and how we think it could be further improved.
 
 \subsubsection{Generalizability of the approach}
 
@@ -599,7 +592,20 @@ We envision a future where development activities are supported by the system us
 Starting a conversation with the entities we can develop a paradigm of programming that focuses on the models and their interactions, rather than manipulating strings, and achieve a programming environment that is really live and responsive.
 
 
-\subsubsection{The Road So Far...}
+\section{Outline}\label{sec:reified-summary}
+
+We presented an approach to define ad-hoc collection of runtime data to support debugging.
+By extending our framework, a developer can define a custom strategy to gather domain-specific knowledge that follows the model of the application she wants to observe.
+By preserving the structured, object-oriented nature of the collected data, rather than serializing the information to text, we are able to query the state of a program  and observe it by filtering the data we are interested in, resulting in both more expressive and less bloated reports.
+Such capabilities of observing a system enable to create flexible inspection tools, that are able to get a deeper representation of the execution context of a piece of software.
+
+By giving the possibility to report and collect specific information from the system, \sln offers data that is more reliable that a stack trace submitted by a user, and allows to deal with the collected data in an automated fashion, giving the possibility to programmatically perform tasks that would otherwise consume time of the developers and weight on the cost of maintenance.
+Moreover, providing a defined structure for execution data, our framework allows to perform a number of analyses without having to resort to information retrieval and text mining techniques to clean the data, but allows to talk directly with the collected entities that map the original data.
+
+Finally, dealing with data that is not flattened allows to perform a progressive inspection of a report, enabling the discoverability of complex data and structuring the debugging session as a browsing process to select the data needed by the developer fixing a bug.
+
 
 In this chapter we put in place a platform to collect detailed domain-specific information about components of a system.
-In the next chapter we present an approach to employ the information collected about a system in a tool for browsing the history and the evolution of a software system.
+At last, our model is no longer text-based, but represents entities using objects.
+As a result, we can start a conversation with the system and define a language that allows us to integrate this information with the development tools and to create smarter and conversational environments.
+In the next chapter we present a use case where we employ the information collected about a system in a tool for browsing the history and the evolution of a software system.
