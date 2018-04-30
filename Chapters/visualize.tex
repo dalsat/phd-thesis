@@ -12,16 +12,16 @@
 \definecolor{unknown}{HTML}{D3D3D3}
 
 
-% \chapter{in*Bug: Visual Analytics of Bug Repositories}\label{ch:visualize}
+% \chapter{\ib: Visual Analytics of Bug Repositories}\label{ch:visualize}
 \coolchapter{in*Bug}{Visual Analytics of Bug Repositories}{ch:visualize}
 
 
 Bug tracking systems are used to track and store the defects reported during the life of software projects.
-The underlying repositories represent a valuable source of information used for example for defect prediction and program comprehension.
+The underlying repositories represent a valuable source of information used for example for defect prediction and program comprehension~\cite{stor1999a}.
 However, as we mentioned in \chref{ch:introduction}, bug tracking systems store and present the actual bugs essentially in textual form, which is not only cumbersome to navigate, but also hinders the understanding of the intricate pieces of information that revolve around software bugs.
 We begin our journey towards an improved representation for a bug report by analyzing existing bug repositories, to investigate where the information that they contain can be actually leveraged to improve the knowledge that we have on the system.
 
-In this Chapter we present \ib, a web-based visual analytics platform to navigate and inspect bug repositories.
+In this chapter we present \ib, a web-based visual analytics platform to navigate and inspect bug repositories.
 \ib provides several interactive views to understand detailed information about the bugs and the people that report them.
 % The tool can be downloaded at \textit{http://inbug.inf.usi.ch}
 
@@ -29,7 +29,9 @@ In this Chapter we present \ib, a web-based visual analytics platform to navigat
 \structure
 
 \secref{sec:visualize-intro} introduces the issues of dealing with data in issue trackers.
-\secref{sec:visualize-details} Presents in details the views that compose \ib.
+\secref{sec:visualize-details} presents in detail the views that compose \ib.
+\secref{sec:visualize-summary} concludes the chapter summarizing what we learned visualizing issue tracking systems.
+
 
 \newpage
 
@@ -40,44 +42,51 @@ In this Chapter we present \ib, a web-based visual analytics platform to navigat
 Due to the complexity and size of non-trivial software projects, the development of a system is always accompanied by software defects, or bugs.
 To manage these defects, modern software projects use bug tracking systems (also known as bug trackers or issue trackers), such as Jira or Bugzilla.
 With bug trackers, end users and developers can report bugs they encountered while using the system, usually by means of custom web interfaces, where one can enter details about a specific bug, creating a so-called \emph{bug report}.
-A typical bug report, such as the one depicted in \figref{fogbugz-example}, contains information about \begin{inparaenum}[(1)] \item the title and id of the bug, \item the user who reported the bug and the people involved in its history, \item its current status, \item its opening and closing date, \item its last modification date, \item the project to which the bug report pertains, \item events (such as changes of the people assigned to the bug report, etc.) during the life cycle of the bug, etc. \end{inparaenum}
-The example bug report depicted in \figref{fogbugz-example} is from a specific bug tracker, FogBugz \footnote{\url{http://www.fogcreek.com/fogbugz/}}, but it does not differ significantly from the reports recorded with other bug trackers.
+A typical bug report, such as the one depicted in \figref{fig:fogbugz-example}, contains information about \begin{inparaenum}[(1)] \item the title and id of the bug, \item the user who reported the bug and the people involved in its history, \item its current status, \item its opening and closing date, \item its last modification date, \item the project to which the bug report pertains, \item events (such as changes of the people assigned to the bug report, etc.) during the life cycle of the bug, etc. \end{inparaenum}
+The example bug report depicted in \figref{fig:fogbugz-example} is from a specific bug tracker, FogBugz \footnote{\url{http://www.fogcreek.com/fogbugz/}}, but it does not differ significantly from the reports recorded with other bug trackers.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.95\linewidth,trim=0 300 0 0,clip=true]{Images/visualize/fogbugz-screen.png}
+\includegraphics[width=.95\linewidth,trim=0 300 0 0,clip=true]{Images/visualize/fogbugz-screen}
 \caption{Example bug report in the FogBugz bug tracking system.}
-\label{fogbugz-example}
+\label{fig:fogbugz-example}
 \end{figure}
 
-Various researchers have mined and used the information stored by bug trackers to perform several types of analyses, such as identifying duplicate bug reports~\cite{Wang2008a}, measuring the quality of a report~\cite{Zimm2010a}, predicting future defects~\cite{DAmb2012a}, performing traceability linking~\cite{Biss2013a}, locating features~\cite{Dit2013a}, ameliorating bug triaging decisions~\cite{Anvi2006a}, etc. The actual goal however is to ease the life of developers in the handling of bug reports, as part of the development process.
+Various researchers have mined and used the information stored by bug trackers to perform several types of analyses, such as identifying duplicate bug reports~\cite{Wang2008a}, measuring the quality of a report~\cite{Zimm2010a}, predicting future defects~\cite{DAmb2012a}, performing traceability linking~\cite{Biss2013a}, locating features~\cite{Dit2013a}, ameliorating bug triaging decisions~\cite{Anvi2006a}, etc.
+The actual goal however is to ease the life of developers in the handling of bug reports, as part of the development process.
 
-One problem is that bug reports are disconnected from the software system they pertain to, and it is up to the developers to restore the link between a bug report and the interested components of a system. Another problem is that bug reports, such as the one depicted in~\figref{fogbugz-example}, are displayed on individual web pages that list their properties, making them cumbersome to handle and making it also difficult to obtain a ``big picture'' of the existing open bug reports and how they overall affect the system they pertain to. Moreover, this information is stored and presented as text, which makes it hard to understand the properties of a bug report.
+One problem is that bug reports are disconnected from the software system they pertain to, and it is up to the developers to restore the link between a bug report and the interested components of a system.
+Another problem is that bug reports, such as the one depicted in \figref{fig:fogbugz-example}, are displayed on individual web pages that list their properties, making them cumbersome to handle and making it also difficult to obtain a ``big picture'' of the existing open bug reports and how they affect the system they pertain to.
+Moreover, this information is stored and presented as text, which makes it hard to understand the properties of a bug report.
 
-We present \ib, a web-based bug analytics platform, that eases the inspection, navigation, and comprehension of bug repositories, mostly by means of interactive visualizations. \ib provides an entry-level big picture overview to browse the content of a repository, and a detailed, complementary, interactive, and finer-grained view to understand detailed information about the bugs and the people that report them.
+We present \ib, a web-based bug analytics platform, that eases the inspection, navigation, and comprehension of bug repositories, mostly by means of interactive visualizations.
+\ib provides an entry-level big picture overview to browse the content of a repository, and a detailed, complementary, interactive, and finer-grained view to understand detailed information about the bugs and the people that report them.
 
-Other researchers have produced custom visualization of bugs, such as D'Ambros et al.~\cite{DAmb2007a,DAmb2007b} who proposed visualizations that tried to depict the complex information revolving around bugs, which are de facto independent entities when it comes to program comprehension, and not mere side effects of the evolutionary process that software systems are subjected to.
+Other researchers have produced custom visualization of bugs, such as D'Ambros \etal~\cite{DAmb2007a,DAmb2007b} who proposed visualizations that tried to depict the complex information revolving around bugs, which are de facto independent entities when it comes to program comprehension, and not mere side effects of the evolutionary process that software systems are subjected to.
 While D'Ambros et al. only created standalone depictions of information taken from BugZilla, our goal with \ib is to depict live data from a bug tracker, namely FogBugz.
-In the near future, we plan to offer \ib as a complementary means to inspect and analyze information pertaining to bugs reported in the context of the many projects that make up the software ecosystem revolving around the Pharo\footnote{\url{http://www.pharo-project.org}} open-source community.
+The goal of \ib is to offer a complementary view to inspect and analyze information pertaining to bugs reported in the context of the many projects that make up a software ecosystem.
+We built \ib around the issue tracking system of the \pha open-source community.
 
-We present the current features of \ib, discuss its current implementation, and illustrate its usage.
+We now present the features of \ib, discuss its current implementation, and illustrate its usage.
 
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{Images/visualize/inbug-list.pdf}
 \caption{Main user interface of \ib}
-\label{inbug}
+\label{fig:inbug}
 \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{in*Bug in Detail}\label{sec:visualize-details}
+\section{\ib in Detail}\label{sec:visualize-details}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we present the interface of \ib, detailing its panels and how we used the data in the issue tracking system to build the visualizations.
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Main view}\label{main-view}
 
-\figref{inbug} depicts the main user interface, composed of the following panels:
+\figref{fig:inbug} depicts the main user interface, composed of the following panels:
 
 \textbf{Bug lifetime panel (1).} \label{bug-lifetime-panel} This view depicts the bug reports contained in the bug repository, showing their duration (as a horizontal stacked bar chart) and status (using different colors, listed in \tabref{tab-colors}).
 
@@ -94,7 +103,7 @@ Unknown & \cellcolor{unknown} & light grey & Selected & \cellcolor{yellow} & yel
 \end{tabular}
 \end{table}
 
-In \figref{inbug} one specific bug (marked as A) is under focus.
+In \figref{fig:inbug} one specific bug (marked as A) is under focus.
 The vertical line to the right indicates the current date, making it also clear whether a bug report is still active or not (if it is, it will touch that line).
 This view also helps the developer to evaluate the complexity of a bug report by summarizing the events occurred during its lifetime.
 
@@ -119,11 +128,11 @@ The \textit{filter} field offers the possibility to enter either regular express
 \begin{center}
 \includegraphics[width=\linewidth]{Images/visualize/details-page.pdf}
 \caption{\ib details page showing the properties of a bug report}
-\label{fig-inbug-home}
+\label{fig:inbug-home}
 \end{center}
 \end{figure*}
 
-This view (see \figref{fig-inbug-home}) presents a detailed representation of a specific bug report.
+This view (see \figref{fig:inbug-home}) presents a detailed representation of a specific bug report.
 Each section provides a description of the element that compose the description of a defect.
 
 
@@ -138,14 +147,14 @@ The details include the picture of the user, the user name and the user's email 
 \subsubsection{Bug Report Life Visualization (3)}
 This panel shows a visualization of the life of a bug report during time.
 The left border represents the date the issue was opened, the right border represents the moment the bug was closed, or the current date if the bug report is still active.
-The section (A) proposes the same visualization of the list view in the main view (\ref{main-view}), emphasizing the status changes during time.
-The section (B) shows a line diagram where the height represents the criticality of the status (\ie fixed is the lowest and active is the hightest) and highlighting each event with a circle.
+The (A) section proposes the same visualization of the list view in the main view (\ref{main-view}), emphasizing the status changes during time.
+The (B) section shows a line diagram where the height represents the criticality of the status (\ie fixed is the lowest and active is the hightest) and highlighting each event with a circle.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=.85\linewidth]{Images/visualize/event-list.pdf}
 \caption{List of events in a bug report}
-\label{fig-event-list}
+\label{fig:event-list}
 \end{center}
 \end{figure}
 
@@ -154,7 +163,7 @@ This is a list of all the events that compose a bug report.
 It shows the metadata of the event and whether it is an automatic event or an event generated by a user.
 It also detects and highlights the patches of code submitted to the tracker for the issue resolution, and provides a link to download and inspect the patch.
 The user can click on an event to highlight it both in the events list and in the bug report lifetime visualization.
-\figref{fig-event-list} shows a detail of the event list, where we can observe the three types of events: (A) shows a comment by an user; (B) shows a submitted patch.
+\figref{fig:event-list} shows a detail of the event list, where we can observe the three types of events: (A) shows a comment by an user; (B) shows a submitted patch.
 The upper left icon offers a link to the repository page of the patch; (C) indicates events automatically generated from bots in the tracker.
 Inspired by more semantically rich and elaborated views, such as Ogawa et al's storylines~\cite{Ogaw2010a} or Kuhn and Stocker's storytelling timelines~\cite{Kuhn2012a}, the left border of each event is colored according to the status of the event, to help the user to keep track of the evolution of the bug while inspecting the list of events.
 
@@ -165,13 +174,13 @@ Inspired by more semantically rich and elaborated views, such as Ogawa et al's s
 It uses the \sea web framework~\cite{Duca2010a} to provide the data stored in a \textit{MongoDB} database and implements a \textit{RESTful API} to communicate with the client.
 The client interface is implemented in \textit{JavaScript} using the data manipulation and visualisation library \textit{D3.js}.\footnote{\url{http://d3js.org/}}
 
-\ib is currently targeted at a specific \fbz repository revolving around the Pharo ecosystem.
-In \tabref{tab-tracker-summary} we provide a summary of the currently available data, which has already reached considerable complexity.
+\ib is built to visualize the \fbz repository of the Pharo ecosystem.
+In \tabref{tab:tracker-summary} we provide a summary of the data we investigated.
 
 \begin{table}[ht]
 \center
 \caption{Summary data of the \textit{Pharo} bug tracker}
-\label{tab-tracker-summary}
+\label{tab:tracker-summary}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{p{7cm} r} \hline
 Number of projects & 46 \\
@@ -183,13 +192,13 @@ Average events per issue & 9 \\ \hline
 \end{table}
 
 \ib also provides links to patches on \emph{SmalltalkHub}, a source code repository to store versioned Smalltalk code.
-In \figref{fig-inbug-ecosystem} we can see how these three services interact.
+In \figref{fig:inbug-ecosystem} we can see how these three services interact.
 
 \begin{figure}[t]
 \center
 \includegraphics[width=.95\linewidth]{Images/visualize/inbug-ecosystem.pdf}
 \caption{The interactions of \ib with the \emph{FogBugz} and \emph{SmalltalkHub} services}
-\label{fig-inbug-ecosystem}
+\label{fig:inbug-ecosystem}
 \end{figure}
 
 %\pagebreak
@@ -199,8 +208,15 @@ The web application then loads the data and present it in the list view of the m
 The details of a single report are presented in the details view, where the user can follow a link that leads to a patch submitted to SmalltalkHub.
 %\input{application.tex}
 
+
+\section{More Than Meets the Eyes}
+
+Developing and using \ib we verified that providing a visual feedback of data that is usually consumed through plain text is an effective method to observe and investigate properties that would normally be hard to spot.
+For example, in \figref{fig:inbug} we
+
+
 %%%%%%%%%%%%%%%%%%%%
-\section{Summary}
+\section{Outline}\label{sec:visualize-summary}
 %%%%%%%%%%%%%%%%%%%%
 
 In this chapter we presented \ib, a web-based visual analytics platform to explore the content of a bug repository.
@@ -214,7 +230,7 @@ However, the approach of \ib is general and therefore it can be applied to any b
 
 %Our main target is the \textit{Pharo} community, as we want to propose \ib as a tool for developing the \textit{Pharo} platform and refine the existing visualizations and improve \ib based on feedback we will get from Pharo users.
 
-\subsection{The Road So Far...}
+% \subsection{The Road So Far...}
 We saw that existing bug repositories contain information that can be highlighted using means other that plain text.
 The underlying information we display, however, is still in textual form, with the consequence that we have to rely on the expertise of the user to obtain useful information.
 In the next chapter we will tackle the problem of the reliability of the data by automatically collecting the relevant information during a software failure.
@@ -237,11 +253,11 @@ In the next chapter we will tackle the problem of the reliability of the data by
 
 % \section*{Appendix - Description of the demo}
 %
-% We foresee a very interactive demo, where in front of the audience we would use \ib to navigate the bug repository mentioned in \tabref{tab-tracker-summary}. In the following we do provide a plausible demo scenario, but would much rather prefer to have the audience give input on which bugs we would analyze together with them.
+% We foresee a very interactive demo, where in front of the audience we would use \ib to navigate the bug repository mentioned in \tabref{tab:tracker-summary}. In the following we do provide a plausible demo scenario, but would much rather prefer to have the audience give input on which bugs we would analyze together with them.
 %
 % \begin{enumerate}
 %
-% \item \textbf{Bug List View.} The beginning of the demo is to present the concepts behind the main interface of \ib. We are going to introduce the idea of a bug report as an independent entity and describe the visual representation chosen to describe a report. We then describe purpose of each panel, starting from the bug list: the possibility to examine a set of issues and their relation in terms of time collocation (see \figref{inbug}).
+% \item \textbf{Bug List View.} The beginning of the demo is to present the concepts behind the main interface of \ib. We are going to introduce the idea of a bug report as an independent entity and describe the visual representation chosen to describe a report. We then describe purpose of each panel, starting from the bug list: the possibility to examine a set of issues and their relation in terms of time collocation (see \figref{fig:inbug}).
 %
 % \item \textbf{Bug report manipulation filters.} We will show the capabilities of \ib to sort and filter the interesting reports. We will show an example of query submitted in Smalltalk, and show how we can find an interesting report with a visual inspection. \figref{appendix-query} shows the result of the query:
 %
