@@ -172,7 +172,7 @@ Inspired by more semantically rich and elaborated views, such as Ogawa et al's s
 
 \ib is a web application built on top of the \pha environment.
 It uses the \sea web framework~\cite{Duca2010a} to provide the data stored in a \textit{MongoDB} database and implements a \textit{RESTful API} to communicate with the client.
-The client interface is implemented in \textit{JavaScript} using the data manipulation and visualisation library \textit{D3.js}.\footnote{\url{http://d3js.org/}}
+The client interface is implemented in \textit{JavaScript} using the data manipulation and visualization library \textit{D3.js}.\footnote{\url{http://d3js.org/}}
 
 \ib is built to visualize the \fbz repository of the Pharo ecosystem.
 In \tabref{tab:tracker-summary} we provide a summary of the data we investigated.
@@ -211,10 +211,12 @@ The details of a single report are presented in the details view, where the user
 
 \section{More Than Meets the Eyes}
 
-Developing and using \ib we verified that providing a visual feedback of data that is usually consumed through plain text is an effective method to observe and investigate properties that would normally be hard to spot.
-For example, in \figref{fig:inbug} we
+While developing \ib we verified that providing a visual feedback using data that is usually consumed through plain text is an effective method to observe and investigate properties that would normally be hard to isolate.
+For example, in \figref{fig:inbug} we can easily separate the bug reports that are older from the newer ones, observe the amount of activity happening on an issue, spot cases where a bug report was reopened several times, or identify abandoned reports.
+This experience convinced us that the textual representation we currently use in modern issue tracking systems is limiting the amount of information that we can obtain from the data we collect.
 
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%
 \section{Outline}\label{sec:visualize-summary}
 %%%%%%%%%%%%%%%%%%%%
@@ -233,7 +235,8 @@ However, the approach of \ib is general and therefore it can be applied to any b
 % \subsection{The Road So Far...}
 We saw that existing bug repositories contain information that can be highlighted using means other that plain text.
 The underlying information we display, however, is still in textual form, with the consequence that we have to rely on the expertise of the user to obtain useful information.
-In the next chapter we will tackle the problem of the reliability of the data by automatically collecting the relevant information during a software failure.
+We therefore decided to tackle the problem of the reliability of the data by means of automatic data collection during a software failure.
+In the next chapter we present our approach to crowd-driven data collection: We collect and investigate a large amount of stack traces generated during development activities, to provide automated and reliable feedback to users and developers.
 
 
 %\begin{figure*}[ht]

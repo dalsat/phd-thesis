@@ -103,7 +103,7 @@
 \definecolor{tablesecondrow}{gray}{1}
 
 %%% Macros %%%
-\newcommand{\tool}[1]{\@ifundefined{@captype}{\textit{#1}}{#1}\xspace}
+\newcommand{\tool}[1]{\@ifundefined{@captype}{\textsc{#1}}{#1}\xspace}
 
 \newcommand{\bzilla}{\tool{Bugzilla}}
 \newcommand{\jira}{\tool{JIRA}}
