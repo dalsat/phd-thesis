@@ -5,6 +5,8 @@
 \coolchapter{How to Gamify Software Engineering}{}{ch:gamification}
 
 
+All our efforts up to this moments were aimed at reducing the time spent dealing bug reports by providing tools to access the data in a faster way than just plaintext.
+Providing faster and smarter tools, however, solves the problem of reducing maintenance costs, but does little to improve the fundamental issue of engaging developers and contributors.
 Software development, like any prolonged and intellectually demanding activity, can negatively affect the motivation of developers.
 This is especially true in specific areas of software engineering, such as requirements engineering, test-driven development, bug reporting and fixing, where the creative aspects of programming fall short.
 The developers' engagement might progressively degrade, potentially impacting their work's quality.
@@ -20,8 +22,11 @@ We provide a set of basic building blocks to apply gamification techniques, pres
 
 In \secref{sec:gamification-intro} we provide an in-depth introduction to gamification, while in \secref{sec:gamification-principles} we present its principles.
 In \secref{sec:gamification-sweng} we introduce a framework for applying gamification to a software engineering context.
-In \secref{sec:gamification-evaluation} we propose some guidelines to evaluate the effectiveness of a gamified system.
+In \secref{sec:gamification-evaluation} we propose some guidelines to evaluate the effectiveness of a gamified system, while in \secref{sec:gamification-discussion} we discuss the possible improvements of our work.
 Finally, in \secref{sec:gamification-summary}, we summarize and conclude the chapter.
+
+\newpage
+
 % With this paper we make the following contributions:
 %
 % \begin{itemize}
@@ -655,18 +660,15 @@ For example, in a bug tracking system we can measure the number of bug reports o
 However, it is clear that such metrics are domain specific, and have to be calibrated for each different gamification context.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Outline}\label{sec:gamification-summary}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}\label{sec:gamification-discussion}
 
-We presented a critical overview on the relevant literature on gamification, and proposed a framework to support the design of a gamification layer to support software engineering tasks.
-We showed how to implement practical actions to successfully gamify a system, and we distilled ten essential \emph{building blocks} that represent basic elements to be considered when designing gamification activities.
-We then discussed two example software gamification environments we are currently building, highlighting a number of challenges.
-Last, we outlined a proposal on how gamification systems can be evaluated.
+In this section we propose our reflections on the lesson we learned developing our work.
+We then discuss how we think our work can be improved.
+
 
 \subsection{Reflections}
 
-The examples in \secref{sec:gamification-framework} hint at a fact that should not be disregarded about gamification: To create such environments is a far from trivial endeavour.
+The examples in \secref{sec:gamification-framework} hint at a fact that should not be disregarded about gamification: To create such environments is a far from trivial endeavor.
 The reasoning that goes into creating thematic environments, the way that leveling is handled, how and when awards and badges should be assigned, is a strongly iterative process.
 One might be tempted to bypass such a labor-intensive work by using the simplest solution, which is to award points and to base the leveling on such points.
 However, apart from the danger of pointsification, there is another risk, which we define as ``stalling'': If the gamification layer is not constantly revisited, maintained, and evolved, it risks to quickly become obsolete, and therefore will not only be ignored by the users, but it might even cause decreased participation.
@@ -694,6 +696,16 @@ The main result of our work were the gamification framework and the ten essentia
 The focus of our work revolves around the activities performed by the users.
 However, further insight can come from considering the different types of users in a community, to avoid the negative effect of marginalizing some users.
 For example, Vasilescu \etal studied the difference between men and women in approaching---and leaving---a community~\cite{vasi2012}, while Koivisto \etal showed how the ease of use of gamification tends to decline with age~\cite{koiv2014}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outline}\label{sec:gamification-summary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We presented a critical overview on the relevant literature on gamification, and proposed a framework to support the design of a gamification layer to support software engineering tasks.
+We showed how to implement practical actions to successfully gamify a system, and we distilled ten essential \emph{building blocks} that represent basic elements to be considered when designing gamification activities.
+We then discussed two example software gamification environments we are currently building, highlighting a number of challenges.
+Last, we outlined a proposal on how gamification systems can be evaluated.
 
 
 %The solutions developed to build \textit{The Myth and De-Bug} were designed with an actual use scenario in mind, and are being integrated into \textit{ShoreLine}, a comprehensive platform to manage bug reports developed for the \textit{Pharo}\footnote{https://pharo.org} community.
