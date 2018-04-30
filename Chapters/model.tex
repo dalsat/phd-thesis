@@ -38,7 +38,7 @@ We performed a survey to investigate what users deem easy to provide in a bug re
 \structure
 In \secref{sec:model-intro} we discuss what we should expect from a bug report.
 \secref{sec:model-method} presents our research method and introduces our research questions, that we answer in \secref{sec:model-approach}.
-In \secref{sec:model-discussion} we discuss the meaning of our findings, while in \secref{sec:model-summary} we summarize and conclude the chapter.
+In \secref{sec:model-discussion} we discuss the meaning of our findings and how our work can be extended, while in \secref{sec:model-summary} we summarize and conclude the chapter.
 
 \newpage
 
@@ -707,11 +707,12 @@ The fields that connect the issue with other reports are also relevant, for exam
 
 
 
-%%%%%%%%%%%%%%%%%%%%
-\section{Threats to Validity} \label{sec:model-discussion}
-%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}\label{sec:model-discussion}
 
-% \subsection{Threats to Validity}
+This section discusses the possible problems of our approach and how our work can be improved.
+
+
+\subsection{Threats to Validity}
 
 Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
 We spent a considerable amount of time dealing with the representation of the data, extracting its features and cleaning the unneeded parts.
@@ -721,6 +722,19 @@ In a large dataset it is hard, however, to guarantee the complete soundness of t
 
 There is the concern that the lifetime of a bug report, that we used as a measure of quality of a bug report, is not relevant for our task.
 However, this metric proved to be an interesting open problem in the field and it represents an interesting heuristic in determining the effectiveness of a report.
+
+
+\subsection{Next Steps}
+
+Developers tend to prefer simpler models to depict software defects.
+Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
+Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
+
+GitHub adopts the opposite approach, by providing a minimal structure of a bug report that is mostly a note attached to a commit or a piece of code.
+This interesting approach, however, lacks the descriptive power of the other two platforms.
+The need for a simpler model is hinted by the choices of the development team of \bzilla that on version 5.0, released in July 2015, proposes a simplified interface that asks the user for a summary and a description of the problem, polished of all the additional information.
+
+We believe that the future of issue tracking systems lies in flexible structures that can dynamically adapt to different aspects of the development activity.
 
 
 % %%%%%%%%%%%%%%%%%%%%%%
@@ -776,21 +790,9 @@ In doing so, we provided the following contributions:
 
 \end{enumerate}
 
-\subsection{Next Steps}
-
-Developers tend to prefer simpler models to depict software defects.
-Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
-Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
-
-GitHub adopts the opposite approach, by providing a minimal structure of a bug report that is mostly a note attached to a commit or a piece of code.
-This interesting approach, however, lacks the descriptive power of the other two platforms.
-The need for a simpler model is hinted by the choices of the development team of \bzilla that on version 5.0, released in July 2015, proposes a simplified interface that asks the user for a summary and a description of the problem, polished of all the additional information.
-
-We believe that the future of issue tracking systems lies in flexible structures that can dynamically adapt to different aspects of the development activity.
-
-
-\subsubsection{The Road So Far...}
 
 This chapter concludes our discussion about collecting information about bugs.
-We saw how automation can support developers in their maintenance task, but we are still left to face with the issue that bug fixing is a tedious activity.
-In the next chapter we explore the field of \emph{gamification} and investigate whether its use can help developers and communities in processing the large amount of unstructured information that populates issue tracking systems.
+We proposed different approaches to support developers in their bug fixing activity.
+We used automation to collect reliable data, we built visualizations to provide effective access to the data, and we discussed how we can improve the model of a bug report.
+We are still left, however, with the issue that bug fixing is intrinsically a boring and tedious activity.
+In the next chapter we try to mitigate this problem by exploring the field of \emph{gamification}, investigating whether its use can help developers and communities in processing the large amount of unstructured information that populates issue tracking systems.
