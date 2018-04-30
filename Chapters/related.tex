@@ -4,27 +4,29 @@
 % \chapter{State of the Art}\label{ch:related}
 \coolchapter{State of the Art}{}{ch:related}
 
-% \section{History of the Issue Tracking Systems}
-
-Correctness is clearly an essential property for a computer program to work.
-However, it is nearly impossible to determine whether a non-trivial program is really correct: the huge amount of different variables and environments that a program usually gets exposed to, makes predicting all the potentially harmful situations a task to hard to tackle.
-Even if we could determine the absolute correctness of a program in a given moment in time, this does not guarantee that it will keep behaving correctly in the future: There are a number of external factors that influence the execution of a program that can cause the arise of problems that could not be observed before.
-Such external factors could for example be changes in the underlying technology, like the operating system, or different usage conditions like a change of the input format.
-For this reason ---since we cannot get rid of bugs--- dealing efficiently with defects is a crucial aspect in the success of a software system.
-
+The birth of computer programming brought along the phenomenon of failures and errors.
 Since the beginning of the history of computer programming, developers needed a procedure to track and describe the appearance, impact, and resolution of the errors encountered during the evolution of a system.
 \figref{fig:first-bug-report} shows what the folklore considers to be the first bug report, written by Grace Hopper.\seeurl{http://ei.cs.vt.edu/~history/Hopper.Danis.html}
 From that handwritten paper note to present days, issue trackers evolved and adapted to reflect the different development practices introduced during the years.
 This led to a well established \emph{de facto} model of a bug report.
 
-In this chapter we illustrate the state of the art in issue tracking, providing an overview on the current tools and practices and the approaches they propose, to identify the useful elements in issue tracking.
-
-\begin{figure}[t]
+\begin{figure}[hb]
 \centering
   \includegraphics[width=.7\linewidth]{related/bug}
   \caption[The first "bug" report.]{This piece of paper is considered to be the first "bug" report. It was written by Grace Hopper when she was working on the Mark II computer, to document the find of a moth that caused a malfunction in the system.}
   \label{fig:first-bug-report}
 \end{figure}
+
+\pagebreak
+
+Correctness is arguably an essential property for a computer program to work.
+However, it is nearly impossible to determine whether a non-trivial program is really correct: the huge amount of different variables and environments that a program usually gets exposed to makes predicting all the potentially harmful situations an unmanageable task.
+Even if we could determine the absolute correctness of a program in a given moment in time, this does not guarantee that it will keep behaving correctly in the future: There are a number of external factors that influence the execution of a program that can trigger problems that could not be observed before.
+Such external factors could for example include changes in the underlying technology, like the operating system, or different usage conditions like a change of the input format.
+For this reason ---since we cannot get rid of bugs--- dealing efficiently with defects is a crucial aspect in the success of a software system.
+
+
+In this chapter we illustrate the state of the art in issue tracking, providing an overview on the current tools and practices and the approaches they propose, to identify the useful elements in issue tracking.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,19 +55,21 @@ In this section we present four platforms, selected by importance and overall ad
 
 \begin{figure}[t]
 \centering
- \includegraphics[width=.95\linewidth]{related/github}
+ \includegraphics[width=.8\linewidth]{related/github}
  \caption{\gth bug report submission form.}
  \label{fig:github-interface}
 \end{figure}
 
 \subsubsection{GitHub}
-\gth\seeurl{https://www.github.com} is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker. \gth adopts a simplified model of a bug report, but offers a strong integration with the versioned source code, by linking issues with specific commits.
+\gth\seeurl{https://www.github.com} is a popular \texttt{Git} repository hosting service, used to develop several popular open source projects, that offers a simple issue tracker.
+The submission form depicted in \figref{fig:github-interface} shows that \gth adopts a simplified model of a bug report, reducing
+but offers a strong integration with the versioned source code, by linking issues with specific commits.
 
 \subsubsection{FogBugz}
 \fbz\seeurl{https://www.fogcreek.com/fogbugz} is an issue tracker developed by FogCreek. It uses a bug model similar to the one of \bzilla, slightly more polished and user-friendly, due to its clean user interface and advanced filtering capabilities. It poses a strong accent on customization, by letting users define custom filters and views.
 
 \subsubsection{} %{Other platforms}
-Together with these platform, the open source and commercial scenes provide other popular solutions, like Redmine\seeurl{https://redmine.org/} or Trac.\seeurl{http://trac.edgewall.org/}
+Together with these platforms, the open source and commercial scenes provide other popular solutions, like Redmine\seeurl{https://redmine.org/} or Trac.\seeurl{http://trac.edgewall.org/}
 It is however interesting to observe that, while these systems propose different degrees of integration with the tools in their ecosystem (\eg the versioning system), the fundamental approach they adopt follows the same paradigm made popular by \bzilla: a textual description with additional customizable metadata.
 Further improvements to issue trackers, and the research around them, are built on top of this paradigm.
 In the following sections, we present the efforts of researchers to improve issue trackers and the model of a bug report in support of the bug fixing activity.
@@ -81,13 +85,13 @@ In the following sections, we present the efforts of researchers to improve issu
 Many researchers showed how using data generated during the programming activity can provide valuable information about the evolution of a project.
 For example, Bacchelli et al. proposed an Eclipse plugin to integrate email communication in the IDE~\cite{Bacc2011a}.
 They showed that having the email data produced during the development of a software system at one's disposal helps supporting program comprehension tasks, such as finding entry points in a system and recovering additional documentation.
-Another example has been given by Zimmermann \etal, who applied data mining techniques to version histories to detect changes and build prediction model to suggest future changes to developers~\cite{Zimm2004a}.
+Another example has been given by Zimmermann \etal, who applied data mining techniques on version histories to detect changes and build prediction models to suggest future changes to developers~\cite{Zimm2004a}.
 
 
 \subsection{Visualizations of an Issue Tracker}
 
 Just having the raw data, however, is often not enough: to turn it into actionable knowledge it is important to build tools to make use of this information.
-Reading a bug report is a difficult step in the debugging process: Browsing the large amount of information and decide whether how much to rely on the data reported by the users, consume a significative amount of developers' time.
+Reading a bug report is a difficult step in the debugging process: Browsing the large amount of information and decide whether how much to rely on the data reported by the users, consumes a substantial amount of developers' time.
 To alleviate this burden, researchers devised a number of approaches based on the visualization of the data inside issue trackers.
 For example, D'Ambros \etal performed an analysis of the \bzilla bug repository: They summarized the diagram of the state transitions of a report and proposed a set of visualizations to support the analysis of a bug database at different levels of granularity.
 Their approach allows the user to navigate the history of a single issue tracker and inspect selected part of the system with customized filters and synthesized a state transitions diagram of a report~\cite{DAmb2007b}.
@@ -96,10 +100,10 @@ Their approach allows users to browse the history of an issue tracker and inspec
 Knab \etal proposed visualizations to ease the understanding of the data in an issue tracker and find hidden patterns~\cite{Knab2009a,Knab2010a}.
 Hora \etal proposed a visual exploration of the bug repository, considering bugs as first class entities, and linking them to other software artifacts~\cite{Hora2012a}.
 
-All these approaches focus on retrospective analyses.
-We believe that while conceptually interesting, there is little practical utility in daily development, since after all the goal of an issue tracking system is not to look at defects, but to actually fix them.
-This implies that even the most elaborated techniques are of limited actionability, since the bug fixing process takes place in a different space, namely the integrated development environment (IDE).
-We believe that the use for a visualization is not to simply display the data, but to establish a first-class link to the development environment.
+% All these approaches focus on retrospective analyses.
+% We believe that while conceptually interesting, there is little practical utility in daily development, since after all the goal of an issue tracking system is not to look at defects, but to actually fix them.
+% This implies that even the most elaborated techniques are of limited actionability, since the bug fixing process takes place in a different space, namely the integrated development environment (IDE).
+% We believe that the use for a visualization is not to simply display the data, but to establish a first-class link to the development environment.
 
 
 \subsection{Visual Storytelling}
@@ -109,7 +113,7 @@ To effectively present and understand such an amount of data, many researchers a
 The ability of contextualizing the information in a story that explains the meaning of the data is becoming more and more central to the skills required to data scientists~\cite{Segel2010a}.
 
 Among the different visualizations that researchers used to represent a software system, the city metaphor has proven to be effective in giving a high level picture of a group of entities, allowing the user to navigate, zoom and inspect the various components and refine the view~\cite{Wett2011a}.
-This approach has been adopted in different scenarios, depicting different kind of information pertaining several steps of the development activity, such as changes in the system, the defects involving different components in the system, issues in quality checking rules or the exceptions in the system~\cite{Panas2003a}.
+This approach has been adopted in different scenarios, depicting different kinds of information pertaining to several steps of the development activity, such as changes in the system, the defects involving different components in the system, issues in quality checking rules or the exceptions in the system~\cite{Panas2003a}.
 
 Other visualization approaches tried to focus on the evolution of software systems, specifically the version repositories, the dependencies or the structures.
 For example, Fischer \etal~\cite{Fisch2006a} proposed \tool{EvoGraph}, an approach based on data extracted from a system release history, that visualizes the evolution of structural dependencies through 2D visual representations.
@@ -117,9 +121,9 @@ Girba \etal~\cite{Girb2005a} focused on the visualization of the evolution of cl
 The approach by Voinea \etal~\cite{Voin2007a} uses a combination of color and texture to represent as many attributes as possible to display information extracted from software configuration management systems.
 Another important approach is the one by Ratzinger \etal~\cite{Ratz2005a}, that represents systems as nested, zoomable graphs.
 
-However, while these approaches effectively visualize data about a single aspect that impacts or involves a system, they fall short in correlating this information with knowledge coming from diverse data sources and impacting diverse concerns.
-Such additional information could effectively integrate the existing data to uncover further relations between the elements of the system.
-We think that an approach that considers more than one kind of data and presents the information in a unified, uniform view, normalizing and balancing each source, could provide a greater value in understanding a software project and the activities happening in its ecosystem.
+% However, while these approaches effectively visualize data about a single aspect that impacts or involves a system, they fall short in correlating this information with knowledge coming from diverse data sources and impacting diverse concerns.
+% Such additional information could effectively integrate the existing data to uncover further relations between the elements of the system.
+% We think that an approach that considers more than one kind of data and presents the information in a unified, uniform view, normalizing and balancing each source, could provide a greater value in understanding a software project and the activities happening in its ecosystem.
 
 
 
@@ -130,7 +134,7 @@ We think that an approach that considers more than one kind of data and presents
 Dealing with bug reports is a non-trivial task, that poses a number of communication problems among users and developers.
 Such a large, noisy, and sometimes redundant corpus of information, impacts the debugging time and the maintenance costs.
 To minimize this impact, researchers focused on improving several aspects of this process.
-In this section, we present the efforts in automating the essential aspects of dealing with bug reports, such as its quality, its relevance, and predictions about the future behavior of the system.
+In this section we present the efforts in automating the essential aspects of dealing with bug reports, such as its quality, its relevance, and predictions about the future behavior of the system.
 
 \subsection{Quality of a Bug Report}
 
@@ -145,24 +149,24 @@ However, developers do not consider this harmful, but instead find the additiona
 
 Managing a large bug repository is often a burden that adds a new layer of complexity on top of the bug fixing problem.
 To alleviate this burden, researchers proposed to use automated approaches~\cite{Weim2006}.
-For example, Anvik \etal observed that large open source projects are often overwhelmed by the rate of new bug reports and proposed a machine learning based approach to to aid bug \emph{triaging} decisions~\cite{Anvi2006a}, the process of selecting the a the right person to take care of an issue.
+For example, Anvik \etal observed that large open source projects are often overwhelmed by the rate of new bug reports and proposed a machine learning based approach to to aid bug \emph{triaging} decisions~\cite{Anvi2006a}, the process of selecting the right person to take care of an issue.
 
 Guo \etal conducted a study to predict what impacts the resolution time of \textit{MS Windows} bug reports~\cite{Guo2010}, finding that a high number of reassignment of a report usually increases the issue lifetime, and that the reputation of the submitter also impacts the fixing time.
 Given the expensive nature of the bug fixing activity, a number of approaches exist to estimate the cost of a bug fix in person-hours~\cite{Weis2007a}, predict bug fixing time~\cite{Gige2010}, locate features from bug reports~\cite{Dit2013a}, and perform traceability linking~\cite{Biss2013a}.
 
 
-\subsection{Relevance of Bug Reports}
-
-An important element to reduce the time needed to close a defect comes not only from filtering the relevant reports inside issue trackers, but also from the collection of valuable information.
-To support the reliability of the collected information, both researchers and developers implemented tools to collect runtime exceptions to analyze runtime errors.
-For example, Glerum \etal used an automated approach to leverage the errors collected through \tool{WER}, the \emph{Windows Error Reporting} tool~\cite{Glerum2009}.
-In their approach they grouped these reports into buckets, that they used to prioritize debugging and build a knowledge base where system administrators could check common problems of the system.
-Han Shi~\etal applied the same principle to performance debugging~\cite{Han2012}: They proposed an approach called \tool{StackMine}, designed to detect and report performance bugs and address defects that cause delays in the user experience.
-Mozilla adopts a similar approach to collect stack traces and for debugging purposes~\cite{McLa2004}.
-
-The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
-These studies provided evidence that stack traces are useful tools and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}, as they provide precise information, usually more reliable and useful than the descriptions produced by the submitter of a bug report~\cite{Ko2006}.
-Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
+% \subsection{Relevance of Bug Reports}
+%
+% An important element to reduce the time needed to fix a defect comes not only from filtering the relevant reports inside issue trackers, but also from the collection of valuable information.
+% To support the reliability of the collected information, both researchers and developers implemented tools to collect runtime exceptions to analyze runtime errors.
+% For example, Glerum \etal used an automated approach to leverage the errors collected through \tool{WER}, the \emph{Windows Error Reporting} tool~\cite{Glerum2009}.
+% In their approach they grouped these reports into buckets, that they used to prioritize debugging and build a knowledge base where system administrators could check common problems of the system.
+% Han Shi~\etal applied the same principle to performance debugging~\cite{Han2012}: They proposed an approach called \tool{StackMine}, designed to detect and report performance bugs and address defects that cause delays in the user experience.
+% Mozilla adopts a similar approach to collect stack traces for debugging purposes~\cite{McLa2004}.
+%
+% The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
+% These studies provided evidence that stack traces are useful tools and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}, as they provide precise information, usually more reliable and useful than the descriptions produced by the submitter of a bug report~\cite{Ko2006}.
+% Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
 
 %We believe that collecting stack traces and leveraging runtime data is a valuable support for developers in a programming environment, and should be part of the standard set of features of an issue tracking system.
 
@@ -184,7 +188,7 @@ Despite the efforts in improving the accuracy of the bug predicton approaches, B
 
 One of the core aspects of an issue tracker is that it collects social interactions in a community: Users can give feedback to the developers and obtain information on the system.
 Breu \etal analyzed a sample of 600 bug reports, finding that interacting with developers helps solving an issue faster~\cite{Breu2010}.
-Zhou and Mockus showed that users involved in the development activity, like bug reporting and participating in the community, are more likely to become stable, long time contributors~\cite{Zhou2015}.
+Zhou and Mockus showed that users involved in the development activity, like bug reporting and participating in the community, are more likely to become stable, long-term contributors~\cite{Zhou2015}.
 Therefore, improving issue trackers to foster the relations between developers and users could result in faster resolution of defects.
 
 
@@ -221,7 +225,7 @@ Again, this was done in a localized post mortem way.
 
 Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c}.
 
-In this context, we think that associating new stack traces to existing bug reports could provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
+% In this context, we think that associating new stack traces to existing bug reports could provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -260,7 +264,7 @@ De Pauw \etal built a tool to visualize the execution of Java programs, with the
 %They showed that large amount of logging data and user interaction data can show hidden paths of usage of the entities of the system.
 
 Finally, researchers also tried approaches to improve the textual representation of software artifacts by augmenting their description with a markup language~\cite{Badr2000,Male2002a}.
-While these approaches are focused on describing source code, they are still relevant for program comprehension to support bug fixing, as they explicitly render the properties that are hidden in the textual form of the source code.
+% While these approaches are focused on describing source code, they are still relevant for program comprehension to support bug fixing, as they explicitly render the properties that are hidden in the textual form of the source code.
 
 
 
@@ -301,7 +305,53 @@ Probably still being in the inception phase they did not provide concrete sugges
 
 %We believe this paper provides a starting point to approach the gamification of software engineering in a systematic way and also provided recommendations on how to evaluate it.
 
+
 \section{Summary}
 
 In this chapter we have presented the efforts of practitioners and developers to support the activities of tracking and solving bugs.
 We believe that these efforts represent the desire of building smarter issue tracking system, that integrate with the IDE and interact with the existing development tools to reduce the time that developers spend dealing with boring and repetitive tasks.
+% \subsection{Roadmap}
+In the following, we present our contributions with respect to the state of the art.
+
+
+\subsubsection{Visualizations and analyses}
+
+The approaches that we saw focus on retrospective analyses.
+We believe that while conceptually interesting, there is little practical utility in daily development, since after all the goal of an issue tracking system is not to look at defects, but to actually fix them.
+This implies that even the most elaborated techniques are of limited actionability, since the bug fixing process takes place in a different space, namely the integrated development environment (IDE).
+We believe that the use for a visualization is not to simply display the data, but to establish a first-class link to the development environment.
+
+In \chref{ch:visualize} we present \ib, our tool for browsing issue trackers in a visual fashion, highlighting properties that are normally hidden when using plain text.
+
+
+\subsubsection{Collecting Runtime Data}
+
+We saw different approaches for program comprehension focused on describing source code that are are still relevant to support bug fixing, as they explicitly render the properties that are hidden in the textual form of the source code.
+
+In \chref{ch:stacktraces} we present our approach to data collection.
+In this context, we think that associating new stack traces to existing bug reports could provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
+In \chref{ch:reified} we then propose a tool for collecting domain-specific data about failures in a system, to enable a reliable and conversational data source.
+
+
+\subsubsection{Visual Storytelling}
+
+Researchers presented several approaches to effectively visualize data about a single aspect that impacts or involves a system.
+However, these approaches fall short in correlating this information with knowledge coming from diverse data sources and impacting diverse concerns.
+Such additional information could effectively integrate the existing data to uncover further relations between the elements of the system.
+We think that an approach that considers more than one kind of data and presents the information in a unified, uniform view, normalizing and balancing each source, could provide a greater value in understanding a software project and the activities happening in its ecosystem.
+
+In \chref{ch:blend} we present a case study of visualizing and combining multiple data sources about a software system.
+From this visualization we are able to learn interesting stories about the evolution of the system.
+
+
+\subsubsection{Modes for Bug Reports}
+
+We saw that different bug tracking systems propose different strategies to describe a bug report.
+In \chref{ch:model} we investigate what developers believe to be \emph{difficult} to provide when writing a bug report, to deepen our understanding of the problem of data reliability inside issue tracking systems.
+We then examine the data contained inside big issue tracking systems and try to define the \emph{minimal} model to describe a software error.
+
+
+\subsubsection{Gamification}
+
+The engagement of users is a problem that is bringing more and more people interested in the use of gamification applied to software engineering.
+In \chref{ch:gamification} we present a framework to support developers during the design of a gamification engine applied to their systems and communities, highlighting the perils that an inconsiderate use of points and badges can bring.
