@@ -676,13 +676,10 @@ Common & 0.27 (+0.02) & 0.28 (+0.03) & 0.28 (+0.03) & 0.28 (+0.03) \\
 Indeed, the results on the most recent dataset do not differ significantly from the results based on much longer timespans.
 
 \textbf{Conclusion.} From our study using PCA, we observe that there exists a set of core elements of a bug report that impact and influence its lifetime.
-
 Comparing these result with the perceived difficulty presented in RQ1, we see that some of these elements, like a description of the problem, the screenshot or the stack trace, compose the description field that we saw impacting the resolution time.
 Another relevant element is the assignee of the report, but users find it hard to provide it.
-
 Interestingly, the elements that are the most useful in the resolution of a software defect are also harder to provide.
 From the experience with the various issue trackers and their interfaces, we believe that a user submitting a bug report should be offered a clean interface, that minimizes the amount of required information, highlights the most effective elements, and progressively requires the harder or less relevant ones.
-
 The AdaBoost machine learning model achieves the best results, yet it can only predict the lifetime of a limited number of bug reports.
 The increment over a random classifier prediction is particularly small for the \emph{common} attributes.
 This can be explained by the terse nature of the core model.
@@ -690,17 +687,14 @@ Moreover, the \emph{tracker} fields improve prediction, showing a relation betwe
 
 After calculating the lifetime of each bug report in the tracker, we compare data from the two considered platforms.
 By analyzing the average lifetime of the bug reports in each platform we note that they have a longer lifespan on \bzilla than on \jira, with an average fixing time of 239 and 166 days, respectively.
-
 Even if the longer life of \bzilla projects may explain this phenomenon, we measure a gap between the lifetime of the reports in the two platforms (109 days for \bzilla and 93 days for \jira), even when we restrict ourselves to consider reports submitted after 2009 (\ie when all the projects were active).
 There is an interesting, unexplained substantial difference in the way bug reports are processed in the two platforms.
 Studies can be designed and carried out to determine whether and how the bug reporting system itself leads to this behavior or there is a possibly unconscious self-selection of projects in using one or the other system.
-
 Concerning project-specific attributes, from the results of the test, depicted in \tabref{tab:ml-results} and \tabref{tab:ml-results-fresh}, it emerges that they have the least weight in predicting the lifetime of a report.
 This suggests that they are not related to the fixing time.
 This may be a hint that these fields probably track collateral aspects of the evolution of a report that are not related to how quick a bug will be solved.
 
 Last, we examine which fields impact the prediction the most: They are the number of words of the description and the summary, suggesting that an accurate description of the problem is important to engage the developers.
-
 The fields that connect the issue with other reports are also relevant, for example the dependent issues, as well as the fact that a bug report is already assigned at the time of submission.
 
 
@@ -714,7 +708,6 @@ This section discusses the possible problems of our approach and how our work ca
 
 Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
 We spent a considerable amount of time dealing with the representation of the data, extracting its features and cleaning the unneeded parts.
-
 In particular, we carefully excluded from our prediction model all the fields that could yield a-posteriori information on the lifetime of a report.
 In a large dataset it is hard, however, to guarantee the complete soundness of the whole corpus, that could contain hidden relations between some attributes.
 
@@ -775,7 +768,6 @@ We conducted an investigation to identify the features that are relevant to obta
 In doing so, we provided the following contributions:
 
 \begin{enumerate}
-
 \item An overview of the perceived difficulty of submitting elements of a bug report for users;
 
 \item A meta-model for bug reports that represents both the common and specific elements available in reports of different issue trackers;

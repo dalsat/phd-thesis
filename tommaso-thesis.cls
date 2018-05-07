@@ -121,29 +121,35 @@
 \newcommand{\entity}[1]{\textsc{#1}\xspace}
 \newcommand{\method}[1]{\textit{#1}\xspace}
 
-\newcommand{\buildingblock}[2]{
-    \begin{wrapfigure}{l}{0.10\linewidth}
-    	\vspace{-15pt}
-    	\begin{center}
+% \newcommand{\buildingblock}[2]{%
+%     \setlength\intextsep{0pt}
+%     \begin{wrapfigure}{l}{0.10\linewidth}
+%         \centering
+%     	\includegraphics[width=\linewidth]{gamification/#2}
+%     \end{wrapfigure}
+%     \noindent\textbf{#1:}%
+% }
+
+\newcommand{\buildingblock}[3]{%
+    \vbox{
+    \subsubsection{#1}
+    \setlength\intextsep{0pt}
+    \begin{wrapfigure}{l}{0.10\linewidth}%
+        \centering%
     	\includegraphics[width=\linewidth]{gamification/#2}
-    	\end{center}
-    	\vspace{-15pt}
     \end{wrapfigure}
+    #3}}
 
-    \noindent\textbf{#1:}
-}
-
-\newcommand{\badge}[1]{
+\newcommand{\badge}[1]{%
+\setlength\intextsep{0pt}
 \noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-  \vspace{-18pt}
+\begin{wrapfigure}{l}{.1\textwidth}
+  % \vspace{-18pt}
   % \vspace{-2.5em}
-  \begin{center}
-    \includegraphics[width=0.06\textwidth]{gamification/#1.pdf}
-  \end{center}
-  \vspace{-20pt}
-\end{wrapfigure}
-}
+  \centering
+  \includegraphics[width=0.08\textwidth]{gamification/#1.pdf}
+  % \vspace{-20pt}
+\end{wrapfigure}}
 
 
 %%% Model %%%

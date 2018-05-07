@@ -133,7 +133,7 @@ This will help us to understand how the obtained background can be leveraged to 
 The  idea that games can be adapted to positively influence tasks and activities in other domains is older than the term \emph{gamification}, which only gained popularity in the recent years.
 
 In 1980, Malone~\cite{Malone1980} studied what makes computer games captivating to extract the features that can be used to support teaching.
-He considered two types of motivation: \emph{extrinsic motivation}, triggered by means of a {\em reward}, and \emph{intrinsic motivation}, triggered by the {\em satisfaction} of performing an action.
+He considered two types of motivation: \emph{extrinsic motivation}, triggered by means of a \emph{reward}, and \emph{intrinsic motivation}, triggered by the \emph{satisfaction} of performing an action.
 Malone identified three main elements that influence the engagement in a game:
 
 \begin{enumerate}[(a)]
@@ -247,7 +247,7 @@ At the same time, the points awarded are subject to a quality review from the us
 As such, if gamification is used to enrich existing interactions, rather than to force users to perform boring actions, it can be a valuable tool in growing a successful community.
 
 The last set of perils we discuss are of a legal and moral nature, but not necessarily connected to the professional world.
-First, there is the question of {\em privacy}, as gamified systems and contexts can be misused to collect a vast amount of information about the players.
+First, there is the question of \emph{privacy}, as gamified systems and contexts can be misused to collect a vast amount of information about the players.
 Second, as stated by Bogost\footnote{See \url{http://www.gamasutra.com/view/feature/134735/persuasive_games_exploitationware.php} } in an essay entitled ``Exploitationware'', gamification might induce people to do things that are not really in their interest, \ie proposing to ``replace real incentives with fictional ones.
 Real incentives come at a cost but provide value for both parties based on a relationship of trust.
 By contrast, pretended incentives reduce or eliminate costs, but in so doing they strip away both value and trust.'' Third, gamified systems can be easily tweaked to implement deceptive marketing and advertising.
@@ -285,7 +285,7 @@ The pun being intended, it would be ``game over'' for such a gamification approa
 
 The real goal of gamification has to be a different one, namely to improve the organization of the community, by helping and stimulating experts, by highlighting important bug reports, by making visible important achievements such as the closing of a difficult bug report, and in general by fostering and maintaining motivation over a longer period of time.
 
-We need an approach which supports what McGonigal~\cite{McGo2011a} identified as the 4 key aspects of gamification: {\em Satisfying work}, the {\em experience/hope of being successful}, a {\em social connection}, and a deeper {\em meaning}.
+We need an approach which supports what McGonigal~\cite{McGo2011a} identified as the 4 key aspects of gamification: \emph{Satisfying work}, the \emph{experience/hope of being successful}, a \emph{social connection}, and a deeper \emph{meaning}.
 Next, we present our framework for the gamification of software engineering, which we distilled from a vast literature review~\cite{Mast2014a}.
 Due to space constraints we discuss and present only the salient underlying theory.
 
@@ -309,107 +309,118 @@ In essence, Taje's layers are a subset of the components of our framework.
 \label{fig-frame}
 \end{figure}
 
-Our framework is based on the concept of {\em Activity} (depicted in \figref{fig-frame}), which is composed of {\em Analysis}, {\em Implementation}, and {\em Testing}.
-Each activity pertains to a specific user type (role), present in gamification systems, which can be \begin{inparaenum}[i)] {\em \item Observer}, who acts in read-only mode and does not contribute anything new, {\em \item Writer}, who only interacts by modifying existing contents and {\em \item Solver}, who accomplishes the objectives of the gamification system\end{inparaenum}.
+Our framework is based on the concept of \emph{Activity} (depicted in \figref{fig-frame}), which is composed of \emph{Analysis}, \emph{Implementation}, and \emph{Testing}.
+Each activity pertains to a specific user type (role), present in gamification systems, which can be \begin{inparaenum}[i)] \emph{\item Observer}, who acts in read-only mode and does not contribute anything new, \emph{\item Writer}, who only interacts by modifying existing contents and \emph{\item Solver}, who accomplishes the objectives of the gamification system\end{inparaenum}.
 People interacting with a gamification system dynamically switch between these roles.
 
-An \textbf{Activity} consists of an {\em ID} formed by the initial letter of the role plus an incremental number (\eg the first activity listed in Writer has the ID ``W1''), a brief {\em description}, and a list of pertinent gamification building blocks (which we describe later).
+An \textbf{Activity} consists of an \emph{ID} formed by the initial letter of the role plus an incremental number (\eg the first activity listed in Writer has the ID ``W1''), a brief \emph{description}, and a list of pertinent gamification building blocks (which we describe later).
 Each activity is structured in the following way:
 
 \begin{enumerate}
 
-\item{\textbf{Analysis:}} Each activity within the gamification environment must come with an easily understandable {\em rationale} to connect to the global objectives of the environment, and the {\em emotional goal} we want to achieve in the people.
+\item{\textbf{Analysis:}} Each activity within the gamification environment must come with an easily understandable \emph{rationale} to connect to the global objectives of the environment, and the \emph{emotional goal} we want to achieve in the people.
 Without this analysis step, a gamification effort risks turning into a random set of arbitrary decisions.
 
-\item{\textbf{Implementation:}} To implement an activity the {\em actors} must be known and we need to understand which gamification {\em dynamics} they will be involved in, which represent the tactics to engage people in a specific activity.
-This is instantiated with game components we call {\em meta}, following Taje's nomenclature.
-Last, one must ponder the {\em hazards} that can arise from a game structure (algorithmic issues, misbehavior, hardware requirements, \etc).
+\item{\textbf{Implementation:}} To implement an activity the \emph{actors} must be known and we need to understand which gamification \emph{dynamics} they will be involved in, which represent the tactics to engage people in a specific activity.
+This is instantiated with game components we call \emph{meta}, following Taje's nomenclature.
+Last, one must ponder the \emph{hazards} that can arise from a game structure (algorithmic issues, misbehavior, hardware requirements, \etc).
 
-\item{\textbf{Testing:}} The last component is devoted to testing the activities, where it must be understood which entities are the {\em target} of the testing, which {\em methodology} can be used to perform the testing, and lastly, which the {\em expected results} and the {actual results}, to facilitate an iterative approach to the development of a gamification environment.
+\item{\textbf{Testing:}} The last component is devoted to testing the activities, where it must be understood which entities are the \emph{target} of the testing, which \emph{methodology} can be used to perform the testing, and lastly, which the \emph{expected results} and the {actual results}, to facilitate an iterative approach to the development of a gamification environment.
 
 \end{enumerate}
 
 This description of the framework is given from a conceptual point of view, obtained through several iterations and pilot tests we do not describe due to space constraints.
-Before we can provide concrete examples of how the framework is to be used, we need one last missing and fundamental piece: Each activity hinges on one or more {\bf building blocks}, which also denote the particular categories of gamification it belongs to.
+Before we can provide concrete examples of how the framework is to be used, we need one last missing and fundamental piece: Each activity hinges on one or more \textbf{building blocks}, which also denote the particular categories of gamification it belongs to.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gamification Building Blocks}\label{sec:gamification-building-blocks}
 
 The ten building blocks we present here have been identified during the construction of several software engineering gamification environments we have constructed, and which we briefly present in a latter section.
 We do not claim the list of building blocks is exhaustive, but after constructing the aforementioned gamification environments we did not see other building blocks emerge from our efforts.
-The building blocks are denoted by a series of aspects recurrent in the literature: According to Werbach and Hunter players {\em go through a journey}, progressing through an environment, first by ``on-boarding'', then by ``scaffolding'', and later by achieving ``mastery''~\cite{Werb2012a}.
-Adopting Lazzaro's ``keys to emotions''~\cite{Lazzaro2004}, good emotions triggered by solving puzzles, accepting challenges, and designing strategies are elicited by {\em hard fun}.
-Moreover, the {\em people factor}, which stems from socializing and working with people and giving/receiving gratitude is fundamental in community-based gamification environments.
-Embracing Seligman's concept of {\em resource building}~\cite{seligman2000positive}, it is beneficial to provide some form of avatar of the player which matures and grows as the gamification environment is being explored.
+The building blocks are denoted by a series of aspects recurrent in the literature: According to Werbach and Hunter players \emph{go through a journey}, progressing through an environment, first by ``on-boarding'', then by ``scaffolding'', and later by achieving ``mastery''~\cite{Werb2012a}.
+Adopting Lazzaro's ``keys to emotions''~\cite{Lazzaro2004}, good emotions triggered by solving puzzles, accepting challenges, and designing strategies are elicited by \emph{hard fun}.
+Moreover, the \emph{people factor}, which stems from socializing and working with people and giving/receiving gratitude is fundamental in community-based gamification environments.
+Embracing Seligman's concept of \emph{resource building}~\cite{seligman2000positive}, it is beneficial to provide some form of avatar of the player which matures and grows as the gamification environment is being explored.
 This in turn is tied to the concept of ``leveling up'' described by McGonigal~\cite{McGo2011a}.
 
 Before coming to the ten building blocks, one further consideration: As opposed to existing gamification environments, one which is tailored for software engineering must include the possibility of dynamically adapting itself.
 Since software systems are developed for very long periods of time, even decades, an environment should feature the possibility of removing existing rewards and adding new ones as the environment is being used.
 
-\buildingblock{Portal}{portal} When users cross the boundaries of the gamified platform, they register a profile and provide information that describes them to the virtual community.
+\newpage
+\buildingblock{Portal}{portal}
+{When users cross the boundaries of the gamified platform, they register a profile and provide information that describes them to the virtual community.
 Despite being a trivial operation, it has a relevant feature: It is the very first action that users accomplish in entering the new world, and should be acknowledged with a reward.
-{\em Example:} Bob registers to the Bug Tracker and receives a ``Welcome'' badge.
+\emph{Example:} Bob registers to the Bug Tracker and receives a ``Welcome'' badge.}
 
-\buildingblock{Production}{production} After registering, users must become immediately productive in the environment, because delays in starting using the platform may result in a drop of interest and cause users to quit.
+\buildingblock{Production}{production}
+{After registering, users must become immediately productive in the environment, because delays in starting using the platform may result in a drop of interest and cause users to quit.
 We split this block into three sub-blocks, according to the ways in which users have the possibility to produce content and receive rewards.
 \begin{itemize}
   \item \textbf{Symbiosis}: performing an activity that directly or indirectly helps someone else's activity or state.
 Acting well in favour of others benefits both parties.
-{\em Example:} Bob provides useful comments to a bug being handled by someone else.
+\emph{Example:} Bob provides useful comments to a bug being handled by someone else.
   \item \textbf{Narcissus\footnote{Narcissus was a Beotian hunter in Greek mythology who was so proud of his feats that he fell in love with his own image reflected in a pool.}}: doing something to self-improve one's position in the community.
 This action helps users to understand the structure and  mechanisms of the community.
-{\em Example:} Bob provides his first bug fix.
+\emph{Example:} Bob provides his first bug fix.
   \item \textbf{Hive}: proposing an idea to improve the platform and community life.
-{\em Example:} Bob proposes to introduce a ``Bug of the day'' notification mechanism.
-\end{itemize}
+\emph{Example:} Bob proposes to introduce a ``Bug of the day'' notification mechanism.
+\end{itemize}}
 
-\buildingblock{Bravery}{bravery} In the production process, users may attempt hard tasks.
+\buildingblock{Bravery}{bravery}
+{In the production process, users may attempt hard tasks.
 The more skilled they become, the more confidently they will attempt to achieve bigger goals.
 Such bravery leads to important achievements and should be equally rewarded.
-{\em Example:} Bob fixes an old bug that made many people despair and is awarded by the community with an ``Unstoppable'' badge.
+\emph{Example:} Bob fixes an old bug that made many people despair and is awarded by the community with an ``Unstoppable'' badge.}
 
-\buildingblock{Scrum}{scrum} In Rugby, Scrum is a way of restarting the game: Players bind together in order to make the other team collapse and take possession of the ball.
+\buildingblock{Scrum}{scrum}
+{In Rugby, Scrum is a way of restarting the game: Players bind together in order to make the other team collapse and take possession of the ball.
 The key is to rely on the strengths of everyone.
 Cooperating, collaborating, sharing useful tools, competing against, socializing with other community members is intrinsically motivating.
 The system should reward and promote teamwork.
-{\em Example:} Bob spends time assigning bug reports to users that he knows to be expert in the area, or tagging easy bugs for newbies.
+\emph{Example:} Bob spends time assigning bug reports to users that he knows to be expert in the area, or tagging easy bugs for newbies.}
 
-\buildingblock{Chameleon}{chameleon} While gaining skills and experience, the user may do something unique, spectacular, or never tried before.
+\buildingblock{Chameleon}{chameleon}
+{While gaining skills and experience, the user may do something unique, spectacular, or never tried before.
 The environment should react by introducing a new achievement and release an ad-hoc reward, which becomes part of the gamification library of the system and achievable by other users.
 Conversely, if a specific reward has never been reached by any user for a long time, the reason might be its impracticability; the system should dynamically remove such an achievement from the library.
 We affiliate such a dynamism with the ability of chameleons to change their own skin colour according to the surrounding environment.
-{\em Example:} Bob closes five bug reports with a single fix.
-The system administrators create a special ``Epic'' badge, and add it to the possible badges users can achieve.
+\emph{Example:} Bob closes five bug reports with a single fix.
+The system administrators create a special ``Epic'' badge, and add it to the possible badges users can achieve.}
 
-\buildingblock{Thunderbolt}{thunderbolt} When users become experts, with many obtained rewards, they might fall into a state of boredom.
+\buildingblock{Thunderbolt}{thunderbolt}
+{When users become experts, with many obtained rewards, they might fall into a state of boredom.
 The result is decreased motivation and productivity.
 To awake them from inactivity, the system should hit them like a thunderbolt with an announcement and direct them toward a new challenge, such as a one-week long quest where contestants can be awarded custom prizes.
 This should spur many users to participate.
-{\em Example:} Bob has not participated in any bug fixing activity for the last month.
-He and similar users are notified about a complex bug and a bounty for fixing that bug.
+\emph{Example:} Bob has not participated in any bug fixing activity for the last month.
+He and similar users are notified about a complex bug and a bounty for fixing that bug.}
 
-\buildingblock{Phasing}{phasing} Users may perform actions in the virtual world that, in reality, produce a permanent impact on the surrounding.
+\buildingblock{Phasing}{phasing}
+{Users may perform actions in the virtual world that, in reality, produce a permanent impact on the surrounding.
 Phasing suggests to mutate the environment according to the progression of each user's expertise.
 Two users, at different stages of their progression  see different representative phases of the same scenario and can interact with it in different ways.
-{\em Example:} Bob tags bugs that are old and inactive, but still interesting.
-The administrator then creates a new section highlighting such bugs, and acknowledges the contribution of Bob.
+\emph{Example:} Bob tags bugs that are old and inactive, but still interesting.
+The administrator then creates a new section highlighting such bugs, and acknowledges the contribution of Bob.}
 
-\buildingblock{Beautification}{beautification} Appearance, even if only virtual, is important to many.
+\buildingblock{Beautification}{beautification}
+{Appearance, even if only virtual, is important to many.
 The users' avatars change appearance over time and become more appealing as they progress in the environment.
 In the opposite case of inactivity, the appearance of the avatars starts to slowly degrade.
-{\em Example:} As Bob becomes an expert bug fixer, his avatar (for example depicted as a warrior) is decorated with better clothes and weapons.
-After a period of inactivity due to his (real) holidays, Bob's avatar is depicted out of shape and with a broken sword.
+\emph{Example:} As Bob becomes an expert bug fixer, his avatar (for example depicted as a warrior) is decorated with better clothes and weapons.
+After a period of inactivity due to his (real) holidays, Bob's avatar is depicted out of shape and with a broken sword.}
 
-\buildingblock{Champagne}{champagne} Since achievements inside the magic world are important to users, they want to celebrate their success not only within the virtual world, but also in the real one.
-{\em Example:} Bob is looking for a new job and on his curriculum puts a link to his profile in the bug tracker, as proof of his expertise\footnote{Mozilla is already proposing a similar concept at http://openbadges.org/}.
+\buildingblock{Champagne}{champagne}
+{Since achievements inside the magic world are important to users, they want to celebrate their success not only within the virtual world, but also in the real one.
+\emph{Example:} Bob is looking for a new job and on his curriculum puts a link to his profile in the bug tracker, as proof of his expertise\footnote{Mozilla is already proposing a similar concept at http://openbadges.org/}.}
 
-\buildingblock{Ascension}{holyascension} A game usually has an end.
-It is intrinsically rewarding and fulfilling to see the words {\em The end} on a screen, even though the actual satisfaction comes by what was done along the way.
+\buildingblock{Ascension}{holyascension}
+{A game usually has an end.
+It is intrinsically rewarding and fulfilling to see the words \emph{The end} on a screen, even though the actual satisfaction comes by what was done along the way.
 This building block does not come with a reward, as otherwise inactivity might set in.
 If users collected vast amount of rewards and participated in the community, they should be rewarded in the real world as well.
-{\em Example:} Bob has been a productive bug hunter for many years, and is rewarded by the environment admins by being invited to become also an admin.\\
+\emph{Example:} Bob has been a productive bug hunter for many years, and is rewarded by the environment admins by being invited to become also an admin.}
 
-{\bf Putting everything together.} In the following we provide two concrete examples of gamification environments we have been developing.
+\textbf{Putting everything together.} In the following we provide two concrete examples of gamification environments we have been developing.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Example I: The Myth and De-Bug}\label{sec:gamification-example-bugs}
@@ -419,10 +430,10 @@ Fixing a bug is like struggling against a monster that threatens a village.
 This image inspired the overall theme of ancient Greece, full of heroes, gods, legends, and epic battles with mythological beasts.
 We set the following goals for a gamification system in bug reporting:
 \begin{enumerate}[(1)]
-	\item {\em improve the quality of bug reports:} we want to stimulate users to include meaningful information.
+	\item \emph{improve the quality of bug reports:} we want to stimulate users to include meaningful information.
 Zimmermann \etal showed that some elements are crucial to ease the fixing process, such as stack traces~\cite{Zimm2010a}.
-	\item {\em stimulate the participation of the community:} we want to create a friendly environment for newbies and with engaging activities for experts.
-	\item {\em ease the fixing process:} we want to reduce the time spent dealing with cumbersome information, to allow developers to spend their time in fixing the defects.
+	\item \emph{stimulate the participation of the community:} we want to create a friendly environment for newbies and with engaging activities for experts.
+	\item \emph{ease the fixing process:} we want to reduce the time spent dealing with cumbersome information, to allow developers to spend their time in fixing the defects.
 We want encourage users to deal with unsorted data in the tracker, like assigning bug reports to the appropriate user, closing duplicate reports, or highlighting important bugs.
 \end{enumerate}
 
@@ -466,24 +477,16 @@ The player whose proposal for an extension of the environment has been accepted 
 \badge{tombraider_badge} An open problem of gamification communities (for example Stack Overflow), is keeping the motivation of users high or to recover it when it naturally decreases~\cite{Grant2013}.
 We designed badges that level up proportionally with the amount of work performed, \eg \textbf{Tomb Raider} is a badge achievable when a developer explores old posted reports, finds something interesting, and sets the status of the report back to active.
 
-%\badge{heracles_badge}
-\noindent
-\begin{wrapfigure}{l}{0.07\textwidth}
-\centering
-\vspace{-18pt}
-\includegraphics[width=0.06\textwidth]{gamification/heracles_badge.pdf}
-\vspace{-30pt}
-\end{wrapfigure}
-\textbf{Heracles}\footnote{Heracles was the greatest hero in Greek mythology.
+\badge{heracles_badge} \textbf{Heracles}\footnote{Heracles was the greatest hero in Greek mythology.
 He had incredible courage, physical strength and ingenuity.
 Among the many ventures attributed to him, he defeated the Hydra monster, a sea serpent with nine heads.
 Every time someone cut one away, it grew anew.
 This is a conceptual parallelism with what happens with closed bugs that are reopened.} is a badge of the same nature of Tomb Raider, but is awarded for closing re-opened bugs.
 
 % \pagebreak
-Our environment also deals with the issue of {\em balance}.
+Our environment also deals with the issue of \emph{balance}.
 If a gamification layer is too linear in terms of dispensing mere (and in a way meaningless) points, the danger of pointsification comes up: Users start to hunt for points by performing meaningless and contradictory actions, such as re-opening bugs that do not need to be reopened.
-The building block {\em Scrum} is crucial in this case, which means to rely on the community, for example by setting time limits for specific activities.
+The building block \emph{Scrum} is crucial in this case, which means to rely on the community, for example by setting time limits for specific activities.
 
 Also, our environment does not make large use of leaderboards because they are gamification elements that, in a number of cases, may demotivate players.
 We designed the leaderboard ``Twenty Top Hoplites of The Week'' by relying on the fact that having a considerably high work rate is an occasional ability.
@@ -601,7 +604,7 @@ Given the context of code reviews, which by definition happen inside the same te
 \section{Evaluating Gamified Systems}\label{sec:gamification-evaluation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Once a system is gamified, we need to be able to measure the impact of the gamification, and how much it contributed to reach the {\em business objectives}.
+Once a system is gamified, we need to be able to measure the impact of the gamification, and how much it contributed to reach the \emph{business objectives}.
 It is crucial not to confuse business objectives with game objectives: with the coexistence of ``serious'' and ``fun'' layers, it is easy to exchange the goals of the two aspects, thus misjudging the effects.
 
 In building our framework, we included a testing section, whose purpose is to decide at design time a procedure to state how successful the game elements applied to each single activity are.
