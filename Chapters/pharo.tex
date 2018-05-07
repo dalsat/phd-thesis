@@ -10,12 +10,12 @@ In this chapter we briefly present an overview of the technologies that we used 
 The majority of the tools presented in this dissertation are developed using \pha~\cite{black2009}.
 \pha is am object-oriented, \textit{Smalltalk} inspired programming environment, composed of the \pha programming language, an integrated development environment and a set of libraries covering the common needs for the daily programming tasks.
 
-While such a choice might at first seem extreme and anachronistic, it instead brings a number of advantages and features especially useful when prototyping a solution or a tool.
+While such a choice might at first seem extreme and anachronistic, it carries a number of advantages and features especially useful when prototyping an idea or a tool.
 Pharo inherits a number of powerful properties from its Smalltalk origins, that can support our task of implementing the data collection framework.
-In particular, it is a \emph{live} programming environment, with full reflectivity capabilities, and a control over the whole system that allows to access and manipulate programmatically the complete state of the program.
-We were able to exploit the characteristics of the platform, which allowed us to analyze and access the the running programs to easily collect runtime data, without having to fight the system to obtain the data.
+In particular, \pha is a \emph{live} programming environment, with full reflectivity capabilities, and a control over the whole system that allows to access and manipulate programmatically the complete state of the program.
+By exploiting the characteristics of the platform, we were able to analyze and access programs as they were running and easily collect runtime data, without having to fight the system to extract the data.
 
-In retrospective, we judge that using Pharo in our work and exploiting its abstractions over the entities of the system, resulted in a technical advantage that alleviated us from the burden of fully instrument a virtual machine to reproduce and study the defective environment.
+In retrospective, we judge that using Pharo in our work and exploiting its abstractions over the entities of the system resulted in a technical advantage that alleviated us from the burden of fully instrument a virtual machine to reproduce and study the defective environment.
 
 
 \subsection{Runtime Errors in Pharo}
