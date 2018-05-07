@@ -2,8 +2,8 @@
 %!TEX spellcheck = en_US
 
 
-% \chapter{Blended, Not Stirred: \\Multi-concern Visualization of \\Large Software Systems}\label{ch:blend}
-\coolchapter{Blended, Not Stirred}{Multi-concern Visualization of Large Software Systems}{ch:blend}
+\chapter[Multi-concern Visualization of Large Software Systems]{Multi-concern Visualization of \\Large Software Systems}\label{ch:blend}
+% \coolchapter{Blended, Not Stirred}{Multi-concern Visualization of Large Software Systems}{ch:blend}
 
 While constructing and evolving software systems, developers generate directly and indirectly a large amount of data of diverse nature, such as source code changes, bug tracking information, IDE interactions, stack traces, etc.
 Often these diverse data sources are processed and visualized in isolation, leading to a partial view of systems.
@@ -157,8 +157,8 @@ During its evolution it undergoes a series of minor and major releases, managed 
 In our analyses we modeled and extracted all the source code changes between subsequent releases of the system.
 \tabref{tab:pharo} summarizes the available source code changes data.
 
-\begin{table}[ht]
-  \center
+\begin{table}[ht]\small
+  \centering
   \caption{Source Code Changes}
   \label{tab:pharo}
   \rowcolors{1}{tablefirstrow}{tablesecondrow}
@@ -207,7 +207,7 @@ The presence of many different stack traces for a specific component might also 
 
 \tabref{tab:stacktraces} summarizes the collected and available data for stack traces.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{Stack Traces Data}
 \label{tab:stacktraces}
@@ -278,7 +278,7 @@ For example, the meta event that represents the opening of a \texttt{Finder}, a 
 % \end{tabularx}
 % \end{table}
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{IDE Interaction Data}
 \label{tab:idata}
@@ -334,7 +334,7 @@ In the example of \figref{fig:visualization-principles}, all the sliders are at 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\linewidth]{blend/stack-and-half-interaction}
+\includegraphics[width=0.65\linewidth]{blend/stack-and-half-interaction}
 \caption{The Same View Depicted in \figref{fig:visualization-principles}.C with the Following Weights: 0\% Source Code Changes, 100\% Stack Traces, and 50\% Interaction Data}
 \label{fig:stack-and-half-interaction}
 \end{figure}
@@ -467,7 +467,7 @@ These two districts are the packages \textit{Graphics-Files} and \textit{Compile
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.6\linewidth]{blend/packages-details}
+\includegraphics[width=0.5\linewidth]{blend/packages-details}
 \caption{Details of the Packages \textit{Graphics-Files} and \textit{Compiler}}
 \label{fig:packages-details}
 \end{figure}

@@ -1,12 +1,12 @@
 %!TEX root = ../tommaso-thesis.tex
 %!TEX spellcheck = en_US
 
-% \chapter{How to Gamify Software Engineering}\label{ch:gamification}
-\coolchapter{How to Gamify Software Engineering}{}{ch:gamification}
+\chapter{How to Gamify Software Engineering}\label{ch:gamification}
+% \coolchapter{How to Gamify Software Engineering}{}{ch:gamification}
 
 
 All our efforts up to this moments were aimed at reducing the time spent dealing bug reports by providing tools to access the data in a faster way than just plaintext.
-Providing faster and smarter tools, however, solves the problem of reducing maintenance costs, but does little to improve the fundamental issue of engaging developers and contributors.
+Providing faster and smarter tools solves the problem of reducing maintenance costs, but does little to improve the fundamental issue of engaging developers and contributors.
 Software development, like any prolonged and intellectually demanding activity, can negatively affect the motivation of developers.
 This is especially true in specific areas of software engineering, such as requirements engineering, test-driven development, bug reporting and fixing, where the creative aspects of programming fall short.
 The developers' engagement might progressively degrade, potentially impacting their work's quality.
@@ -259,7 +259,7 @@ Overall, gamification is a double-edged sword, but it is a rising phenomenon, wh
 
 
 %%%%%%%%%%%%%%
-\section{Gamifying Software Engineering:\\(Not) An Easy Game?}\label{sec:gamification-sweng}
+\section{Gamifying Software Engineering: (Not) An Easy Game?}\label{sec:gamification-sweng}
 %%%%%%%%%%%%%%
 
 We use a concrete running example to explain why gamifying software engineering areas is far from trivial.
@@ -469,12 +469,10 @@ We designed badges that level up proportionally with the amount of work performe
 %\badge{heracles_badge}
 \noindent
 \begin{wrapfigure}{l}{0.07\textwidth}
-  % \vspace{-2.5em}
-  \vspace{-18pt}
-  \begin{center}
-    \includegraphics[width=0.06\textwidth]{gamification/heracles_badge.pdf}
-  \end{center}
-  \vspace{-30pt}
+\centering
+\vspace{-18pt}
+\includegraphics[width=0.06\textwidth]{gamification/heracles_badge.pdf}
+\vspace{-30pt}
 \end{wrapfigure}
 \textbf{Heracles}\footnote{Heracles was the greatest hero in Greek mythology.
 He had incredible courage, physical strength and ingenuity.
@@ -534,8 +532,8 @@ By reviewing other's code, a user gets a gem.
 The kind of gem depends on the number, size and difficulty of the reviews.
 Each gem has a different value according to its rarity, as we see in \tabref{tab-gems}.
 
-\begin{table}[ht]
-\begin{center}
+\begin{table}[ht]\small
+\centering
 \caption{Points acquired per 1 gemstone.}
 \begin{tabular}{l|r}
 \textbf{Gemstone} & \textbf{Points} \\
@@ -554,7 +552,6 @@ Each gem has a different value according to its rarity, as we see in \tabref{tab
 \end{tabular}
 \label{pointsgem}
 \label{tab-gems}
-\end{center}
 \end{table}
 
 For example, a reviewer may check some code that includes changes for fifty lines of code over five different files, for which she receives a Jade.
@@ -569,8 +566,8 @@ By collecting gems, a user can grow his estate and obtain noble titles which ref
 For example, a new user in the team is reviewing many small changes to understand the project he is working on.
 He then collects many Quartz, slowly being promoted to Knight after 12 reviews, and Baron after 24.
 
-\begin{table}[t]
-\begin{center}
+\begin{table}[t]\small
+\centering
 \caption{Required number and type of gemstones to obtain noble title.}\label{titles}
 % \begin{tabular}{p{0.5cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}}
 \begin{tabular}{rrrrrrrr}
@@ -591,7 +588,6 @@ He then collects many Quartz, slowly being promoted to Knight after 12 reviews, 
 \hline
 \end{tabular}
 \label{tab-noble}
-\end{center}
 \end{table}
 
 The avatar of the player in this environment is then also depicted in a gameful way, such as a house which gets more beautiful as the player obtains more gems.
@@ -694,7 +690,7 @@ We composed the gamification layers presented in this chapter as part of the pro
 The main result of our work were the gamification framework and the ten essential building blocks to use as a reference in building the system, but the presented scenarios are actual software engineering problems currently investigated by researchers.
 
 The focus of our work revolves around the activities performed by the users.
-However, further insight can come from considering the different types of users in a community, to avoid the negative effect of marginalizing some users.
+However, further insights can come from considering the different types of users in a community, to avoid the negative effect of marginalizing some users.
 For example, Vasilescu \etal studied the difference between men and women in approaching---and leaving---a community~\cite{vasi2012}, while Koivisto \etal showed how the ease of use of gamification tends to decline with age~\cite{koiv2014}.
 
 
@@ -704,7 +700,7 @@ For example, Vasilescu \etal studied the difference between men and women in app
 
 We presented a critical overview on the relevant literature on gamification, and proposed a framework to support the design of a gamification layer to support software engineering tasks.
 We showed how to implement practical actions to successfully gamify a system, and we distilled ten essential \emph{building blocks} that represent basic elements to be considered when designing gamification activities.
-We then discussed two example software gamification environments we are currently building, highlighting a number of challenges.
+We then discussed two example software gamification environments highlighting a number of challenges.
 Last, we outlined a proposal on how gamification systems can be evaluated.
 
 

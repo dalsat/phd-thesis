@@ -28,7 +28,7 @@
 To ensure quality of software systems, developers use bug reports to track defects.
 It is in the interest of users and developers that bug reports provide the necessary information to ease the fixing process.
 Past research found that users do not provide the information that developers deem \emph{ideally useful} to fix a bug.
-This raises an interesting question: What is the \emph{satisficing} information to speed up the bug fixing process?
+This raises an interesting question: What is the \emph{satisficing}\footnote{Satisficing is a neologism coined by Simon~\cite{Simo57,Simo01} combining the verbs {\em to satisfy} and {\em to suffice}, and it is used to describe a solution that is roughly satisfactory and meets some criteria of sufficiency and is better than an optimal solution that would be too complex or would imply too strong constraints.} information to speed up the bug fixing process?
 
 We conducted an observational study on the relation between provided report information and its lifetime, considering more than 650,000 reports from open-source systems using popular bug trackers.
 We distilled a meta-model for a \emph{minimal} bug report, establishing a basic layer of core features.
@@ -60,7 +60,7 @@ For example, the commercial issue tracker JIRA defines several fields that descr
 Overall, there is currently no consensus among software projects and creators of bug reporting systems on essential mandatory fields to be filled by users in each report, optional fields that give useful additional information, and free space for users willing to provide more detailed descriptions.
 
 Our vision is to define the minimum set of information needed to describe a software defect, to clarify what should be required by each bug reporting system.
-In this chapter, we make a step in this direction: We investigate what makes a \emph{satisficing}\footnote{Satisficing is a neologism coined by Simon~\cite{Simo57,Simo01} combining the verbs {\em to satisfy} and {\em to suffice}, and it is used to describe a solution that is roughly satisfactory and meets some criteria of sufficiency and is better than an optimal solution that would be too complex or would imply too strong constraints.} bug report.
+In this chapter, we make a step in this direction: We investigate what makes a \emph{satisficing} bug report.
 We move from defining a good or more precisely an \emph{optimal} bug report and adopt a more pragmatic view on what users should provide.
 
 %This goal requires to consider the amount of required information, the reliability of the data, and the evolution of the report during its lifetime.
@@ -76,7 +76,8 @@ While this might be intuitive, issue trackers still do not emphasize this aspect
 At the same time, the project-specific bug report fields have little impact to the fixing time.
 This chapter provides insights on the current issue tracking practices and defines guidelines in building the foundations for a new model of an issue tracking system.
 
-The contributions of this work are:
+\newpage
+The contributions presented in this chapter are:
 
 \begin{itemize}[$\circ$]
 
@@ -196,8 +197,8 @@ The questionnaire is composed of two parts: \begin{inparaenum}[(1)]
 All the questions are formulated as statements (\eg ``It is easy to provide a description of the failure'') and the respondents have to declare their agreement using a 5-level Likert-type scale.
 We map the results into an integer scale from $-2$ (\ie ``strongly disagree'') to $2$ (\ie ``strongly agree'').
 
-\begin{table}[t]
-\begin{center}
+\begin{table}[t]\small
+\centering
 \caption{Expertise of the participants of the survey (average)}\label{tab:survey}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
@@ -212,7 +213,6 @@ Often submit bug reports & $0.7$ \\
 \hline
 \end{tabular}
 \label{tab:survey-expertise}
-\end{center}
 \end{table}
 
 We advertised the survey through the development mailing list of Pharo and we received a total of 22 complete responses.
@@ -226,7 +226,7 @@ In fact, we are especially interested in knowing the point of view of submitters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}[t]\small
-\begin{center}
+\centering
 \caption{Overview of the projects in the dataset}\label{tab:dataset-projects}
 % \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|l|rrrrr}
@@ -255,7 +255,6 @@ In fact, we are especially interested in knowing the point of view of submitters
  & SeaMonkey & Nov 10, 1995 & Jul 27, 2015 & 92,757 & 7,198 & 1h 51m \\
  & Thunderbird & Jan 2, 2000 & Jul 8, 2015 & 42,247 & 5,666 & 3h13m\\\hline
 \end{tabular}
-\end{center}
 \end{table}
 
 \subsection{Data Collection} \label{sec:model-collection}
@@ -272,8 +271,8 @@ The dataset contains more than 650,000 bug reports, $15\%$ of which were still o
 \tabref{tab:dataset} shows an aggregated summary of the dataset we collected.
 Each bug tracker has a different set of bug report states.
 
-\begin{table}[h]
-\begin{center}
+\begin{table}[h]\small
+\centering
 \caption{Contents of the dataset}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{l|rrr}
@@ -286,12 +285,11 @@ Closed issues & 36,127 & 529,914 & 566,041 \\
 Total Issues & 43,672 & 621,250 & {\bfseries 664,922} \\ \hline
 \end{tabular}
 \label{tab:dataset}
-\end{center}
 \end{table}
 
 \tabref{tab:dataset-statuses} details them, for each tracker, with the counts of the bug reports for each state at the moment of the download.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{Different states of bug reports in \bzilla and \jira, with the count of the reports currently in each state and the total sum of all the times a bug report reached a state.}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
@@ -537,7 +535,7 @@ We also investigate whether these fields have a measurable impact on the lifetim
 
  \tabref{tab:project-fields} shows a count of project-specific attributes in our dataset, including the average and maximum lifetimes of the corresponding bug reports, reported in days.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{Number of custom fields per project}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
@@ -631,7 +629,7 @@ In this context, a random classifier would correctly classify 0.25 of the instan
 
 \tabref{tab:ml-results} shows the prediction results: Each column represent a classifier, while each row represents each layer of attributes we add to the model.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{Prediction results: Proportion of bug reports classified in the correct time bucket, with increment over  random classification (25\% correctly classified bug reports).}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
@@ -658,7 +656,7 @@ To mitigate this effect, we recompute our experiments on the subset of bug repor
 The new dataset is composed of 31,472 bug reports.
 \tabref{tab:ml-results-fresh} shows the results of our second batch of experiments.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
 \centering
 \caption{Prediction results for bug reports of last year.}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}

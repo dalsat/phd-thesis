@@ -10,8 +10,8 @@
 \definecolor{unknown}{HTML}{D3D3D3}
 
 
-%\chapter{Misery Loves Company:\\CrowdStacking Traces to Aid Problem Detection}\label{ch:stacktraces}
-\coolchapter{Misery Loves Company}{CrowdStacking Traces to Aid Problem Detection}{ch:stacktraces}
+\chapter[CrowdStacking Traces to Aid Problem Detection]{CrowdStacking Traces to\\Aid Problem Detection}\label{ch:stacktraces}
+% \coolchapter{Misery Loves Company}{CrowdStacking Traces to Aid Problem Detection}{ch:stacktraces}
 
 During software development, exceptions are by no means exceptional: Programmers repeatedly try and test their code to ensure that it works as expected.
 While doing so, runtime exceptions are raised, pointing out various issues, such as inappropriate usage of an API, convoluted code, as well as defects.
@@ -88,13 +88,12 @@ In \pha, a stack trace is a list of pairs \textit{Class{>}{>}selector}, where \t
 \figref{fig:stacktrace} shows a concrete example of a stack trace that we collected with our tool.
 
 \begin{figure}[ht]
-\begin{center}
+\centering
   \includegraphics[width=7.3cm]{stacktraces/stacktrace}
   \caption{Example of a stack trace collected from a runtime exception.
 The most recent call is at the top, the oldest call is at the bottom.
 The snippets of code inside blocks are highlighted in blue.}
   \label{fig:stacktrace}
-\end{center}
 \end{figure}
 
 As we can see from the listing, the stack trace occasionally contains small snippets of code included in blocks (between square brackets, highlighted in blue).
@@ -114,7 +113,7 @@ Among those cases, 68\% are generated from a message sent to \emph{UndefinedObje
 These are the equivalent of a \emph{NullPointerException} in Java.
 
 \begin{figure*}[ht]
-\begin{center}
+\centering
   \includegraphics[width=0.9\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_classes}
   \caption{Distribution of the stack traces on the \pha system using a city like visualization, where each building is a class.
 \pha is composed of 14,045 classes distributed among 557 packages.
@@ -122,7 +121,6 @@ We highlight the system with data from 7,532 stack traces that we collected.
 The height and the color of each building is determined by the number of traces the class appears in, while classes that are not involved in an exception are collapsed and depicted in gray.
 The gray squares enclosing the buildings represent the package containing the classes.}
   \label{fig:stackcity-classes}
-\end{center}
 \end{figure*}
 
 \subsection{Interpreting Stacktraces}
@@ -183,11 +181,11 @@ It is designed to allow the developer to keep full control of her data and decid
 \figref{fig:shoreline-reporter} shows the main elements of the interactive user interface.
 
 \begin{figure}[ht]
-\begin{center}
+\centering
   \includegraphics[width=.95\linewidth]{stacktraces/ShoreLine-Reporter.pdf}
   \caption{The interactive interface of ShoreLine Reporter}
   \label{fig:shoreline-reporter}
-\end{center}
+\centering
 \end{figure}
 
 \slr activates when the user runs code that triggers an exception \textcircled{\scriptsize A}.
@@ -221,9 +219,9 @@ In the \pha community, the development version is actively developed and constan
 We collected stack traces during a time period of five months, from June to November 2014.
 \tabref{tab:data-summary} shows a summary of the data we collected during that time span.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
+\centering
 \caption{Summary of the stack traces collected from June to November 2014}
-\begin{center}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr} \hline
 \# of stack traces & 7,532 \\
@@ -233,7 +231,6 @@ average lines of a stack trace & 34 \\
 size of the shortest stack trace & 1 \\
 size of the longest stack trace & 314 \\ \hline
 \end{tabular}
-\end{center}
 \label{tab:data-summary}
 \end{table}
 
@@ -244,21 +241,20 @@ The color of each method is determined by the number of times a method appears i
 Methods, classes and packages that do not appear in a stack trace are collapsed and depicted in gray.
 
 \begin{figure}[ht]
-\begin{center}
-  \includegraphics[width=\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_methods}
-  \caption{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
+\centering
+\includegraphics[width=\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_methods}
+\caption{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
 All the classes contain 112,558 methods, the color of each building is determined by the number of traces the class appears in, while the packages, classes and methods that are not involved in an exception are collapsed and depicted in gray.}
   \label{fig:stackcity-methods}
-\end{center}
 \end{figure}
 
 The figure suggests that only a small part of the system is actually involved in the collected exceptions, and the vast majority of methods and classes is not impacted by these exceptions.
 By knowing these methods that work as entry points to the classes, a developer can view the impact that each class and method have in case of failures, and decide which methods she has to inspect first to search for a bug.
 
 \tabref{tab:methods-count} shows a summary of the most active methods in all the stack traces.
-\begin{table}[ht]
+\begin{table}[ht]\small
+\centering
 \caption{The 10 most called methods in the collected stack traces.}
-\begin{center}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
 \textbf{Class{>}{>}Method} & \textbf{Occurrences} \\ \hline
@@ -284,7 +280,6 @@ BlockClosure>>cull: & 3,642 \\
 %FormCanvas>>roundCornersOf:during: & 2,017
 \hline
 \end{tabular}
-\end{center}
 \label{tab:methods-count}
 \end{table}
 As expected, the most recurrent exceptions are related to some core elements of the language: \textit{BlockClosure} is a core element used when passing code as argument, while \textit{UndefinedObject>>doesNotUnderstand:} and \textit{Message>>sentTo:} are part of the message sending infrastructure that is the foundation of Smalltalk.
@@ -305,19 +300,9 @@ In information retrieval it is built by splitting a document in a sequence of te
 We build our vector space model by building a vector for each stack trace: we use the pair \textit{ClassName{>}{>}MethodName} to identify the features (the terms) of the vector.
 We collected all the features in a dictionary and used it to build each vector, where the components of the vector contain the number of times that a method invocation appears in the stack trace.
 
-
+\newpage
 For example, consider the two stack traces containing the method calls:
-% {\footnotesize
-% \begin{center}
-% \begin{tabular}{ll}
-% \textbf{Trace 1} & \textbf{Trace 2} \\ \hline
-% UndefinedObject{>}{>}DoIt & TabManager{>}{>}setTabContentFrom: \\
-% BlockClosure{>}{>}valueAfterWaiting: & Tab{>}{>}retrieveMorph: \\
-% BlockClosure{>}{>}newProcess & BlockClosure{>}{>}newProcess \\
-% \end{tabular}
-% \end{center}}
-{\footnotesize
-\begin{center}
+\begin{center}\small
   \begin{tabular}{lll}
 
     \begin{tabular}{l}
@@ -337,13 +322,12 @@ For example, consider the two stack traces containing the method calls:
     \end{tabular}
 
   \end{tabular}
-\end{center}}
+\end{center}
 
 \pagebreak[2]
 
 We collect all the terms and build a dictionary composed of the features:
-{\footnotesize
-\begin{center}
+\begin{center}\small
 \begin{tabular}{l}
 \textbf{Dictionary} \\
 BlockClosure{>}{>}newProcess \\
@@ -352,24 +336,12 @@ Tab{>}{>}retrieveMorph: \\
 TabManager{>}{>}setTabContentFrom: \\
 UndefinedObject{>}{>}DoIt
 \end{tabular}
-\end{center}}
+\end{center}
 
-% \begin{stacktrace}
-% {\footnotesize
-% \begin{center}
-% \begin{tabular}{l}
-% \textbf{Dictionary} \\
-% BlockClosure{>}{>}newProcess \\
-% BlockClosure{>}{>}valueAfterWaiting: \\
-% Tab{>}{>}retrieveMorph: \\
-% TabManager{>}{>}setTabContentFrom: \\
-% UndefinedObject{>}{>}DoIt
-% \end{center}
-% \end{stacktrace}
 
 Using the dictionary we can then build the vectors for the two stack traces:
 
-\begin{center}
+\begin{center} % ok
 \begin{tabular}{p{2cm}r}
 \textbf{Trace 1} & $\left<1,1,0,0,1\right>$ \\
 \textbf{Trace 2} & $\left<1,0,1,1,0\right>$
@@ -392,12 +364,11 @@ With this data we were able to construct a visualization to understand the topol
 \figref{fig:eva-clusters} shows a force graph where each dot is a stack trace and every edge represents the connection between each trace and its nearest neighbour.
 
 \begin{figure}[h!t]
-\begin{center}
+\centering
   \includegraphics[width=\linewidth]{stacktraces/TraceClusters}
   \caption{Force graph representing the stack traces and their neighbour.
   Each dot is a trace, each edge connects a stack trace with its nearest neighbour.}
   \label{fig:eva-clusters}
-\end{center}
 \end{figure}
 
 The figure shows evidence that there are groups of related stack traces, gathered around a pivotal point.
@@ -409,9 +380,9 @@ Moreover, centroids tend to be much more sparse that medoids, thus being more su
 We considered the medoids as \emph{archetypes}, that represent the summary of each cluster.
 The number of incoming edges represents the measure of the popularity of the archetype and, as such, of the whole group.
 
-\begin{table}[ht]
+\begin{table}[ht]\small
+\centering
 \caption{Summary of the most popular stack traces, with the popularity metrics.}
-\begin{center}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
 \begin{tabular}{lr}
 \rowcolor{tableheader}\textbf{Archetype (first line)} & \textbf{Popularity} \\ \hline
@@ -442,7 +413,6 @@ UndefinedObject>>DoIt & 28 \\
 \end{tabular}
 %\caption{Summary of the most popular stack traces, with the popularity metrics.}
 \label{tab:popularity}
-\end{center}
 \end{table}
 
 From \tabref{tab:popularity} we can see that the largest groups of stack traces are generated by exceptions related to the dynamic nature of the language, and as such probably caused by the style of programming of the developer.
@@ -514,12 +484,11 @@ We now present two example bug reports and show how they are relevant in underst
 
 \clearpage
 \begin{figure}[!ht]
-\begin{center}
+\centering
   \includegraphics[height=.87\textheight]{stacktraces/Report-12973.pdf}
   \caption{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
 We can see the metadata (A), the initial description that opened the bug report (B), the discussion that followed (C), the submission of a slice and its validation (D), and the bug resolution (E).}
   \label{fig:report}
-\end{center}
 \end{figure}
 
 \subsubsection{Example 1}
@@ -540,8 +509,7 @@ For example, it may disseminate and reward the contributions targeted at improvi
 
 \subsubsection{Example 2} Another example is represented by the stack trace starting with:
 
-{\footnotesize
-\begin{center}
+\begin{center}\small
 \begin{tabular}{l}
 SmalllintManifestChecker{>}{>}runRules:onPackage:withoutTestCase: \\
 RBPackageEnvironment{>}{>}classesDo: \\
@@ -558,7 +526,7 @@ CriticBrowser{>}{>}reapplyRule:
 %CriticBrowser>>reapplyThisRule
 %CriticBrowser>>menu:shifted:
 \end{tabular}
-\end{center}}
+\end{center}
 
 
 The lines containing \emph{CriticBrowser{>}{>}reapplyRule:} are related to the bug report 14230.
