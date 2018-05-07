@@ -90,7 +90,7 @@ In \pha, a stack trace is a list of pairs \textit{Class{>}{>}selector}, where \t
 \begin{figure}[ht]
 \centering
   \includegraphics[width=7.3cm]{stacktraces/stacktrace}
-  \caption{Example of a stack trace collected from a runtime exception.
+  \caption[Example of a stack trace collected from a runtime exception]{Example of a stack trace collected from a runtime exception.
 The most recent call is at the top, the oldest call is at the bottom.
 The snippets of code inside blocks are highlighted in blue.}
   \label{fig:stacktrace}
@@ -115,7 +115,7 @@ These are the equivalent of a \emph{NullPointerException} in Java.
 \begin{figure*}[ht]
 \centering
   \includegraphics[width=0.9\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_classes}
-  \caption{Distribution of the stack traces on the \pha system using a city like visualization, where each building is a class.
+  \caption[Distribution of the stack traces on the \pha system using a city like visualization]{Distribution of the stack traces on the \pha system using a city like visualization, where each building is a class.
 \pha is composed of 14,045 classes distributed among 557 packages.
 We highlight the system with data from 7,532 stack traces that we collected.
 The height and the color of each building is determined by the number of traces the class appears in, while classes that are not involved in an exception are collapsed and depicted in gray.
@@ -243,7 +243,7 @@ Methods, classes and packages that do not appear in a stack trace are collapsed 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth,trim=0mm 40mm 0mm 0mm,clip]{stacktraces/StackCity_methods}
-\caption{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
+\caption[Distribution of the stack traces on the methods of \pha using a city like visualization]{Distribution of the stack traces on the methods of \pha using a city like visualization, where each building is a class composed by blocks representing methods.
 All the classes contain 112,558 methods, the color of each building is determined by the number of traces the class appears in, while the packages, classes and methods that are not involved in an exception are collapsed and depicted in gray.}
   \label{fig:stackcity-methods}
 \end{figure}
@@ -361,13 +361,13 @@ In the previous example, the distance for the two vectors representing Trace 1 a
 Using the cosine similarity we calculated the first nearest neighbor for each stack trace.
 With this data we were able to construct a visualization to understand the topology of the stack traces in our vector space model.
 
-\figref{fig:eva-clusters} shows a force graph where each dot is a stack trace and every edge represents the connection between each trace and its nearest neighbour.
+\figref{fig:eva-clusters} shows a force graph where each dot is a stack trace and every edge represents the connection between each trace and its nearest neighbor.
 
 \begin{figure}[h!t]
 \centering
   \includegraphics[width=\linewidth]{stacktraces/TraceClusters}
-  \caption{Force graph representing the stack traces and their neighbour.
-  Each dot is a trace, each edge connects a stack trace with its nearest neighbour.}
+  \caption[Force graph representing the stack traces and their neighbors]{Force graph representing the stack traces and their neighbors.
+  Each dot is a trace, each edge connects a stack trace with its nearest neighbor.}
   \label{fig:eva-clusters}
 \end{figure}
 
@@ -483,10 +483,11 @@ We now present two example bug reports and show how they are relevant in underst
 
 
 \clearpage
+
 \begin{figure}[!ht]
 \centering
   \includegraphics[height=.87\textheight]{stacktraces/Report-12973.pdf}
-  \caption{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
+  \caption[The bug report 12973]{The bug report 12973, related to the stack trace depicted in \figref{fig:stacktrace}.
 We can see the metadata (A), the initial description that opened the bug report (B), the discussion that followed (C), the submission of a slice and its validation (D), and the bug resolution (E).}
   \label{fig:report}
 \end{figure}

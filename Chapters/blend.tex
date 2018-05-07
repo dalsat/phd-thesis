@@ -247,11 +247,10 @@ The presence of many different stack traces for a specific component might also 
 During the process of software construction and evolution, supported by integrated development environments (IDEs), developers generate a large amount of data known as \emph{``IDE Interaction data''}~\cite{Kers2005, Murp2006}.
 Examples of such data include \begin{inparaenum}[i)] \item \emph{IDE meta events}, like adding a method to a class, saving some edited code, or inspecting a variable in the debugger, \item \emph{UI events}, like moving a window or a tab in the IDE, or resizing them, and \emph{low-level events}, like keystrokes, mouse clicks, drags and simple movements\end{inparaenum}.
 
-Since current IDEs do not record these data, in our previous work we developed \dfl, a silent interaction profiler for the \pha IDE~\cite{Mine2015b}.
+Since current IDEs do not record these data, we used the data collected by Minelli~\etal who developed \dfl, a silent interaction profiler for the \pha IDE~\cite{Mine2015b}.
 \dfl records 32 different types of events at different levels of abstraction.
 For this work we only focused on a subset of meta events that involve code entities.
 Some meta events have an associated program entity: A browse event, for example, where the user opens a new code browser, can be performed on a method or on a class.
-
 For this work we aggregated all meta events to the class-level: An event performed on method \texttt{foo} of class \texttt{Bar} counts as an event involving directly the class \texttt{Bar}.
 In total we have ca.
 239,000 interaction data events covering a timespan of 4 months (\ie from January to April 2015).
@@ -261,7 +260,6 @@ The remaining 2,023 classes are user defined classes that are outside the scope 
 Out of the 32 types of meta events recorded with \dfl~\cite{Mine2015b}, only 13 types of events appear in the dataset.
 This is because some of the recorded meta events do not carry any information related to program entities.
 For example, the meta event that represents the opening of a \texttt{Finder}, a user interface used in \pha to search for pieces of code, has no associated program entity.
-
 \tabref{tab:idata} summarizes the dataset and provides additional details.
 
 % \begin{table}[ht]
@@ -306,7 +304,7 @@ The approach is not geared towards the specific types of sources, and also not l
 \begin{figure*}[ht]
 \centering
 \includegraphics[width=.95\linewidth]{blend/visualization-principles}
-\caption{The Blended City -- Visualization Principles and Proportions}
+\caption{The Blended City -- visualization principles and proportions}
 \label{fig:visualization-principles}
 \end{figure*}
 
@@ -332,10 +330,10 @@ These weights affect the intensity of the color associated to each of the ingred
 In the example of \figref{fig:visualization-principles}, all the sliders are at 100\%, thus all the ingredients have the same importance.
 \figref{fig:stack-and-half-interaction}, instead, shows the data presented in \figref{fig:visualization-principles} giving high importance to stack traces (100\%), little importance on interaction data (50\%), and no importance to source code changes.
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.65\linewidth]{blend/stack-and-half-interaction}
-\caption{The Same View Depicted in \figref{fig:visualization-principles}.C with the Following Weights: 0\% Source Code Changes, 100\% Stack Traces, and 50\% Interaction Data}
+\caption[The view depicted in \figref{fig:visualization-principles}]{The same view depicted in \figref{fig:visualization-principles} with the following weights: 0\% source code changes, 100\% stack traces, and 50\% interaction data}
 \label{fig:stack-and-half-interaction}
 \end{figure}
 
@@ -367,7 +365,7 @@ We use a triadic color scheme made of primary colors to present this information
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.4\linewidth]{blend/color-wheel}
-\caption{Color Wheel and Triadic Color Scheme}
+\caption{Color wheel and triadic color scheme}
 \label{fig:color-wheel}
 \end{figure}
 
@@ -388,7 +386,7 @@ It is part of our future work the investigation of different techniques to combi
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.55\linewidth]{blend/color-blends}
-\caption{Linear Color Blend on Triadic Color Scheme}
+\caption{Linear color blend on triadic color scheme}
 \label{fig:color-blends}
 \end{figure}
 
@@ -403,7 +401,7 @@ To show this data, the tool uses an \emph{aging mechanism} that linearly reduces
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.8\linewidth]{blend/color-aging-timeline}
-\caption{Aging Process: Example in the Timeline}
+\caption{Aging process: example in the timeline}
 \label{fig:color-aging-timeline}
 \end{figure}
 
@@ -423,7 +421,7 @@ At the end of this interval, the nodes have the default color, \ie light gray.
 \begin{figure*}[ht]
 \centering
 \includegraphics[width=.95\linewidth]{blend/full-view}
-\caption{View of the City With All the Activities}
+\caption{View of the city with all the activities}
 \label{fig:full-view}
 \end{figure*}
 
@@ -442,7 +440,7 @@ The user can then use the toolbar to refine the visualization (Fig.~\ref{fig:arc
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.75\linewidth]{blend/archi}
-\caption{The Architecture of the Blended City}
+\caption{The architecture of the Blended City}
 \label{fig:archi}
 \end{figure}
 
@@ -468,7 +466,7 @@ These two districts are the packages \textit{Graphics-Files} and \textit{Compile
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\linewidth]{blend/packages-details}
-\caption{Details of the Packages \textit{Graphics-Files} and \textit{Compiler}}
+\caption{Details of the packages \textit{Graphics-Files} and \textit{Compiler}}
 \label{fig:packages-details}
 \end{figure}
 
@@ -493,7 +491,7 @@ Morphic is the core graphic library of \pha, while Spec is a framework to build 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.7\linewidth]{blend/red-district-packages}
-\caption{\textit{Spec} and \textit{Morphic} Market Districts}
+\caption{\textit{Spec} and \textit{Morphic} market districts}
 \label{fig:market-districts}
 \end{figure}
 
@@ -518,7 +516,7 @@ However, as the complexity of the picture suggests, replacing this code is not a
 \begin{figure*}[ht]
 \centering
 \includegraphics[width=0.75\linewidth]{blend/pharo-changes}
-\caption{Changes in the \pha System}
+\caption{Changes in the \pha system}
 \label{fig:pharo-changes}
 \end{figure*}
 
@@ -537,7 +535,7 @@ By restricting the timespan to the beginning of January (\ie the first appearanc
 \begin{figure}[h]
 \centering
 \includegraphics[width=.8\linewidth]{blend/gt-packages}
-\caption{The Changes of GT-Tools Packages}
+\caption{The changes of \textit{GT-Tools} packages}
 \label{fig:gt-spotter-packages}
 \end{figure}
 
@@ -553,7 +551,7 @@ This can be explained by considering that those classes act as main entry points
 \begin{figure*}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{blend/traces-and-interactions}
-\caption{A View of the System Highlighting Stack Traces and Developer Interactions Only}
+\caption{A view of the system highlighting stack traces and developer interactions only}
 \label{fig:traces-and-interactions}
 \end{figure*}
 
