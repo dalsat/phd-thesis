@@ -54,6 +54,8 @@
 
 \newcommand{\seeurl}[1]{\footnote{\url{#1}}}
 
+\newcommand{\publication}[4]{\vbox{\paragraph{#1}~\hfill\cite{#4}\\\noindent\textit{#2}\\#3}}
+
 
 \newenvironment{framed}
 {\begin{center}\begin{examplebox}}
