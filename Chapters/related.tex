@@ -46,7 +46,7 @@ In this section we present four platforms, selected by importance and overall ad
 
 
 \subsubsection{Bugzilla}
-\bzilla\seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. \bzilla allows its users to obtain a great level of detail in specifying an issue producing, however, a complex interface.
+\bzilla\seeurl{https://www.bugzilla.org} is one of the oldest and most popular issue tracking systems, that inspired many existing issue trackers. Developed by the Mozilla Foundation, it is used by several open source projects, as well as industrial customers. \bzilla allows its users to obtain a great level of detail in specifying an issue at the price of a complex interface.
 \figref{fig:bugzilla-interface} shows the interface that \bzilla used to have in one of its previous versions.
 
 
@@ -91,14 +91,14 @@ Another example has been given by Zimmermann \etal, who applied data mining tech
 \subsection{Visualizations of an Issue Tracker}
 
 Just having the raw data, however, is often not enough: to turn it into actionable knowledge it is important to build tools to make use of this information.
-Reading a bug report is a difficult step in the debugging process: Browsing the large amount of information and decide whether how much to rely on the data reported by the users, consumes a substantial amount of developers' time.
+Reading a bug report is a difficult step in the debugging process: Browsing the large amount of information and deciding whether how much to rely on the data reported by the users, consumes a substantial amount of developers' time.
 To alleviate this burden, researchers devised a number of approaches based on the visualization of the data inside issue trackers.
 For example, D'Ambros \etal performed an analysis of the \bzilla bug repository: They summarized the diagram of the state transitions of a report and proposed a set of visualizations to support the analysis of a bug database at different levels of granularity.
-Their approach allows the user to navigate the history of a single issue tracker and inspect selected part of the system with customized filters and synthesized a state transitions diagram of a report~\cite{DAmb2007b}.
-They built visualizations to support the analysis of a bug database at different levels of granularity, that depicts bug reports as independent entities.
+Their approach allows the user to navigate the history of a single issue tracker and inspect selected parts of the system with customized filters and a synthesized state transitions diagram of a report~\cite{DAmb2007b}.
+They built visualizations to support the analysis of a bug database at different levels of granularity, depicing bug reports as independent entities.
 Their approach allows users to browse the history of an issue tracker and inspect parts of the system with custom filters.
 Knab \etal proposed visualizations to ease the understanding of the data in an issue tracker and find hidden patterns~\cite{Knab2009a,Knab2010a}.
-Hora \etal proposed a visual exploration of the bug repository, considering bugs as first class entities, and linking them to other software artifacts~\cite{Hora2012a}.
+Hora \etal proposed a visual exploration of the bug repository, creating interactive maps of the bugs in a system. To link bug reports to other software artifacts they argue the need for considering bugs as first class entities~\cite{Hora2012a}.
 
 % All these approaches focus on retrospective analyses.
 % We believe that while conceptually interesting, there is little practical utility in daily development, since after all the goal of an issue tracking system is not to look at defects, but to actually fix them.
@@ -108,9 +108,9 @@ Hora \etal proposed a visual exploration of the bug repository, considering bugs
 
 \subsection{Visual Storytelling}
 
-Even with the means to efficiently inspect single bug reports, getting a big picture of the data contained in an issue tracker, and how it relates to the system, is often a completely different task, as the data has to be interpreted on a different level.
+Even with the means to efficiently inspect single bug reports, getting a big picture of the data contained in an issue tracker, and how it relates to the system, is often a completely different task, as the data has to be interpreted at a different level.
 To effectively present and understand such an amount of data, many researchers and practitioners adopt a \emph{Visual Storytelling} approach.
-The ability of contextualizing the information in a story that explains the meaning of the data is becoming more and more central to the skills required to data scientists~\cite{Segel2010a}.
+The ability of contextualizing the information in a story that explains the meaning of the data is becoming more and more central to the skills required for data scientists~\cite{Segel2010a}.
 
 Among the different visualizations that researchers used to represent a software system, the city metaphor has proven to be effective in giving a high level picture of a group of entities, allowing the user to navigate, zoom and inspect the various components and refine the view~\cite{Wett2011a}.
 This approach has been adopted in different scenarios, depicting different kinds of information pertaining to several steps of the development activity, such as changes in the system, the defects involving different components in the system, issues in quality checking rules or the exceptions in the system~\cite{Panas2003a}.
@@ -219,11 +219,11 @@ Mozilla adopts a similar approach to collect stack traces and runtime execution 
 
 The information of stack traces contained in bug reports represents a valuable support in debugging: as such, many researchers devised different methods to aid bug fixing and management of reports using stack traces.
 These works provided evidence that stack traces are a useful tool and a precious source of information~\cite{Davie2013,Wang2013,Brod2005,Weis2007a}: they provide precise information that are generally more reliable and useful than the descriptions produced by the submitter of the reports~\cite{Ko2006}.
-Brodie \etal proposed an automated approach to group similar bug reports using stack trace~\cite{Brod2005}
+Brodie \etal proposed an automated approach to group similar bug reports using stack trace~\cite{Brod2005}.
 Moreno \etal applied Text Retrieval techniques to compute similarity between bug reports using the stack traces contained in the report description, focusing on reducing the overhead to analyze large amounts of data~\cite{Moreno2014}.
 Again, this was done in a localized post mortem way.
 
-Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c}.
+Managing bug reports is expensive and represents an open problem: Many studies proposed approaches to automatically manage them, by finding the right developer to fix the defect, predict the cost of fixing a bug and reduce maintenance costs~\cite{Matt2009,Anvi2006a,Sliw2005,DAmb2010c,Luij2010a}.
 
 % In this context, we think that associating new stack traces to existing bug reports could provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.
 
@@ -246,15 +246,16 @@ The purpose of the research in this area is to support and automate the identifi
 
 Several approaches use techniques to gather system information and detect errors in an automated fashion.
 For example, researchers collected large volumes of stack traces to identify patterns in the errors of a system, to assist the early detection of new problems or regressions, and to build a knowledge base of common problems~\cite{Han2012,Arno2007}. %,DalS2015b}.
-The already mentioned survey performed by Zimmermann \etal find that one of the biggest problem comes from the reliability of the reported data~\cite{Zimm2010a}, hinting at the need for an automated approach that collects meaningful data.
-
+The already mentioned survey performed by Zimmermann \etal find that one of the biggest problems comes from the reliability of the reported data~\cite{Zimm2010a}, hinting at the need for an automated approach that collects meaningful data.
 Cleaning the data in log files is also an issue when inspecting the data, or while performing analyses.
 For example, Aye proposed a preprocessing stage to overcome the problem of huge log files in web applications, with the purpose of cleaning the data to allow a subsequent mining step~\cite{Aye2011}.
+In the attempt of reducing the effort in crash debugging Soltani \etal devised \emph{EvoCrash}, an approach to reproduce a reliable environment describing the context of a failure using genetic algorithms~\cite{Solt2017a}.
+
 
 
 \subsection{Aiding System Comprehension}
 
-Researchers also used the massive amount of data produced by the execution of a system to create a view of the system at a global level, to detect hidden interactions or unexpected patterns and give an overview of the system.
+Researchers used the massive amount of data produced by the execution of a system to create a view of the system at a global level, to detect hidden interactions or unexpected patterns and give an overview of the system, resulting in a large number of different studies and approaches~\cite{Corn2009a}.
 For example, Koike proposed a tool to visualize log files of the Snort\footnote{\url{https://www.snort.org/}} intrusion detector and assist system administrators to identify intrusion attempts in a system~\cite{Koik2004}.
 Moreta and Telea visualized log files using hierarchical clustering to uncover patterns of interest, with the purpose of monitoring dynamic allocation of memory and support the analysis of software repositories~\cite{More2007}.
 Orso \etal proposed a tool to monitor the logs of deployed software by means of visualizations generated by data mining techniques applied on runtime execution data~\cite{Orso2003}.
@@ -326,7 +327,7 @@ In \chref{ch:visualize} we present \ib, our tool for browsing issue trackers in 
 
 \subsubsection{Collecting Runtime Data}
 
-We saw different approaches for program comprehension focused on describing source code that are are still relevant to support bug fixing, as they explicitly render the properties that are hidden in the textual form of the source code.
+We saw different approaches for program comprehension focused on describing source code that is still relevant to support bug fixing, as they explicitly render the properties that are hidden in the textual form of the source code.
 
 In \chref{ch:stacktraces} we present our approach to data collection.
 In this context, we think that associating new stack traces to existing bug reports could provide immediate feedback to the users of the system and to assist development and bug fixing in a live fashion.

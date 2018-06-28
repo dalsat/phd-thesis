@@ -18,7 +18,7 @@ It is easy to understand how a software system can gradually start to resemble a
 To complicate things even further, it is often not sufficient to have a deep knowledge of the whole set of components that form a system to predict its final behavior.
 Given the large number of requirements that modern software systems have to satisfy, it is usually necessary to rely on external libraries to provide the desired features.
 Using external code is a good practice, as it allows for reuse and reduces the probability of a bug being present in a library used by more people.
-However, these benefits come at the cost of yielding control of the system to external code, leading the consequence that, if an error arises from a library, it becomes virtually impossible to track down its origin unless by debugging the library itself.
+However, these benefits come at the cost of yielding control of the system to external code, leading to the consequence that, if an error arises from a library, it becomes virtually impossible to track down its origin unless through debugging the library itself.
 
 The main focus during a development cycle is writing new code to develop new features: However, in such a complex and ever-changing scenario, a huge part of the resources put in a project are spent in maintenance and debugging~\cite{Corb1989,Fjel1983,Zelk1979,Mine2015b}.
 We can break down the constituent components of maintenance in: finding and collecting problems, understanding them, locating the source of the error, and fixing the issue.
@@ -33,10 +33,10 @@ While this is partly true, many of the modern editors and IDEs put the biggest a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsubsection{The Curse of Text}
 It is easy to sense why understanding software is hard: Reading code means reading text containing structured information, in a language that does not follow the same logic of natural language.
-To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the intended behavior of the software.
+To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the intended behavior of the software~\cite{vonm1995a}.
 The same process happens when printing log messages to expose the state of the system: Log messages embody fragments of information that the developer has to fit into her mental model, and use it to reverse engineer the source of an error by trial and error.
 
-To ease this process, both researchers and industry practitioners built a plethora of tools, like debuggers and code inspectors, to allow developers run a program in a controlled environment while checking the internal status of its variables.
+To ease this process, both researchers and industry practitioners built a plethora of tools, like debuggers and code inspectors, to allow developers to run a program in a controlled environment while checking the internal status of its variables.
 Other tools, like code browsers, support fast linking between the entities in the code, while loggers allow to print and store useful runtime information.
 Finally, test suites allow to define a set of expected behaviors, and to constantly check if any of these rules are satisfied.
 
@@ -51,7 +51,7 @@ The data generated from runtime errors contains large amounts of information tha
 We propose to promote this class of data ---such as bug reports and log files--- to full-fledged entities and store them using objects, in order to maintain the relation with the original entities living in the system.
 The effect of treating entities such as bug reports or log files as first-class citizens of the development cycle, is that it enables us to deal with objects instead of plain text.
 This, in turn, provides the language to turn the data into information in the correct context.
-Such a tight integration enables a number of improvements to the tools we use to develop a system and creates a feedback loop with the developer that gives her a broader view on the evolution of a system.
+Such a tight integration allows us to enrich the tools we use to develop a system and creates a feedback loop with the developer that gives her a broader view on the evolution of a system.
 
 We believe that discarding this data, usually considered as a disposable byproduct of the development process, wastes the enormous potential of an important data source.
 We want to leverage the usefulness of this data and turn it into actionable information that can effectively impact the development process and reduce maintenance costs.
@@ -81,8 +81,8 @@ We implement and test a set of exploratory tools to investigate the usage of bug
 Redesigning the concept of bug tracking is a task that encompasses a number of different subproblems.
 Many of these problems come from the specifics of each development community and arise from the way developers approach their work.
 
-Given the large number of variables in play, we feel that a canonical approach of selecting an idea, conducting a controlled experiment, and produce a conclusion would not the best approach to narrate the problem we are studying.
-Instead, since we had the opportunity to propose our work to the \pha community, collect data from their day-to-day development work, and given the practical nature of the problem we considered, we decided to embrace a tool-driven approach and seek out for the feedback of developers.
+Given the large number of variables in play, we feel that a canonical approach of selecting an idea, conducting a controlled experiment, and produce a conclusion would not be the best approach to narrate the problem we are studying.
+Instead, since we had the opportunity to propose our work to the \pha community, collect data from their day-to-day development work, and given the practical nature of the problem we considered, we decided to embrace a tool-driven approach and seek for the feedback of developers.
 We believe that conducting a full-blown evaluation process on a new issue tracking system would have been an impossible task, as its effects would begin to be observable only after years from its adoption.
 Therefore we decided to present a set of exploratory studies using the fresh development data we collected, and evaluate our approaches based on the feedback from developers.
 
@@ -185,7 +185,7 @@ This dissertation is structured in the following chapters and with the following
   \item[\chref{ch:model}] discusses the general model used by issue trackers and how it falls short in helping users when they have an issue to report.
   We present a survey we performed to investigate what users deem easy to provide in a bug report.
   We distill a meta-model for a minimal bug report, establishing a basic layer of core features.
-  We propose an improved model to represent and store a bug report and the related data without losing information about its context, laying the foundations for what we think will be the next generation of issue trackers.~\cite{DalS2016a}.
+  We propose an improved model to represent and store a bug report and the related data without losing information about its context.~\cite{DalS2016a}.
 
   % \publication{What Makes a Satisficing Bug Report}{Tommaso Dal Sasso, Andrea Mocci, Michele Lanza}{In Proceedings of QRS 2016 (The 2016 IEEE International Conference on Quality, Reliability, and Security), pp. 164–174, IEEE CS Press, 2016.}{DalS2016a}
 
