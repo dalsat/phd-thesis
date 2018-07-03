@@ -9,7 +9,7 @@ While constructing and evolving software systems, developers generate directly a
 Often these diverse data sources are processed and visualized in isolation, leading to a partial view of systems.
 
 
-In the previous chapters we saw that we can collect data from runtime errorsthis data to get insights on the development process.
+In the previous chapters we saw that we can collect data from runtime errors and use this data to get insights into the development process.
 In this chapter we present a \emph{blended} approach to visualize several data sources.
 We combine these ``ingredients'' at once, to give as complete an answer as possible to the question \emph{``What happened to the system in the last few days?''}.
 The goal is to enable a quick and comprehensive assessment of what happened to a software system in any given time frame.
@@ -52,7 +52,7 @@ We complement these two types of data with a third one, the evolution of the sys
 Although we focus on these types of information, our approach can be extended to feature any kind of information artifact related to a large software system under development.
 In essence, our goal is to answer one of the most often asked questions raised by developers and managers alike, namely ``what happened to our system recently''?~\cite{Sill2008}
 
-We present a visual approach to \emph{blend} development data originated by different  sources, \eg by different tools that record and persist code changes, interaction data and stack traces.
+We present a visual approach to \emph{blend} development data originating from different  sources, \eg by different tools that record and persist code changes, interaction data and stack traces.
 We propose an interactive map that summarizes the relevant events that involved the system in a given period of time, using the city metaphor to represent a software system~\cite{Wett2007}, and coloring each entity according to the combination of data gathered around it.
 We allow to explore the evolution of the system by navigating the information during time, and refining the search of interesting events to specific moments.
 We then present some stories obtained through our visualization that illustrate interesting properties of an existing software project and its community.
@@ -108,7 +108,6 @@ In this section we briefly describe the three main ingredients together with the
 To get a tractable subset of meaningful data, we decided to focus on a timespan ranging from January 1st 2015 to May 1st 2015.
 In this section we present the context of our analysis, then we briefly describe the three main ingredients together with the tools that enable the data collection process.
 Our visualization presents a composition of different information, obtained by blending together different data sources and enabling visual analytics from heterogeneous and multidimensional perspectives.
-To get a tractable subset of data, we focus on a timespan ranging from January 1st 2015 to May 1th 2015.
 In the rest of the section we describe the three main ingredients together with the tools that enable the data collection process.
 For further details about the \pha platform see \appref{ch:pharo}.
 
@@ -201,7 +200,7 @@ To exploit this source of information, we developed \slr~\cite{DalS2015a}, a pla
 The data we collect contains the signature of every method invocation, to keep track of each entity involved in the failure, though excluding the method parameters, to avoid privacy issues for the single developer.
 
 In enabling the reporter, each developer can decide to inspect each stack trace and choose the ones to submit, or enable the automatic reporting feature and submit all the traces produced by its activity.
-While this option produces many duplicates and non relevant data, it is still interesting to see where the activity of the developers focuses in different periods of time.
+While this option produces many duplicates and non relevant data, it is still interesting to see where the activity of the developers focuses during different periods of time.
 The collected data can then be used to aid the debugging activity, for example detecting if a large volume of new stack traces coming from different developers involve a specific class, or by looking for existing bug reports in the bug tracker to provide a contextual help when a user encounters an exception and ease the understanding of a piece of code.
 The presence of many different stack traces for a specific component might also suggest that an API has a problematic design, and that the users struggle in understanding its usage, thus highlighting the need for documentation or refactoring.
 
@@ -295,7 +294,7 @@ For example, the meta event that represents the opening of a \texttt{Finder}, a 
 \subsection{Blended, Not Stirred}
 
 Our goal is to develop a visualization approach which can represent diverse data sources, such as the ones we just presented.
-The approach is not geared towards the specific types of sources, and also not limited to depicting just those, but is in principle extensible to feature any number and any source of data.
+The approach is not geared towards the specific types of sources, and also not limited to depicting just those, but is in principle extensible to feature any number and any data source.
 
 
 
@@ -496,7 +495,7 @@ Morphic is the core graphic library of \pha, while Spec is a framework to build 
 \end{figure}
 
 Many classes are involved in exceptions, they were recently changed or they were subject to developer interactions.
-This reveals a long known problem in the community, that is, the fact that the code of Morphic is old and have been ported through various platforms.
+This reveals a long known problem in the community, that is, the fact that the code of Morphic is old and has been ported through various platforms.
  The case of Spec is similar: since Spec is a framework built on top of Morphic, it shares its weakness and part of its complexities.
 
 Differently from the awkward neighbors (shown in \figref{fig:packages-details}), the market districts for Morphic and Spec are not settled and solid: Instead, they are often causes of bugs and issues.
@@ -569,12 +568,12 @@ This context could signify that the user is trying to understand a class that ha
 
 The use of this information could be used by the maintainer of the system to prioritize the areas of that could need more public documentation, to ease the learning process of those entities and their API.
 
-Note that the same information, blended with the addition of code changes and applied to classes that are not part of the core system, could signify that a developer is applying a \textit{Test Driven Development} approach, by implementing incomplete methods and completing them whenever the system tries to execute a method that is not yet implemented.
+Note that the same information, blended with the addition of code changes and applied to classes that are not part of the core system, could signify that a developer is applying a \textit{Test Driven Development} approach, by implementing incomplete methods and completing them whenever the system tries to execute a method that is not yet implemented, a common practice in the Smalltalk community~\cite{black2009}.
 
 
 \section{Discussion}\label{sec:blend-discussion}
 
-Developing out approach we became aware of many details that are hard to grasp in terms of how the users interact with the code entities.
+Developing our approach we became aware of many details that are hard to grasp in terms of how the users interact with the code entities.
 We believe that an important next step for this analysis would be to improve the system by providing updated information on fresh data mined in real-time.
 
 Our visualization considers activity data, but maps this information on the static entities of the system.
@@ -601,7 +600,7 @@ We believe that the knowledge highlighted by our approach can help in presenting
 
 In the last chapters we saw how we can collect information about the errors on a system and exploit this data to support debugging, understand how a system is used, and navigate its evolution.
 In this chapter we presented a use case were we combined the data we collected together with additional data sources, to create a wide-ranging representation of the history of a system.
-By using our tool, a developer can improve her comprehension of a system, cut maintenance time, and understand how a system is used by its users.
+By using our tool, a developer can improve her comprehension of a system and understand how a system is used by its users.
 We saw that we can collect and store data in an effective way and with a powerful representation.
 However, being able to collect any kind of data does not tell us \emph{what} we should collect.
 In other words, we still have to understand \emph{how} to improve the representation of a bug report.

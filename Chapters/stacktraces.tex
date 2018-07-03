@@ -159,8 +159,9 @@ In this case, we can see that the issue has already been resolved, a patch has b
 Thus, we can ignore the problem, knowing that it will be solved soon.
 Moreover, by checking future stack traces, we are able to determine if the problem has been completely solved or if it may appear again in some particular, missed corner cases.
 
-Overall, having quick access to bug reports related to encountered exceptions can help to obtain an overview of the problem and improve and boost the debugging process.
-We next discuss how we match bug reports and stack traces.
+Overall, by being able to access bug reports related to an exception while she is experiencing it, a developer can get an overview of a problem sooner and cut the overhead time spent searching for relevant information, thus supporting a more efficient debugging process.
+% Overall, having quick access to bug reports related to encountered exceptions can help to obtain an overview of the problem and improve and boost the debugging process.
+In the next section we show how to match bug reports and stack traces.
 
 
 \section{CrowdStacking Traces}\label{sec:stacktraces-dataset}
@@ -173,7 +174,7 @@ To benefit from this data we built \slr, a tool to intercept exceptions, the cor
 \subsection{Data Collection}\label{sec:stacktraces-tool}
 
 \slr is a plugin designed and built to integrate seamlessly into the \pha development environment.
-We wanted to collect unbiased and uniform data, so we posed particular attention in building a tool that could be unobtrusive and that required minimal interaction with the user.
+We wanted to collect unbiased and uniform data, so we paid particular attention in building a tool that could be unobtrusive and that required minimal interaction with the user.
 For this purpose, \slr is highly configurable through a dedicated settings menu, and can work in two different main modes: an \emph{interactive mode}, and a \emph{shadow mode}.
 
 \subsubsection{Interactive Mode}
@@ -209,7 +210,7 @@ Thus, we discard all the elements that contain private data, such as the content
 Encoding a stack trace using strings also guarantees compatibility and portability of the collected data, even when imported from different versions of \pha.
 
 Besides collecting the stack traces, we also added to the report additional metadata to allow a better categorization of the error.
-We collect the name of the author, which is the tag she uses to sign her commits, the date of the exception and the version of \pha build for which the exception happened.
+We collect the name of the author, which is the tag she uses to sign her commits, the date of the exception and the version of the \pha build for which the exception happened.
 The version of the build can be useful to analyze the evolution of the system while it is developed.
 The \pha development cycle is structured in two main branches: a stable version and a development version.
 In the \pha community, the development version is actively developed and constantly improved by a large number of users and developers, and exception data from developed software can provide insights about the evolution of the system over time, as well as help spotting defects as soon as they arise, ultimately reducing the time required to fix a new defect after it is introduced.
@@ -248,11 +249,10 @@ All the classes contain 112,558 methods, the color of each building is determine
   \label{fig:stackcity-methods}
 \end{figure}
 
-The figure suggests that only a small part of the system is actually involved in the collected exceptions, and the vast majority of methods and classes is not impacted by these exceptions.
-By knowing these methods that work as entry points to the classes, a developer can view the impact that each class and method have in case of failures, and decide which methods she has to inspect first to search for a bug.
+The figure suggests that only a small part of the system is actually involved in the collected exceptions, and the vast majority of methods and classes is not impacted by them.
+By knowing these methods that work as entry points to the classes, a developer can view the impact that each class and method have in case of failures: This information can be useful in having a first prioritization to decide which methods she has to inspect first to search for a bug.
 
-\tabref{tab:methods-count} shows a summary of the most active methods in all the stack traces.
-\begin{table}[ht]\small
+\begin{table}[t]\small
 \centering
 \caption{The 10 most called methods in the collected stack traces.}
 \rowcolors{1}{tablefirstrow}{tablesecondrow}
@@ -282,6 +282,7 @@ BlockClosure>>cull: & 3,642 \\
 \end{tabular}
 \label{tab:methods-count}
 \end{table}
+\tabref{tab:methods-count} shows a summary of the most active methods in all the stack traces.
 As expected, the most recurrent exceptions are related to some core elements of the language: \textit{BlockClosure} is a core element used when passing code as argument, while \textit{UndefinedObject>>doesNotUnderstand:} and \textit{Message>>sentTo:} are part of the message sending infrastructure that is the foundation of Smalltalk.
 %The former is equivalent to a \textit{NullPointerException} in Java.
 Despite being expected, the fact that the most common exceptions involve the dynamic nature of the language shows how the freedom provided by the absence of static type checking comes with the price of incurring in runtime exceptions even for experienced programmers.
@@ -375,7 +376,7 @@ The figure shows evidence that there are groups of related stack traces, gathere
 In particular, few large groups gather the majority of stack traces, and the remaining form smaller groups.
 To represent each cluster, we chose the \emph{medoids}~\cite{Kauf1987}.
 A medoid is the element of the dataset that is nearest to the centroid of the cluster.
-The advantage of using medoids instead of centroids is that they are element of the dataset, and thus they represent a real occurred stack trace.
+The advantage of using medoids instead of centroids is that they are an element of the dataset, and thus they represent a stack trace that actually occurred.
 Moreover, centroids tend to be much more sparse that medoids, thus being more suitable for efficient computation of operations between vectors.
 We considered the medoids as \emph{archetypes}, that represent the summary of each cluster.
 The number of incoming edges represents the measure of the popularity of the archetype and, as such, of the whole group.
@@ -421,7 +422,7 @@ Therefore, at this stage we removed the most popular groups, and focused our ins
 We used these samples to determine a possible correlation with existing defects.
 
 We mined the \pha bug tracker to collect the bug reports produced during the development of the platform.
-To focus our research on actual and relevant problems, but without risking of losing valid examples, we considered the reports opened between January and November 2014.
+To focus our research on actual and relevant problems, but without risk of losing valid examples, we considered the reports opened between January and November 2014.
 
 We extracted 1,910 bug reports, with 17,747 different events, including comments, patches and changes of status.
 During this period, 1,591 reports have been closed or are waiting for integration, and 319 are still active.
@@ -429,29 +430,29 @@ During this period, 1,591 reports have been closed or are waiting for integratio
 We then extracted from each archetype of stack trace a list of methods invocation.
 We used this list to search through the data extracted from the bug tracker using a full text search of the pair \emph{ClassName{>}{>}MethodName} into the contents of each comment that compose a bug report.
 After this operation, we obtained a list of the bug reports that are associated to each method invocation.
-Not every bug report can have the same relation with the stack trace, therefore we applied a heuristic to define a ranking between the reports.
+Not every bug report can have the same relation with the stack trace, therefore we applied a heuristic approach to define a ranking to sort the reports in order of likelihood of relevance.
 
-We discussed earlier how the lines of a stack trace that are closer to the top are more likely to be involved to the current error, while the lines closer to the bottom are more likely to involve the deep dynamics of the system.
-We leveraged this idea to give a higher ranking to the reports retrieved using lines closer to the top of the stack trace and lower ranking to those retrieved by lines close to the bottom.
-In the scenario of a context-aware tool that suggests interesting reports to the developer while he encounters an exception, the interesting bug reports are likely to be in the first three positions.
-After those, it is increasingly likely that the information in the bug reports is too general and probably related to internal mechanics of the system.
+We discussed earlier how the lines of a stack trace that are closer to the top are more likely to be related to the current error, while the lines closer to the bottom are more likely to touch the core parts of the system and thus more generic.
+We leveraged this principle to give a higher ranking to the reports retrieved using lines closer to the top of the stack trace and lower ranking to those retrieved by lines close to the bottom.
+In the scenario of a context-aware tool that suggests interesting reports to developers while they encounter exceptions, we observed that the interesting bug reports are likely to be in the first three positions.
+After these, the link between a stack trace and the information in a bug report quickly becomes too general and likely related to internal mechanics of the system.
 
 
 
 \section{Preliminary Results}\label{sec:stacktraces-evaluation}
 
 % Numbers of topic considered has to be justified
-We obtained a list of bug reports connected to each archetype of stack trace, that we called \emph{topic}.
+We obtained a list of bug reports connected to each archetype stack trace, that we called \emph{topic}.
 We performed a qualitative analysis on the topics to determine if the retrieved reports could actually provide valuable information about the nature of the exception.
 We removed from the list the topics triggered by a \emph{doesNotUnderstand:} and \emph{UndefinedObject}, because they are mostly generic and less likely to contain specific bug reports in the tracker.
 After the filtering, we reduced the list to 629 elements.
-We then eliminated the elements with the lowest popularity, to exclude the groups that had not enough components to be significative.
+We then eliminated the elements with the lowest popularity, to exclude the groups that had not enough components to be significant.
 We set the threshold to be the 0.5\% of the maximum popularity, which gave us a list of 23 elements, with a significantly diverse popularity ranging from 1,585 to 9.
 
-We manually inspected the bug reports related to each topic, to determine if they could bring value to the developer during the development activity.
+We manually inspected the bug reports related to each topic, to determine if they contained information relevant to original exception that would therefore be useful in supporting the development and debugging process.
 Of the 23 topics, 15 of them had no bug reports connected in the top of the trace and had only reports in the bottom, related to generic mechanics of the system, unrelated to the specific exception.
 
-The fact that some stack traces had not connected bug reports could have different meaning, and may carry interesting information that may be used in the debugging activity:
+The fact that some stack traces had no connected bug reports could have different meaning, and may carry interesting information that may be used in the debugging activity:
 
 \begin{enumerate}%[(1)]
 
@@ -467,14 +468,14 @@ Each of the three cases can represent an interesting scenario that can be addres
 
 In case (1) the information about runtime error of a developer's code can be of interest for the developer itself and, if collected for further usage during debugging, it can be used to signal possible defects in the code and prioritize the classes and methods to inspect.
 
-The case (2) can take place when many developers use the same API in an incorrect way.
+Case (2) can take place when many developers use the same API in an incorrect way.
 Such case may suggest an area of code or a class interface that requires refactoring.
 
-The case (3) is the most interesting for the developers of the system: It means that the system is raising a lot of exceptions in an area of code that is not known yet for having unexpected behaviors.
+Case (3) is the most interesting for the developers of the system: It means that the system is raising a lot of exceptions in an area of code that is not known yet for having unexpected behaviors.
 This could---by definition---represent a new defect, not yet known to the community, or not precisely defined.
-In this case, grouping the stack traces and highlighting them as a problem to investigate, may provide a valuable support for the community, for example by proposing to automatically open a new bug report containing the collected data to start the debugging activity when the popularity of the group reaches a critical mass, and help to severely cut down the latency between the arise of a defect and its resolution.
+In this case, grouping the stack traces and highlighting them as a problem to investigate, may provide a valuable support for the community, for example by proposing to automatically open a new bug report containing the collected data to start the debugging activity when the popularity of the group reaches a critical mass, and help to severely cut down the latency between the introduction of a defect and its resolution.
 
-For the remaining 8 stack traces we found relevant bug reports in the bug tracker.
+For the remaining 8 stack traces we found related bug reports in the bug tracker.
 After assigning every report a priority depending on the distance of the top of the stack, we inspected them in order of priority.
 We observed that, given the structure of the stack trace, only the bug reports in the first two or three lines of the trace are relevant to define the context of the precise problem: the trace of calls then quickly dives into the system core classes becoming thus too generic to pertain to specific scenarios.
 We found the information of the reports to be relevant to the debugging activity, or to get information on the status of the malfunction: Either the identified reports were addressing the specific issue raised by the stack trace, or were not depicting the same specific context of the exception, but still discussing a related problem.
@@ -498,14 +499,14 @@ In \secref{sec:stacktraces-nature} we already presented the stack trace shown in
 The example is particularly interesting because it shows a practical use case for a user or a developer that encounters the exception while she is writing code.
 \figref{fig:report} shows the bug reports retrieved for this stack trace.
 As the report shows, there is a known error caused by a defect in the system, and the community is already working to address it.
-In particular, since the stack trace that we considered was generated in date 7/7/2014, the user encountered the problem before its resolution and, at the time, the report was stuck in a low priority status.
+In particular, since the stack trace that we considered was generated on date 7/7/2014, the user encountered the problem before its resolution and, at the time, the report was stuck in a low priority status.
 This information could have been exploited by a developer to report more precise information or to ask for an increase of the priority for a quicker defect resolution, while a user encountering the exception could know that there is work in progress, or if there is an estimated time to have an updated and fixed version.
 
-By continuing to read the report, we can see that the problem has been further investigated, and that a \emph{slice} (a piece of submitted code, that in \pha works in a similar way of a patch) has been proposed and is being tested by the continuous integration server of the project.
+By continuing to read the report, we can see that the problem has been further investigated, and that a \emph{slice} (a piece of submitted code, that in \pha works in a similar way of a patch) has been proposed and is being tested on the continuous integration server of the project.
 Finally we can see that the report was closed, the fix was accepted and it is waiting to be integrated in a later version.
 
-Other than simply useful, this information can improve awareness in the community.
-For example, it may disseminate and reward the contributions targeted at improving the general quality of the whole system.
+Other than simply useful, this information can improve awareness among developers.
+For example, by depicting a lively and active community, it may disseminate and reward the contributions targeted at improving the general quality of the whole system.
 
 
 \subsubsection{Example 2} Another example is represented by the stack trace starting with:
@@ -530,8 +531,8 @@ CriticBrowser{>}{>}reapplyRule:
 \end{center}
 
 
-The lines containing \emph{CriticBrowser{>}{>}reapplyRule:} are related to the bug report 14230.
-At a closer inspection we can see that the bug report contains only three comments, but the last one points to the report 110473, where a long discussion (40 comments) is ongoing regarding the relation of the method in the stack trace and the application of rules for the CriticBrowser.
+The lines containing \emph{CriticBrowser{>}{>}reapplyRule:} are related to bug report 14230.
+On closer inspection we can see that the bug report contains only three comments, but the last one points to report 110473, where a long discussion (40 comments) is ongoing regarding the relation of the method in the stack trace and the application of rules for the CriticBrowser.
 At the end of the discussion the report gets closed, but as a result of the fix, another bug report is issued to address further weird behavior of the CodeCriticBrowser.
 To add even more correlation to the trace and the report, we noticed that the author of the stack trace is active in the discussion of the report, and actively contributed in its resolution.
 This reinforces our belief that providing a bug report context when a user encounters an exception can provide great value in debugging software.

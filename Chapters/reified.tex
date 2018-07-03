@@ -7,13 +7,13 @@
 
 
 Software development involves iterations of writing, running, testing, and debugging code.
-When fixing a defect, developers construct a mental model of the system that explains the defect and eventually identifies its cause.
+When fixing a defect, developers construct a mental model of the system that explains the defect and eventually identify its cause.
 However, filtering complete, coherent, and reliable information from a running system is not an easy task: Using a simple approach, like generic logging, is often ineffective because it deconstructs and flattens the state into textual data, thus requiring ad-hoc understanding and processing.
 On the other hand, collecting structured information in form of objects to observe and understand a precise property of the system requires specialized ad-hoc code, decoupled from the system's domain, and is usually not reusable.
 
-In \chref{ch:stacktraces} we saw that by collecting stack traces can teach us stories about a system that we hardly would have noted otherwise.
+In \chref{ch:stacktraces} we saw that  collecting stack traces can teach us stories about a system that we hardly would have noted otherwise.
 We were, however, still using a textual representation that limited the descriptive power of our model.
-In this chapter generalize the approach by presenting a domain-specific data collection framework that enables the developers to extract selected information about a system, and store them as entities.
+In this chapter we generalize the approach by presenting a domain-specific data collection framework that enables the developers to extract selected information about a system, and store them as entities.
 The developer is able to take a snapshot of all the information deemed relevant about a piece of code by writing few lines of code, thus enabling structured and effective logging and reporting of errors.
 We detail our framework in the context of a bug reporting platform, and illustrate how such an approach can be used to create in-depth and reliable domain-specific bug reports.
 
@@ -31,17 +31,19 @@ Finally, \secref{sec:reified-summary} concludes the chapter and outlines directi
 \section{The Tools We Use To Develop} \label{sec:reified-introduction}
 %%%%%%%%%%%%%%%%%%%%%%
 
-Computer systems have become pervasive in many human activities, where the high penetration of machine-controlled devices led to a tremendous increase in the complexity of the involved software.
+Computer systems have become pervasive in many human activities.
+The high penetration of machine-controlled devices, that have to deal with an increasing number of different tasks, led to an increase in the complexity of the involved software.
 This phenomenon turned modern software development into a multifaceted activity, where a one-developer team is no longer a viable option: Building software is above all a collaboration and communication activity.
 Writing code is only a small part of the process: Several phases such as design, testing, and maintenance, play a role as fundamental in the success of a project.
 In fact, maintenance often represents a significative percentage of a developer's time: Researchers showed that the effort put in reading and understanding code outweighs the effort needed to write it~\cite{Corb1989,Fjel1983,Zelk1979,Mine2015b}.
 In such a scenario, one would imagine that the effort for providing means to aid developers would focus on refined tools to navigate, understand, and inspect the code.
-While this is partly true, many of the modern editors and IDEs put the biggest accent on how developers write code, leaving program comprehension as a secondary task that is implicitly more complicated.
+While this is partly true, many of the modern editors and IDEs put the biggest accent on how developers write code, leaving program comprehension as a secondary task.
+% that is implicitly more complicated.
 
 
 \subsubsection{The Curse of Text}
 
-It is easy to see why understanding software is hard: Reading code requires reading text that contains structured information in a language that does not follow the same logic of natural language.
+It is easy to see why understanding software is hard: Reading code requires reading text that contains structured information in a language that does not follow the same logic of natural language~\cite{stor1999a}.
 To understand a fragment of code, a developer has to mentally parse a source file, identify and extract the necessary information, and build a \emph{mental model} of the (intended) behavior of the software.
 The same process happens when printing log messages to expose the state of the system: Log messages embody fragments of information that the developer has to fit into her mental model, and use it to reverse engineer the source of an error by trial and error.
 
@@ -53,9 +55,10 @@ All these tools however do not change the fundamental way we interact with the c
 This is because all these tools rely on the same, strong, underlying assumption: Source code is text, therefore the tools we are using to interact with it are shaped around text editing tools.
 This assumption reflects the way we use to store our programs, \ie plain-text files containing the declaration of our models.
 
-We propose a novel approach for runtime data collection: We advocate the use of objects to store information about an exception, in order to preserve the multidimensional nature of the information, and leverage the implicit properties that can be obtained by the data structure.
-By describing errors as first-class citizens of a system, and using a storage format that does not flatten the information, we can reify logs and leverage their expressive power to support a number of development activities.
-A structured data source allows to build a set of specialized tools to browse the data in an incremental fashion, to discover its implicit structure, or to enable the use of automated analysis, mitigating the need of a data cleaning phase.
+We propose a novel approach for runtime data collection: We advocate the use of objects to store information about an exception, in order to preserve the multidimensional nature of the information and leverage the implicit properties ---like the interactions among entities--- that can be obtained by the data structure.
+By describing errors as first-class citizens of a system, and using a storage format that does not flatten the information, we can reify logs and leverage their expressive power to support a number of development activities, such as reproducibility of the error and automated generation of bug reports.
+A structured data source allows to build specialized tools to browse the data in an incremental fashion and discover its implicit structure.
+Collecting structured data also enables the use of automated analysis, mitigating the need of a data cleaning phase usually necessary when dealing with unstructured or semi-structured data~\cite{Bacc2012a}.
 It can also be stored and sent for debugging purposes, thus creating bug reports with a much higher level of detail and reliability than simple plain text.
 
 
@@ -103,7 +106,7 @@ It can also be stored and sent for debugging purposes, thus creating bug reports
 
 In this section we outline our approach for collecting information about runtime errors.
 We explain the benefits of collecting this runtime data and show how and why development can benefit from modeling this information.
-The final goal is to integrate the resulting framework into a modern development environment, to enable smooth and descriptive fruition of debugging information, and to provide the groundwork for building interactive tools that present the data in a meaningful context.
+The final goal is to integrate the resulting framework into a modern development environment, therefore enabling a smoother access to debugging information and increase the descriptive power of a bug report, to provide the groundwork for building interactive tools that present the data in a meaningful context.
 
 \subsection{Who Needs Models?}
 
@@ -113,15 +116,18 @@ Therefore, we can view a program  as the crossroads between the high level inten
 Clinging to the idea of a language that feels natural to describe algorithms, developers kept using the tools used for text editing to also manage source code.
 The large number of specialized tools that usually enrich the development experience in a text editor never evolved beyond its underlying representation, making writing source code mainly a string manipulation process.
 Using the widely understood format of plain text has numerous advantages, but it has one major drawback: It employs a \emph{flat} format do describe structured data, thus losing track of several properties that have to be inferred.
-This means that the information that is contained in the data is not directly accessible by the developer, but hidden in the underlying implicit structure that has to be rebuilt, for example with a parser.
+It is easy, by manipulating text, to observe the state of one or more entities: It becomes much harder, however, to describe how these entities are connected and interact.
+I other words, we can see where the data is but we cannot tell how it flows in our system.
+This means that the information carried by the structure of the objects in a system is lost or hard to observe.
+To rebuild the complete information that is hidden in the underlying implicit structure one has to rely to approximated approaches, for example by parsing the text to extrapolate the entities.
 Paraphrasing the allegory of the Cave of Plato, we are trying to learn the behavior of the entities in our system by looking at the shadows they project on the wall, represented by the textual representations~\cite{Plato380a}.
 
 While the goal of this work is not to criticize how we represent source code, it still helps us to comprehend how a developer perceives software development, since the very beginning of her training.
 Unsurprisingly, if we think about source code in terms of text, the natural consequence is to treat as text also the product of the execution of such code.
 As a result, the majority of logging and bug reporting systems collect messages as lines of text, stored in a text file.
 
-We can improve the way we deal with the information produced by a software system by employing a different approach, that captures the runtime data preserving its structure (\eg the structure of the involved objects at runtime) and allows to perform a finer grained analysis.
-Changing how we deal with data means changing the representation we use to interact with it: We need to employ a model that does not flatten the data it describes, but that maintains a structured relationship with the information it is derived from.
+We can improve the way we deal with the information produced by a software system by employing a different approach, that captures the runtime data preserving its structure (\eg the structure of the involved objects at runtime) and enables fine grained analyses.
+Changing the representation we use for bug reports means rethinking the underlying model, in particular with a structure able to capture the connected essence of the entities of a system.
 
 To overcome the difficulties of dealing with plain text to analyze programs, researchers tried to employ different model to represent source code, like \textsc{srcML}~\cite{Male2002a} or \textsc{JavaML}~\cite{Badr2000}.
 
@@ -138,11 +144,11 @@ We want to devise an approach for recording the behavior of an executing program
 
 To extend the behavior of the logging system, the first step is to define a model to describe the data we want to observe and collect.
 The goal of this model is to reify debug messages and store them to obtain a level of detail as near as possible to the original objects they are derived from, and to preserve all the information that describes the actual running system.
-
+We are reproducing the persistent capabilities of the \pha image for a smaller subset of entities, without the overhead of saving and serializing the entire system every time an exception occurs.
 
 \subsubsection{Shape of the model}
 
-The state of a running system is normally a significantly complex entity, with several possible combination of its variables: Providing a description that is both complete and easily understandable is not an easy task.
+The state of a running system is normally a significantly complex entity, with several possible combinations of its variables: Providing a description that is both complete and easily understandable is not an easy task.
 
 Usually, during a debugging session, the easiest approach to quickly understand an unexpected behavior is to verify the state of a program by retrieving data about one or more objects at runtime.
 Developers usually perform this operation by either printing a log message, or by using an object inspector.
@@ -155,7 +161,7 @@ Unfortunately, these cases are also the hardest to identify and correct, which w
 For example, in the case of a multithreaded application, different runs would result in different internal states: An error in the execution logic, like an unprotected access to a resource, would make an error to appear only under certain conditions, resulting in what is called an \emph{Heisenbug}~\cite{Grot2005}.
 
 Another issue comes with the necessity of understanding and correcting the problems experienced by the users of a program.
-Understanding the condition under which a specific error occurred, and reproducing it for fixing, is one of the hardest things in the debugging process, that consumes a considerable amount of time that could be spent to develop new features.
+Understanding the condition under which a specific error occurred, and reproducing it for fixing, is one of the hardest things in the debugging process, that consumes a considerable amount of time.
 Since the developers do not have access to the original environment where the error originally occurred, they have to infer it from the description of the user, or from the textual logs generated by the system, if any.
 Users, however, cannot be expected to have the necessary technical background to effectively report a bug, which leads to a problem in the reliability of the information that they report to the developers~\cite{Zimm2010a}.
 
@@ -171,7 +177,7 @@ We set the guidelines for designing such a framework for reified data collection
   \item\label{enum:simplify} when collecting the whole entity is not possible, we create and store a simpler representation;
   \item\label{enum:custom} we want our framework to be easily extendable and customizable;
   \item\label{enum:domain-specific} we should not collect data we are not interested in;
-  \item\label{enum:privacy} we should be careful in handling possibly sensible data.
+  \item\label{enum:privacy} we should be careful in handling possibly sensitive data.
 \end{enumerate}
 
 The guideline (\ref{enum:object}) defines the main scaffolding of our approach: We are interested in collecting information from an entity in the system.
@@ -180,15 +186,15 @@ Therefore, there is no need to prematurely flatten the information that the enti
 There are, however, some cases where the whole entity is not suitable for reporting the information.
 This is especially true with entities that might change their status for external causes, or entities that might expire, for example in the case of database connections, or short lived sessions in a multiuser system.
 
-In some other cases, we might not want our collection to expose sensible data, like passwords or private source code, as detailed in guideline (\ref{enum:privacy}).
-In this case, we apply the guideline (\ref{enum:simplify}): if it does not make sense to collect a piece of information, we anticipate the simplification process to create a safe copy of the original entity, and collect the cleaned version.
-Of course, this is strictly connected to the application domain, and it is not possible to generalize all the possible cases where we do not want to collect specific data.
+In some other cases, we might not want our collection to expose sensitive data, like passwords or private source code, as detailed in guideline (\ref{enum:privacy}).
+In this case, we apply guideline (\ref{enum:simplify}): if it does not make sense to collect a piece of information, we anticipate the simplification process to create a safe copy of the original entity, and collect the cleaned version.
+Of course, this is strictly connected to the application domain, and it is not possible to generalize to all the possible cases where we do not want to collect specific data.
 Guideline (\ref{enum:custom}) specifies that, to be effective, our framework must allow easy customization of its details.
 
 As an example, consider the case where we want to monitor, from a logging perspective, the errors that users get while accessing a resource.
 Usually, we would add a command to write a text line into a log file, to store the user and the action.
 The more information we want to extract, the more text we have to print, with the effect of cluttering the log file.
-Using the approach we defined, we can setup a rule that activates when the system generates an error that involves the user, and store the entity of the user (guideline \ref{enum:object}).
+Using the approach we defined, we can set up a rule that activates when the system generates an error that involves the user, and store the entity of the user (guideline \ref{enum:object}).
 In this way, we can directly access the actual entity related to the user, query it about its associated session, and the information about the action that the user was trying to perform.
 We can also avoid to collect data that we do not want to share, like the password (guideline \ref{enum:simplify}).
 
@@ -209,7 +215,7 @@ A collector has three main purposes:
 \end{enumerate}
 
 The main purpose of the collector is to define the data of interest: It must describe what to select and what to discard.
-For example, going back to the logging example, the system will pass some context to the collector, that will copy the user entity and remove the sensible data, like the password, or mask the username, if the purpose of the collection is to be sent remotely and published in a bug report.
+For example, going back to the logging example, the system will pass some context to the collector, that will copy the user entity and remove the sensitive data, like the password, or mask the username, if the purpose of the collection is to be sent remotely and published in a bug report.
 
 Defining when to collect the data is the other crucial aspect of the framework.
 We are defining an approach that customizes the data need for certain types of data, therefore defining a domain-specific data collection.
@@ -237,12 +243,12 @@ Being able to define the context of the error is crucial for the success of the 
   \label{fig:architecture}
 \end{figure*}
 
-We now present the implementation details of the framework for the Smalltalk programming language, while \secref{sec:reified-summary} we will also discuss the challenges of generalizing such an approach to other programming languages.
+We now present the implementation details of the framework for the Smalltalk programming language, while in \secref{sec:reified-summary} we will also discuss the challenges of generalizing such an approach to other programming languages.
 
 In implementing our framework, we need to consider a number of aspects pertaining to the control of the system, first of all the ability to directly catch errors and manipulate its context to extract the relevant data in a usable state.
 Accomplishing such a task is strongly dependent on the programming language of choice with the result that the amount of technical details that can be considered is humongous, and out of the scope of this work.
 We implemented and test the effective feasibility of our approach using \pha.
-The fact that the whole system is described using objects allows us to easily inspect faulty states of the system by interacting through the \texttt{Context} object, and simplifies the reification process of the interesting entities.
+The fact that the whole system is described using objects enables us to easily inspect faulty states of the system by interacting through the \texttt{Context} object, and simplifies the reification process of the interesting entities.
 
 While the use of \pha enables full flexibility and control over the execution of a program, one may wonder whether this hinders the applicability of the approach to more general examples.
 We believe that this does not affect the possibility to implement an analogous framework for a different programming language.
@@ -300,15 +306,15 @@ The collectors evaluate whether they should activate, and potentially perform th
 Once the collection is complete, the framework composes a \entity{Report} object and announces its creation using \bea,\seeurl{www.smalltalkhub.com/\#!/$\sim$Pharo/Beacon} an announcement-based (\ie publish/subscribe) logging framework for \pha.
 \bea broadcasts messages to the system to inform the interested tools of the presence of a report.
 
-By collecting complex entities in form of objects, rather that text, our approach allows to initiate a conversation with the system and a systematic and progressive exploration of the errors, rather than just providing a partial report of the exception.
-This allows us to observe the properties of the objects and deal with them in a customized way.
+By collecting complex entities in the form of objects, rather that text, our approach allows to initiate a conversation with the system and a systematic and progressive exploration of the errors, rather than just providing a partial report of the exception.
+This enables us to observe the properties of the objects and deal with them in a customized way.
 
 \subsection{Using the Data}\label{sec:reified-tools}
 
-Once a report is broadcast, every interested tool will receive the data.
-This behavior is intended to further improve the customizability of the framework, allowing the developer of a system to refine their tools for quickly inspect the data collected about their code, as proposed by guideline (3).
+Once a report is broadcast, every subscribed tool will receive the data.
+This behavior is intended to further improve the customizability of the framework, allowing the developer of a system to refine their tools to quickly inspect the data collected about their code, as proposed by guideline (3).
 
-The two applications proposed by default by our approach consist in a local data browser, and a customized reporter.
+The two applications proposed by default by our approach consist of a local data browser, and a customized reporter.
 If a user is interested in browsing the data locally, for example during the development phase of a project, she can inspect the contents of the report objects.
 Moreover, she can exploit the tools provided by the \pha ecosystem, like the \emph{Glamour Toolkit}~\cite{Girb2013a} to create custom visualizations of the data to support the browsing session.
 
@@ -331,7 +337,7 @@ In this section we show how to employ our framework to support debugging and pro
 We present three scenarios and show how to collect domain-specific information from different environments.
 We show how accessing specific information can support developers in quickly understanding the cause of a defect and the behavior of a piece of code.
 
-In \secref{sec:reified-story-announcer} we present an in-depth case study together with a possible implementation showing how our approach can support debugging errors in applications using the Announcer framework, a messaging framework that reduces coupling but that might introduce non deterministic behavior; In \secref{sec:reified-story-testing} we outline how to collect data when running a test suite, and how its usage can integrate the current practices in continuous integration of deployed application and support automation; \secref{sec:reified-story-libraries} presents a brief discussion on how using \sln can benefit debugging third party libraries in the context of complex entities.
+In \secref{sec:reified-story-announcer} we present an in-depth case study together with a possible implementation showing how our approach can support debugging errors in applications using the Announcer framework, a messaging framework that reduces coupling but that might introduce non deterministic behavior; In \secref{sec:reified-story-testing} we outline how to collect data when running a test suite; \secref{sec:reified-story-libraries} presents a brief discussion on how using \sln can benefit debugging third party libraries in the context of complex entities.
 
 \subsection{The Announcer Story}\label{sec:reified-story-announcer}
 
@@ -358,7 +364,7 @@ While this might still be sufficient to support debugging of simple problems, it
 
 \subsubsection{Usage of Announcements}
 
-\figref{fig:announcer-report} shows a bug report submitted to the \pha issue tracker, describing a problem with a tool where selection an item from a menu would trigger the opening of two duplicate windows, instead of one.
+\figref{fig:announcer-report} shows a bug report submitted to the \pha issue tracker, describing a problem with a tool where selecting an item from a menu would trigger the opening of two duplicate windows, instead of one.
 
 \begin{figure}[t]
   \centering
@@ -368,7 +374,7 @@ While this might still be sufficient to support debugging of simple problems, it
 \end{figure}
 
 During the discussion it becomes soon clear that the incident is compatible with the case of an entity registered twice in the announcer responsible for opening the window.
-The debugging process consists in hunting down the entity that contains the double registration and remove one of the two snippets of code that perform the subscription.
+The debugging process consists in hunting down the entity that contains the double registration and removing one of the two snippets of code that perform the subscription.
 While this case is not directly a consequence of an exception, it shows how debugging the behavior of code using announcements can be tricky, and that further support from the development tools would probably be preferred.
 We therefore conducted a brief experiment to investigate how common are problems involving announcements in the exceptions that developers usually trigger while writing code.
 
@@ -453,7 +459,7 @@ We collected 41,129 stack traces from 257 different developers, on a time period
 We queried the collected data looking for references to \textit{AnnouncementSubscription}, the class responsible to dispatch the announcement to the registered entities, and we found that 4,840 stack trace contain at least one reference to this class.
 
 Such a result means that almost 12\% of the exceptions that were collected by our tool as a result of a system exception, involved the usage of the Announcement framework.
-While this result does not imply that the framework is directly responsible or involved with the error, it shows that more than one exception every ten has in its source a relation with an announcement.
+While this result does not imply that the framework is directly responsible or involved with the error, it shows that more than one exception in ten has in its source a relation with an announcement.
 This hints that the scenario is frequent enough to require a dedicated support by the debugging tools, not only to correct errors, but also to help understanding the status of the system during its execution.
 
 
@@ -492,7 +498,7 @@ The other three methods are invoked during the initialization of the collector, 
 Since this data is collected during the execution time, this list contains the order in which this announcement is being distributed.
 Moreover, the method also extracts the index of the current entity: In this way the developer can access the list of the entities that already received the announcement and the one of the entities that did not receive the message, thus easing the detection of possible conflicts between different subscribers.
 
-The data collected by the Announcer collector provides a detailed picture of the status of a program, in an environment where it is usually hard to understand what causes the code to fail, thus giving the developer an immediate overlook on the dispatching of the messages.
+The data collected by the Announcer collector provides a detailed picture of the status of a program, in an environment where it is usually hard to understand what causes the code to fail, thus giving the developer an immediate overview on the dispatching of the messages.
 Moreover, the data collected are still first-class entities of the system, that can be further queried to extract data: this process allows to retain the maximum amount of information for the longest time needed, so that it can be inspected during an exception or flattened into a textual format for the submission to an issue tracking system.
 If the system allows it, the entities can also be serialized and sent to the issue tracker, so that the maintainers of a software can navigate the errors generated by the users with a much higher degree of flexibility and introspection on the data than just plain text log files.
 
@@ -509,14 +515,14 @@ The former expects the developer to write a test mapping the expected outcome be
 
 We analyze the possible role of our approach based on collectors within the combination of these two specific contexts.
 While in the case of TDD the developer has immediate access to the error and its context, running a test suite to check the whole codebase can generate errors that are complex to frame in the correct context.
-Moreover, in the case of continuous integration, where the tests do not run on the machine of the developer but are executed on a remote server, developers only have access to the output of the tests, which usually consist on textual reports.
+Moreover, in the case of continuous integration, where the tests do not run on the machine of the developer but are executed on a remote server, developers only have access to the output of the tests, which usually consist of textual reports.
 This happens for example if a project adopts a continuous integration service like Travis CI,\seeurl{https://travis-ci.org/} that performs a full run of the tests every time the project is updated, and then sends a report of the outcome to the developers.
 
 When a test fails, however, the trace of the error is flooded into the log messages generated during the build process, requiring time to identify and filter the relevant information.
 Once a developer finds information about the failed test, she has to read the text output to understand what was the possible cause of the failure, return to her development environment, reproduce the failed case, locate the source of the defect and fix it.
 This process might still be lightweight in the case of simple defects in small projects with one developer, but as the organization of the project grows in complexity, reproducing and locating the issue can become a burden that costs a significant amount of time.
 We can improve this scenario by introducing \sln collectors.
-By writing a small amount of code, developers are able to extract the specific information they are interested in about a failing test.
+By writing a dedicated class, developers are able to extract the specific information they are interested in about a failing test.
 Writing a collector for a test case is simple: Smalltalk uses the testing suite called \textit{SUnit}~\cite{Beck1994a}, where each test class is a subclass of \textit{TestCase}.
 We can therefore define the \textit{\#when:} method to activate the collector if there is an instance of such class in the invocation stack of the exception.
 We can then write the extraction strategies to gather the status of the part of the system that is subject of the testing, or simply extract the whole context storing all the objects in the stack.
@@ -536,19 +542,20 @@ Leveraging the Smalltalk approach of the \emph{image}, that can be frozen and sa
 Using this approach, when a build fails to pass the tests, the developer can browse the repository of images, download the relevant one and open it on its local machine.
 The concept is similar to using \emph{Docker}\footnote{\url{https://www.docker.com/}} to deploy applications, where the system runs in an isolated controlled environment, independent from the host operating system.
 
-Either using the automatic report generated by the failing tests, or downloading directly the image containing the error, developers can observe details of the system at the moment of the failure, thus shortening the time required to identify the steps to reproduce the error, and reduce the maintenance cost.
+Either using the automatic report generated by the failing tests, or downloading directly the image containing the error, developers can observe details of the system at the moment of the failure, thus shortening the time required to gather information to reproduce the error.
+
 
 \subsection{Debugging Third Party Libraries}\label{sec:reified-story-libraries}
 
 The last example on the usage of the framework shows how a developer of a third party library can benefit from implementing a collector observing for specific data about her project.
-In the Smalltalk ecosystem, \emph{Roassal}\footnote{\url{http://agilevisualization.com/}} is a large and vastly used visualization engine made to ``visualize and interact with arbitrary data, defined in terms of objects and their relationships''~\cite{Aray2013a}.
+In the Smalltalk ecosystem, \emph{Roassal}\footnote{\url{http://agilevisualization.com/}} is a large visualization engine widely adopted in the SmallTalk community, made to ``visualize and interact with arbitrary data, defined in terms of objects and their relationships''~\cite{Aray2013a}.
 Roassal codebase consists of more than 800 classes and almost 6,000 methods, and is constantly evolving and improving using the feedback of the community.
 Maintaining such a large project is a complicated task, as tracing and addressing the errors experienced by the users can become like hitting a moving target, especially since Roassal integrates with other tools and because the community is usually split among stable, legacy, and development releases.
 
 Understanding what triggered an error and rebuilding the environment to reproduce it can become quite painful, as the developers need information that might not be easy to provide.
 Using a coarse-grained approach as the one we described in \secref{sec:reified-story-testing} would not fit this scenario, as asking the user to submit the whole image would generate a lot of traffic that would be hard to manage, without considering that the image could contain sensitive data, like private source code, that a user might not want to share.
 
-The maintainers of Roassal can improve this situation by observing data specifically related the the model of the engine.
+The maintainers of Roassal can improve this situation by observing data specifically related to the model of the engine.
 By detecting either when an exception occurs involving an object that is a subclass of \textit{RTObject}, or by checking if it happens in the context of a builder ---a Roassal object responsible for generating a visualization from a collection of data---, a collector can determine if there is some information about Roassal available, that can be collected and reported.
 
 By collecting domain-specific information, the maintainers can get a much more detailed picture of the error, and restrict the possible causes to the ones compatible with the collected data without the need to access the actual data of the user.
@@ -567,7 +574,7 @@ In this section we discuss how our approach can be generalized to work with othe
 \subsubsection{Generalizability of the approach}
 
 As we explained in \chref{ch:pharo}, we developed our approach using \pha.
-The strong reflection and inspection capabilities of the platform allowed us to inspect the whole status of the system, retrieving valuable information about the whole execution context of the software.
+The strong reflection capabilities of the platform allowed us to inspect the whole status of the system, retrieving valuable information about the whole execution context of the software.
 
 Given these premises, one might wonder (1) why should this approach be relevant in the \pha ecosystem, and (2) if it is still relevant outside \pha, when trying to apply it to other programming languages.
 
@@ -599,11 +606,10 @@ By extending our framework, a developer can define a custom strategy to gather d
 By preserving the structured, object-oriented nature of the collected data, rather than serializing the information to text, we are able to query the state of a program  and observe it by filtering the data we are interested in, resulting in both more expressive and less bloated reports.
 Such capabilities of observing a system enable to create flexible inspection tools, that are able to get a deeper representation of the execution context of a piece of software.
 
-By giving the possibility to report and collect specific information from the system, \sln offers data that is more reliable that a stack trace submitted by a user, and allows to deal with the collected data in an automated fashion, giving the possibility to programmatically perform tasks that would otherwise consume time of the developers and weight on the cost of maintenance.
-Moreover, providing a defined structure for execution data, our framework allows to perform a number of analyses without having to resort to information retrieval and text mining techniques to clean the data, but allows to talk directly with the collected entities that map the original data.
+By giving the possibility to report and collect specific information from the system, \sln offers data that is more reliable than a stack trace submitted by a user, and allows to deal with the collected data in an automated fashion, giving the possibility to programmatically perform tasks that would otherwise consume time of the developers and weight on the cost of maintenance.
+Moreover, providing a defined structure for execution data, our framework allows us to perform a number of analyses without having to resort to information retrieval and text mining techniques to clean the data, but enables us to talk directly with the collected entities that map the original data.
 
 Finally, dealing with data that is not flattened allows to perform a progressive inspection of a report, enabling the discoverability of complex data and structuring the debugging session as a browsing process to select the data needed by the developer fixing a bug.
-
 
 In this chapter we put in place a platform to collect detailed domain-specific information about components of a system.
 At last, our model is no longer text-based, but represents entities using objects.

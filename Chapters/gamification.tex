@@ -5,7 +5,7 @@
 % \coolchapter{How to Gamify Software Engineering}{}{ch:gamification}
 
 
-All our efforts up to this moments were aimed at reducing the time spent dealing bug reports by providing tools to access the data in a faster way than just plaintext.
+All our efforts up to this moment were aimed at reducing the time spent dealing with bug reports by providing tools to access the data in a faster way than just plaintext.
 Providing faster and smarter tools solves the problem of reducing maintenance costs, but does little to improve the fundamental issue of engaging developers and contributors.
 Software development, like any prolonged and intellectually demanding activity, can negatively affect the motivation of developers.
 This is especially true in specific areas of software engineering, such as requirements engineering, test-driven development, bug reporting and fixing, where the creative aspects of programming fall short.
@@ -21,7 +21,8 @@ We provide a set of basic building blocks to apply gamification techniques, pres
 \structure
 
 In \secref{sec:gamification-intro} we provide an in-depth introduction to gamification, while in \secref{sec:gamification-principles} we present its principles.
-In \secref{sec:gamification-sweng} we introduce a framework for applying gamification to a software engineering context.
+In \secref{sec:gamification-sweng} we discuss the applicability of gamification principles in a software engineering context, while in \secref{sec:gamification-framework} we introduce a framework for applying gamification to a software project.
+
 In \secref{sec:gamification-evaluation} we propose some guidelines to evaluate the effectiveness of a gamified system, while in \secref{sec:gamification-discussion} we discuss the possible improvements of our work.
 Finally, in \secref{sec:gamification-summary}, we summarize and conclude the chapter.
 
@@ -335,7 +336,7 @@ Before we can provide concrete examples of how the framework is to be used, we n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gamification Building Blocks}\label{sec:gamification-building-blocks}
 
-The ten building blocks we present here have been identified during the construction of several software engineering gamification environments we have constructed, and which we briefly present in a latter section.
+The ten building blocks we present here have been identified during the construction of several software engineering gamification environments we have constructed, and which we briefly present in a later section.
 We do not claim the list of building blocks is exhaustive, but after constructing the aforementioned gamification environments we did not see other building blocks emerge from our efforts.
 The building blocks are denoted by a series of aspects recurrent in the literature: According to Werbach and Hunter players \emph{go through a journey}, progressing through an environment, first by ``on-boarding'', then by ``scaffolding'', and later by achieving ``mastery''~\cite{Werb2012a}.
 Adopting Lazzaro's ``keys to emotions''~\cite{Lazzaro2004}, good emotions triggered by solving puzzles, accepting challenges, and designing strategies are elicited by \emph{hard fun}.
@@ -447,7 +448,7 @@ We produced a large set of activities, such as the one in \figref{fig-act2}.
 %\label{fig-act2}
 %\end{figure}
 
-Due to space reasons we cannot depict all activities; the goal is to clarify that creating activities is a lengthy process which must be done in an iterative way.
+We present a selected list of the activities that we designed: the goal is to clarify that creating activities is a lengthy process which must be done in an iterative way.
 
 \badge{yob_badge} As the player signs up for the game, she enters the magic world of ancient Greece and receives her first reward, the \textbf{Newbie badge} and a small amount of drachmas (the ancient Greek currency), with which the player can buy her avatar some equipment.
 The game awards different amounts of Drachmas according to the difficulty of the accomplished task.
@@ -512,7 +513,7 @@ We also devised a number of other software engineering gamification environments
 We now present another case study of a gamification layer for a software engineering context: Modern Code Reviews.
 Due to space limitations we do not present the solution at the same level of detail as the previous example, but focus here mostly on a concept that was only sketched in the previous section: \emph{leveling up}.
 
-Code reviews is a software engineering practice that consists in manually reviewing source code written by other people, to verify and improve the quality of the code.
+Code reviews are a software engineering practice that consists in manually reviewing source code written by other people, to verify and improve the quality of the code.
 While the effectiveness of this method has been proven during the years~\cite{Shull2008a}, this practice is often considered expensive, cumbersome, and, as such, difficult to adopt.
 Bacchelli and Bird proposed \textit{Modern Code Reviews}~\cite{Bacc2013a}, a code review approach that is informal, tool based, and performed on a frequent basis.
 They developed \textit{CodeFlow}, a tool where the user can annotate the source code and interact with other users with a chat.
@@ -524,8 +525,7 @@ In the context of a code review tool we are currently building in the research g
 We employ gems as a virtual currency to reward positive feedback while using proposed solutions.
 The number and the type of gems compose a reputation system based on noble titles, used by the system to rank users, which also facilitates the finding of experts in specific areas.
 
-It has been shown~\cite{Bacc2013a} that teams use code reviews for the following purposes: (1) finding defects in the code; (2) improving the code; (3) finding better implementations; (4) transferring knowledge in the group; (5) increasing the team awareness and transparency; and (6) sharing code ownership.
-
+It has been shown that teams use code reviews for the following purposes: (1) finding defects in the code; (2) improving the code; (3) finding better implementations; (4) transferring knowledge in the group; (5) increasing the team awareness and transparency; and (6) sharing code ownership~\cite{Bacc2013a,Bell2014a}.
 Given the strong implicit collaborative nature of code review tools, we pose a strong accent on blocks that expect interaction with other users, like \emph{Scrum} and \emph{Champagne}.
 However, also the motivation of single users can be catalyzed, for example by rewarding quality code, thus suggesting the use of \emph{Bravery} and \emph{Thunderbolt} blocks.
 
@@ -607,11 +607,11 @@ Given the context of code reviews, which by definition happen inside the same te
 Once a system is gamified, we need to be able to measure the impact of the gamification, and how much it contributed to reach the \emph{business objectives}.
 It is crucial not to confuse business objectives with game objectives: with the coexistence of ``serious'' and ``fun'' layers, it is easy to exchange the goals of the two aspects, thus misjudging the effects.
 
-In building our framework, we included a testing section, whose purpose is to decide at design time a procedure to state how successful the game elements applied to each single activity are.
+In building our framework, we included a testing section, whose purpose is to design, together with an activity, the conditions to establish how successful the game elements applied to each single activity are.
 But, a system is more than the mere sum of all its parts: As such, testing all the single elements does not imply the success of the whole gamification system, exactly as in software development we need integration tests.
 
 We propose five methods to assess the general performance of the gamification on top of a software engineering context: \emph{success metrics}, \emph{analytics}, \emph{conflicts}, \emph{jen ratio} and \emph{survey}.
-The first three focus on technical aspects to consider the business objectives, while the the last two consider emotional aspects.
+The first three focus on technical aspects to consider the business objectives, while the last two consider emotional aspects.
 Due to their subjective nature, we cannot get a precise measure of emotional response of the users and compare the obtained values in a consistent way.
 The relative metrics have then to consider the imprecise nature of the data they deal with.
 
@@ -704,7 +704,7 @@ For example, Vasilescu \etal studied the difference between men and women in app
 We presented a critical overview on the relevant literature on gamification, and proposed a framework to support the design of a gamification layer to support software engineering tasks.
 We showed how to implement practical actions to successfully gamify a system, and we distilled ten essential \emph{building blocks} that represent basic elements to be considered when designing gamification activities.
 We then discussed two example software gamification environments highlighting a number of challenges.
-Last, we outlined a proposal on how gamification systems can be evaluated.
+Last, we outlined a proposed procedure to evaluate a gamified system.
 
 
 %The solutions developed to build \textit{The Myth and De-Bug} were designed with an actual use scenario in mind, and are being integrated into \textit{ShoreLine}, a comprehensive platform to manage bug reports developed for the \textit{Pharo}\footnote{https://pharo.org} community.

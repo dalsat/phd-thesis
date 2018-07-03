@@ -27,7 +27,7 @@
 
 To ensure quality of software systems, developers use bug reports to track defects.
 It is in the interest of users and developers that bug reports provide the necessary information to ease the fixing process.
-Past research found that users do not provide the information that developers deem \emph{ideally useful} to fix a bug.
+Past research found that users do not provide the information that developers deem \emph{ideally useful} to fix a bug~\cite{Zimm2010a}.
 This raises an interesting question: What is the \emph{satisficing}\footnote{Satisficing is a neologism coined by Simon~\cite{Simo57,Simo01} combining the verbs {\em to satisfy} and {\em to suffice}, and it is used to describe a solution that is roughly satisfactory and meets some criteria of sufficiency and is better than an optimal solution that would be too complex or would imply too strong constraints.} information to speed up the bug fixing process?
 
 We conducted an observational study on the relation between provided report information and its lifetime, considering more than 650,000 reports from open-source systems using popular bug trackers.
@@ -71,7 +71,7 @@ We conduct our investigation in three steps: \begin{inparaenum}[(1)]
 \item we study which fields developers use to describe defects, by means of a further quantitative analysis on the lifetime of reports in relation to the evolution of report's state and its \emph{completeness} in its core and customized fields.
 \end{inparaenum}
 
-Our results show that providing more fields in a report relates to the fixing time: In particular, the bug reports with longer descriptions tend to be solved quicker.
+Our results show that providing more specific fields in a report relates to the fixing time: In particular, the bug reports with longer descriptions tend to be solved quicker.
 While this might be intuitive, issue trackers still do not emphasize this aspect during the submission of a new bug report, putting the accent on the customization capabilities of the platform.
 At the same time, the project-specific bug report fields have little impact to the fixing time.
 This chapter provides insights on the current issue tracking practices and defines guidelines in building the foundations for a new model of an issue tracking system.
@@ -220,7 +220,7 @@ We advertised the survey through the development mailing list of Pharo and we re
 The respondents are experienced with object-oriented programming and with the Pharo IDE.
 While they have experience in submitting and handling bug reports, their experience is lower in participating in discussions about bug reports and much lower in having reports assigned to them.
 For this reason, we deem the respondents' sample to be in line with the aim of our survey.
-In fact, we are especially interested in knowing the point of view of submitters of bug reports, rather than the view of the developers that ``consume'' these reports.
+In fact, we are especially interested in knowing the point of view of submitters of bug reports, rather than the view of the developers that ``consume'' these reports~\cite{Zimm2010a}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -317,11 +317,11 @@ Bugzilla & RESOLVED & 391,919 & 579,488 \\
 
 \subsection{Data Analysis Techniques}
 
-The large volume of data we collected allows us to explore the usage of issue trackers and to investigate the common practices of bug tracking.
+The large volume of data we collected enables us to explore the usage of issue trackers and to investigate the common practices of bug tracking.
 Understanding these aspects can help us to answer our questions and verify whether the usage of the properties of a tracker influences the life of a  report.
 
 To investigate our research questions, we adopt the following approach.
-To answer RQ3, we build a transition diagram of all the state changes for each issue tracker, to highlight the common patterns in the growth of a report, and we weight the diagram with the values from the dataset.
+To answer RQ3, we build a transition diagram of all the state changes for each issue tracker, to highlight the common patterns in the growth of a report, and we weight the nodes and edges of the diagram with the values from the dataset.
 To answer RQ4, we build a machine-learning-based prediction model to verify how completeness of fields of a bug report relates to its lifetime.
 
 
@@ -572,7 +572,7 @@ We now explore the relationship between the various attributes adopted by the di
 Predicting the exact lifetime of a report would be unpractical and unnecessary: a timeframe for the resolution would provide a useful, human-understandable measure, while allowing more accurate predictions.
 To introduce such a degree of tolerance, we divide the reports into \emph{buckets} according to their lifetime.
 
- Using bucketing we can deal with discrete values and adopt a classification approach, as opposed to a regression to predict a continuos variable.
+ Using bucketing we can deal with discrete values and adopt a classification approach, as opposed to a regression to predict a continuous variable.
 We split the lifetime space into four buckets: less than one day, less than one week, less than one month, and more than one month.
 We chose these intervals because they reflect humane time periods and they describe increasing timespans, reflecting that the longer a bug report stays open, the less relevant its exact resolution time becomes.
 After bucketing the issues, we model each report as a vector of booleans (each field maps an attribute of the report and its value is 1 iff the user filled it) and associate it with its classification into a bucket of lifetime, which we can feed to different prediction algorithms.
@@ -675,11 +675,15 @@ Common & 0.27 (+0.02) & 0.28 (+0.03) & 0.28 (+0.03) & 0.28 (+0.03) \\
 
 Indeed, the results on the most recent dataset do not differ significantly from the results based on much longer timespans.
 
-\textbf{Conclusion.} From our study using PCA, we observe that there exists a set of core elements of a bug report that impact and influence its lifetime.
+
+\section{Discussion}\label{sec:model-discussion}
+
+From our study using PCA, we observe that there exists a set of core elements of a bug report that impact and influence its lifetime.
 Comparing these result with the perceived difficulty presented in RQ1, we see that some of these elements, like a description of the problem, the screenshot or the stack trace, compose the description field that we saw impacting the resolution time.
 Another relevant element is the assignee of the report, but users find it hard to provide it.
 Interestingly, the elements that are the most useful in the resolution of a software defect are also harder to provide.
-From the experience with the various issue trackers and their interfaces, we believe that a user submitting a bug report should be offered a clean interface, that minimizes the amount of required information, highlights the most effective elements, and progressively requires the harder or less relevant ones.
+From the experience studying the various issue trackers and their user interfaces, we believe that a user submitting a bug report should be offered a clean interface, that minimizes the amount of required information, highlights the most effective elements, and progressively requires the harder or less relevant ones.
+It is interesting to see how the recent issue tracker provided by \gth follows the same approach by providing a simple and clean interface.
 The AdaBoost machine learning model achieves the best results, yet it can only predict the lifetime of a limited number of bug reports.
 The increment over a random classifier prediction is particularly small for the \emph{common} attributes.
 This can be explained by the terse nature of the core model.
@@ -698,12 +702,6 @@ Last, we examine which fields impact the prediction the most: They are the numbe
 The fields that connect the issue with other reports are also relevant, for example the dependent issues, as well as the fact that a bug report is already assigned at the time of submission.
 
 
-
-\section{Discussion}\label{sec:model-discussion}
-
-This section discusses the possible problems of our approach and how our work can be improved.
-
-
 \subsection{Threats to Validity}
 
 Dealing with large amounts of data can pose some problems in creating an abstraction sufficiently broad to comprise all the aspects of the data, but still specific enough to capture its details.
@@ -717,7 +715,7 @@ However, this metric proved to be an interesting open problem in the field and i
 
 \subsection{Next Steps}
 
-Developers tend to prefer simpler models to depict software defects.
+By the usage that we observed in our dataset, we gather that developers tend to use simple models in describing software defects.
 Even when provided with customization means, the additional information did not show a correlation with the lifetime of a report.
 Modern issue trackers like \jira and \bzilla are complex interfaces over a set of tables in a relational database and the need for additional features over time makes those platforms grow over time, progressively turning them into inflexible \emph{colossi}.
 
