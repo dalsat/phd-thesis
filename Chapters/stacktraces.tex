@@ -132,7 +132,7 @@ A recurrent and consistent misuse of a method of an API may represent a flaw in 
 The maintainer of the library can then determine how to refactor the interface to improve the documentation.
 Moreover, using further data collected after the changes, she would also be able to measure the impact of her intervention on the workflow of the developers.
 
-Another usage example can employ data showing a frequent pattern inside core classes of the system to identify the nodes on the system that manages the largest part of the computation.
+Another usage example can employ data showing a frequent pattern inside core classes of the system to identify the nodes in the system that manage the largest part of the computation.
 By identifying these spots, a developer could be able to prioritize her development activity and to perform targeted optimization.
 
 So far we have considered the \emph{horizontal} dimension of stack traces, that is, we considered the information of a group of traces based on their occurrence.
@@ -236,7 +236,7 @@ size of the longest stack trace & 314 \\ \hline
 \end{table}
 
 We visualized the data to highlight the parts of the \pha system that were involved in the collected exceptions: \figref{fig:stackcity-methods} shows a city visualization of the stack trace data mapped on the whole \pha system.
-Using the same convention used in \figref{fig:stackcity-classes}, each building represents a package and each square enclosing a building is a package.
+Using the same convention used in \figref{fig:stackcity-classes}, each building represents a class and each square enclosing a building is a package.
 Each building is composed of blocks, each one representing a method.
 The color of each method is determined by the number of times a method appears in a stack trace: it tends to red when the number is higher and to blue when the number is lower.
 Methods, classes and packages that do not appear in a stack trace are collapsed and depicted in gray.
@@ -469,7 +469,7 @@ Each of the three cases can represent an interesting scenario that can be addres
 In case (1) the information about runtime error of a developer's code can be of interest for the developer itself and, if collected for further usage during debugging, it can be used to signal possible defects in the code and prioritize the classes and methods to inspect.
 
 Case (2) can take place when many developers use the same API in an incorrect way.
-Such case may suggest an area of code or a class interface that requires refactoring.
+Such a case may suggest an area of code or a class interface that requires refactoring.
 
 Case (3) is the most interesting for the developers of the system: It means that the system is raising a lot of exceptions in an area of code that is not known yet for having unexpected behaviors.
 This could---by definition---represent a new defect, not yet known to the community, or not precisely defined.
@@ -497,7 +497,7 @@ We can see the metadata (A), the initial description that opened the bug report 
 
 In \secref{sec:stacktraces-nature} we already presented the stack trace shown in \figref{fig:stacktrace}.
 The example is particularly interesting because it shows a practical use case for a user or a developer that encounters the exception while she is writing code.
-\figref{fig:report} shows the bug reports retrieved for this stack trace.
+\figref{fig:report} shows the bug report retrieved for this stack trace.
 As the report shows, there is a known error caused by a defect in the system, and the community is already working to address it.
 In particular, since the stack trace that we considered was generated on date 7/7/2014, the user encountered the problem before its resolution and, at the time, the report was stuck in a low priority status.
 This information could have been exploited by a developer to report more precise information or to ask for an increase of the priority for a quicker defect resolution, while a user encountering the exception could know that there is work in progress, or if there is an estimated time to have an updated and fixed version.
@@ -534,7 +534,7 @@ CriticBrowser{>}{>}reapplyRule:
 The lines containing \emph{CriticBrowser{>}{>}reapplyRule:} are related to bug report 14230.
 On closer inspection we can see that the bug report contains only three comments, but the last one points to report 110473, where a long discussion (40 comments) is ongoing regarding the relation of the method in the stack trace and the application of rules for the CriticBrowser.
 At the end of the discussion the report gets closed, but as a result of the fix, another bug report is issued to address further weird behavior of the CodeCriticBrowser.
-To add even more correlation to the trace and the report, we noticed that the author of the stack trace is active in the discussion of the report, and actively contributed in its resolution.
+To add even more correlation to the trace and the report, we noticed that the author of the stack trace is active in the discussion of the report, and actively contributed to its resolution.
 This reinforces our belief that providing a bug report context when a user encounters an exception can provide great value in debugging software.
 
 

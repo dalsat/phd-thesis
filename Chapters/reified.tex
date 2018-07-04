@@ -34,7 +34,7 @@ Finally, \secref{sec:reified-summary} concludes the chapter and outlines directi
 Computer systems have become pervasive in many human activities.
 The high penetration of machine-controlled devices, that have to deal with an increasing number of different tasks, led to an increase in the complexity of the involved software.
 This phenomenon turned modern software development into a multifaceted activity, where a one-developer team is no longer a viable option: Building software is above all a collaboration and communication activity.
-Writing code is only a small part of the process: Several phases such as design, testing, and maintenance, play a role as fundamental in the success of a project.
+Writing code is only a small part of the process: Several phases such as design, testing, and maintenance, play a fundamental role in the success of a project.
 In fact, maintenance often represents a significative percentage of a developer's time: Researchers showed that the effort put in reading and understanding code outweighs the effort needed to write it~\cite{Corb1989,Fjel1983,Zelk1979,Mine2015b}.
 In such a scenario, one would imagine that the effort for providing means to aid developers would focus on refined tools to navigate, understand, and inspect the code.
 While this is partly true, many of the modern editors and IDEs put the biggest accent on how developers write code, leaving program comprehension as a secondary task.
@@ -129,7 +129,7 @@ As a result, the majority of logging and bug reporting systems collect messages 
 We can improve the way we deal with the information produced by a software system by employing a different approach, that captures the runtime data preserving its structure (\eg the structure of the involved objects at runtime) and enables fine grained analyses.
 Changing the representation we use for bug reports means rethinking the underlying model, in particular with a structure able to capture the connected essence of the entities of a system.
 
-To overcome the difficulties of dealing with plain text to analyze programs, researchers tried to employ different model to represent source code, like \textsc{srcML}~\cite{Male2002a} or \textsc{JavaML}~\cite{Badr2000}.
+To overcome the difficulties of dealing with plain text to analyze programs, researchers tried to employ different models to represent source code, like \textsc{srcML}~\cite{Male2002a} or \textsc{JavaML}~\cite{Badr2000}.
 
 In a similar fashion, the Smalltalk programming language proposes a system to store and access its source code that differs significantly from the usual text file approach.
 Smalltalk proposes an approach where the whole system is contained in a single file named {\em image}.
@@ -158,7 +158,7 @@ Using this process implies that every change requires a new run of the system.
 
 While this would not pose any hard consequence in trivial development scenarios, it might become a problem if the flow of the program is not fully deterministic, like in case of concurrency, or if it relies on user input.
 Unfortunately, these cases are also the hardest to identify and correct, which would therefore require the most support by the debugging tools.
-For example, in the case of a multithreaded application, different runs would result in different internal states: An error in the execution logic, like an unprotected access to a resource, would make an error to appear only under certain conditions, resulting in what is called an \emph{Heisenbug}~\cite{Grot2005}.
+For example, in the case of a multithreaded application, different runs would result in different internal states: An error in the execution logic, like an unprotected access to a resource, would make an error to appear only under certain conditions, resulting in what is called a \emph{Heisenbug}~\cite{Grot2005}.
 
 Another issue comes with the necessity of understanding and correcting the problems experienced by the users of a program.
 Understanding the condition under which a specific error occurred, and reproducing it for fixing, is one of the hardest things in the debugging process, that consumes a considerable amount of time.
@@ -166,7 +166,7 @@ Since the developers do not have access to the original environment where the er
 Users, however, cannot be expected to have the necessary technical background to effectively report a bug, which leads to a problem in the reliability of the information that they report to the developers~\cite{Zimm2010a}.
 
 Our goal is to have an explicit, flexible, and specific out-of-the-box model that allows developers to observe the state of the system quickly, reliably, and with the lowest effort.
-The cognitive cost for building a mental model of a system takes a significative toll on the energy of developers.
+The cognitive cost for building a mental model of a system takes a significant toll on the energy of developers.
 This method however brings a constant cost inside the iterative process of understanding-and-correcting code, as building a mental model is a task that must be performed every time, and does not scale.
 As such, we want to remove this cost.
 
@@ -469,7 +469,7 @@ Our goal is to use a model able to collect and present domain-specific informati
 We can use this information to refine the inspection tools used to investigate the system, or to create bug reports capable of representing the exception with further details that are not representable using the stack trace generated by the exception.
 
 We can accomplish the task using a custom extension of \sln to collect runtime data that describes the environment of an announcement.
-To implement the collector we need to define the strategies to activate for its activation and to describe the data extraction.
+To implement the collector we need to define the strategies for its activation and to describe the data extraction.
 There are two main scenarios that can lead to errors using an announcer: \figref{fig:announcer-report} showed how an entity being registered twice to an announcer can lead to weird bugs, while the potentially non-deterministic nature of an announcer, given by the fact that messages are dispatched in no specific order, can cause bugs that are hard to reproduce.
 We therefore decide to observe four features:
 %
@@ -528,12 +528,12 @@ We can therefore define the \textit{\#when:} method to activate the collector if
 We can then write the extraction strategies to gather the status of the part of the system that is subject of the testing, or simply extract the whole context storing all the objects in the stack.
 
 Using collectors, our framework allows developers to generate automatic reports that can be sent and managed in an automated fashion, guaranteeing the reliability and quality of the data.
-This data can then be serialized using a framework like \textit{STON},\seeurl{https://github.com/svenvc/ston} so that a developer can still access part of the objects involved with the exception.
+This data can then be serialized using a framework like \textit{STON},\seeurl{https://github.com/svenvc/ston} so that a developer can still access the parts of the objects involved with the exception.
 The use of objects allows to directly communicate with the status, without having to revert to text mining techniques to infer the involved entities from textual logs.
 
 For example, when a test fails, \entity{SUnit} generates an \entity{AssertionFailure} exception.
 Catching this exception allows to access the context of the test, containing the erroneous result and the local variables, especially the class that is object of the test.
-By serializing and sending this information, we can collect and group this data from all the failed test to generate an automatic report containing all the objects in a wrong state, and navigate it to identify the cause for the failing tests.
+By serializing and sending this information, we can collect and group this data from all the failed tests to generate a report containing all the objects in a wrong state, and navigate it to identify the cause for the failing tests.
 
 %There is a drawback in customizing collectors to detect specific information in test suites: It is not always possible to define a strategy that is specific enough to collect relevant information, but at the same time broad enough to not require writing a collector for each test case, which would clearly be unfeasible.
 Sometimes, however, observing just the tested object is not enough: The cause of the failure might be hidden in the underlying system, or the object would reference volatile resources, like database connections or remote sockets.
@@ -583,7 +583,7 @@ As we discussed through the chapter, the data collection mechanism can be integr
 About question (2), we believe that it is possible to implement such an approach also in other programming languages.
 The \pha system makes the perfect candidate to test such a framework, easing the implementation process by providing the APIs to talk with the system and the tools to navigate the collected data, but the use cases we have shown in \secref{sec:reified-stories} can be implemented with any language with reflective capabilities.
 
-There is also an interesting aspect to consider pertaining to how we used a collector in section \secref{sec:reified-story-testing} to save and submit the whole \pha image.
+There is also an interesting aspect to consider pertaining to how we used a collector in \secref{sec:reified-story-testing} to save and submit the whole \pha image.
 Given the current interest in DevOps technologies like Docker\footnote{\url{https://www.docker.com/}}, it is possible to execute an application in a Docker container, stop it and save its status during an exception, and submit the image of the application to a remote server.
 Analyzing the stored data would not be simple, as there is a lack of tools to access the state of applications in these circumstances, but our approach could be an interesting match for these similar scenarios.
 
